@@ -289,13 +289,17 @@
         
         .timeline-wrapper {
             width: 100%;
-            height: 120px;
+            height: 100px;
+            max-height: 100px;
+            overflow: hidden;
             position: relative;
+            display: block;
         }
         
-        #timeline-chart {
-            width: 100% !important;
-            height: 100% !important;
+        .timeline-wrapper canvas {
+            display: block;
+            height: 100px !important;
+            max-height: 100px !important;
         }
         
         /* Reset Button */
@@ -596,7 +600,7 @@
             
             <!-- Timeline Chart -->
             <div class="timeline-container">
-                <h3>Timeline</h3>
+                <h3>Films by Year</h3>
                 <div class="timeline-wrapper">
                     <canvas id="timeline-chart"></canvas>
                 </div>
@@ -1184,8 +1188,8 @@
             let shootingCount = 0;
             let representedCount = 0;
             
-            // Track years for timeline
-            const yearCounts = {};
+            // Track unique films per year for timeline (using Set to avoid duplicates)
+            const filmsByYear = {};
             
             // Add shooting locations (formerly "filming")
             if (filters.showShooting) {
@@ -1193,10 +1197,12 @@
                     if (passesFilter(feature)) {
                         shootingCluster.addLayer(createMarker(feature));
                         shootingCount++;
-                        // Track year
+                        // Track unique film by year
                         const year = feature.properties.year;
-                        if (year && year >= 1900 && year <= 2030) {
-                            yearCounts[year] = (yearCounts[year] || 0) + 1;
+                        const filmId = feature.properties.film_id;
+                        if (year && year >= 1900 && year <= 2030 && filmId) {
+                            if (!filmsByYear[year]) filmsByYear[year] = new Set();
+                            filmsByYear[year].add(filmId);
                         }
                     }
                 });
@@ -1208,13 +1214,21 @@
                     if (passesFilter(feature)) {
                         representedCluster.addLayer(createMarker(feature));
                         representedCount++;
-                        // Track year
+                        // Track unique film by year
                         const year = feature.properties.year;
-                        if (year && year >= 1900 && year <= 2030) {
-                            yearCounts[year] = (yearCounts[year] || 0) + 1;
+                        const filmId = feature.properties.film_id;
+                        if (year && year >= 1900 && year <= 2030 && filmId) {
+                            if (!filmsByYear[year]) filmsByYear[year] = new Set();
+                            filmsByYear[year].add(filmId);
                         }
                     }
                 });
+            }
+            
+            // Convert Sets to counts for timeline
+            const yearCounts = {};
+            for (const year in filmsByYear) {
+                yearCounts[year] = filmsByYear[year].size;
             }
             
             // Update stats
@@ -1282,6 +1296,10 @@
                 timelineChart.destroy();
             }
             
+            // Ensure canvas has proper dimensions
+            ctx.style.height = '100px';
+            ctx.parentElement.style.height = '100px';
+            
             // Create new chart
             timelineChart = new Chart(ctx, {
                 type: 'bar',
@@ -1297,12 +1315,16 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    animation: { duration: 300 },
+                    layout: {
+                        padding: { top: 5, bottom: 0, left: 0, right: 0 }
+                    },
                     plugins: {
                         legend: { display: false },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return context.raw.toLocaleString() + ' locations';
+                                    return context.raw.toLocaleString() + ' films';
                                 }
                             }
                         }
