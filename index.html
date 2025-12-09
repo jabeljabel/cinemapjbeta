@@ -575,16 +575,23 @@
     
     <script>
         // ============================================================
-        // CONFIGURATION - GitHub Pages (same folder)
+        // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
         const DATA_BASE_URL = './';
         const RANDOM_SUFFIX = 'eca70350cf996dc3';
         
         const DATA_FILES = {
-            meta: `cm_meta_${RANDOM_SUFFIX}.json`,
-            filming1: `cm_film1_${RANDOM_SUFFIX}.json`,
-            filming2: `cm_film2_${RANDOM_SUFFIX}.json`,
-            represented: `cm_repr_${RANDOM_SUFFIX}.json`
+            meta: 'cm_meta_eca70350cf996dc3.json',
+            filming: [
+                'cm_film1_eca70350cf996dc3_1.json',
+                'cm_film1_eca70350cf996dc3_2.json',
+                'cm_film2_eca70350cf996dc3_1.json',
+                'cm_film2_eca70350cf996dc3_2.json'
+            ],
+            represented: [
+                'cm_repr_eca70350cf996dc3_1.json',
+                'cm_repr_eca70350cf996dc3_2.json'
+            ]
         };
         // ============================================================
         
@@ -678,7 +685,7 @@
             
             try {
                 // Load metadata first
-                console.log('Loading metadata from:', DATA_BASE_URL + DATA_FILES.meta);
+                console.log('Loading metadata...');
                 loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading metadata...</p>';
                 const metaResponse = await fetch(DATA_BASE_URL + DATA_FILES.meta);
                 if (!metaResponse.ok) throw new Error('Failed to load metadata: ' + metaResponse.status);
@@ -687,26 +694,27 @@
                 allData.metadata = metaData.metadata;
                 allData.filters = metaData.filters;
                 
-                // Load filming locations (2 files)
+                // Load filming locations (4 chunks)
                 console.log('Loading filming locations...');
-                loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading filming locations (1/2)...</p>';
-                const film1Response = await fetch(DATA_BASE_URL + DATA_FILES.filming1);
-                if (!film1Response.ok) throw new Error('Failed to load filming1: ' + film1Response.status);
-                const film1 = await film1Response.json();
+                allData.filming_locations = [];
+                for (let i = 0; i < DATA_FILES.filming.length; i++) {
+                    loadingDiv.innerHTML = `<div class="loading-spinner"></div><p>Loading filming locations (${i+1}/${DATA_FILES.filming.length})...</p>`;
+                    const response = await fetch(DATA_BASE_URL + DATA_FILES.filming[i]);
+                    if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.filming[i] + ': ' + response.status);
+                    const chunk = await response.json();
+                    allData.filming_locations.push(...chunk);
+                }
                 
-                loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading filming locations (2/2)...</p>';
-                const film2Response = await fetch(DATA_BASE_URL + DATA_FILES.filming2);
-                if (!film2Response.ok) throw new Error('Failed to load filming2: ' + film2Response.status);
-                const film2 = await film2Response.json();
-                
-                allData.filming_locations = [...film1, ...film2];
-                
-                // Load represented locations
+                // Load represented locations (2 chunks)
                 console.log('Loading represented locations...');
-                loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading represented locations...</p>';
-                const reprResponse = await fetch(DATA_BASE_URL + DATA_FILES.represented);
-                if (!reprResponse.ok) throw new Error('Failed to load represented: ' + reprResponse.status);
-                allData.represented_locations = await reprResponse.json();
+                allData.represented_locations = [];
+                for (let i = 0; i < DATA_FILES.represented.length; i++) {
+                    loadingDiv.innerHTML = `<div class="loading-spinner"></div><p>Loading represented locations (${i+1}/${DATA_FILES.represented.length})...</p>`;
+                    const response = await fetch(DATA_BASE_URL + DATA_FILES.represented[i]);
+                    if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.represented[i] + ': ' + response.status);
+                    const chunk = await response.json();
+                    allData.represented_locations.push(...chunk);
+                }
                 
                 console.log('Data loaded:', {
                     filming: allData.filming_locations.length,
