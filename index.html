@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineMAP - Japanese Cinema Locations</title>
     
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
@@ -638,23 +647,20 @@
         // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
         const DATA_BASE_URL = './';
-        const RANDOM_SUFFIX = '9ed6259eba2b684a';
+        const RANDOM_SUFFIX = '9de3d6c371d8581a';
         
         const DATA_FILES = {
-            meta: 'cm_meta_9ed6259eba2b684a.json',
+            meta: 'cm_meta_9de3d6c371d8581a.json',
             filming: [
-                'cm_film_9ed6259eba2b684a_1.json',
-                'cm_film_9ed6259eba2b684a_2.json',
-                'cm_film_9ed6259eba2b684a_3.json',
-                'cm_film_9ed6259eba2b684a_4.json',
-                'cm_film_9ed6259eba2b684a_5.json',
-                'cm_film_9ed6259eba2b684a_6.json',
-                'cm_film_9ed6259eba2b684a_7.json'
+                'cm_film_9de3d6c371d8581a_1.json',
+                'cm_film_9de3d6c371d8581a_2.json',
+                'cm_film_9de3d6c371d8581a_3.json',
+                'cm_film_9de3d6c371d8581a_4.json',
+                'cm_film_9de3d6c371d8581a_5.json'
             ],
             represented: [
-                'cm_repr_9ed6259eba2b684a_1.json',
-                'cm_repr_9ed6259eba2b684a_2.json',
-                'cm_repr_9ed6259eba2b684a_3.json'
+                'cm_repr_9de3d6c371d8581a_1.json',
+                'cm_repr_9de3d6c371d8581a_2.json'
             ]
         };
         // ============================================================
@@ -1101,31 +1107,76 @@
             // Parse InfoSource format: "source|url" or just "source"
             const parts = infoSource.split('|');
             const source = parts[0];
+            const sourceLower = source.toLowerCase();
             
-            // Clean up common source names
+            // Clean up common source names (filming locations)
             const sourceMap = {
+                'agua': 'Agua Film Archive',
+                'imdb': 'IMDB',
+                'nfaj': 'NFAJ Archive',
+                'nikkatsu': 'Nikkatsu',
+                'nikkatsu website': 'Nikkatsu',
+                'nikkatsu migration': 'Nikkatsu',
+                'wikipedia': 'Wikipedia',
+                'wikidata': 'Wikidata',
                 'loca_ash': 'loca.ash.jp',
                 'locanavi': 'Locanavi',
-                'NFAJ': 'NFAJ Archive',
-                'Nikkatsu': 'Nikkatsu',
-                'Wikipedia': 'Wikipedia',
+                'roke jiten': 'Roke Jiten',
+                'filminglocation.work': 'Film Location DB',
+                'ysotake_coocan': 'Ysotake Archive',
                 'subtitle_extraction': 'Subtitle',
                 'synopsis_extraction': 'Synopsis',
                 'title_extraction': 'Title'
             };
             
-            return sourceMap[source] || source;
+            // Check for FC: prefix (Film Commissions)
+            if (sourceLower.startsWith('fc:')) {
+                return 'Film Commission';
+            }
+            
+            // Check for recovered data
+            if (sourceLower.includes('recovered')) {
+                return 'Recovered Data';
+            }
+            
+            // Check for loca_ash with URL
+            if (sourceLower.startsWith('loca_ash')) {
+                return 'loca.ash.jp';
+            }
+            
+            // Check for http URLs
+            if (sourceLower.startsWith('http')) {
+                return 'Web Archive';
+            }
+            
+            return sourceMap[sourceLower] || sourceMap[source] || source;
         }
         
         // === GET EXTRACTION TYPE FOR REPRESENTED LOCATIONS ===
         function getExtractionType(infoSource) {
-            if (!infoSource) return 'metadata';
+            if (!infoSource) return 'database';
             
             const sourceLower = infoSource.toLowerCase();
-            if (sourceLower.includes('subtitle')) return 'subtitle';
-            if (sourceLower.includes('synopsis')) return 'synopsis';
-            if (sourceLower.includes('title')) return 'title';
-            return 'metadata';
+            
+            // Match actual RepresentedDataSource values from database
+            if (sourceLower === 'cinemap') return 'CineMAP database';
+            if (sourceLower === 'jmdb') return 'JMDB database';
+            if (sourceLower === 'jfdb') return 'JFDB database';
+            if (sourceLower === 'eirin') return 'Eirin records';
+            if (sourceLower === 'wikipedia') return 'Wikipedia';
+            if (sourceLower === 'eiga') return 'Eiga.com';
+            if (sourceLower === 'tvdrama') return 'TV Drama database';
+            if (sourceLower === 'tmdb') return 'TMDB';
+            if (sourceLower === 'allcinema') return 'AllCinema';
+            if (sourceLower === 'shochiku') return 'Shochiku records';
+            if (sourceLower === 'nikkatsu') return 'Nikkatsu records';
+            
+            // Legacy patterns
+            if (sourceLower.includes('subtitle')) return 'subtitle extraction';
+            if (sourceLower.includes('synopsis')) return 'synopsis extraction';
+            if (sourceLower.includes('title')) return 'title extraction';
+            
+            return infoSource;  // Return as-is if unknown
         }
         
         // === CREATE MARKER ===
@@ -1174,19 +1225,6 @@
                 </div>
             `;
             
-            // Add synopsis if available
-            if (props.synopsis) {
-                const truncatedSynopsis = props.synopsis.length > 200 
-                    ? props.synopsis.substring(0, 200) + '...' 
-                    : props.synopsis;
-                popupContent += `
-                    <div class="popup-synopsis">
-                        <div style="color:#aaa;font-size:10px;margin-bottom:3px;">Synopsis:</div>
-                        <div style="font-size:11px;color:#ccc;line-height:1.4;">${truncatedSynopsis}</div>
-                    </div>
-                `;
-            }
-            
             // Add source attribution
             if (isShooting) {
                 popupContent += `
@@ -1227,7 +1265,8 @@
             }
             
             // Director filter (partial match for incremental search)
-            if (filters.director && props.directors) {
+            if (filters.director) {
+                if (!props.directors || !props.directors.length) return false;
                 const query = filters.director.toLowerCase();
                 const directorMatch = props.directors.some(d => d.toLowerCase().includes(query));
                 if (!directorMatch) return false;
@@ -1235,6 +1274,7 @@
             
             // Studio filter (partial match for incremental search)
             if (filters.studio) {
+                if (!props.studio && !props.studio_japanese) return false;
                 const query = filters.studio.toLowerCase();
                 const studioMatch = (props.studio && props.studio.toLowerCase().includes(query)) ||
                                     (props.studio_japanese && props.studio_japanese.includes(filters.studio));

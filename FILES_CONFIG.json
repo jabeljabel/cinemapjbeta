@@ -1,20 +1,18 @@
 {
-  "random_suffix": "9ed6259eba2b684a",
+  "random_suffix": "9de3d6c371d8581a",
+  "version": "3.0",
   "files": {
-    "meta": "cm_meta_9ed6259eba2b684a.json",
+    "meta": "cm_meta_9de3d6c371d8581a.json",
     "filming": [
-      "cm_film_9ed6259eba2b684a_1.json",
-      "cm_film_9ed6259eba2b684a_2.json",
-      "cm_film_9ed6259eba2b684a_3.json",
-      "cm_film_9ed6259eba2b684a_4.json",
-      "cm_film_9ed6259eba2b684a_5.json",
-      "cm_film_9ed6259eba2b684a_6.json",
-      "cm_film_9ed6259eba2b684a_7.json"
+      "cm_film_9de3d6c371d8581a_1.json",
+      "cm_film_9de3d6c371d8581a_2.json",
+      "cm_film_9de3d6c371d8581a_3.json",
+      "cm_film_9de3d6c371d8581a_4.json",
+      "cm_film_9de3d6c371d8581a_5.json"
     ],
     "represented": [
-      "cm_repr_9ed6259eba2b684a_1.json",
-      "cm_repr_9ed6259eba2b684a_2.json",
-      "cm_repr_9ed6259eba2b684a_3.json"
+      "cm_repr_9de3d6c371d8581a_1.json",
+      "cm_repr_9de3d6c371d8581a_2.json"
     ]
   }
 }
