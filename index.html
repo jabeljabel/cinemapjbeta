@@ -408,6 +408,15 @@
             color: #ccc;
         }
         
+        .popup-synopsis {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        
         /* Loading Overlay */
         .loading-overlay {
             position: fixed;
@@ -576,6 +585,16 @@
             </div>
         </div>
         
+        <!-- Synopsis Search -->
+        <div class="control-section">
+            <h3>Synopsis Search</h3>
+            <div class="search-container">
+                <input type="text" id="search-synopsis" class="search-input" placeholder="Search in synopses..." oninput="onSynopsisSearchDebounced(this.value)">
+                <button class="search-clear" onclick="clearSynopsisSearch()" style="display:none;" id="clear-synopsis">×</button>
+            </div>
+            <div class="synopsis-hint" style="font-size:10px;color:#666;margin-top:4px;">Press Enter or wait to search</div>
+        </div>
+        
         <!-- Reset Button -->
         <div class="control-section">
             <button class="reset-btn" onclick="resetFilters()">Reset All Filters</button>
@@ -619,19 +638,23 @@
         // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
         const DATA_BASE_URL = './';
-        const RANDOM_SUFFIX = 'eca70350cf996dc3';
+        const RANDOM_SUFFIX = '9ed6259eba2b684a';
         
         const DATA_FILES = {
-            meta: 'cm_meta_eca70350cf996dc3.json',
+            meta: 'cm_meta_9ed6259eba2b684a.json',
             filming: [
-                'cm_film1_eca70350cf996dc3_1.json',
-                'cm_film1_eca70350cf996dc3_2.json',
-                'cm_film2_eca70350cf996dc3_1.json',
-                'cm_film2_eca70350cf996dc3_2.json'
+                'cm_film_9ed6259eba2b684a_1.json',
+                'cm_film_9ed6259eba2b684a_2.json',
+                'cm_film_9ed6259eba2b684a_3.json',
+                'cm_film_9ed6259eba2b684a_4.json',
+                'cm_film_9ed6259eba2b684a_5.json',
+                'cm_film_9ed6259eba2b684a_6.json',
+                'cm_film_9ed6259eba2b684a_7.json'
             ],
             represented: [
-                'cm_repr_eca70350cf996dc3_1.json',
-                'cm_repr_eca70350cf996dc3_2.json'
+                'cm_repr_9ed6259eba2b684a_1.json',
+                'cm_repr_9ed6259eba2b684a_2.json',
+                'cm_repr_9ed6259eba2b684a_3.json'
             ]
         };
         // ============================================================
@@ -651,7 +674,8 @@
             prefecture: '',
             filmTitle: '',
             yearMin: null,
-            yearMax: null
+            yearMax: null,
+            synopsisQuery: ''
         };
         
         // Search state
@@ -659,8 +683,24 @@
         let allDirectors = [];
         let allStudios = [];
         
+        // Synopsis search debounce
+        let synopsisSearchTimer = null;
+        
         // Timeline chart
         let timelineChart = null;
+        
+        // === TEXT NORMALIZATION FOR SEARCH ===
+        // Handles both Japanese and English text
+        function normalizeText(text) {
+            if (!text) return '';
+            // Normalize Unicode (NFKC converts half-width to full-width, etc.)
+            let normalized = text.normalize('NFKC');
+            // Convert to lowercase for English
+            normalized = normalized.toLowerCase();
+            // Remove extra whitespace
+            normalized = normalized.replace(/\s+/g, ' ').trim();
+            return normalized;
+        }
         
         // === INITIALIZE MAP ===
         function initMap() {
@@ -1025,6 +1065,33 @@
             setTimeout(() => document.getElementById('studio-results').classList.remove('active'), 200);
         }
         
+        // === SYNOPSIS SEARCH ===
+        function onSynopsisSearchDebounced(query) {
+            const clearBtn = document.getElementById('clear-synopsis');
+            clearBtn.style.display = query ? 'block' : 'none';
+            
+            // Clear existing timer
+            if (synopsisSearchTimer) {
+                clearTimeout(synopsisSearchTimer);
+            }
+            
+            // Debounce - wait 500ms after typing stops
+            synopsisSearchTimer = setTimeout(() => {
+                filters.synopsisQuery = query;
+                applyFilters();
+            }, 500);
+        }
+        
+        function clearSynopsisSearch() {
+            document.getElementById('search-synopsis').value = '';
+            document.getElementById('clear-synopsis').style.display = 'none';
+            filters.synopsisQuery = '';
+            if (synopsisSearchTimer) {
+                clearTimeout(synopsisSearchTimer);
+            }
+            applyFilters();
+        }
+        
         // === FORMAT INFO SOURCE ===
         function formatInfoSource(infoSource, locationType) {
             if (!infoSource) {
@@ -1107,6 +1174,19 @@
                 </div>
             `;
             
+            // Add synopsis if available
+            if (props.synopsis) {
+                const truncatedSynopsis = props.synopsis.length > 200 
+                    ? props.synopsis.substring(0, 200) + '...' 
+                    : props.synopsis;
+                popupContent += `
+                    <div class="popup-synopsis">
+                        <div style="color:#aaa;font-size:10px;margin-bottom:3px;">Synopsis:</div>
+                        <div style="font-size:11px;color:#ccc;line-height:1.4;">${truncatedSynopsis}</div>
+                    </div>
+                `;
+            }
+            
             // Add source attribution
             if (isShooting) {
                 popupContent += `
@@ -1167,6 +1247,15 @@
             // Year range filter
             if (filters.yearMin && props.year && props.year < filters.yearMin) return false;
             if (filters.yearMax && props.year && props.year > filters.yearMax) return false;
+            
+            // Synopsis search filter
+            if (filters.synopsisQuery) {
+                const query = normalizeText(filters.synopsisQuery);
+                const synopsis = normalizeText(props.synopsis || '');
+                if (!synopsis.includes(query)) {
+                    return false;
+                }
+            }
             
             return true;
         }
@@ -1369,7 +1458,8 @@
                 prefecture: '',
                 filmTitle: '',
                 yearMin: null,
-                yearMax: null
+                yearMax: null,
+                synopsisQuery: ''
             };
             
             // Reset UI
@@ -1384,9 +1474,11 @@
             document.getElementById('search-film').value = '';
             document.getElementById('search-director').value = '';
             document.getElementById('search-studio').value = '';
+            document.getElementById('search-synopsis').value = '';
             document.getElementById('clear-film').style.display = 'none';
             document.getElementById('clear-director').style.display = 'none';
             document.getElementById('clear-studio').style.display = 'none';
+            document.getElementById('clear-synopsis').style.display = 'none';
             document.getElementById('film-results').classList.remove('active');
             document.getElementById('director-results').classList.remove('active');
             document.getElementById('studio-results').classList.remove('active');
