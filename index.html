@@ -1158,25 +1158,20 @@
             
             const sourceLower = infoSource.toLowerCase();
             
-            // Match actual RepresentedDataSource values from database
-            if (sourceLower === 'cinemap') return 'CineMAP database';
-            if (sourceLower === 'jmdb') return 'JMDB database';
-            if (sourceLower === 'jfdb') return 'JFDB database';
-            if (sourceLower === 'eirin') return 'Eirin records';
+            // Check for extraction method patterns first (most specific)
+            if (sourceLower.includes('represented_synopsis') || sourceLower.includes('synopsis')) return 'synopsis';
+            if (sourceLower.includes('represented_title') || sourceLower.includes('title')) return 'title';
+            if (sourceLower.includes('represented_subtitle') || sourceLower.includes('subtitle')) return 'subtitle';
+            
+            // Database sources
+            if (sourceLower === 'wikidata') return 'Wikidata';
             if (sourceLower === 'wikipedia') return 'Wikipedia';
-            if (sourceLower === 'eiga') return 'Eiga.com';
-            if (sourceLower === 'tvdrama') return 'TV Drama database';
-            if (sourceLower === 'tmdb') return 'TMDB';
-            if (sourceLower === 'allcinema') return 'AllCinema';
-            if (sourceLower === 'shochiku') return 'Shochiku records';
-            if (sourceLower === 'nikkatsu') return 'Nikkatsu records';
+            if (sourceLower === 'imdb') return 'IMDB';
+            if (sourceLower.includes('nikkatsu')) return 'Nikkatsu records';
+            if (sourceLower.includes('gangm')) return 'web archive';
+            if (sourceLower.includes('restored') || sourceLower.includes('cleaned')) return 'restored data';
             
-            // Legacy patterns
-            if (sourceLower.includes('subtitle')) return 'subtitle extraction';
-            if (sourceLower.includes('synopsis')) return 'synopsis extraction';
-            if (sourceLower.includes('title')) return 'title extraction';
-            
-            return infoSource;  // Return as-is if unknown
+            return 'database';
         }
         
         // === CREATE MARKER ===
