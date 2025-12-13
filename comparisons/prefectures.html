@@ -157,6 +157,12 @@
             color: #888;
         }
         
+        .genre-bar-pct {
+            color: #333;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
         .genre-bar-track {
             height: 8px;
             background: #f0f0f0;
@@ -303,7 +309,7 @@
     <div id="header">
         <div class="header-title">CineMAP <span>· Prefecture Genre Map</span></div>
         <div class="mode-toggle">
-            <button class="mode-btn active" data-mode="dominant" onclick="setMode('dominant')">Dominant Genre</button>
+            <button class="mode-btn active" data-mode="dominant" onclick="setMode('dominant')">Dominant Genre %</button>
             <button class="mode-btn" data-mode="single" onclick="setMode('single')">Single Genre</button>
         </div>
         <select class="genre-select" id="genre-select" onchange="updateMap()" style="display: none;">
@@ -323,13 +329,13 @@
                     locations
                 </div>
             </div>
-            <div class="section-title">Genre Breakdown</div>
+            <div class="section-title">Genre Breakdown (by %)</div>
             <div id="detail-bars"></div>
         </div>
         
         <!-- Prefecture Rankings -->
         <div class="sidebar-section">
-            <div class="section-title" id="ranking-title">Top Prefectures (All Genres)</div>
+            <div class="section-title" id="ranking-title">Top Prefectures by Genre Specialization</div>
             <div class="pref-rank-list" id="pref-ranking"></div>
         </div>
         
@@ -343,9 +349,10 @@
         <div class="sidebar-section">
             <div class="info-box">
                 <strong>How to use:</strong><br>
-                • <b>Dominant Genre</b> mode colors each prefecture by its most common genre<br>
-                • <b>Single Genre</b> mode shows intensity for one selected genre<br>
-                • Click a prefecture for detailed breakdown
+                • <b>Dominant Genre %</b> mode colors each prefecture by its highest percentage genre (relative specialization)<br>
+                • <b>Single Genre</b> mode shows which prefectures specialize most in one genre<br>
+                • Click a prefecture for detailed breakdown<br><br>
+                <em>Example: Kyoto shows as Period Drama even if Tokyo has more total Period Drama locations, because Period Drama is a higher % of Kyoto's total.</em>
             </div>
         </div>
     </div>
@@ -372,7 +379,11 @@
             'Thriller': '#607d8b',
             'War': '#455a64',
             'Fantasy': '#8e44ad',
-            'Music': '#c0392b'
+            'Music': '#c0392b',
+            'Suspense': '#2c3e50',
+            'Science Fiction': '#1abc9c',
+            'Period Drama': '#d35400',
+            'Musical': '#c0392b'
         };
         
         let map = null;
@@ -405,6 +416,9 @@
                 prefectureData = prefData.prefectures;
                 japanGeoJson = await geoResponse.json();
                 
+                // Calculate percentages for each prefecture
+                calculatePercentages();
+                
                 // Build UI
                 buildLegend(prefData.metadata.genres);
                 buildGenreSelect(prefData.metadata.genres);
@@ -417,6 +431,35 @@
             } catch (error) {
                 console.error('Error:', error);
                 document.querySelector('.loading-msg').textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        function calculatePercentages() {
+            // Calculate percentage for each genre within each prefecture
+            for (const [prefName, data] of Object.entries(prefectureData)) {
+                const total = data.total_locations;
+                if (total === 0) continue;
+                
+                let maxPct = 0;
+                let dominantGenre = null;
+                
+                for (const [genre, counts] of Object.entries(data.genres)) {
+                    const pct = (counts.total / total) * 100;
+                    counts.percentage = pct;
+                    
+                    if (pct > maxPct) {
+                        maxPct = pct;
+                        dominantGenre = genre;
+                    }
+                }
+                
+                data.dominant_genre_pct = dominantGenre;
+                data.dominant_percentage = maxPct;
+                
+                // Also sort genres by percentage
+                data.genre_ranking_pct = Object.entries(data.genres)
+                    .sort((a, b) => b[1].percentage - a[1].percentage)
+                    .map(([genre]) => genre);
             }
         }
         
@@ -440,18 +483,19 @@
             
             if (prefData) {
                 if (currentMode === 'dominant') {
-                    const dominant = prefData.dominant_genre;
+                    // Use percentage-based dominant genre
+                    const dominant = prefData.dominant_genre_pct;
                     fillColor = GENRE_COLORS[dominant] || '#888';
-                    fillOpacity = 0.75;
+                    // Opacity based on how dominant (specialized) the genre is
+                    fillOpacity = 0.4 + (prefData.dominant_percentage / 100) * 0.5;
                 } else {
-                    // Single genre mode
+                    // Single genre mode - show percentage intensity
                     const selectedGenre = document.getElementById('genre-select').value;
                     if (selectedGenre && prefData.genres[selectedGenre]) {
-                        const count = prefData.genres[selectedGenre].total;
-                        const maxCount = getMaxCountForGenre(selectedGenre);
-                        const intensity = Math.min(1, count / maxCount);
+                        const pct = prefData.genres[selectedGenre].percentage;
                         fillColor = GENRE_COLORS[selectedGenre] || '#3498db';
-                        fillOpacity = 0.2 + (intensity * 0.7);
+                        // Higher percentage = more intense color
+                        fillOpacity = 0.2 + (pct / 50) * 0.7; // Scale: 0% -> 0.2 opacity, 50%+ -> 0.9 opacity
                     } else {
                         fillColor = '#f0f0f0';
                         fillOpacity = 0.3;
@@ -476,7 +520,7 @@
             let tooltipContent = `<div class="pref-tooltip"><strong>${prefName}</strong>`;
             if (prefData) {
                 tooltipContent += `<br>${prefData.total_locations.toLocaleString()} locations`;
-                tooltipContent += `<br>Top: ${prefData.dominant_genre}`;
+                tooltipContent += `<br>Top: ${prefData.dominant_genre_pct} (${prefData.dominant_percentage.toFixed(1)}%)`;
             } else {
                 tooltipContent += `<br>No data`;
             }
@@ -526,16 +570,6 @@
             return null;
         }
         
-        function getMaxCountForGenre(genre) {
-            let max = 0;
-            for (const data of Object.values(prefectureData)) {
-                if (data.genres[genre]) {
-                    max = Math.max(max, data.genres[genre].total);
-                }
-            }
-            return max || 1;
-        }
-        
         function selectPrefecture(prefName) {
             selectedPrefecture = prefName;
             const data = findPrefectureData(prefName);
@@ -551,19 +585,17 @@
             document.getElementById('detail-name').textContent = prefName;
             document.getElementById('detail-total').textContent = data.total_locations.toLocaleString();
             
-            // Build genre bars
+            // Build genre bars - sorted by percentage
             const barsContainer = document.getElementById('detail-bars');
             barsContainer.innerHTML = '';
             
-            const maxCount = Math.max(...Object.values(data.genres).map(g => g.total));
-            
-            // Sort genres by count
+            // Sort genres by percentage
             const sortedGenres = Object.entries(data.genres)
-                .sort((a, b) => b[1].total - a[1].total)
+                .sort((a, b) => b[1].percentage - a[1].percentage)
                 .slice(0, 10);
             
             for (const [genre, counts] of sortedGenres) {
-                const pct = (counts.total / maxCount) * 100;
+                const pct = counts.percentage;
                 const color = GENRE_COLORS[genre] || '#888';
                 
                 const bar = document.createElement('div');
@@ -571,7 +603,10 @@
                 bar.innerHTML = `
                     <div class="genre-bar-header">
                         <span class="genre-bar-name">${genre}</span>
-                        <span class="genre-bar-count">${counts.total.toLocaleString()}</span>
+                        <span>
+                            <span class="genre-bar-count">${counts.total.toLocaleString()}</span>
+                            <span class="genre-bar-pct">${pct.toFixed(1)}%</span>
+                        </span>
                     </div>
                     <div class="genre-bar-track">
                         <div class="genre-bar-fill" style="width: ${pct}%; background: ${color}"></div>
@@ -595,22 +630,34 @@
             
             const selectedGenre = currentMode === 'single' ? document.getElementById('genre-select').value : null;
             
-            // Sort prefectures
+            // Sort prefectures by percentage
             let sorted;
             if (selectedGenre) {
+                // Sort by percentage for selected genre
                 sorted = Object.entries(prefectureData)
-                    .filter(([_, d]) => d.genres[selectedGenre])
-                    .sort((a, b) => (b[1].genres[selectedGenre]?.total || 0) - (a[1].genres[selectedGenre]?.total || 0));
-                document.getElementById('ranking-title').textContent = `Top Prefectures for ${selectedGenre}`;
+                    .filter(([_, d]) => d.genres[selectedGenre] && d.total_locations >= 100) // Min 100 locations for significance
+                    .sort((a, b) => (b[1].genres[selectedGenre]?.percentage || 0) - (a[1].genres[selectedGenre]?.percentage || 0));
+                document.getElementById('ranking-title').textContent = `Highest % ${selectedGenre}`;
             } else {
+                // Sort by how specialized they are (highest dominant percentage)
                 sorted = Object.entries(prefectureData)
-                    .sort((a, b) => b[1].total_locations - a[1].total_locations);
-                document.getElementById('ranking-title').textContent = 'Top Prefectures (All Genres)';
+                    .filter(([_, d]) => d.total_locations >= 100) // Min 100 locations for significance
+                    .sort((a, b) => b[1].dominant_percentage - a[1].dominant_percentage);
+                document.getElementById('ranking-title').textContent = 'Most Specialized Prefectures';
             }
             
             sorted.slice(0, 15).forEach(([name, data], idx) => {
-                const count = selectedGenre ? (data.genres[selectedGenre]?.total || 0) : data.total_locations;
-                const subtext = selectedGenre ? `${data.total_films} films` : `Top: ${data.dominant_genre}`;
+                let displayPct, displayGenre, subtext;
+                
+                if (selectedGenre) {
+                    displayPct = data.genres[selectedGenre]?.percentage || 0;
+                    displayGenre = selectedGenre;
+                    subtext = `${data.genres[selectedGenre]?.total.toLocaleString() || 0} of ${data.total_locations.toLocaleString()}`;
+                } else {
+                    displayPct = data.dominant_percentage;
+                    displayGenre = data.dominant_genre_pct;
+                    subtext = `${displayGenre}`;
+                }
                 
                 const item = document.createElement('div');
                 item.className = 'pref-rank-item';
@@ -621,7 +668,7 @@
                         <div class="pref-rank-name">${name}</div>
                         <div class="pref-rank-genre">${subtext}</div>
                     </div>
-                    <div class="pref-rank-count">${count.toLocaleString()}</div>
+                    <div class="pref-rank-count">${displayPct.toFixed(1)}%</div>
                 `;
                 
                 item.addEventListener('click', () => {
