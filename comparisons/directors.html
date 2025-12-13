@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP: Three Masters - Heatmap</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Cormorant Garamond', 'Noto Sans JP', serif;
+            background: #0d0d0d;
+            color: #f5f5f0;
+            overflow: hidden;
+        }
+        
+        #map {
+            position: fixed;
+            top: 0;
+            left: 340px;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 340px;
+            height: 100vh;
+            background: #0d0d0d;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            padding: 40px 28px 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .sidebar-header h1 {
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-header .subtitle {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .sidebar-section {
+            padding: 24px 28px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Director Cards */
+        .director-card {
+            padding: 20px;
+            margin-bottom: 12px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .director-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--card-color);
+            transition: width 0.3s ease;
+        }
+        
+        .director-card:hover::before { width: 8px; }
+        .director-card.active { background: rgba(255,255,255,0.03); }
+        .director-card.inactive { opacity: 0.35; }
+        .director-card.inactive::before { opacity: 0.3; }
+        
+        .director-name {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .director-name-jp {
+            font-size: 14px;
+            color: #888;
+            font-weight: 400;
+        }
+        
+        .director-stats {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .director-toggle {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Sliders */
+        .slider-group {
+            margin-bottom: 20px;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #aaa;
+        }
+        
+        .slider-value {
+            color: #9b59b6;
+            font-weight: 600;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #9b59b6;
+            cursor: pointer;
+        }
+        
+        /* Location Type Toggle */
+        .type-toggles {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .type-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            color: #666;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .type-toggle-btn.active {
+            color: #f5f5f0;
+            border-color: rgba(255,255,255,0.3);
+        }
+        
+        .type-toggle-btn .checkbox {
+            width: 16px;
+            height: 16px;
+            border: 1px solid currentColor;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .type-toggle-btn.active .checkbox::after {
+            content: '✓';
+            font-size: 11px;
+        }
+        
+        /* Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+        
+        /* Context */
+        .context-box {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .context-box strong {
+            color: #bbb;
+            font-style: normal;
+        }
+        
+        /* Loading */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #0d0d0d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .loading-text {
+            font-size: 18px;
+            color: #666;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+        
+        /* Footer */
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 20px 28px;
+            font-size: 11px;
+            color: #444;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .sidebar-footer a {
+            color: #666;
+            text-decoration: none;
+        }
+        
+        /* Legend overlay */
+        .heatmap-legend {
+            position: absolute;
+            bottom: 30px;
+            left: 360px;
+            background: rgba(13,13,13,0.9);
+            padding: 12px 16px;
+            border-radius: 8px;
+            z-index: 1000;
+            font-size: 12px;
+        }
+        
+        .legend-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .legend-row:last-child { margin-bottom: 0; }
+        
+        .legend-swatch {
+            width: 20px;
+            height: 12px;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 900px) {
+            #map { left: 0; bottom: 250px; }
+            #sidebar { width: 100%; height: 250px; top: auto; bottom: 0; }
+            .heatmap-legend { left: 20px; bottom: 270px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="loading-text">Loading Cinema Data</div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="heatmap-legend">
+        <div class="legend-row">
+            <div class="legend-swatch" style="background: #e74c3c"></div>
+            <span>Kurosawa</span>
+        </div>
+        <div class="legend-row">
+            <div class="legend-swatch" style="background: #2ecc71"></div>
+            <span>Ozu</span>
+        </div>
+        <div class="legend-row">
+            <div class="legend-swatch" style="background: #9b59b6"></div>
+            <span>Mizoguchi</span>
+        </div>
+    </div>
+    
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h1>THREE MASTERS</h1>
+            <div class="subtitle">Heatmap of Location Density</div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="section-title">Heatmap Settings</div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Radius</span>
+                    <span class="slider-value" id="radius-value">25</span>
+                </div>
+                <input type="range" id="radius-slider" min="10" max="50" value="25" oninput="updateHeatmapSettings()">
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Blur</span>
+                    <span class="slider-value" id="blur-value">15</span>
+                </div>
+                <input type="range" id="blur-slider" min="5" max="30" value="15" oninput="updateHeatmapSettings()">
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Opacity</span>
+                    <span class="slider-value" id="opacity-value">0.7</span>
+                </div>
+                <input type="range" id="opacity-slider" min="0.3" max="1" step="0.1" value="0.7" oninput="updateHeatmapSettings()">
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="section-title">Directors</div>
+            <div id="director-cards"></div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="section-title">Location Type</div>
+            <div class="type-toggles">
+                <button class="type-toggle-btn active" data-type="filming" onclick="toggleLocationType('filming')">
+                    <span class="checkbox"></span>
+                    Filming Locations
+                </button>
+                <button class="type-toggle-btn active" data-type="represented" onclick="toggleLocationType('represented')">
+                    <span class="checkbox"></span>
+                    Represented Locations
+                </button>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="section-title">Overview</div>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-films">—</div>
+                    <div class="stat-label">Films</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-locations">—</div>
+                    <div class="stat-label">Locations</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="context-box">
+                <strong>Ozu</strong>: domestic drama, Tokyo-centric.<br>
+                <strong>Kurosawa</strong>: samurai epics, varied landscapes.<br>
+                <strong>Mizoguchi</strong>: period drama, Kyoto/Osaka focus.
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <a href="https://jabeljabel.github.io/cinemapjbeta/" target="_blank">CineMAP Project</a>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    
+    <script>
+        const DATA_FILE = 'comparison_directors.json';
+        
+        // Director-specific color gradients for heatmaps
+        const DIRECTOR_GRADIENTS = {
+            'kurosawa': { 0.4: '#ffcccc', 0.65: '#ff6666', 1: '#e74c3c' },
+            'ozu': { 0.4: '#ccffcc', 0.65: '#66ff66', 1: '#2ecc71' },
+            'mizoguchi': { 0.4: '#e6ccff', 0.65: '#cc66ff', 1: '#9b59b6' }
+        };
+        
+        const DIRECTOR_INFO = {
+            'kurosawa': { kanji: '黒澤明', years: '1910–1998' },
+            'ozu': { kanji: '小津安二郎', years: '1903–1963' },
+            'mizoguchi': { kanji: '溝口健二', years: '1898–1956' }
+        };
+        
+        let allData = [];
+        let metadata = null;
+        let categoryVisibility = {};
+        let locationTypeVisibility = { filming: true, represented: true };
+        let heatmapLayers = {};
+        let map = null;
+        
+        function initMap() {
+            map = L.map('map', { center: [35.5, 137.0], zoom: 6 });
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap © CARTO',
+                maxZoom: 19
+            }).addTo(map);
+        }
+        
+        async function loadData() {
+            try {
+                const response = await fetch(DATA_FILE);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const data = await response.json();
+                allData = data.locations;
+                metadata = data.metadata;
+                
+                for (const key of Object.keys(metadata.categories)) {
+                    categoryVisibility[key] = true;
+                }
+                
+                buildDirectorCards(metadata.categories);
+                updateStats();
+                createHeatmaps();
+                
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error:', error);
+                document.querySelector('.loading-text').textContent = `Error loading data`;
+            }
+        }
+        
+        function createHeatmaps() {
+            // Remove existing layers
+            for (const layer of Object.values(heatmapLayers)) {
+                map.removeLayer(layer);
+            }
+            heatmapLayers = {};
+            
+            const radius = parseInt(document.getElementById('radius-slider').value);
+            const blur = parseInt(document.getElementById('blur-slider').value);
+            const opacity = parseFloat(document.getElementById('opacity-slider').value);
+            
+            // Group data by director
+            const dataByDirector = {};
+            for (const key of Object.keys(metadata.categories)) {
+                dataByDirector[key] = [];
+            }
+            
+            allData.forEach(feature => {
+                const props = feature.properties;
+                const coords = feature.geometry.coordinates;
+                
+                if (!categoryVisibility[props.category]) return;
+                if (!locationTypeVisibility[props.location_type]) return;
+                
+                dataByDirector[props.category].push([coords[1], coords[0], 1]);
+            });
+            
+            // Create heatmap for each director
+            for (const [key, points] of Object.entries(dataByDirector)) {
+                if (points.length === 0 || !categoryVisibility[key]) continue;
+                
+                const gradient = DIRECTOR_GRADIENTS[key] || { 0.4: '#ccc', 0.65: '#888', 1: '#444' };
+                
+                heatmapLayers[key] = L.heatLayer(points, {
+                    radius: radius,
+                    blur: blur,
+                    maxZoom: 17,
+                    max: 1.0,
+                    gradient: gradient,
+                    minOpacity: opacity * 0.3
+                });
+                
+                heatmapLayers[key].addTo(map);
+            }
+        }
+        
+        function updateHeatmapSettings() {
+            document.getElementById('radius-value').textContent = document.getElementById('radius-slider').value;
+            document.getElementById('blur-value').textContent = document.getElementById('blur-slider').value;
+            document.getElementById('opacity-value').textContent = document.getElementById('opacity-slider').value;
+            createHeatmaps();
+        }
+        
+        function buildDirectorCards(categories) {
+            const container = document.getElementById('director-cards');
+            container.innerHTML = '';
+            
+            for (const [key, info] of Object.entries(categories)) {
+                const total = info.filming_locations + info.represented_locations;
+                const extra = DIRECTOR_INFO[key] || {};
+                
+                const card = document.createElement('div');
+                card.className = 'director-card active';
+                card.dataset.category = key;
+                card.style.setProperty('--card-color', info.color);
+                card.innerHTML = `
+                    <div class="director-name">
+                        ${info.name}
+                        <span class="director-name-jp">${extra.kanji || ''}</span>
+                    </div>
+                    <div class="director-stats">
+                        ${info.film_count} films · ${total} locations
+                    </div>
+                    <div class="director-toggle">●</div>
+                `;
+                
+                card.addEventListener('click', () => toggleCategory(key));
+                container.appendChild(card);
+            }
+        }
+        
+        function updateStats() {
+            let totalFilms = 0, totalLocs = 0;
+            for (const info of Object.values(metadata.categories)) {
+                totalFilms += info.film_count;
+                totalLocs += info.filming_locations + info.represented_locations;
+            }
+            document.getElementById('stat-films').textContent = totalFilms;
+            document.getElementById('stat-locations').textContent = totalLocs.toLocaleString();
+        }
+        
+        function toggleCategory(key) {
+            categoryVisibility[key] = !categoryVisibility[key];
+            
+            const card = document.querySelector(`.director-card[data-category="${key}"]`);
+            if (card) {
+                card.classList.toggle('active', categoryVisibility[key]);
+                card.classList.toggle('inactive', !categoryVisibility[key]);
+                card.querySelector('.director-toggle').textContent = categoryVisibility[key] ? '●' : '○';
+            }
+            
+            createHeatmaps();
+        }
+        
+        function toggleLocationType(type) {
+            locationTypeVisibility[type] = !locationTypeVisibility[type];
+            document.querySelector(`.type-toggle-btn[data-type="${type}"]`).classList.toggle('active', locationTypeVisibility[type]);
+            createHeatmaps();
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadData();
+        });
+    </script>
+</body>
+</html>
