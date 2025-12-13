@@ -305,7 +305,7 @@
         // =====================================================================
         // CONFIGURATION - Update this suffix after running export script!
         // =====================================================================
-        const DATA_SUFFIX = 'vpl7i1ot';  // <-- UPDATE THIS after export
+        const DATA_SUFFIX = 'vpl7i1ot';
         
         const META_FILE = `cg_${DATA_SUFFIX}_meta.json`;
         
@@ -402,6 +402,19 @@
                 console.error('Error:', error);
                 document.getElementById('loading-msg').textContent = `Error: ${error.message}`;
             }
+        }
+        
+        function updateStats() {
+            // Calculate total locations from metadata
+            let totalLocations = 0;
+            for (const key of genreOrder) {
+                const info = metadata.categories[key];
+                if (info) {
+                    totalLocations += info.filming_locations + info.represented_locations;
+                }
+            }
+            document.getElementById('stat-genres').textContent = genreOrder.length;
+            document.getElementById('stat-visible').textContent = (totalLocations / 1000).toFixed(0) + 'k';
         }
         
         function createHeatmaps() {
