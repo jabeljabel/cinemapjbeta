@@ -646,30 +646,33 @@
         // ============================================================
         // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
-                                        const DATA_BASE_URL = './';
-        const RANDOM_SUFFIX = 'ec36daa6c8ccffe9';
+                const DATA_BASE_URL = './';
+        const RANDOM_SUFFIX = 'b66483cb668e1037';
         
         const DATA_FILES = {
-            meta: 'cm_meta_ec36daa6c8ccffe9.json',
+            meta: 'cm_meta_b66483cb668e1037.json',
             filming: [
-                'cm_film_ec36daa6c8ccffe9_1.json',
-                'cm_film_ec36daa6c8ccffe9_2.json',
-                'cm_film_ec36daa6c8ccffe9_3.json',
-                'cm_film_ec36daa6c8ccffe9_4.json',
-                'cm_film_ec36daa6c8ccffe9_5.json',
-                'cm_film_ec36daa6c8ccffe9_6.json'
+                'cm_film_b66483cb668e1037_1.json',
+                'cm_film_b66483cb668e1037_2.json',
+                'cm_film_b66483cb668e1037_3.json',
+                'cm_film_b66483cb668e1037_4.json',
+                'cm_film_b66483cb668e1037_5.json',
+                'cm_film_b66483cb668e1037_6.json'
             ],
             represented: [
-                'cm_repr_ec36daa6c8ccffe9_1.json',
-                'cm_repr_ec36daa6c8ccffe9_2.json',
-                'cm_repr_ec36daa6c8ccffe9_3.json',
-                'cm_repr_ec36daa6c8ccffe9_4.json',
-                'cm_repr_ec36daa6c8ccffe9_5.json',
-                'cm_repr_ec36daa6c8ccffe9_6.json',
-                'cm_repr_ec36daa6c8ccffe9_7.json',
-                'cm_repr_ec36daa6c8ccffe9_8.json',
-                'cm_repr_ec36daa6c8ccffe9_9.json',
-                'cm_repr_ec36daa6c8ccffe9_10.json'
+                'cm_repr_b66483cb668e1037_1.json',
+                'cm_repr_b66483cb668e1037_2.json',
+                'cm_repr_b66483cb668e1037_3.json',
+                'cm_repr_b66483cb668e1037_4.json',
+                'cm_repr_b66483cb668e1037_5.json',
+                'cm_repr_b66483cb668e1037_6.json',
+                'cm_repr_b66483cb668e1037_7.json',
+                'cm_repr_b66483cb668e1037_8.json',
+                'cm_repr_b66483cb668e1037_9.json',
+                'cm_repr_b66483cb668e1037_10.json',
+                'cm_repr_b66483cb668e1037_11.json',
+                'cm_repr_b66483cb668e1037_12.json',
+                'cm_repr_b66483cb668e1037_13.json'
             ]
         };
         // ============================================================
@@ -737,41 +740,53 @@
             shootingCluster = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     const count = cluster.getChildCount();
-                    let size = 36;
-                    if (count > 100) size = 44;
-                    if (count > 500) size = 52;
+                    let size = 30;
+                    let fontSize = '10px';
+                    if (count > 50) { size = 36; fontSize = '11px'; }
+                    if (count > 200) { size = 42; fontSize = '12px'; }
+                    if (count > 1000) { size = 50; fontSize = '13px'; }
+                    if (count > 5000) { size = 58; fontSize = '14px'; }
                     return L.divIcon({
-                        html: '<div style="background:#e6a800;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + (size > 40 ? '13px' : '11px') + ';border:2px solid #b38600;">' + count + '</div>',
+                        html: '<div style="background:#e6a800;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + fontSize + ';border:2px solid #b38600;">' + (count > 999 ? Math.round(count/1000) + 'k' : count) + '</div>',
                         className: 'marker-cluster-shooting',
                         iconSize: [size, size]
                     });
                 },
-                maxClusterRadius: 40,           // Lower = less clustering (default 80)
-                disableClusteringAtZoom: 14,    // Show individual markers at zoom 14+
+                maxClusterRadius: 80,           // Higher = more clustering (was 40)
+                disableClusteringAtZoom: 16,    // Only show individual at max zoom (was 14)
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true,
-                spiderfyDistanceMultiplier: 1.5
+                spiderfyDistanceMultiplier: 1.5,
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50
             });
             
             representedCluster = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     const count = cluster.getChildCount();
-                    let size = 36;
-                    if (count > 100) size = 44;
-                    if (count > 500) size = 52;
+                    let size = 30;
+                    let fontSize = '10px';
+                    if (count > 50) { size = 36; fontSize = '11px'; }
+                    if (count > 200) { size = 42; fontSize = '12px'; }
+                    if (count > 1000) { size = 50; fontSize = '13px'; }
+                    if (count > 5000) { size = 58; fontSize = '14px'; }
                     return L.divIcon({
-                        html: '<div style="background:#1e8449;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + (size > 40 ? '13px' : '11px') + ';border:2px solid #145a32;">' + count + '</div>',
+                        html: '<div style="background:#1e8449;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + fontSize + ';border:2px solid #145a32;">' + (count > 999 ? Math.round(count/1000) + 'k' : count) + '</div>',
                         className: 'marker-cluster-represented',
                         iconSize: [size, size]
                     });
                 },
-                maxClusterRadius: 40,           // Lower = less clustering (default 80)
-                disableClusteringAtZoom: 14,    // Show individual markers at zoom 14+
+                maxClusterRadius: 80,           // Higher = more clustering (was 40)
+                disableClusteringAtZoom: 16,    // Only show individual at max zoom (was 14)
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true,
-                spiderfyDistanceMultiplier: 1.5
+                spiderfyDistanceMultiplier: 1.5,
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50
             });
             
             map.addLayer(shootingCluster);
