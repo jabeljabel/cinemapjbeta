@@ -542,7 +542,7 @@
         <div class="control-section">
             <h3>Film Title</h3>
             <div class="search-container">
-                <input type="text" id="search-film" class="search-input" placeholder="Type film title..." oninput="onFilmSearch(this.value)" onfocus="showFilmResults()" onblur="hideFilmResultsDelayed()">
+                <input type="text" id="search-film" class="search-input" placeholder="Type film title..." oninput="onFilmSearch(this.value)" onfocus="showFilmResults()" onblur="hideFilmResultsDelayed()" onkeydown="if(event.key==='Enter'){applyFilmSearch()}">
                 <button class="search-clear" onclick="clearFilmSearch()" style="display:none;" id="clear-film">×</button>
                 <div class="search-results" id="film-results"></div>
             </div>
@@ -560,7 +560,7 @@
         <div class="control-section">
             <h3>Director</h3>
             <div class="search-container">
-                <input type="text" id="search-director" class="search-input" placeholder="Type director name..." oninput="onDirectorSearch(this.value)" onfocus="showDirectorResults()" onblur="hideDirectorResultsDelayed()">
+                <input type="text" id="search-director" class="search-input" placeholder="Type director name..." oninput="onDirectorSearch(this.value)" onfocus="showDirectorResults()" onblur="hideDirectorResultsDelayed()" onkeydown="if(event.key==='Enter'){applyDirectorSearch()}">
                 <button class="search-clear" onclick="clearDirectorSearch()" style="display:none;" id="clear-director">×</button>
                 <div class="search-results" id="director-results"></div>
             </div>
@@ -570,7 +570,7 @@
         <div class="control-section">
             <h3>Production Company</h3>
             <div class="search-container">
-                <input type="text" id="search-studio" class="search-input" placeholder="Type studio name..." oninput="onStudioSearch(this.value)" onfocus="showStudioResults()" onblur="hideStudioResultsDelayed()">
+                <input type="text" id="search-studio" class="search-input" placeholder="Type studio name..." oninput="onStudioSearch(this.value)" onfocus="showStudioResults()" onblur="hideStudioResultsDelayed()" onkeydown="if(event.key==='Enter'){applyStudioSearch()}">
                 <button class="search-clear" onclick="clearStudioSearch()" style="display:none;" id="clear-studio">×</button>
                 <div class="search-results" id="studio-results"></div>
             </div>
@@ -646,21 +646,33 @@
         // ============================================================
         // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
-        const DATA_BASE_URL = './';
-        const RANDOM_SUFFIX = '1e6b7bd945c2ad1c';
+                const DATA_BASE_URL = './';
+        const RANDOM_SUFFIX = 'b66483cb668e1037';
         
         const DATA_FILES = {
-            meta: 'cm_meta_1e6b7bd945c2ad1c.json',
+            meta: 'cm_meta_b66483cb668e1037.json',
             filming: [
-                'cm_film_1e6b7bd945c2ad1c_1.json',
-                'cm_film_1e6b7bd945c2ad1c_2.json',
-                'cm_film_1e6b7bd945c2ad1c_3.json',
-                'cm_film_1e6b7bd945c2ad1c_4.json',
-                'cm_film_1e6b7bd945c2ad1c_5.json'
+                'cm_film_b66483cb668e1037_1.json',
+                'cm_film_b66483cb668e1037_2.json',
+                'cm_film_b66483cb668e1037_3.json',
+                'cm_film_b66483cb668e1037_4.json',
+                'cm_film_b66483cb668e1037_5.json',
+                'cm_film_b66483cb668e1037_6.json'
             ],
             represented: [
-                'cm_repr_1e6b7bd945c2ad1c_1.json',
-                'cm_repr_1e6b7bd945c2ad1c_2.json'
+                'cm_repr_b66483cb668e1037_1.json',
+                'cm_repr_b66483cb668e1037_2.json',
+                'cm_repr_b66483cb668e1037_3.json',
+                'cm_repr_b66483cb668e1037_4.json',
+                'cm_repr_b66483cb668e1037_5.json',
+                'cm_repr_b66483cb668e1037_6.json',
+                'cm_repr_b66483cb668e1037_7.json',
+                'cm_repr_b66483cb668e1037_8.json',
+                'cm_repr_b66483cb668e1037_9.json',
+                'cm_repr_b66483cb668e1037_10.json',
+                'cm_repr_b66483cb668e1037_11.json',
+                'cm_repr_b66483cb668e1037_12.json',
+                'cm_repr_b66483cb668e1037_13.json'
             ]
         };
         // ============================================================
@@ -728,41 +740,53 @@
             shootingCluster = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     const count = cluster.getChildCount();
-                    let size = 36;
-                    if (count > 100) size = 44;
-                    if (count > 500) size = 52;
+                    let size = 30;
+                    let fontSize = '10px';
+                    if (count > 50) { size = 36; fontSize = '11px'; }
+                    if (count > 200) { size = 42; fontSize = '12px'; }
+                    if (count > 1000) { size = 50; fontSize = '13px'; }
+                    if (count > 5000) { size = 58; fontSize = '14px'; }
                     return L.divIcon({
-                        html: '<div style="background:#e6a800;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + (size > 40 ? '13px' : '11px') + ';border:2px solid #b38600;">' + count + '</div>',
+                        html: '<div style="background:#e6a800;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + fontSize + ';border:2px solid #b38600;">' + (count > 999 ? Math.round(count/1000) + 'k' : count) + '</div>',
                         className: 'marker-cluster-shooting',
                         iconSize: [size, size]
                     });
                 },
-                maxClusterRadius: 40,           // Lower = less clustering (default 80)
-                disableClusteringAtZoom: 14,    // Show individual markers at zoom 14+
+                maxClusterRadius: 100,           // Higher = more clustering (was 40)
+                disableClusteringAtZoom: 17,    // Only show individual at max zoom (was 14)
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true,
-                spiderfyDistanceMultiplier: 1.5
+                spiderfyDistanceMultiplier: 1.5,
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50
             });
             
             representedCluster = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     const count = cluster.getChildCount();
-                    let size = 36;
-                    if (count > 100) size = 44;
-                    if (count > 500) size = 52;
+                    let size = 30;
+                    let fontSize = '10px';
+                    if (count > 50) { size = 36; fontSize = '11px'; }
+                    if (count > 200) { size = 42; fontSize = '12px'; }
+                    if (count > 1000) { size = 50; fontSize = '13px'; }
+                    if (count > 5000) { size = 58; fontSize = '14px'; }
                     return L.divIcon({
-                        html: '<div style="background:#1e8449;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + (size > 40 ? '13px' : '11px') + ';border:2px solid #145a32;">' + count + '</div>',
+                        html: '<div style="background:#1e8449;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + fontSize + ';border:2px solid #145a32;">' + (count > 999 ? Math.round(count/1000) + 'k' : count) + '</div>',
                         className: 'marker-cluster-represented',
                         iconSize: [size, size]
                     });
                 },
-                maxClusterRadius: 40,           // Lower = less clustering (default 80)
-                disableClusteringAtZoom: 14,    // Show individual markers at zoom 14+
+                maxClusterRadius: 80,           // Higher = more clustering (was 40)
+                disableClusteringAtZoom: 16,    // Only show individual at max zoom (was 14)
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true,
-                spiderfyDistanceMultiplier: 1.5
+                spiderfyDistanceMultiplier: 1.5,
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50
             });
             
             map.addLayer(shootingCluster);
@@ -889,8 +913,6 @@
             
             if (query.length < 2) {
                 document.getElementById('film-results').classList.remove('active');
-                filters.filmTitle = '';
-                applyFilters();
                 return;
             }
             
@@ -913,9 +935,7 @@
                 resultsDiv.classList.remove('active');
             }
             
-            // Also filter as you type
-            filters.filmTitle = query;
-            applyFilters();
+            // DON'T filter on every keystroke - wait for selection or Enter
         }
         
         function selectFilm(title) {
@@ -945,6 +965,16 @@
             setTimeout(() => document.getElementById('film-results').classList.remove('active'), 200);
         }
         
+        // Apply film search on Enter key
+        function applyFilmSearch() {
+            const query = document.getElementById('search-film').value;
+            document.getElementById('film-results').classList.remove('active');
+            if (query.length >= 2) {
+                filters.filmTitle = query;
+                applyFilters();
+            }
+        }
+        
         // === DIRECTOR SEARCH ===
         function onDirectorSearch(query) {
             const clearBtn = document.getElementById('clear-director');
@@ -952,8 +982,6 @@
             
             if (query.length < 2) {
                 document.getElementById('director-results').classList.remove('active');
-                filters.director = '';
-                applyFilters();
                 return;
             }
             
@@ -976,9 +1004,7 @@
                 resultsDiv.classList.remove('active');
             }
             
-            // Also filter as you type
-            filters.director = query;
-            applyFilters();
+            // DON'T filter on every keystroke - wait for selection or Enter
         }
         
         function selectDirector(name) {
@@ -1008,6 +1034,16 @@
             setTimeout(() => document.getElementById('director-results').classList.remove('active'), 200);
         }
         
+        // Apply director search on Enter key
+        function applyDirectorSearch() {
+            const query = document.getElementById('search-director').value;
+            document.getElementById('director-results').classList.remove('active');
+            if (query.length >= 2) {
+                filters.director = query;
+                applyFilters();
+            }
+        }
+        
         // === STUDIO SEARCH ===
         function onStudioSearch(query) {
             const clearBtn = document.getElementById('clear-studio');
@@ -1015,8 +1051,6 @@
             
             if (query.length < 2) {
                 document.getElementById('studio-results').classList.remove('active');
-                filters.studio = '';
-                applyFilters();
                 return;
             }
             
@@ -1039,9 +1073,7 @@
                 resultsDiv.classList.remove('active');
             }
             
-            // Also filter as you type
-            filters.studio = query;
-            applyFilters();
+            // DON'T filter on every keystroke - wait for selection or Enter
         }
         
         function selectStudio(name) {
@@ -1069,6 +1101,16 @@
         
         function hideStudioResultsDelayed() {
             setTimeout(() => document.getElementById('studio-results').classList.remove('active'), 200);
+        }
+        
+        // Apply studio search on Enter key
+        function applyStudioSearch() {
+            const query = document.getElementById('search-studio').value;
+            document.getElementById('studio-results').classList.remove('active');
+            if (query.length >= 2) {
+                filters.studio = query;
+                applyFilters();
+            }
         }
         
         // === SYNOPSIS SEARCH ===
@@ -1299,69 +1341,78 @@
         function applyFilters() {
             if (!allData.filming_locations.length && !allData.represented_locations.length) return;
             
-            // Update filter state from UI (only for dropdowns - search inputs update directly)
-            filters.genre = document.getElementById('filter-genre').value;
-            filters.prefecture = document.getElementById('filter-prefecture').value;
-            filters.yearMin = parseInt(document.getElementById('year-min').value) || null;
-            filters.yearMax = parseInt(document.getElementById('year-max').value) || null;
+            // Show loading cursor
+            document.body.style.cursor = 'wait';
             
-            // Clear existing markers
-            shootingCluster.clearLayers();
-            representedCluster.clearLayers();
-            
-            let shootingCount = 0;
-            let representedCount = 0;
-            
-            // Track unique films per year for timeline (using Set to avoid duplicates)
-            const filmsByYear = {};
-            
-            // Add shooting locations (formerly "filming")
-            if (filters.showShooting) {
-                allData.filming_locations.forEach(feature => {
-                    if (passesFilter(feature)) {
-                        shootingCluster.addLayer(createMarker(feature));
-                        shootingCount++;
-                        // Track unique film by year
-                        const year = feature.properties.year;
-                        const filmId = feature.properties.film_id;
-                        if (year && year >= 1900 && year <= 2030 && filmId) {
-                            if (!filmsByYear[year]) filmsByYear[year] = new Set();
-                            filmsByYear[year].add(filmId);
+            // Use requestAnimationFrame to allow UI to update before heavy processing
+            requestAnimationFrame(() => {
+                // Update filter state from UI (only for dropdowns - search inputs update directly)
+                filters.genre = document.getElementById('filter-genre').value;
+                filters.prefecture = document.getElementById('filter-prefecture').value;
+                filters.yearMin = parseInt(document.getElementById('year-min').value) || null;
+                filters.yearMax = parseInt(document.getElementById('year-max').value) || null;
+                
+                // Clear existing markers
+                shootingCluster.clearLayers();
+                representedCluster.clearLayers();
+                
+                let shootingCount = 0;
+                let representedCount = 0;
+                
+                // Track unique films per year for timeline (using Set to avoid duplicates)
+                const filmsByYear = {};
+                
+                // Add shooting locations (formerly "filming")
+                if (filters.showShooting) {
+                    allData.filming_locations.forEach(feature => {
+                        if (passesFilter(feature)) {
+                            shootingCluster.addLayer(createMarker(feature));
+                            shootingCount++;
+                            // Track unique film by year
+                            const year = feature.properties.year;
+                            const filmId = feature.properties.film_id;
+                            if (year && year >= 1900 && year <= 2030 && filmId) {
+                                if (!filmsByYear[year]) filmsByYear[year] = new Set();
+                                filmsByYear[year].add(filmId);
+                            }
                         }
-                    }
-                });
-            }
-            
-            // Add represented locations
-            if (filters.showRepresented) {
-                allData.represented_locations.forEach(feature => {
-                    if (passesFilter(feature)) {
-                        representedCluster.addLayer(createMarker(feature));
-                        representedCount++;
-                        // Track unique film by year
-                        const year = feature.properties.year;
-                        const filmId = feature.properties.film_id;
-                        if (year && year >= 1900 && year <= 2030 && filmId) {
-                            if (!filmsByYear[year]) filmsByYear[year] = new Set();
-                            filmsByYear[year].add(filmId);
+                    });
+                }
+                
+                // Add represented locations
+                if (filters.showRepresented) {
+                    allData.represented_locations.forEach(feature => {
+                        if (passesFilter(feature)) {
+                            representedCluster.addLayer(createMarker(feature));
+                            representedCount++;
+                            // Track unique film by year
+                            const year = feature.properties.year;
+                            const filmId = feature.properties.film_id;
+                            if (year && year >= 1900 && year <= 2030 && filmId) {
+                                if (!filmsByYear[year]) filmsByYear[year] = new Set();
+                                filmsByYear[year].add(filmId);
+                            }
                         }
-                    }
-                });
-            }
-            
-            // Convert Sets to counts for timeline
-            const yearCounts = {};
-            for (const year in filmsByYear) {
-                yearCounts[year] = filmsByYear[year].size;
-            }
-            
-            // Update stats
-            document.getElementById('stat-shooting').textContent = shootingCount.toLocaleString();
-            document.getElementById('stat-represented').textContent = representedCount.toLocaleString();
-            document.getElementById('stat-total').textContent = (shootingCount + representedCount).toLocaleString();
-            
-            // Update timeline
-            updateTimeline(yearCounts);
+                    });
+                }
+                
+                // Convert Sets to counts for timeline
+                const yearCounts = {};
+                for (const year in filmsByYear) {
+                    yearCounts[year] = filmsByYear[year].size;
+                }
+                
+                // Update stats
+                document.getElementById('stat-shooting').textContent = shootingCount.toLocaleString();
+                document.getElementById('stat-represented').textContent = representedCount.toLocaleString();
+                document.getElementById('stat-total').textContent = (shootingCount + representedCount).toLocaleString();
+                
+                // Update timeline
+                updateTimeline(yearCounts);
+                
+                // Reset cursor
+                document.body.style.cursor = 'default';
+            });
         }
         
         // === TOGGLE LOCATION TYPE ===
