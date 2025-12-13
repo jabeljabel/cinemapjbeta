@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP: Prefecture Genre Rankings</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
+            overflow: hidden;
+        }
+        
+        #header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 56px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 200;
+            gap: 20px;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .header-title span { font-weight: 400; color: #888; }
+        
+        .mode-toggle {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 6px;
+            padding: 3px;
+        }
+        
+        .mode-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .mode-btn.active {
+            background: white;
+            color: #1a1a1a;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .genre-select {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 12px;
+            background: white;
+        }
+        
+        #map {
+            position: fixed;
+            top: 56px; left: 0; right: 360px; bottom: 0;
+            z-index: 1;
+        }
+        
+        #sidebar {
+            position: fixed;
+            top: 56px; right: 0;
+            width: 360px;
+            height: calc(100vh - 56px);
+            background: white;
+            border-left: 1px solid #e0e0e0;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .sidebar-section {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        /* Prefecture Detail Panel */
+        #pref-detail {
+            display: none;
+        }
+        
+        #pref-detail.visible {
+            display: block;
+        }
+        
+        .pref-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .pref-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .pref-stats {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .pref-stats strong {
+            font-size: 18px;
+            color: #1a1a1a;
+            display: block;
+        }
+        
+        /* Genre Bars */
+        .genre-bar-container {
+            margin-bottom: 10px;
+        }
+        
+        .genre-bar-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        
+        .genre-bar-name {
+            font-weight: 500;
+        }
+        
+        .genre-bar-count {
+            color: #888;
+        }
+        
+        .genre-bar-track {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .genre-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Prefecture Ranking List */
+        .pref-rank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .pref-rank-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .pref-rank-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .pref-rank-item.selected {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+        }
+        
+        .pref-rank-num {
+            width: 24px;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .pref-rank-item:nth-child(1) .pref-rank-num { background: #ffd700; color: #333; }
+        .pref-rank-item:nth-child(2) .pref-rank-num { background: #c0c0c0; color: #333; }
+        .pref-rank-item:nth-child(3) .pref-rank-num { background: #cd7f32; color: white; }
+        
+        .pref-rank-info { flex: 1; }
+        .pref-rank-name { font-size: 13px; font-weight: 500; }
+        .pref-rank-genre { font-size: 11px; color: #888; }
+        .pref-rank-count { font-size: 13px; font-weight: 600; color: #3498db; }
+        
+        /* Legend */
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+        }
+        
+        .legend-swatch {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+        
+        /* Loading */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .loader {
+            width: 36px; height: 36px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-msg { margin-top: 12px; font-size: 12px; color: #888; }
+        
+        /* Info */
+        .info-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        /* Map tooltip */
+        .pref-tooltip {
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+        }
+        
+        .pref-tooltip strong {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        @media (max-width: 900px) {
+            #map { right: 0; bottom: 280px; }
+            #sidebar { width: 100%; height: 280px; top: auto; bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="loader"></div>
+        <div class="loading-msg">Loading prefecture data...</div>
+    </div>
+    
+    <div id="header">
+        <div class="header-title">CineMAP <span>· Prefecture Genre Map</span></div>
+        <div class="mode-toggle">
+            <button class="mode-btn active" data-mode="dominant" onclick="setMode('dominant')">Dominant Genre</button>
+            <button class="mode-btn" data-mode="single" onclick="setMode('single')">Single Genre</button>
+        </div>
+        <select class="genre-select" id="genre-select" onchange="updateMap()" style="display: none;">
+            <option value="">Select genre...</option>
+        </select>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div id="sidebar">
+        <!-- Prefecture Detail (shown when prefecture selected) -->
+        <div id="pref-detail" class="sidebar-section">
+            <div class="pref-header">
+                <div class="pref-name" id="detail-name">—</div>
+                <div class="pref-stats">
+                    <strong id="detail-total">—</strong>
+                    locations
+                </div>
+            </div>
+            <div class="section-title">Genre Breakdown</div>
+            <div id="detail-bars"></div>
+        </div>
+        
+        <!-- Prefecture Rankings -->
+        <div class="sidebar-section">
+            <div class="section-title" id="ranking-title">Top Prefectures (All Genres)</div>
+            <div class="pref-rank-list" id="pref-ranking"></div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="sidebar-section">
+            <div class="section-title">Genre Colors</div>
+            <div class="legend-grid" id="legend"></div>
+        </div>
+        
+        <!-- Info -->
+        <div class="sidebar-section">
+            <div class="info-box">
+                <strong>How to use:</strong><br>
+                • <b>Dominant Genre</b> mode colors each prefecture by its most common genre<br>
+                • <b>Single Genre</b> mode shows intensity for one selected genre<br>
+                • Click a prefecture for detailed breakdown
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        const DATA_FILE = 'comparison_prefecture_genres.json';
+        const JAPAN_GEOJSON = 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson';
+        
+        // Genre colors
+        const GENRE_COLORS = {
+            'Drama': '#3498db',
+            'Action': '#e74c3c',
+            'Comedy': '#f1c40f',
+            'Romance': '#e91e63',
+            'Animation': '#ff9800',
+            'Horror': '#9b59b6',
+            'Documentary': '#795548',
+            'Biography': '#4caf50',
+            'Crime': '#00bcd4',
+            'Adventure': '#16a085',
+            'Mystery': '#673ab7',
+            'Thriller': '#607d8b',
+            'War': '#455a64',
+            'Fantasy': '#8e44ad',
+            'Music': '#c0392b'
+        };
+        
+        let map = null;
+        let prefectureData = null;
+        let japanGeoJson = null;
+        let geoJsonLayer = null;
+        let currentMode = 'dominant';
+        let selectedPrefecture = null;
+        
+        function initMap() {
+            map = L.map('map', { center: [36.5, 138.0], zoom: 5 });
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+                attribution: '© OSM © CARTO',
+                maxZoom: 19
+            }).addTo(map);
+        }
+        
+        async function loadData() {
+            try {
+                // Load both data sources
+                const [prefResponse, geoResponse] = await Promise.all([
+                    fetch(DATA_FILE),
+                    fetch(JAPAN_GEOJSON)
+                ]);
+                
+                if (!prefResponse.ok) throw new Error(`Prefecture data: ${prefResponse.status}`);
+                if (!geoResponse.ok) throw new Error(`GeoJSON: ${geoResponse.status}`);
+                
+                const prefData = await prefResponse.json();
+                prefectureData = prefData.prefectures;
+                japanGeoJson = await geoResponse.json();
+                
+                // Build UI
+                buildLegend(prefData.metadata.genres);
+                buildGenreSelect(prefData.metadata.genres);
+                buildRanking();
+                
+                // Create map layer
+                createGeoJsonLayer();
+                
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error:', error);
+                document.querySelector('.loading-msg').textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        function createGeoJsonLayer() {
+            if (geoJsonLayer) {
+                map.removeLayer(geoJsonLayer);
+            }
+            
+            geoJsonLayer = L.geoJSON(japanGeoJson, {
+                style: featureStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        }
+        
+        function featureStyle(feature) {
+            const prefName = feature.properties.nam_ja || feature.properties.name;
+            const prefData = findPrefectureData(prefName);
+            
+            let fillColor = '#e0e0e0';
+            let fillOpacity = 0.7;
+            
+            if (prefData) {
+                if (currentMode === 'dominant') {
+                    const dominant = prefData.dominant_genre;
+                    fillColor = GENRE_COLORS[dominant] || '#888';
+                    fillOpacity = 0.75;
+                } else {
+                    // Single genre mode
+                    const selectedGenre = document.getElementById('genre-select').value;
+                    if (selectedGenre && prefData.genres[selectedGenre]) {
+                        const count = prefData.genres[selectedGenre].total;
+                        const maxCount = getMaxCountForGenre(selectedGenre);
+                        const intensity = Math.min(1, count / maxCount);
+                        fillColor = GENRE_COLORS[selectedGenre] || '#3498db';
+                        fillOpacity = 0.2 + (intensity * 0.7);
+                    } else {
+                        fillColor = '#f0f0f0';
+                        fillOpacity = 0.3;
+                    }
+                }
+            }
+            
+            return {
+                fillColor: fillColor,
+                weight: 1,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: fillOpacity
+            };
+        }
+        
+        function onEachFeature(feature, layer) {
+            const prefName = feature.properties.nam_ja || feature.properties.name;
+            const prefData = findPrefectureData(prefName);
+            
+            // Tooltip
+            let tooltipContent = `<div class="pref-tooltip"><strong>${prefName}</strong>`;
+            if (prefData) {
+                tooltipContent += `<br>${prefData.total_locations.toLocaleString()} locations`;
+                tooltipContent += `<br>Top: ${prefData.dominant_genre}`;
+            } else {
+                tooltipContent += `<br>No data`;
+            }
+            tooltipContent += '</div>';
+            
+            layer.bindTooltip(tooltipContent);
+            
+            // Click handler
+            layer.on('click', () => selectPrefecture(prefName));
+            
+            // Hover effects
+            layer.on('mouseover', function() {
+                this.setStyle({ weight: 3, color: '#333' });
+            });
+            
+            layer.on('mouseout', function() {
+                this.setStyle({ weight: 1, color: 'white' });
+            });
+        }
+        
+        function findPrefectureData(prefName) {
+            // Try exact match first
+            if (prefectureData[prefName]) return prefectureData[prefName];
+            
+            // Try with common variations
+            const variations = [
+                prefName,
+                prefName + '県',
+                prefName + '府',
+                prefName + '都',
+                prefName.replace('県', ''),
+                prefName.replace('府', ''),
+                prefName.replace('都', '')
+            ];
+            
+            for (const v of variations) {
+                if (prefectureData[v]) return prefectureData[v];
+            }
+            
+            // Partial match
+            for (const [key, data] of Object.entries(prefectureData)) {
+                if (key.includes(prefName) || prefName.includes(key.replace(/[県府都]$/, ''))) {
+                    return data;
+                }
+            }
+            
+            return null;
+        }
+        
+        function getMaxCountForGenre(genre) {
+            let max = 0;
+            for (const data of Object.values(prefectureData)) {
+                if (data.genres[genre]) {
+                    max = Math.max(max, data.genres[genre].total);
+                }
+            }
+            return max || 1;
+        }
+        
+        function selectPrefecture(prefName) {
+            selectedPrefecture = prefName;
+            const data = findPrefectureData(prefName);
+            
+            const detailPanel = document.getElementById('pref-detail');
+            
+            if (!data) {
+                detailPanel.classList.remove('visible');
+                return;
+            }
+            
+            detailPanel.classList.add('visible');
+            document.getElementById('detail-name').textContent = prefName;
+            document.getElementById('detail-total').textContent = data.total_locations.toLocaleString();
+            
+            // Build genre bars
+            const barsContainer = document.getElementById('detail-bars');
+            barsContainer.innerHTML = '';
+            
+            const maxCount = Math.max(...Object.values(data.genres).map(g => g.total));
+            
+            // Sort genres by count
+            const sortedGenres = Object.entries(data.genres)
+                .sort((a, b) => b[1].total - a[1].total)
+                .slice(0, 10);
+            
+            for (const [genre, counts] of sortedGenres) {
+                const pct = (counts.total / maxCount) * 100;
+                const color = GENRE_COLORS[genre] || '#888';
+                
+                const bar = document.createElement('div');
+                bar.className = 'genre-bar-container';
+                bar.innerHTML = `
+                    <div class="genre-bar-header">
+                        <span class="genre-bar-name">${genre}</span>
+                        <span class="genre-bar-count">${counts.total.toLocaleString()}</span>
+                    </div>
+                    <div class="genre-bar-track">
+                        <div class="genre-bar-fill" style="width: ${pct}%; background: ${color}"></div>
+                    </div>
+                `;
+                barsContainer.appendChild(bar);
+            }
+            
+            // Update ranking highlight
+            document.querySelectorAll('.pref-rank-item').forEach(item => {
+                item.classList.remove('selected');
+                if (item.dataset.pref === prefName) {
+                    item.classList.add('selected');
+                }
+            });
+        }
+        
+        function buildRanking() {
+            const container = document.getElementById('pref-ranking');
+            container.innerHTML = '';
+            
+            const selectedGenre = currentMode === 'single' ? document.getElementById('genre-select').value : null;
+            
+            // Sort prefectures
+            let sorted;
+            if (selectedGenre) {
+                sorted = Object.entries(prefectureData)
+                    .filter(([_, d]) => d.genres[selectedGenre])
+                    .sort((a, b) => (b[1].genres[selectedGenre]?.total || 0) - (a[1].genres[selectedGenre]?.total || 0));
+                document.getElementById('ranking-title').textContent = `Top Prefectures for ${selectedGenre}`;
+            } else {
+                sorted = Object.entries(prefectureData)
+                    .sort((a, b) => b[1].total_locations - a[1].total_locations);
+                document.getElementById('ranking-title').textContent = 'Top Prefectures (All Genres)';
+            }
+            
+            sorted.slice(0, 15).forEach(([name, data], idx) => {
+                const count = selectedGenre ? (data.genres[selectedGenre]?.total || 0) : data.total_locations;
+                const subtext = selectedGenre ? `${data.total_films} films` : `Top: ${data.dominant_genre}`;
+                
+                const item = document.createElement('div');
+                item.className = 'pref-rank-item';
+                item.dataset.pref = name;
+                item.innerHTML = `
+                    <div class="pref-rank-num">${idx + 1}</div>
+                    <div class="pref-rank-info">
+                        <div class="pref-rank-name">${name}</div>
+                        <div class="pref-rank-genre">${subtext}</div>
+                    </div>
+                    <div class="pref-rank-count">${count.toLocaleString()}</div>
+                `;
+                
+                item.addEventListener('click', () => {
+                    selectPrefecture(name);
+                    // Try to zoom to prefecture
+                    geoJsonLayer.eachLayer(layer => {
+                        const layerName = layer.feature.properties.nam_ja || layer.feature.properties.name;
+                        if (layerName === name || layerName.includes(name.replace(/[県府都]$/, ''))) {
+                            map.fitBounds(layer.getBounds());
+                        }
+                    });
+                });
+                
+                container.appendChild(item);
+            });
+        }
+        
+        function buildLegend(genres) {
+            const container = document.getElementById('legend');
+            container.innerHTML = '';
+            
+            for (const genre of genres.slice(0, 12)) {
+                const color = GENRE_COLORS[genre] || '#888';
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `
+                    <div class="legend-swatch" style="background: ${color}"></div>
+                    <span>${genre}</span>
+                `;
+                container.appendChild(item);
+            }
+        }
+        
+        function buildGenreSelect(genres) {
+            const select = document.getElementById('genre-select');
+            genres.forEach(genre => {
+                const option = document.createElement('option');
+                option.value = genre;
+                option.textContent = genre;
+                select.appendChild(option);
+            });
+        }
+        
+        function setMode(mode) {
+            currentMode = mode;
+            
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            
+            document.getElementById('genre-select').style.display = mode === 'single' ? 'block' : 'none';
+            
+            updateMap();
+        }
+        
+        function updateMap() {
+            createGeoJsonLayer();
+            buildRanking();
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadData();
+        });
+    </script>
+</body>
+</html>
