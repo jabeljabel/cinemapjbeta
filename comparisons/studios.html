@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP: Studio Dominance by Prefecture</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background: #1a1a2e;
+            color: #f0f0f0;
+        }
+        
+        #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 350px;
+            bottom: 0;
+            z-index: 1;
+            background: #0f0f1a;
+        }
+        
+        /* Side Panel */
+        #side-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100vh;
+            background: linear-gradient(180deg, #16213e 0%, #1a1a2e 100%);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .panel-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .panel-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .panel-subtitle {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .panel-jp {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        /* Studio Legend */
+        .studio-legend {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .legend-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .legend-item:hover {
+            background: rgba(255,255,255,0.08);
+        }
+        
+        .legend-item.disabled {
+            opacity: 0.4;
+        }
+        
+        .legend-item.disabled .legend-color {
+            background: #444 !important;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .legend-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .legend-name-en {
+            font-weight: 500;
+        }
+        
+        .legend-name-jp {
+            font-size: 10px;
+            color: #888;
+        }
+        
+        .legend-count {
+            font-size: 10px;
+            color: #666;
+        }
+        
+        /* Filter Actions */
+        .filter-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .filter-btn {
+            flex: 1;
+            padding: 8px;
+            background: rgba(255,255,255,0.08);
+            border: none;
+            border-radius: 6px;
+            color: #888;
+            font-family: inherit;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        
+        /* Rankings */
+        .rankings {
+            padding: 16px 24px;
+        }
+        
+        .rankings-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .ranking-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(4px);
+        }
+        
+        .ranking-item.selected {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .ranking-rank {
+            width: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .ranking-info {
+            flex: 1;
+        }
+        
+        .ranking-pref {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .ranking-studio {
+            font-size: 11px;
+            margin-top: 2px;
+        }
+        
+        .ranking-pct {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        /* Detail Panel */
+        .detail-panel {
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: none;
+        }
+        
+        .detail-panel.active {
+            display: block;
+        }
+        
+        .detail-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .detail-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .detail-films {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .detail-close {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #888;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .detail-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        
+        .detail-bar {
+            margin-bottom: 12px;
+        }
+        
+        .detail-bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+        
+        .detail-bar-name {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .detail-bar-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+        
+        .detail-bar-track {
+            height: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .detail-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+        }
+        
+        .detail-bar-pct {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.7);
+        }
+        
+        /* Prefecture hover tooltip */
+        .pref-tooltip {
+            background: rgba(0,0,0,0.85) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            border-radius: 8px !important;
+            padding: 10px 14px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+        }
+        
+        .pref-tooltip .tooltip-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .pref-tooltip .tooltip-studio {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .pref-tooltip .tooltip-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+        
+        .pref-tooltip .tooltip-pct {
+            font-weight: 700;
+        }
+        
+        /* Loading */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #0f0f1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid #333;
+            border-top-color: #f1c40f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .loading-msg {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        /* Leaflet overrides */
+        .leaflet-container {
+            background: #0f0f1a;
+        }
+        
+        @media (max-width: 900px) {
+            #map { right: 0; bottom: 45%; }
+            #side-panel { 
+                top: 55%; width: 100%; height: 45vh;
+                border-left: none; border-top: 1px solid rgba(255,255,255,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="loader"></div>
+        <div class="loading-msg">Loading studio data...</div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div id="side-panel">
+        <div class="panel-header">
+            <div class="panel-title">Studio Dominance</div>
+            <div class="panel-jp">映画会社の都道府県別シェア</div>
+            <div class="panel-subtitle">Which studios dominate each prefecture?</div>
+        </div>
+        
+        <div class="studio-legend">
+            <div class="legend-title">Studios (click to filter)</div>
+            <div class="legend-grid" id="legend-grid"></div>
+            <div class="filter-actions">
+                <button class="filter-btn" onclick="showOnlyMajor()">Major Studios Only</button>
+                <button class="filter-btn" onclick="showAll()">Show All</button>
+            </div>
+        </div>
+        
+        <div class="rankings" id="rankings">
+            <div class="rankings-title">Top Studio Dominance</div>
+            <div id="rankings-list"></div>
+        </div>
+        
+        <div class="detail-panel" id="detail-panel">
+            <div class="detail-header">
+                <div>
+                    <div class="detail-title" id="detail-title"></div>
+                    <div class="detail-films" id="detail-films"></div>
+                </div>
+                <button class="detail-close" onclick="closeDetail()">×</button>
+            </div>
+            <div id="detail-bars"></div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        const STUDIO_DATA_FILE = 'studio_prefecture.json';
+        const GEOJSON_URL = 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson';
+        
+        let map = null;
+        let geoJsonLayer = null;
+        let data = null;
+        let geoJson = null;
+        let studioVisibility = {};
+        let selectedPrefecture = null;
+        
+        // Prefecture name mapping (GeoJSON uses different names)
+        const PREF_NAME_MAP = {
+            'Hokkaido': '北海道',
+            'Aomori': '青森県', 'Aomori Ken': '青森県',
+            'Iwate': '岩手県', 'Iwate Ken': '岩手県',
+            'Miyagi': '宮城県', 'Miyagi Ken': '宮城県',
+            'Akita': '秋田県', 'Akita Ken': '秋田県',
+            'Yamagata': '山形県', 'Yamagata Ken': '山形県',
+            'Fukushima': '福島県', 'Fukushima Ken': '福島県',
+            'Ibaraki': '茨城県', 'Ibaraki Ken': '茨城県',
+            'Tochigi': '栃木県', 'Tochigi Ken': '栃木県',
+            'Gunma': '群馬県', 'Gunma Ken': '群馬県',
+            'Saitama': '埼玉県', 'Saitama Ken': '埼玉県',
+            'Chiba': '千葉県', 'Chiba Ken': '千葉県',
+            'Tokyo': '東京都', 'Tokyo To': '東京都',
+            'Kanagawa': '神奈川県', 'Kanagawa Ken': '神奈川県',
+            'Niigata': '新潟県', 'Niigata Ken': '新潟県',
+            'Toyama': '富山県', 'Toyama Ken': '富山県',
+            'Ishikawa': '石川県', 'Ishikawa Ken': '石川県',
+            'Fukui': '福井県', 'Fukui Ken': '福井県',
+            'Yamanashi': '山梨県', 'Yamanashi Ken': '山梨県',
+            'Nagano': '長野県', 'Nagano Ken': '長野県',
+            'Gifu': '岐阜県', 'Gifu Ken': '岐阜県',
+            'Shizuoka': '静岡県', 'Shizuoka Ken': '静岡県',
+            'Aichi': '愛知県', 'Aichi Ken': '愛知県',
+            'Mie': '三重県', 'Mie Ken': '三重県',
+            'Shiga': '滋賀県', 'Shiga Ken': '滋賀県',
+            'Kyoto': '京都府', 'Kyoto Fu': '京都府',
+            'Osaka': '大阪府', 'Osaka Fu': '大阪府',
+            'Hyogo': '兵庫県', 'Hyogo Ken': '兵庫県',
+            'Nara': '奈良県', 'Nara Ken': '奈良県',
+            'Wakayama': '和歌山県', 'Wakayama Ken': '和歌山県',
+            'Tottori': '鳥取県', 'Tottori Ken': '鳥取県',
+            'Shimane': '島根県', 'Shimane Ken': '島根県',
+            'Okayama': '岡山県', 'Okayama Ken': '岡山県',
+            'Hiroshima': '広島県', 'Hiroshima Ken': '広島県',
+            'Yamaguchi': '山口県', 'Yamaguchi Ken': '山口県',
+            'Tokushima': '徳島県', 'Tokushima Ken': '徳島県',
+            'Kagawa': '香川県', 'Kagawa Ken': '香川県',
+            'Ehime': '愛媛県', 'Ehime Ken': '愛媛県',
+            'Kochi': '高知県', 'Kochi Ken': '高知県',
+            'Fukuoka': '福岡県', 'Fukuoka Ken': '福岡県',
+            'Saga': '佐賀県', 'Saga Ken': '佐賀県',
+            'Nagasaki': '長崎県', 'Nagasaki Ken': '長崎県',
+            'Kumamoto': '熊本県', 'Kumamoto Ken': '熊本県',
+            'Oita': '大分県', 'Oita Ken': '大分県',
+            'Miyazaki': '宮崎県', 'Miyazaki Ken': '宮崎県',
+            'Kagoshima': '鹿児島県', 'Kagoshima Ken': '鹿児島県',
+            'Okinawa': '沖縄県', 'Okinawa Ken': '沖縄県',
+        };
+        
+        function initMap() {
+            map = L.map('map', {
+                center: [37, 138],
+                zoom: 5,
+                zoomControl: true,
+                minZoom: 4,
+                maxZoom: 10
+            });
+            
+            // No base tile layer - just dark background from CSS
+            // This makes the colored prefectures stand out more
+        }
+        
+        async function loadData() {
+            try {
+                // Load both files in parallel
+                const [studioResponse, geoResponse] = await Promise.all([
+                    fetch(STUDIO_DATA_FILE),
+                    fetch(GEOJSON_URL)
+                ]);
+                
+                if (!studioResponse.ok) throw new Error(`Studio data: HTTP ${studioResponse.status}`);
+                if (!geoResponse.ok) throw new Error(`GeoJSON: HTTP ${geoResponse.status}`);
+                
+                data = await studioResponse.json();
+                geoJson = await geoResponse.json();
+                
+                // Initialize visibility (all visible except Other)
+                for (const studio of Object.keys(data.studios)) {
+                    studioVisibility[studio] = studio !== 'Other';
+                }
+                
+                buildLegend();
+                updateVisualization();
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.querySelector('.loading-msg').textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        function buildLegend() {
+            const container = document.getElementById('legend-grid');
+            container.innerHTML = '';
+            
+            // Sort studios by total films
+            const sortedStudios = Object.entries(data.studios)
+                .filter(([name]) => name !== 'Other')
+                .sort((a, b) => b[1].total_films - a[1].total_films);
+            
+            for (const [studio, info] of sortedStudios) {
+                const item = document.createElement('div');
+                item.className = `legend-item ${studioVisibility[studio] ? '' : 'disabled'}`;
+                item.dataset.studio = studio;
+                item.onclick = () => toggleStudio(studio);
+                item.innerHTML = `
+                    <div class="legend-color" style="background: ${info.color}"></div>
+                    <div class="legend-info">
+                        <div class="legend-name-en">${studio}</div>
+                        <div class="legend-name-jp">${info.name_jp}</div>
+                    </div>
+                `;
+                container.appendChild(item);
+            }
+        }
+        
+        function toggleStudio(studio) {
+            studioVisibility[studio] = !studioVisibility[studio];
+            document.querySelector(`.legend-item[data-studio="${studio}"]`)
+                .classList.toggle('disabled', !studioVisibility[studio]);
+            updateVisualization();
+        }
+        
+        function showOnlyMajor() {
+            const majorStudios = ['Toei', 'Shochiku', 'Toho', 'Nikkatsu', 'Daiei', 'Shintoho'];
+            for (const studio of Object.keys(studioVisibility)) {
+                studioVisibility[studio] = majorStudios.includes(studio);
+            }
+            document.querySelectorAll('.legend-item').forEach(el => {
+                el.classList.toggle('disabled', !studioVisibility[el.dataset.studio]);
+            });
+            updateVisualization();
+        }
+        
+        function showAll() {
+            for (const studio of Object.keys(studioVisibility)) {
+                if (studio !== 'Other') studioVisibility[studio] = true;
+            }
+            document.querySelectorAll('.legend-item').forEach(el => {
+                el.classList.remove('disabled');
+            });
+            updateVisualization();
+        }
+        
+        function recalculateDominance(prefData) {
+            if (!prefData) return { studio: 'Other', percentage: 0, total: 0 };
+            
+            // Recalculate with only visible studios
+            let total = 0;
+            const visibleCounts = {};
+            
+            for (const [studio, stats] of Object.entries(prefData.studios)) {
+                if (studioVisibility[studio] !== false) {
+                    visibleCounts[studio] = stats.count;
+                    total += stats.count;
+                }
+            }
+            
+            if (total === 0) return { studio: 'Other', percentage: 0, total: 0, breakdown: {} };
+            
+            // Find dominant among visible (excluding Other)
+            let dominant = 'Other';
+            let maxCount = 0;
+            
+            for (const [studio, count] of Object.entries(visibleCounts)) {
+                if (studio === 'Other') continue;
+                if (count > maxCount) {
+                    maxCount = count;
+                    dominant = studio;
+                }
+            }
+            
+            const percentage = total > 0 ? (maxCount / total) * 100 : 0;
+            
+            return {
+                studio: dominant,
+                percentage,
+                total,
+                breakdown: visibleCounts
+            };
+        }
+        
+        function getPrefDataByName(name) {
+            // Try direct match
+            if (data.prefectures[name]) return data.prefectures[name];
+            
+            // Try mapped name
+            const mappedName = PREF_NAME_MAP[name];
+            if (mappedName && data.prefectures[mappedName]) {
+                return data.prefectures[mappedName];
+            }
+            
+            // Try Japanese name from GeoJSON
+            return null;
+        }
+        
+        function updateVisualization() {
+            // Remove existing layer
+            if (geoJsonLayer) {
+                map.removeLayer(geoJsonLayer);
+            }
+            
+            // Build rankings
+            const rankings = [];
+            
+            // Create GeoJSON layer
+            geoJsonLayer = L.geoJSON(geoJson, {
+                style: (feature) => {
+                    const props = feature.properties;
+                    const prefName = props.nam_ja || props.name_ja || props.name;
+                    const prefData = getPrefDataByName(prefName) || getPrefDataByName(props.name);
+                    
+                    if (!prefData) {
+                        return {
+                            fillColor: '#1a1a2e',
+                            weight: 1,
+                            opacity: 0.5,
+                            color: '#333',
+                            fillOpacity: 0.3
+                        };
+                    }
+                    
+                    const dominance = recalculateDominance(prefData);
+                    const studioInfo = data.studios[dominance.studio] || { color: '#444' };
+                    
+                    // Add to rankings if not Other
+                    if (dominance.studio !== 'Other' && dominance.percentage > 0) {
+                        rankings.push({
+                            pref: prefName,
+                            studio: dominance.studio,
+                            studioInfo: data.studios[dominance.studio],
+                            percentage: dominance.percentage,
+                            total: prefData.total_films
+                        });
+                    }
+                    
+                    // Opacity based on percentage (more dominant = more opaque)
+                    const fillOpacity = 0.4 + (dominance.percentage / 100) * 0.5;
+                    
+                    return {
+                        fillColor: studioInfo.color,
+                        weight: 1.5,
+                        opacity: 0.8,
+                        color: '#222',
+                        fillOpacity
+                    };
+                },
+                onEachFeature: (feature, layer) => {
+                    const props = feature.properties;
+                    const prefName = props.nam_ja || props.name_ja || props.name;
+                    const prefData = getPrefDataByName(prefName) || getPrefDataByName(props.name);
+                    
+                    if (prefData) {
+                        const dominance = recalculateDominance(prefData);
+                        const studioInfo = data.studios[dominance.studio] || { color: '#444', name_jp: 'その他' };
+                        
+                        // Tooltip
+                        const tooltipContent = `
+                            <div class="pref-tooltip">
+                                <div class="tooltip-name">${prefName}</div>
+                                <div class="tooltip-studio">
+                                    <span class="tooltip-dot" style="background: ${studioInfo.color}"></span>
+                                    ${studioInfo.name_jp} (${dominance.studio})
+                                    <span class="tooltip-pct">${dominance.percentage.toFixed(1)}%</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        layer.bindTooltip(tooltipContent, {
+                            permanent: false,
+                            direction: 'top',
+                            className: ''
+                        });
+                        
+                        // Click handler
+                        layer.on('click', () => {
+                            showDetail(prefName, prefData);
+                        });
+                        
+                        // Hover effects
+                        layer.on('mouseover', () => {
+                            layer.setStyle({
+                                weight: 3,
+                                color: '#fff'
+                            });
+                            layer.bringToFront();
+                        });
+                        
+                        layer.on('mouseout', () => {
+                            geoJsonLayer.resetStyle(layer);
+                        });
+                    }
+                }
+            }).addTo(map);
+            
+            // Update rankings display
+            rankings.sort((a, b) => b.percentage - a.percentage);
+            
+            const rankingsHtml = rankings.slice(0, 12).map((r, i) => `
+                <div class="ranking-item ${selectedPrefecture === r.pref ? 'selected' : ''}" 
+                     style="border-left-color: ${r.studioInfo.color}"
+                     onclick="flyToPreecture('${r.pref}')">
+                    <div class="ranking-rank">${i + 1}</div>
+                    <div class="ranking-info">
+                        <div class="ranking-pref">${r.pref}</div>
+                        <div class="ranking-studio" style="color: ${r.studioInfo.color}">
+                            ${r.studioInfo.name_jp} (${r.studio})
+                        </div>
+                    </div>
+                    <div class="ranking-pct" style="color: ${r.studioInfo.color}">
+                        ${r.percentage.toFixed(0)}%
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('rankings-list').innerHTML = rankingsHtml;
+        }
+        
+        function flyToPreecture(prefName) {
+            // Find the prefecture in geoJson and zoom to it
+            geoJsonLayer.eachLayer(layer => {
+                const props = layer.feature.properties;
+                const name = props.nam_ja || props.name_ja || props.name;
+                if (name === prefName) {
+                    map.fitBounds(layer.getBounds(), { padding: [50, 50] });
+                    const prefData = getPrefDataByName(prefName);
+                    if (prefData) {
+                        showDetail(prefName, prefData);
+                    }
+                }
+            });
+        }
+        
+        function showDetail(prefName, prefData) {
+            selectedPrefecture = prefName;
+            
+            document.getElementById('detail-title').textContent = prefName;
+            document.getElementById('detail-films').textContent = 
+                `${prefData.total_films.toLocaleString()} films with location data`;
+            
+            // Build bars for visible studios only
+            const bars = Object.entries(prefData.studios)
+                .filter(([studio]) => studioVisibility[studio] !== false && studio !== 'Other')
+                .sort((a, b) => b[1].count - a[1].count)
+                .slice(0, 8);
+            
+            const total = bars.reduce((sum, [, s]) => sum + s.count, 0);
+            
+            const barsHtml = bars.map(([studio, stats]) => {
+                const info = data.studios[studio] || { color: '#444', name_jp: studio };
+                const pct = total > 0 ? (stats.count / total) * 100 : 0;
+                return `
+                    <div class="detail-bar">
+                        <div class="detail-bar-label">
+                            <span class="detail-bar-name">
+                                <span class="detail-bar-dot" style="background: ${info.color}"></span>
+                                ${info.name_jp} (${studio})
+                            </span>
+                            <span>${stats.count.toLocaleString()} films</span>
+                        </div>
+                        <div class="detail-bar-track">
+                            <div class="detail-bar-fill" style="width: ${pct}%; background: ${info.color}">
+                                ${pct > 10 ? `<span class="detail-bar-pct">${pct.toFixed(1)}%</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('detail-bars').innerHTML = barsHtml;
+            document.getElementById('detail-panel').classList.add('active');
+            
+            // Update ranking selection
+            updateVisualization();
+        }
+        
+        function closeDetail() {
+            selectedPrefecture = null;
+            document.getElementById('detail-panel').classList.remove('active');
+            updateVisualization();
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadData();
+        });
+    </script>
+</body>
+</html>
