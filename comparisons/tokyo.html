@@ -40,7 +40,7 @@
             font-weight: 700;
             letter-spacing: -4px;
             color: #fff;
-            text-shadow: 0 0 60px rgba(231,76,60,0.5);
+            text-shadow: 0 0 60px rgba(241,196,15,0.5);
             line-height: 1;
         }
         
@@ -82,7 +82,7 @@
         
         .timeline-progress {
             height: 100%;
-            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            background: linear-gradient(90deg, #f1c40f, #2ecc71);
             border-radius: 3px;
             transition: width 0.1s linear;
         }
@@ -109,20 +109,20 @@
             height: 56px;
             border-radius: 50%;
             border: none;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
+            background: linear-gradient(135deg, #f1c40f, #d4ac0d);
+            color: #1a1a1a;
             font-size: 24px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(231,76,60,0.4);
+            box-shadow: 0 4px 20px rgba(241,196,15,0.4);
             transition: all 0.2s;
         }
         
         .play-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(231,76,60,0.6);
+            box-shadow: 0 6px 30px rgba(241,196,15,0.6);
         }
         
         .speed-control {
@@ -145,8 +145,8 @@
         }
         
         .speed-btn.active, .view-btn.active {
-            background: rgba(231,76,60,0.3);
-            color: #e74c3c;
+            background: rgba(241,196,15,0.3);
+            color: #f1c40f;
         }
         
         .speed-btn:hover, .view-btn:hover { background: rgba(255,255,255,0.2); }
@@ -288,7 +288,7 @@
         
         .slider-value {
             font-weight: 600;
-            color: #e74c3c;
+            color: #f1c40f;
         }
         
         input[type="range"] {
@@ -305,7 +305,7 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: #e74c3c;
+            background: #f1c40f;
             cursor: pointer;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
@@ -328,7 +328,7 @@
         .loader {
             width: 48px; height: 48px;
             border: 3px solid #333;
-            border-top-color: #e74c3c;
+            border-top-color: #f1c40f;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -354,23 +354,70 @@
             font-size: 11px;
         }
         
+        .legend-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
         .legend-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 4px 6px;
+            margin: 0 -6px 6px -6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .legend-item:hover {
+            background: rgba(255,255,255,0.1);
         }
         
         .legend-item:last-child { margin-bottom: 0; }
         
+        .legend-item.disabled {
+            opacity: 0.4;
+        }
+        
+        .legend-item.disabled .legend-dot {
+            background: #555 !important;
+        }
+        
         .legend-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
+            transition: all 0.2s;
         }
         
         .legend-dot.filming { background: #f1c40f; }
         .legend-dot.represented { background: #2ecc71; }
+        
+        .legend-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #555;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.2s;
+        }
+        
+        .legend-item:not(.disabled) .legend-checkbox {
+            border-color: #888;
+            color: #fff;
+        }
+        
+        .legend-item:not(.disabled) .legend-checkbox::after {
+            content: '✓';
+        }
         
         @media (max-width: 700px) {
             .year-number { font-size: 64px; }
@@ -462,11 +509,14 @@
     </div>
     
     <div id="legend">
-        <div class="legend-item">
+        <div class="legend-title">Layers (click to toggle)</div>
+        <div class="legend-item" id="toggle-filming" onclick="toggleLayer('filming')">
+            <div class="legend-checkbox"></div>
             <div class="legend-dot filming"></div>
             <span>Filming locations</span>
         </div>
-        <div class="legend-item">
+        <div class="legend-item" id="toggle-represented" onclick="toggleLayer('represented')">
+            <div class="legend-checkbox"></div>
             <div class="legend-dot represented"></div>
             <span>Represented locations</span>
         </div>
@@ -523,6 +573,10 @@
         let speed = 200;
         let mode = 'cumulative';
         let viewMode = 'heatmap';
+        
+        // Layer visibility
+        let showFilming = true;
+        let showRepresented = true;
         
         // Heatmap settings
         let heatRadius = 20;
@@ -673,7 +727,7 @@
             const filmingPoints = filmingLocs.map(loc => [loc.lat, loc.lon, heatIntensity]);
             const representedPoints = representedLocs.map(loc => [loc.lat, loc.lon, heatIntensity]);
             
-            if (filmingPoints.length > 0) {
+            if (showFilming && filmingPoints.length > 0) {
                 filmingHeatLayer = L.heatLayer(filmingPoints, {
                     radius: heatRadius,
                     blur: heatBlur,
@@ -689,7 +743,7 @@
                 }).addTo(map);
             }
             
-            if (representedPoints.length > 0) {
+            if (showRepresented && representedPoints.length > 0) {
                 representedHeatLayer = L.heatLayer(representedPoints, {
                     radius: heatRadius,
                     blur: heatBlur,
@@ -710,32 +764,47 @@
             filmingPointsLayer = L.layerGroup();
             representedPointsLayer = L.layerGroup();
             
-            filmingLocs.forEach(loc => {
-                const marker = L.circleMarker([loc.lat, loc.lon], {
-                    radius: pointSize,
-                    fillColor: '#f1c40f',
-                    color: '#d4ac0d',
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: pointOpacity
+            if (showFilming) {
+                filmingLocs.forEach(loc => {
+                    const marker = L.circleMarker([loc.lat, loc.lon], {
+                        radius: pointSize,
+                        fillColor: '#f1c40f',
+                        color: '#d4ac0d',
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: pointOpacity
+                    });
+                    filmingPointsLayer.addLayer(marker);
                 });
-                filmingPointsLayer.addLayer(marker);
-            });
+            }
             
-            representedLocs.forEach(loc => {
-                const marker = L.circleMarker([loc.lat, loc.lon], {
-                    radius: pointSize,
-                    fillColor: '#2ecc71',
-                    color: '#27ae60',
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: pointOpacity
+            if (showRepresented) {
+                representedLocs.forEach(loc => {
+                    const marker = L.circleMarker([loc.lat, loc.lon], {
+                        radius: pointSize,
+                        fillColor: '#2ecc71',
+                        color: '#27ae60',
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: pointOpacity
+                    });
+                    representedPointsLayer.addLayer(marker);
                 });
-                representedPointsLayer.addLayer(marker);
-            });
+            }
             
-            representedPointsLayer.addTo(map);
-            filmingPointsLayer.addTo(map);
+            if (showRepresented) representedPointsLayer.addTo(map);
+            if (showFilming) filmingPointsLayer.addTo(map);
+        }
+        
+        function toggleLayer(layerType) {
+            if (layerType === 'filming') {
+                showFilming = !showFilming;
+                document.getElementById('toggle-filming').classList.toggle('disabled', !showFilming);
+            } else if (layerType === 'represented') {
+                showRepresented = !showRepresented;
+                document.getElementById('toggle-represented').classList.toggle('disabled', !showRepresented);
+            }
+            updateVisualization();
         }
         
         function togglePlay() {
@@ -811,6 +880,10 @@
                 setView('heatmap');
             } else if (e.code === 'KeyP') {
                 setView('points');
+            } else if (e.code === 'KeyF') {
+                toggleLayer('filming');
+            } else if (e.code === 'KeyR') {
+                toggleLayer('represented');
             }
         });
         
