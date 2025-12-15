@@ -289,6 +289,33 @@
             z-index: 1;
         }
         
+        /* Directors map preview - NEW */
+        .preview-directors-map {
+            background: linear-gradient(135deg, #2a1a2a 0%, #1a1a2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-directors-map::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(155,89,182,0.5) 0%, transparent 35%),
+                radial-gradient(circle at 60% 55%, rgba(155,89,182,0.3) 0%, transparent 30%),
+                radial-gradient(circle at 75% 30%, rgba(155,89,182,0.4) 0%, transparent 25%);
+        }
+        
+        .directors-map-icon {
+            font-size: 72px;
+            position: relative;
+            z-index: 1;
+        }
+        
         /* Map dots overlay */
         .map-dots {
             position: absolute;
@@ -590,7 +617,7 @@
                 <div class="card-arrow">→</div>
             </a>
             
-            <!-- Actors by Prefecture (NEW) -->
+            <!-- Actors by Prefecture -->
             <a href="comparisons/actors.html" class="viz-card" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
                     <div class="card-preview preview-actors">
@@ -603,6 +630,24 @@
                     <p class="card-title-jp">都道府県別スター俳優</p>
                     <p class="card-description">
                         Which actors dominate which prefectures? Filter by decade and gender to track star power across eras.
+                    </p>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+            
+            <!-- Directors by Prefecture (NEW) -->
+            <a href="comparisons/directors_map.html" class="viz-card" style="text-decoration: none; color: inherit;">
+                <div class="card-preview-container">
+                    <div class="card-preview preview-directors-map">
+                        <span class="directors-map-icon">🎬</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-badge">🎬 Directors</span>
+                    <h2 class="card-title">Director Power by Region</h2>
+                    <p class="card-title-jp">都道府県別映画監督</p>
+                    <p class="card-description">
+                        Which directors dominate which prefectures? Filter by decade to see auteur territories evolve.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
