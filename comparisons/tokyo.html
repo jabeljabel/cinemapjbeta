@@ -234,6 +234,66 @@
             color: #fff;
         }
         
+        /* Heatmap Settings Panel */
+        #heatmap-settings {
+            position: fixed;
+            top: 200px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px 20px;
+            min-width: 200px;
+        }
+        
+        .settings-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .slider-group {
+            margin-bottom: 14px;
+        }
+        
+        .slider-group:last-child { margin-bottom: 0; }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #aaa;
+        }
+        
+        .slider-value {
+            font-weight: 600;
+            color: #e74c3c;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #e74c3c;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
         /* Loading */
         #loading {
             position: fixed;
@@ -297,6 +357,7 @@
             .year-number { font-size: 64px; }
             .timeline-container { width: 90vw; }
             #stats { display: none; }
+            #heatmap-settings { top: auto; bottom: 180px; right: 10px; }
         }
     </style>
 </head>
@@ -309,7 +370,7 @@
     <div id="title">
         <div class="title-main">Tokyo Film Time-Lapse</div>
         <div class="title-jp">東京映画ロケ地の変遷</div>
-        <div class="title-sub">130 years of cinema locations</div>
+        <div class="title-sub">128 years of cinema locations</div>
     </div>
     
     <div id="year-display">
@@ -333,6 +394,31 @@
         <div class="stat-row">
             <span class="stat-label">Films</span>
             <span class="stat-value" id="stat-films">0</span>
+        </div>
+    </div>
+    
+    <div id="heatmap-settings">
+        <div class="settings-title">Heatmap Settings</div>
+        <div class="slider-group">
+            <div class="slider-label">
+                <span>Radius</span>
+                <span class="slider-value" id="radius-val">20</span>
+            </div>
+            <input type="range" id="radius" min="5" max="50" value="20" oninput="updateHeatmapSettings()">
+        </div>
+        <div class="slider-group">
+            <div class="slider-label">
+                <span>Blur</span>
+                <span class="slider-value" id="blur-val">15</span>
+            </div>
+            <input type="range" id="blur" min="5" max="40" value="15" oninput="updateHeatmapSettings()">
+        </div>
+        <div class="slider-group">
+            <div class="slider-label">
+                <span>Intensity</span>
+                <span class="slider-value" id="intensity-val">0.8</span>
+            </div>
+            <input type="range" id="intensity" min="0.1" max="1.5" step="0.1" value="0.8" oninput="updateHeatmapSettings()">
         </div>
     </div>
     
@@ -393,10 +479,14 @@
         let speed = 200; // ms per year
         let mode = 'cumulative'; // 'cumulative' or 'decade'
         
+        // Heatmap settings
+        let heatRadius = 20;
+        let heatBlur = 15;
+        let heatIntensity = 0.8;
+        
         // Layers
         let filmingLayer = null;
         let representedLayer = null;
-        let markersLayer = null;
         
         function initMap() {
             map = L.map('map', {
@@ -444,6 +534,18 @@
             }
         }
         
+        function updateHeatmapSettings() {
+            heatRadius = parseInt(document.getElementById('radius').value);
+            heatBlur = parseInt(document.getElementById('blur').value);
+            heatIntensity = parseFloat(document.getElementById('intensity').value);
+            
+            document.getElementById('radius-val').textContent = heatRadius;
+            document.getElementById('blur-val').textContent = heatBlur;
+            document.getElementById('intensity-val').textContent = heatIntensity.toFixed(1);
+            
+            updateVisualization();
+        }
+        
         function updateVisualization() {
             // Clear existing layers
             if (filmingLayer) map.removeLayer(filmingLayer);
@@ -454,7 +556,6 @@
             const representedPoints = [];
             let totalFilming = 0;
             let totalRepresented = 0;
-            let filmIds = new Set();
             
             const startYear = mode === 'decade' 
                 ? Math.floor(currentYear / 10) * 10 
@@ -468,7 +569,7 @@
                 if (!yearData) continue;
                 
                 yearData.locations.forEach(loc => {
-                    const point = [loc.lat, loc.lon, 0.5];
+                    const point = [loc.lat, loc.lon, heatIntensity];
                     if (loc.type === 'filming') {
                         filmingPoints.push(point);
                         totalFilming++;
@@ -477,38 +578,37 @@
                         totalRepresented++;
                     }
                 });
-                
-                // Approximate film count
-                if (yearData.film_count) {
-                    filmIds.add(year); // Simplified - just count years with films
-                }
             }
             
-            // Create heatmap layers
+            // Create heatmap layers with current settings
             if (filmingPoints.length > 0) {
                 filmingLayer = L.heatLayer(filmingPoints, {
-                    radius: 15,
-                    blur: 20,
+                    radius: heatRadius,
+                    blur: heatBlur,
                     maxZoom: 17,
                     max: 1.0,
                     gradient: {
+                        0.2: '#ffcccc',
                         0.4: '#ff6b6b',
-                        0.7: '#ee5a24',
-                        1: '#e74c3c'
+                        0.6: '#ee5a24',
+                        0.8: '#e74c3c',
+                        1: '#c0392b'
                     }
                 }).addTo(map);
             }
             
             if (representedPoints.length > 0) {
                 representedLayer = L.heatLayer(representedPoints, {
-                    radius: 15,
-                    blur: 20,
+                    radius: heatRadius,
+                    blur: heatBlur,
                     maxZoom: 17,
                     max: 1.0,
                     gradient: {
+                        0.2: '#cce5ff',
                         0.4: '#74b9ff',
-                        0.7: '#0984e3',
-                        1: '#3498db'
+                        0.6: '#0984e3',
+                        0.8: '#3498db',
+                        1: '#2980b9'
                     }
                 }).addTo(map);
             }
