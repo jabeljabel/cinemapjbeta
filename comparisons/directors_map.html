@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMAP - Actors by Prefecture</title>
+    <title>CineMAP - Directors by Prefecture</title>
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -231,12 +231,12 @@
             color: #888;
         }
         
-        .detail-actor-list {
+        .detail-director-list {
             max-height: 300px;
             overflow-y: auto;
         }
         
-        .detail-actor {
+        .detail-director {
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
@@ -244,21 +244,21 @@
             font-size: 0.85rem;
         }
         
-        .detail-actor:last-child {
+        .detail-director:last-child {
             border-bottom: none;
         }
         
-        .detail-actor-name {
+        .detail-director-name {
             flex: 1;
         }
         
-        .detail-actor-name small {
+        .detail-director-name small {
             color: #666;
             display: block;
             font-size: 0.75rem;
         }
         
-        .detail-actor-films {
+        .detail-director-films {
             color: #ffd700;
             margin-left: 10px;
         }
@@ -410,17 +410,17 @@
     <!-- Loading overlay -->
     <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p>Loading actor data...</p>
+        <p>Loading director data...</p>
     </div>
     
     <!-- Header -->
     <div class="header">
-        <h1>CineMAP - <span>Actors by Prefecture</span></h1>
+        <h1>CineMAP - <span>Directors by Prefecture</span></h1>
         <div class="header-links">
             <a href="../index.html">← Splash</a>
             <a href="../main.html">Main Map</a>
             <a href="studios.html">Studios</a>
-            <a href="directors_map.html">Directors</a>
+            <a href="actors.html">Actors</a>
             <a href="genres.html">Genres</a>
         </div>
     </div>
@@ -468,11 +468,11 @@
                 </select>
             </div>
             
-            <h3>🏆 Top Actors <span id="filterContext" style="font-weight: normal; color: #888;">(All Time)</span></h3>
+            <h3>🏆 Top Directors <span id="filterContext" style="font-weight: normal; color: #888;">(All Time)</span></h3>
             <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
                 By prefectures dominated
             </p>
-            <ul class="ranking-list" id="dominantActorsList">
+            <ul class="ranking-list" id="dominantDirectorsList">
                 <!-- Populated by JS -->
             </ul>
             
@@ -482,19 +482,19 @@
                 <div class="detail-stats">
                     <div class="detail-stat">
                         <div class="detail-stat-value" id="detailTopPct">-</div>
-                        <div class="detail-stat-label">Top Actor Share</div>
+                        <div class="detail-stat-label">Top Director Share</div>
                     </div>
                     <div class="detail-stat">
-                        <div class="detail-stat-value" id="detailActorCount">-</div>
-                        <div class="detail-stat-label">Unique Actors</div>
+                        <div class="detail-stat-value" id="detailDirectorCount">-</div>
+                        <div class="detail-stat-label">Unique Directors</div>
                     </div>
                 </div>
-                <div class="detail-actor-list" id="detailActorList">
+                <div class="detail-director-list" id="detailDirectorList">
                     <!-- Populated by JS -->
                 </div>
             </div>
             <p id="detailPlaceholder" style="font-size: 0.85rem; color: #666;">
-                Click a prefecture on the map to see actor breakdown
+                Click a prefecture on the map to see director breakdown
             </p>
         </div>
         
@@ -525,7 +525,7 @@
     <script>
         // Configuration
         const CONFIG = {
-            dataFile: 'actor_prefecture.json',
+            dataFile: 'director_prefecture.json',
             geoJsonUrl: 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson',
             mapCenter: [36.5, 138],
             mapZoom: 5
@@ -534,7 +534,7 @@
         // State
         let map = null;
         let geoJsonLayer = null;
-        let actorData = null;
+        let directorData = null;
         let prefectureGeoJson = null;
         let currentFilters = {
             gender: 'all',
@@ -542,8 +542,8 @@
             minFilms: 5
         };
         
-        // Actor colors - expanded bright palette (40 colors)
-        const ACTOR_COLORS = [
+        // Director colors - expanded bright palette (40 colors)
+        const DIRECTOR_COLORS = [
             '#ff6b6b', // Bright red
             '#4ecdc4', // Bright teal
             '#ffe66d', // Yellow
@@ -586,8 +586,8 @@
             '#1e3799'  // Royal blue
         ];
         
-        // Actor to color mapping (built dynamically)
-        let actorColorMap = {};
+        // Director to color mapping (built dynamically)
+        let directorColorMap = {};
         
         // Initialize
         document.addEventListener('DOMContentLoaded', init);
@@ -625,12 +625,12 @@
         }
         
         async function loadData() {
-            // Load actor data
-            const actorResponse = await fetch(CONFIG.dataFile);
-            if (!actorResponse.ok) {
+            // Load director data
+            const directorResponse = await fetch(CONFIG.dataFile);
+            if (!directorResponse.ok) {
                 throw new Error(`Failed to load ${CONFIG.dataFile}`);
             }
-            actorData = await actorResponse.json();
+            directorData = await directorResponse.json();
             
             // Load prefecture GeoJSON
             const geoResponse = await fetch(CONFIG.geoJsonUrl);
@@ -639,31 +639,31 @@
             }
             prefectureGeoJson = await geoResponse.json();
             
-            // Build color mapping for dominant actors
-            buildActorColorMap();
+            // Build color mapping for dominant directors
+            buildDirectorColorMap();
             
             // Render map
             renderMap();
             
-            // Populate dominant actors list
-            populateDominantActorsList();
+            // Populate dominant directors list
+            populateDominantDirectorsList();
         }
         
-        function buildActorColorMap() {
+        function buildDirectorColorMap() {
             // Reset color map
-            actorColorMap = {};
+            directorColorMap = {};
             
-            // Collect all actors who are currently top in at least one prefecture (with filters applied)
-            const topActors = new Map(); // people_id -> {actor data, count of prefectures}
+            // Collect all directors who are currently top in at least one prefecture (with filters applied)
+            const topDirectors = new Map(); // people_id -> {director data, count of prefectures}
             
-            Object.values(actorData.prefectures).forEach(prefData => {
-                const topActor = getFilteredTopActor(prefData);
-                if (topActor) {
-                    if (topActors.has(topActor.people_id)) {
-                        topActors.get(topActor.people_id).count++;
+            Object.values(directorData.prefectures).forEach(prefData => {
+                const topDirector = getFilteredTopDirector(prefData);
+                if (topDirector) {
+                    if (topDirectors.has(topDirector.people_id)) {
+                        topDirectors.get(topDirector.people_id).count++;
                     } else {
-                        topActors.set(topActor.people_id, {
-                            ...topActor,
+                        topDirectors.set(topDirector.people_id, {
+                            ...topDirector,
                             count: 1
                         });
                     }
@@ -671,39 +671,39 @@
             });
             
             // Sort by number of prefectures dominated (descending)
-            const sortedActors = [...topActors.entries()]
+            const sortedDirectors = [...topDirectors.entries()]
                 .sort((a, b) => b[1].count - a[1].count);
             
-            // Assign colors - every visible actor gets a unique color
-            sortedActors.forEach(([pid, data], index) => {
-                actorColorMap[pid] = ACTOR_COLORS[index % ACTOR_COLORS.length];
+            // Assign colors - every visible director gets a unique color
+            sortedDirectors.forEach(([pid, data], index) => {
+                directorColorMap[pid] = DIRECTOR_COLORS[index % DIRECTOR_COLORS.length];
             });
             
-            console.log(`Assigned colors to ${sortedActors.length} actors for current filter`);
+            console.log(`Assigned colors to ${sortedDirectors.length} directors for current filter`);
             
-            return sortedActors;
+            return sortedDirectors;
         }
         
-        function getFilteredTopActor(prefData) {
-            if (!prefData || !prefData.top_actors) return null;
+        function getFilteredTopDirector(prefData) {
+            if (!prefData || !prefData.top_directors) return null;
             
             const minFilms = currentFilters.minFilms;
             
-            for (const actor of prefData.top_actors) {
+            for (const director of prefData.top_directors) {
                 // Apply minimum films filter
-                if (actor.film_count < minFilms) continue;
+                if (director.film_count < minFilms) continue;
                 
                 // Apply gender filter
                 if (currentFilters.gender !== 'all') {
-                    const g = actor.gender || 'Unknown';
+                    const g = director.gender || 'Unknown';
                     if (currentFilters.gender === 'M' && !['M', 'Male'].includes(g)) continue;
                     if (currentFilters.gender === 'F' && !['F', 'Female'].includes(g)) continue;
                 }
                 
-                // Apply decade filter - check if actor was active during this decade
+                // Apply decade filter - check if director was active during this decade
                 if (currentFilters.era !== 'all') {
-                    const firstYear = actor.first_year;
-                    const lastYear = actor.last_year;
+                    const firstYear = director.first_year;
+                    const lastYear = director.last_year;
                     
                     if (!firstYear || !lastYear) continue;
                     
@@ -713,28 +713,28 @@
                         const decadeStart = parseInt(decadeMatch[1]);
                         const decadeEnd = decadeStart + 9;
                         
-                        // Actor must have been active during this decade
+                        // Director must have been active during this decade
                         // (their career overlaps with the decade)
                         if (lastYear < decadeStart || firstYear > decadeEnd) continue;
                     }
                 }
                 
-                return actor;
+                return director;
             }
             return null;
         }
         
-        function getActorColor(actorId) {
-            if (actorColorMap[actorId]) {
-                return actorColorMap[actorId];
+        function getDirectorColor(directorId) {
+            if (directorColorMap[directorId]) {
+                return directorColorMap[directorId];
             }
             // Fallback: generate color based on ID
-            return ACTOR_COLORS[actorId % ACTOR_COLORS.length];
+            return DIRECTOR_COLORS[directorId % DIRECTOR_COLORS.length];
         }
         
         function renderMap() {
             // Rebuild color map based on current filters
-            const sortedActors = buildActorColorMap();
+            const sortedDirectors = buildDirectorColorMap();
             
             // Update filter context text
             updateFilterContext();
@@ -750,17 +750,17 @@
                 onEachFeature: onEachFeature
             }).addTo(map);
             
-            // Update legend and dominant actors list
+            // Update legend and dominant directors list
             updateLegend();
-            updateDominantActorsList(sortedActors);
+            updateDominantDirectorsList(sortedDirectors);
         }
         
         function styleFeature(feature) {
             const prefName = feature.properties.nam_ja || feature.properties.name;
-            const prefData = actorData.prefectures[prefName];
-            const topActor = getFilteredTopActor(prefData);
+            const prefData = directorData.prefectures[prefName];
+            const topDirector = getFilteredTopDirector(prefData);
             
-            if (!topActor) {
+            if (!topDirector) {
                 return {
                     fillColor: '#444',
                     weight: 1,
@@ -771,11 +771,11 @@
             }
             
             // Calculate opacity based on percentage dominance
-            const pct = topActor.percentage || 0;
+            const pct = topDirector.percentage || 0;
             const opacity = Math.max(0.5, Math.min(0.95, 0.4 + pct / 15));
             
             return {
-                fillColor: getActorColor(topActor.people_id),
+                fillColor: getDirectorColor(topDirector.people_id),
                 weight: 1,
                 opacity: 0.8,
                 color: '#444',
@@ -794,8 +794,8 @@
         function highlightFeature(e) {
             const layer = e.target;
             const prefName = layer.feature.properties.nam_ja || layer.feature.properties.name;
-            const prefData = actorData.prefectures[prefName];
-            const topActor = getFilteredTopActor(prefData);
+            const prefData = directorData.prefectures[prefName];
+            const topDirector = getFilteredTopDirector(prefData);
             
             layer.setStyle({
                 weight: 3,
@@ -807,12 +807,12 @@
             
             // Update hover info
             const infoEl = document.getElementById('hoverInfo');
-            if (topActor) {
-                const name = topActor.english_name || topActor.japanese_name || 'Unknown';
-                const pct = topActor.percentage ? topActor.percentage.toFixed(1) + '%' : '';
-                infoEl.innerHTML = `<strong>${prefName}</strong><br>${name}: ${pct} (${topActor.film_count} films)`;
+            if (topDirector) {
+                const name = topDirector.english_name || topDirector.japanese_name || 'Unknown';
+                const pct = topDirector.percentage ? topDirector.percentage.toFixed(1) + '%' : '';
+                infoEl.innerHTML = `<strong>${prefName}</strong><br>${name}: ${pct} (${topDirector.film_count} films)`;
             } else {
-                infoEl.innerHTML = `<strong>${prefName}</strong><br>No matching actors`;
+                infoEl.innerHTML = `<strong>${prefName}</strong><br>No matching directors`;
             }
         }
         
@@ -827,7 +827,7 @@
         }
         
         function showPrefectureDetail(prefName) {
-            const prefData = actorData.prefectures[prefName];
+            const prefData = directorData.prefectures[prefName];
             const panel = document.getElementById('detailPanel');
             const placeholder = document.getElementById('detailPlaceholder');
             
@@ -842,22 +842,22 @@
             
             document.getElementById('detailPrefName').textContent = prefName;
             
-            // Get top actor percentage
-            const topActor = getFilteredTopActor(prefData);
-            const topPct = topActor && topActor.percentage ? topActor.percentage.toFixed(1) + '%' : '-';
+            // Get top director percentage
+            const topDirector = getFilteredTopDirector(prefData);
+            const topPct = topDirector && topDirector.percentage ? topDirector.percentage.toFixed(1) + '%' : '-';
             document.getElementById('detailTopPct').textContent = topPct;
-            document.getElementById('detailActorCount').textContent = prefData.actor_count.toLocaleString();
+            document.getElementById('detailDirectorCount').textContent = prefData.director_count.toLocaleString();
             
-            // Build actor list
-            const listEl = document.getElementById('detailActorList');
+            // Build director list
+            const listEl = document.getElementById('detailDirectorList');
             listEl.innerHTML = '';
             
             const minFilms = currentFilters.minFilms;
-            let filteredActors = prefData.top_actors.filter(a => a.film_count >= minFilms);
+            let filteredDirectors = prefData.top_directors.filter(a => a.film_count >= minFilms);
             
             // Apply gender filter for list
             if (currentFilters.gender !== 'all') {
-                filteredActors = filteredActors.filter(a => {
+                filteredDirectors = filteredDirectors.filter(a => {
                     const g = a.gender || 'Unknown';
                     if (currentFilters.gender === 'M') return ['M', 'Male'].includes(g);
                     if (currentFilters.gender === 'F') return ['F', 'Female'].includes(g);
@@ -865,22 +865,22 @@
                 });
             }
             
-            filteredActors.slice(0, 15).forEach((actor, i) => {
+            filteredDirectors.slice(0, 15).forEach((director, i) => {
                 const div = document.createElement('div');
-                div.className = 'detail-actor';
+                div.className = 'detail-director';
                 
-                const genderBadge = getGenderBadge(actor.gender);
-                const years = actor.first_year && actor.last_year 
-                    ? `${actor.first_year}-${actor.last_year}` 
+                const genderBadge = getGenderBadge(director.gender);
+                const years = director.first_year && director.last_year 
+                    ? `${director.first_year}-${director.last_year}` 
                     : '';
-                const pct = actor.percentage ? actor.percentage.toFixed(1) + '%' : '';
+                const pct = director.percentage ? director.percentage.toFixed(1) + '%' : '';
                 
                 div.innerHTML = `
-                    <div class="detail-actor-name">
-                        ${i + 1}. ${actor.english_name || actor.japanese_name || 'Unknown'}${genderBadge}
-                        <small>${actor.japanese_name && actor.english_name ? actor.japanese_name : ''} ${years}</small>
+                    <div class="detail-director-name">
+                        ${i + 1}. ${director.english_name || director.japanese_name || 'Unknown'}${genderBadge}
+                        <small>${director.japanese_name && director.english_name ? director.japanese_name : ''} ${years}</small>
                     </div>
-                    <div class="detail-actor-films">${pct} <small>(${actor.film_count})</small></div>
+                    <div class="detail-director-films">${pct} <small>(${director.film_count})</small></div>
                 `;
                 listEl.appendChild(div);
             });
@@ -897,37 +897,37 @@
             return '';
         }
         
-        function populateDominantActorsList() {
-            // Initial population - will be replaced by updateDominantActorsList on filter change
-            const sortedActors = buildActorColorMap();
-            updateDominantActorsList(sortedActors);
+        function populateDominantDirectorsList() {
+            // Initial population - will be replaced by updateDominantDirectorsList on filter change
+            const sortedDirectors = buildDirectorColorMap();
+            updateDominantDirectorsList(sortedDirectors);
         }
         
-        function updateDominantActorsList(sortedActors) {
-            const listEl = document.getElementById('dominantActorsList');
+        function updateDominantDirectorsList(sortedDirectors) {
+            const listEl = document.getElementById('dominantDirectorsList');
             listEl.innerHTML = '';
             
-            if (!sortedActors || sortedActors.length === 0) {
-                listEl.innerHTML = '<li style="color: #666; font-size: 0.85rem;">No actors match current filters</li>';
+            if (!sortedDirectors || sortedDirectors.length === 0) {
+                listEl.innerHTML = '<li style="color: #666; font-size: 0.85rem;">No directors match current filters</li>';
                 return;
             }
             
-            // Show top 15 actors for current filter
-            sortedActors.slice(0, 15).forEach(([pid, actor], i) => {
+            // Show top 15 directors for current filter
+            sortedDirectors.slice(0, 15).forEach(([pid, director], i) => {
                 const li = document.createElement('li');
                 li.className = 'ranking-item';
                 
-                const color = actorColorMap[pid];
-                const genderBadge = getGenderBadge(actor.gender);
+                const color = directorColorMap[pid];
+                const genderBadge = getGenderBadge(director.gender);
                 
                 li.innerHTML = `
                     <span class="ranking-rank">${i + 1}</span>
                     <div class="ranking-color" style="background: ${color}"></div>
                     <div class="ranking-info">
-                        <div class="ranking-name">${actor.english_name || actor.japanese_name || 'Unknown'}${genderBadge}</div>
-                        <div class="ranking-name-jp">${actor.japanese_name && actor.english_name ? actor.japanese_name : ''}</div>
+                        <div class="ranking-name">${director.english_name || director.japanese_name || 'Unknown'}${genderBadge}</div>
+                        <div class="ranking-name-jp">${director.japanese_name && director.english_name ? director.japanese_name : ''}</div>
                     </div>
-                    <span class="ranking-count">${actor.count} pref</span>
+                    <span class="ranking-count">${director.count} pref</span>
                 `;
                 
                 listEl.appendChild(li);
@@ -958,19 +958,19 @@
             const legendEl = document.getElementById('legendItems');
             legendEl.innerHTML = '';
             
-            // Get current top actors being displayed
-            const displayedActors = new Map();
+            // Get current top directors being displayed
+            const displayedDirectors = new Map();
             
-            Object.entries(actorData.prefectures).forEach(([prefName, prefData]) => {
-                const topActor = getFilteredTopActor(prefData);
-                if (topActor) {
-                    const existing = displayedActors.get(topActor.people_id);
+            Object.entries(directorData.prefectures).forEach(([prefName, prefData]) => {
+                const topDirector = getFilteredTopDirector(prefData);
+                if (topDirector) {
+                    const existing = displayedDirectors.get(topDirector.people_id);
                     if (existing) {
                         existing.count++;
                     } else {
-                        displayedActors.set(topActor.people_id, {
-                            name: topActor.english_name || topActor.japanese_name || 'Unknown',
-                            color: getActorColor(topActor.people_id),
+                        displayedDirectors.set(topDirector.people_id, {
+                            name: topDirector.english_name || topDirector.japanese_name || 'Unknown',
+                            color: getDirectorColor(topDirector.people_id),
                             count: 1
                         });
                     }
@@ -978,16 +978,16 @@
             });
             
             // Sort by count and show top 12
-            const sortedActors = [...displayedActors.values()]
+            const sortedDirectors = [...displayedDirectors.values()]
                 .sort((a, b) => b.count - a.count)
                 .slice(0, 12);
             
-            sortedActors.forEach(actor => {
+            sortedDirectors.forEach(director => {
                 const div = document.createElement('div');
                 div.className = 'legend-item';
                 div.innerHTML = `
-                    <div class="legend-color" style="background: ${actor.color}"></div>
-                    <span>${actor.name} (${actor.count})</span>
+                    <div class="legend-color" style="background: ${director.color}"></div>
+                    <span>${director.name} (${director.count})</span>
                 `;
                 legendEl.appendChild(div);
             });
