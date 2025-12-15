@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP - Actors by Prefecture</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        
+        .header h1 span {
+            color: #ffd700;
+        }
+        
+        .header-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .header-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .header-links a:hover {
+            color: #ffd700;
+        }
+        
+        /* Main layout */
+        .container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 350px;
+            background: #16213e;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+        }
+        
+        .sidebar h2 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .sidebar h3 {
+            font-size: 0.95rem;
+            margin: 20px 0 10px;
+            color: #ccc;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        
+        /* Filter controls */
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        
+        .filter-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .filter-group select {
+            width: 100%;
+            padding: 8px;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .toggle-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .toggle-btn {
+            padding: 6px 12px;
+            background: #1a1a2e;
+            border: 1px solid #444;
+            color: #888;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        
+        .toggle-btn.active {
+            background: #ffd700;
+            color: #1a1a2e;
+            border-color: #ffd700;
+        }
+        
+        .toggle-btn:hover:not(.active) {
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+        
+        /* Ranking list */
+        .ranking-list {
+            list-style: none;
+        }
+        
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .ranking-item:hover {
+            background: #222;
+        }
+        
+        .ranking-rank {
+            width: 25px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .ranking-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+        
+        .ranking-info {
+            flex: 1;
+        }
+        
+        .ranking-name {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+        
+        .ranking-name-jp {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        .ranking-count {
+            font-size: 0.8rem;
+            color: #ffd700;
+        }
+        
+        /* Prefecture detail panel */
+        .detail-panel {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .detail-panel.visible {
+            display: block;
+        }
+        
+        .detail-panel h4 {
+            font-size: 1rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .detail-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-stat {
+            text-align: center;
+            padding: 10px;
+            background: #16213e;
+            border-radius: 4px;
+        }
+        
+        .detail-stat-value {
+            font-size: 1.2rem;
+            color: #ffd700;
+        }
+        
+        .detail-stat-label {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        .detail-actor-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .detail-actor {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.85rem;
+        }
+        
+        .detail-actor:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-actor-name {
+            flex: 1;
+        }
+        
+        .detail-actor-name small {
+            color: #666;
+            display: block;
+            font-size: 0.75rem;
+        }
+        
+        .detail-actor-films {
+            color: #ffd700;
+            margin-left: 10px;
+        }
+        
+        .gender-badge {
+            display: inline-block;
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-size: 0.65rem;
+            margin-left: 5px;
+        }
+        
+        .gender-m {
+            background: #4a90d9;
+            color: #fff;
+        }
+        
+        .gender-f {
+            background: #d94a7b;
+            color: #fff;
+        }
+        
+        /* Map container */
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #0f0f23;
+        }
+        
+        /* Legend */
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            background: rgba(22, 33, 62, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            max-width: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .legend h4 {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            margin-right: 8px;
+        }
+        
+        /* Info box */
+        .info-box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(22, 33, 62, 0.95);
+            padding: 10px 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            font-size: 0.85rem;
+        }
+        
+        .info-box strong {
+            color: #ffd700;
+        }
+        
+        /* Loading overlay */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loading.hidden {
+            display: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading p {
+            margin-top: 15px;
+            color: #888;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: 40vh;
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+            
+            .map-container {
+                height: 60vh;
+            }
+            
+            .legend {
+                bottom: 10px;
+                right: 10px;
+                max-width: 150px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading actor data...</p>
+    </div>
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>CineMAP - <span>Actors by Prefecture</span></h1>
+        <div class="header-links">
+            <a href="../index.html">← Splash</a>
+            <a href="../main.html">Main Map</a>
+            <a href="studios.html">Studios</a>
+            <a href="genres.html">Genres</a>
+        </div>
+    </div>
+    
+    <!-- Main container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Filter Options</h2>
+            
+            <div class="filter-group">
+                <label>Gender Filter</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn active" data-gender="all">All</button>
+                    <button class="toggle-btn" data-gender="M">Male</button>
+                    <button class="toggle-btn" data-gender="F">Female</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <label>Decade Filter</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn active" data-era="all">All</button>
+                    <button class="toggle-btn" data-era="1920s">20s</button>
+                    <button class="toggle-btn" data-era="1930s">30s</button>
+                    <button class="toggle-btn" data-era="1940s">40s</button>
+                    <button class="toggle-btn" data-era="1950s">50s</button>
+                    <button class="toggle-btn" data-era="1960s">60s</button>
+                    <button class="toggle-btn" data-era="1970s">70s</button>
+                    <button class="toggle-btn" data-era="1980s">80s</button>
+                    <button class="toggle-btn" data-era="1990s">90s</button>
+                    <button class="toggle-btn" data-era="2000s">00s</button>
+                    <button class="toggle-btn" data-era="2010s">10s</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <label>Minimum Films per Prefecture</label>
+                <select id="minFilms">
+                    <option value="1">1+ films</option>
+                    <option value="5" selected>5+ films</option>
+                    <option value="10">10+ films</option>
+                    <option value="25">25+ films</option>
+                    <option value="50">50+ films</option>
+                </select>
+            </div>
+            
+            <h3>🏆 Top Actors <span id="filterContext" style="font-weight: normal; color: #888;">(All Time)</span></h3>
+            <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
+                By prefectures dominated
+            </p>
+            <ul class="ranking-list" id="dominantActorsList">
+                <!-- Populated by JS -->
+            </ul>
+            
+            <h3>📍 Selected Prefecture</h3>
+            <div class="detail-panel" id="detailPanel">
+                <h4 id="detailPrefName">-</h4>
+                <div class="detail-stats">
+                    <div class="detail-stat">
+                        <div class="detail-stat-value" id="detailTopPct">-</div>
+                        <div class="detail-stat-label">Top Actor Share</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="detail-stat-value" id="detailActorCount">-</div>
+                        <div class="detail-stat-label">Unique Actors</div>
+                    </div>
+                </div>
+                <div class="detail-actor-list" id="detailActorList">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <p id="detailPlaceholder" style="font-size: 0.85rem; color: #666;">
+                Click a prefecture on the map to see actor breakdown
+            </p>
+        </div>
+        
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+            
+            <div class="info-box">
+                <strong id="hoverInfo">Hover over a prefecture</strong>
+            </div>
+            
+            <div class="legend">
+                <h4>Legend</h4>
+                <div id="legendItems">
+                    <!-- Populated by JS -->
+                </div>
+                <div style="margin-top: 10px; font-size: 0.7rem; color: #666;">
+                    (n) = prefectures dominated<br>
+                    Opacity = % share
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Configuration
+        const CONFIG = {
+            dataFile: 'actor_prefecture.json',
+            geoJsonUrl: 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson',
+            mapCenter: [36.5, 138],
+            mapZoom: 5
+        };
+        
+        // State
+        let map = null;
+        let geoJsonLayer = null;
+        let actorData = null;
+        let prefectureGeoJson = null;
+        let currentFilters = {
+            gender: 'all',
+            era: 'all',
+            minFilms: 5
+        };
+        
+        // Actor colors - expanded bright palette (40 colors)
+        const ACTOR_COLORS = [
+            '#ff6b6b', // Bright red
+            '#4ecdc4', // Bright teal
+            '#ffe66d', // Yellow
+            '#ff8c42', // Orange
+            '#a8e6cf', // Mint green
+            '#fdcb6e', // Golden yellow
+            '#74b9ff', // Sky blue
+            '#ff7979', // Coral
+            '#55efc4', // Aquamarine
+            '#ffeaa7', // Light yellow
+            '#81ecec', // Cyan
+            '#fab1a0', // Peach
+            '#a29bfe', // Lavender
+            '#fd79a8', // Pink
+            '#00cec9', // Turquoise
+            '#e17055', // Terra cotta
+            '#00b894', // Emerald
+            '#6c5ce7', // Purple
+            '#f8b500', // Sunflower
+            '#e84393', // Magenta
+            '#00d2d3', // Bright cyan
+            '#ff9ff3', // Light pink
+            '#54a0ff', // Dodger blue
+            '#5f27cd', // Royal purple
+            '#c8d6e5', // Light steel
+            '#feca57', // Casandora yellow
+            '#1dd1a1', // Caribbean green
+            '#ff6b81', // Wild watermelon
+            '#48dbfb', // Turquoise blue
+            '#f368e0', // Orchid
+            '#25CCF7', // Bright sky blue
+            '#EAB543', // Bright gold
+            '#58B19F', // Sage
+            '#D6A2E8', // Soft purple
+            '#82ccdd', // Sky blue light
+            '#b8e994', // Light green
+            '#78e08f', // Grass green
+            '#fa983a', // Bright orange
+            '#eb2f06', // Red orange
+            '#1e3799'  // Royal blue
+        ];
+        
+        // Actor to color mapping (built dynamically)
+        let actorColorMap = {};
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', init);
+        
+        async function init() {
+            try {
+                // Initialize map
+                map = L.map('map', {
+                    center: CONFIG.mapCenter,
+                    zoom: CONFIG.mapZoom,
+                    minZoom: 4,
+                    maxZoom: 10
+                });
+                
+                // Add dark base layer
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                }).addTo(map);
+                
+                // Load data
+                await loadData();
+                
+                // Setup event listeners
+                setupEventListeners();
+                
+                // Hide loading
+                document.getElementById('loading').classList.add('hidden');
+                
+            } catch (error) {
+                console.error('Initialization error:', error);
+                document.querySelector('.loading p').textContent = 'Error loading data: ' + error.message;
+            }
+        }
+        
+        async function loadData() {
+            // Load actor data
+            const actorResponse = await fetch(CONFIG.dataFile);
+            if (!actorResponse.ok) {
+                throw new Error(`Failed to load ${CONFIG.dataFile}`);
+            }
+            actorData = await actorResponse.json();
+            
+            // Load prefecture GeoJSON
+            const geoResponse = await fetch(CONFIG.geoJsonUrl);
+            if (!geoResponse.ok) {
+                throw new Error('Failed to load prefecture boundaries');
+            }
+            prefectureGeoJson = await geoResponse.json();
+            
+            // Build color mapping for dominant actors
+            buildActorColorMap();
+            
+            // Render map
+            renderMap();
+            
+            // Populate dominant actors list
+            populateDominantActorsList();
+        }
+        
+        function buildActorColorMap() {
+            // Reset color map
+            actorColorMap = {};
+            
+            // Collect all actors who are currently top in at least one prefecture (with filters applied)
+            const topActors = new Map(); // people_id -> {actor data, count of prefectures}
+            
+            Object.values(actorData.prefectures).forEach(prefData => {
+                const topActor = getFilteredTopActor(prefData);
+                if (topActor) {
+                    if (topActors.has(topActor.people_id)) {
+                        topActors.get(topActor.people_id).count++;
+                    } else {
+                        topActors.set(topActor.people_id, {
+                            ...topActor,
+                            count: 1
+                        });
+                    }
+                }
+            });
+            
+            // Sort by number of prefectures dominated (descending)
+            const sortedActors = [...topActors.entries()]
+                .sort((a, b) => b[1].count - a[1].count);
+            
+            // Assign colors - every visible actor gets a unique color
+            sortedActors.forEach(([pid, data], index) => {
+                actorColorMap[pid] = ACTOR_COLORS[index % ACTOR_COLORS.length];
+            });
+            
+            console.log(`Assigned colors to ${sortedActors.length} actors for current filter`);
+            
+            return sortedActors;
+        }
+        
+        function getFilteredTopActor(prefData) {
+            if (!prefData || !prefData.top_actors) return null;
+            
+            const minFilms = currentFilters.minFilms;
+            
+            for (const actor of prefData.top_actors) {
+                // Apply minimum films filter
+                if (actor.film_count < minFilms) continue;
+                
+                // Apply gender filter
+                if (currentFilters.gender !== 'all') {
+                    const g = actor.gender || 'Unknown';
+                    if (currentFilters.gender === 'M' && !['M', 'Male'].includes(g)) continue;
+                    if (currentFilters.gender === 'F' && !['F', 'Female'].includes(g)) continue;
+                }
+                
+                // Apply decade filter - check if actor was active during this decade
+                if (currentFilters.era !== 'all') {
+                    const firstYear = actor.first_year;
+                    const lastYear = actor.last_year;
+                    
+                    if (!firstYear || !lastYear) continue;
+                    
+                    // Parse decade filter (e.g., "1960s" -> 1960-1969)
+                    const decadeMatch = currentFilters.era.match(/(\d{4})s/);
+                    if (decadeMatch) {
+                        const decadeStart = parseInt(decadeMatch[1]);
+                        const decadeEnd = decadeStart + 9;
+                        
+                        // Actor must have been active during this decade
+                        // (their career overlaps with the decade)
+                        if (lastYear < decadeStart || firstYear > decadeEnd) continue;
+                    }
+                }
+                
+                return actor;
+            }
+            return null;
+        }
+        
+        function getActorColor(actorId) {
+            if (actorColorMap[actorId]) {
+                return actorColorMap[actorId];
+            }
+            // Fallback: generate color based on ID
+            return ACTOR_COLORS[actorId % ACTOR_COLORS.length];
+        }
+        
+        function renderMap() {
+            // Rebuild color map based on current filters
+            const sortedActors = buildActorColorMap();
+            
+            // Update filter context text
+            updateFilterContext();
+            
+            // Remove existing layer
+            if (geoJsonLayer) {
+                map.removeLayer(geoJsonLayer);
+            }
+            
+            // Create new layer
+            geoJsonLayer = L.geoJSON(prefectureGeoJson, {
+                style: styleFeature,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+            
+            // Update legend and dominant actors list
+            updateLegend();
+            updateDominantActorsList(sortedActors);
+        }
+        
+        function styleFeature(feature) {
+            const prefName = feature.properties.nam_ja || feature.properties.name;
+            const prefData = actorData.prefectures[prefName];
+            const topActor = getFilteredTopActor(prefData);
+            
+            if (!topActor) {
+                return {
+                    fillColor: '#444',
+                    weight: 1,
+                    opacity: 0.5,
+                    color: '#555',
+                    fillOpacity: 0.4
+                };
+            }
+            
+            // Calculate opacity based on percentage dominance
+            const pct = topActor.percentage || 0;
+            const opacity = Math.max(0.5, Math.min(0.95, 0.4 + pct / 15));
+            
+            return {
+                fillColor: getActorColor(topActor.people_id),
+                weight: 1,
+                opacity: 0.8,
+                color: '#444',
+                fillOpacity: opacity
+            };
+        }
+        
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: selectPrefecture
+            });
+        }
+        
+        function highlightFeature(e) {
+            const layer = e.target;
+            const prefName = layer.feature.properties.nam_ja || layer.feature.properties.name;
+            const prefData = actorData.prefectures[prefName];
+            const topActor = getFilteredTopActor(prefData);
+            
+            layer.setStyle({
+                weight: 3,
+                color: '#fff',
+                fillOpacity: 0.9
+            });
+            
+            layer.bringToFront();
+            
+            // Update hover info
+            const infoEl = document.getElementById('hoverInfo');
+            if (topActor) {
+                const name = topActor.english_name || topActor.japanese_name || 'Unknown';
+                const pct = topActor.percentage ? topActor.percentage.toFixed(1) + '%' : '';
+                infoEl.innerHTML = `<strong>${prefName}</strong><br>${name}: ${pct} (${topActor.film_count} films)`;
+            } else {
+                infoEl.innerHTML = `<strong>${prefName}</strong><br>No matching actors`;
+            }
+        }
+        
+        function resetHighlight(e) {
+            geoJsonLayer.resetStyle(e.target);
+            document.getElementById('hoverInfo').innerHTML = 'Hover over a prefecture';
+        }
+        
+        function selectPrefecture(e) {
+            const prefName = e.target.feature.properties.nam_ja || e.target.feature.properties.name;
+            showPrefectureDetail(prefName);
+        }
+        
+        function showPrefectureDetail(prefName) {
+            const prefData = actorData.prefectures[prefName];
+            const panel = document.getElementById('detailPanel');
+            const placeholder = document.getElementById('detailPlaceholder');
+            
+            if (!prefData) {
+                panel.classList.remove('visible');
+                placeholder.style.display = 'block';
+                return;
+            }
+            
+            panel.classList.add('visible');
+            placeholder.style.display = 'none';
+            
+            document.getElementById('detailPrefName').textContent = prefName;
+            
+            // Get top actor percentage
+            const topActor = getFilteredTopActor(prefData);
+            const topPct = topActor && topActor.percentage ? topActor.percentage.toFixed(1) + '%' : '-';
+            document.getElementById('detailTopPct').textContent = topPct;
+            document.getElementById('detailActorCount').textContent = prefData.actor_count.toLocaleString();
+            
+            // Build actor list
+            const listEl = document.getElementById('detailActorList');
+            listEl.innerHTML = '';
+            
+            const minFilms = currentFilters.minFilms;
+            let filteredActors = prefData.top_actors.filter(a => a.film_count >= minFilms);
+            
+            // Apply gender filter for list
+            if (currentFilters.gender !== 'all') {
+                filteredActors = filteredActors.filter(a => {
+                    const g = a.gender || 'Unknown';
+                    if (currentFilters.gender === 'M') return ['M', 'Male'].includes(g);
+                    if (currentFilters.gender === 'F') return ['F', 'Female'].includes(g);
+                    return true;
+                });
+            }
+            
+            filteredActors.slice(0, 15).forEach((actor, i) => {
+                const div = document.createElement('div');
+                div.className = 'detail-actor';
+                
+                const genderBadge = getGenderBadge(actor.gender);
+                const years = actor.first_year && actor.last_year 
+                    ? `${actor.first_year}-${actor.last_year}` 
+                    : '';
+                const pct = actor.percentage ? actor.percentage.toFixed(1) + '%' : '';
+                
+                div.innerHTML = `
+                    <div class="detail-actor-name">
+                        ${i + 1}. ${actor.english_name || actor.japanese_name || 'Unknown'}${genderBadge}
+                        <small>${actor.japanese_name && actor.english_name ? actor.japanese_name : ''} ${years}</small>
+                    </div>
+                    <div class="detail-actor-films">${pct} <small>(${actor.film_count})</small></div>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+        
+        function getGenderBadge(gender) {
+            if (!gender) return '';
+            if (['M', 'Male'].includes(gender)) {
+                return '<span class="gender-badge gender-m">M</span>';
+            }
+            if (['F', 'Female'].includes(gender)) {
+                return '<span class="gender-badge gender-f">F</span>';
+            }
+            return '';
+        }
+        
+        function populateDominantActorsList() {
+            // Initial population - will be replaced by updateDominantActorsList on filter change
+            const sortedActors = buildActorColorMap();
+            updateDominantActorsList(sortedActors);
+        }
+        
+        function updateDominantActorsList(sortedActors) {
+            const listEl = document.getElementById('dominantActorsList');
+            listEl.innerHTML = '';
+            
+            if (!sortedActors || sortedActors.length === 0) {
+                listEl.innerHTML = '<li style="color: #666; font-size: 0.85rem;">No actors match current filters</li>';
+                return;
+            }
+            
+            // Show top 15 actors for current filter
+            sortedActors.slice(0, 15).forEach(([pid, actor], i) => {
+                const li = document.createElement('li');
+                li.className = 'ranking-item';
+                
+                const color = actorColorMap[pid];
+                const genderBadge = getGenderBadge(actor.gender);
+                
+                li.innerHTML = `
+                    <span class="ranking-rank">${i + 1}</span>
+                    <div class="ranking-color" style="background: ${color}"></div>
+                    <div class="ranking-info">
+                        <div class="ranking-name">${actor.english_name || actor.japanese_name || 'Unknown'}${genderBadge}</div>
+                        <div class="ranking-name-jp">${actor.japanese_name && actor.english_name ? actor.japanese_name : ''}</div>
+                    </div>
+                    <span class="ranking-count">${actor.count} pref</span>
+                `;
+                
+                listEl.appendChild(li);
+            });
+        }
+        
+        function updateFilterContext() {
+            const contextEl = document.getElementById('filterContext');
+            let parts = [];
+            
+            if (currentFilters.era !== 'all') {
+                parts.push(currentFilters.era);
+            }
+            if (currentFilters.gender === 'M') {
+                parts.push('Male');
+            } else if (currentFilters.gender === 'F') {
+                parts.push('Female');
+            }
+            
+            if (parts.length > 0) {
+                contextEl.textContent = `(${parts.join(', ')})`;
+            } else {
+                contextEl.textContent = '(All Time)';
+            }
+        }
+        
+        function updateLegend() {
+            const legendEl = document.getElementById('legendItems');
+            legendEl.innerHTML = '';
+            
+            // Get current top actors being displayed
+            const displayedActors = new Map();
+            
+            Object.entries(actorData.prefectures).forEach(([prefName, prefData]) => {
+                const topActor = getFilteredTopActor(prefData);
+                if (topActor) {
+                    const existing = displayedActors.get(topActor.people_id);
+                    if (existing) {
+                        existing.count++;
+                    } else {
+                        displayedActors.set(topActor.people_id, {
+                            name: topActor.english_name || topActor.japanese_name || 'Unknown',
+                            color: getActorColor(topActor.people_id),
+                            count: 1
+                        });
+                    }
+                }
+            });
+            
+            // Sort by count and show top 12
+            const sortedActors = [...displayedActors.values()]
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 12);
+            
+            sortedActors.forEach(actor => {
+                const div = document.createElement('div');
+                div.className = 'legend-item';
+                div.innerHTML = `
+                    <div class="legend-color" style="background: ${actor.color}"></div>
+                    <span>${actor.name} (${actor.count})</span>
+                `;
+                legendEl.appendChild(div);
+            });
+        }
+        
+        function setupEventListeners() {
+            // Gender toggles
+            document.querySelectorAll('[data-gender]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('[data-gender]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilters.gender = btn.dataset.gender;
+                    renderMap();
+                });
+            });
+            
+            // Era toggles
+            document.querySelectorAll('[data-era]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('[data-era]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilters.era = btn.dataset.era;
+                    renderMap();
+                });
+            });
+            
+            // Min films select
+            document.getElementById('minFilms').addEventListener('change', (e) => {
+                currentFilters.minFilms = parseInt(e.target.value);
+                renderMap();
+            });
+        }
+    </script>
+</body>
+</html>
