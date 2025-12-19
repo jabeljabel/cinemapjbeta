@@ -813,7 +813,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.filming[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.filming[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.filming_locations.push(...transformLocationData(chunk, 'filming'));
+                    allData.filming_locations.push(...chunk);
                 }
                 
                 // Load represented locations (2 chunks)
@@ -824,7 +824,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.represented[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.represented[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.represented_locations.push(...transformLocationData(chunk, 'represented'));
+                    allData.represented_locations.push(...chunk);
                 }
                 
                 console.log('Data loaded:', {

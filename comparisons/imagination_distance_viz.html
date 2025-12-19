@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagination Distance - CineMAP</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+        }
+        
+        #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Control Panel */
+        .control-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 340px;
+            background: rgba(15, 15, 25, 0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        
+        .panel-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .panel-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f4d03f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-subtitle {
+            font-size: 12px;
+            color: #888;
+            margin-top: 6px;
+        }
+        
+        .panel-section {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f4d03f;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        
+        /* Slider */
+        .slider-container {
+            margin: 10px 0;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .slider-value {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #f4d03f;
+            margin-bottom: 10px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            background: rgba(255,255,255,0.1);
+            height: 6px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #f4d03f;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        /* Dropdowns */
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #f4d03f;
+        }
+        
+        /* Distribution Chart */
+        .distribution-chart {
+            margin-top: 10px;
+        }
+        
+        .dist-bar-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+        
+        .dist-label {
+            width: 90px;
+            color: #888;
+            flex-shrink: 0;
+        }
+        
+        .dist-bar-bg {
+            flex: 1;
+            height: 16px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 8px;
+        }
+        
+        .dist-bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .dist-count {
+            width: 50px;
+            text-align: right;
+            color: #aaa;
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #aaa;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 4px;
+            border-radius: 2px;
+        }
+        
+        /* Film List */
+        .film-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .film-item {
+            padding: 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .film-item:hover {
+            background: rgba(255,255,255,0.08);
+        }
+        
+        .film-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #e0e0e0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .film-meta {
+            font-size: 11px;
+            color: #888;
+            margin-top: 3px;
+        }
+        
+        .film-distance {
+            font-weight: 600;
+            color: #f4d03f;
+        }
+        
+        /* Loading */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(244, 208, 63, 0.2);
+            border-top-color: #f4d03f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(15, 15, 25, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(30, 30, 50, 0.95);
+        }
+        
+        /* Info Panel */
+        .info-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: rgba(15, 15, 25, 0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            z-index: 1000;
+            padding: 20px;
+            display: none;
+        }
+        
+        .info-panel.active {
+            display: block;
+        }
+        
+        .info-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f4d03f;
+            margin-bottom: 5px;
+            padding-right: 30px;
+        }
+        
+        .info-subtitle {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px;
+        }
+        
+        .info-label {
+            color: #888;
+        }
+        
+        .info-value {
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+        
+        /* Methodology note */
+        .methodology {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.5;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <div style="color: #888;">Loading imagination distance data...</div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="control-panel">
+        <div class="panel-header">
+            <div class="panel-title">🎯 Imagination Distance</div>
+            <div class="panel-subtitle">How far is a film's story from where it was shot?</div>
+        </div>
+        
+        <div class="panel-section">
+            <div class="section-title">Overall Statistics</div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="stat-films">-</div>
+                    <div class="stat-label">Films Analyzed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="stat-avg">-</div>
+                    <div class="stat-label">Avg Distance (km)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="stat-median">-</div>
+                    <div class="stat-label">Median (km)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="stat-visible">-</div>
+                    <div class="stat-label">Showing</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel-section">
+            <div class="section-title">Distance Filter</div>
+            <div class="slider-container">
+                <div class="slider-value" id="distance-display">0 - 500+ km</div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="range" id="distance-min" min="0" max="1000" value="0" step="10">
+                    <input type="range" id="distance-max" min="0" max="1000" value="1000" step="10">
+                </div>
+                <div class="slider-labels">
+                    <span>0 km (local)</span>
+                    <span>500+ km (distant)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel-section">
+            <div class="section-title">Filters</div>
+            <select id="filter-decade">
+                <option value="">All Decades</option>
+            </select>
+            <select id="filter-genre">
+                <option value="">All Genres</option>
+            </select>
+        </div>
+        
+        <div class="panel-section">
+            <div class="section-title">Distance Distribution</div>
+            <div class="distribution-chart" id="distribution">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+        
+        <div class="panel-section">
+            <div class="section-title">Legend</div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2ecc71;"></div>
+                    <span>&lt;50 km</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f1c40f;"></div>
+                    <span>50-200 km</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e67e22;"></div>
+                    <span>200-500 km</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>&gt;500 km</span>
+                </div>
+            </div>
+            <div class="legend" style="margin-top: 8px;">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db; width: 8px; height: 8px; border-radius: 50%;"></div>
+                    <span>Filming centroid</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9b59b6; width: 8px; height: 8px; border-radius: 50%;"></div>
+                    <span>Story centroid</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel-section">
+            <div class="section-title">Extreme Films</div>
+            <div class="film-list" id="film-list">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+        
+        <div class="panel-section">
+            <div class="methodology">
+                <strong>Methodology:</strong> For each film, we calculate the centroid of all filming locations and the centroid of all locations mentioned in titles, synopses, and subtitles. The "imagination distance" is the great-circle distance between these two points.
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-panel" id="info-panel">
+        <button class="info-close" onclick="closeInfoPanel()">×</button>
+        <div class="info-title" id="info-title">-</div>
+        <div class="info-subtitle" id="info-subtitle">-</div>
+        <div class="info-row">
+            <span class="info-label">Imagination Distance</span>
+            <span class="info-value" id="info-distance">-</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Filming Locations</span>
+            <span class="info-value" id="info-filming">-</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Story Mentions</span>
+            <span class="info-value" id="info-represented">-</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Year</span>
+            <span class="info-value" id="info-year">-</span>
+        </div>
+    </div>
+    
+    <a href="../index.html" class="back-btn">← Back to CineMAP</a>
+    
+    <script>
+        // === GLOBALS ===
+        let map;
+        let allFilms = [];
+        let data = null;
+        let linesLayer = null;
+        let markersLayer = null;
+        let filmGenres = {};  // film_id -> [genres]
+        
+        // === INITIALIZE ===
+        async function init() {
+            // Initialize map centered on Japan
+            map = L.map('map', {
+                center: [36.5, 138],
+                zoom: 5,
+                zoomControl: true
+            });
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap © CARTO',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Load data
+            try {
+                const response = await fetch('imagination_distance.json');
+                data = await response.json();
+                
+                allFilms = data.films;
+                
+                // Update stats
+                document.getElementById('stat-films').textContent = data.summary.films_analyzed.toLocaleString();
+                document.getElementById('stat-avg').textContent = Math.round(data.summary.avg_distance_km).toLocaleString();
+                document.getElementById('stat-median').textContent = Math.round(data.summary.median_distance_km).toLocaleString();
+                
+                // Populate decade filter
+                const decadeSelect = document.getElementById('filter-decade');
+                Object.keys(data.by_decade).sort().forEach(decade => {
+                    const opt = document.createElement('option');
+                    opt.value = decade;
+                    opt.textContent = `${decade}s (${data.by_decade[decade].n} films)`;
+                    decadeSelect.appendChild(opt);
+                });
+                
+                // Populate genre filter
+                const genreSelect = document.getElementById('filter-genre');
+                Object.entries(data.by_genre)
+                    .sort((a, b) => b[1].n - a[1].n)
+                    .forEach(([genre, info]) => {
+                        const opt = document.createElement('option');
+                        opt.value = genre;
+                        opt.textContent = `${genre} (${info.n} films, avg ${Math.round(info.avg)} km)`;
+                        genreSelect.appendChild(opt);
+                    });
+                
+                // Build distribution chart
+                buildDistributionChart();
+                
+                // Initial render
+                updateVisualization();
+                
+                // Hide loading
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div style="color: #e74c3c; text-align: center;">
+                        <h3>Error Loading Data</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+            
+            // Event listeners
+            document.getElementById('distance-min').addEventListener('input', updateDistanceDisplay);
+            document.getElementById('distance-max').addEventListener('input', updateDistanceDisplay);
+            document.getElementById('distance-min').addEventListener('change', updateVisualization);
+            document.getElementById('distance-max').addEventListener('change', updateVisualization);
+            document.getElementById('filter-decade').addEventListener('change', updateVisualization);
+            document.getElementById('filter-genre').addEventListener('change', updateVisualization);
+        }
+        
+        function updateDistanceDisplay() {
+            const min = parseInt(document.getElementById('distance-min').value);
+            const max = parseInt(document.getElementById('distance-max').value);
+            const maxDisplay = max >= 1000 ? '500+' : max;
+            document.getElementById('distance-display').textContent = `${min} - ${maxDisplay} km`;
+        }
+        
+        function getDistanceColor(distance) {
+            if (distance < 50) return '#2ecc71';
+            if (distance < 200) return '#f1c40f';
+            if (distance < 500) return '#e67e22';
+            return '#e74c3c';
+        }
+        
+        function buildDistributionChart() {
+            const buckets = [
+                { label: '<10 km', min: 0, max: 10, color: '#2ecc71' },
+                { label: '10-50 km', min: 10, max: 50, color: '#27ae60' },
+                { label: '50-100 km', min: 50, max: 100, color: '#f1c40f' },
+                { label: '100-300 km', min: 100, max: 300, color: '#e67e22' },
+                { label: '300-500 km', min: 300, max: 500, color: '#d35400' },
+                { label: '500+ km', min: 500, max: Infinity, color: '#e74c3c' }
+            ];
+            
+            const counts = buckets.map(b => 
+                allFilms.filter(f => f.dist >= b.min && f.dist < b.max).length
+            );
+            const maxCount = Math.max(...counts);
+            
+            const container = document.getElementById('distribution');
+            container.innerHTML = buckets.map((b, i) => `
+                <div class="dist-bar-container">
+                    <div class="dist-label">${b.label}</div>
+                    <div class="dist-bar-bg">
+                        <div class="dist-bar" style="width: ${counts[i]/maxCount*100}%; background: ${b.color};"></div>
+                    </div>
+                    <div class="dist-count">${counts[i].toLocaleString()}</div>
+                </div>
+            `).join('');
+        }
+        
+        function updateVisualization() {
+            const minDist = parseInt(document.getElementById('distance-min').value);
+            const maxDist = parseInt(document.getElementById('distance-max').value);
+            const decade = document.getElementById('filter-decade').value;
+            const genre = document.getElementById('filter-genre').value;
+            
+            // Filter films
+            let filtered = allFilms.filter(f => {
+                if (f.dist < minDist) return false;
+                if (maxDist < 1000 && f.dist > maxDist) return false;
+                if (decade && f.year && Math.floor(f.year / 10) * 10 !== parseInt(decade)) return false;
+                // Note: genre filtering would require genre data per film
+                return true;
+            });
+            
+            // Update stats
+            document.getElementById('stat-visible').textContent = filtered.length.toLocaleString();
+            
+            // Clear existing layers
+            if (linesLayer) map.removeLayer(linesLayer);
+            if (markersLayer) map.removeLayer(markersLayer);
+            
+            // Create new layers
+            linesLayer = L.layerGroup().addTo(map);
+            markersLayer = L.layerGroup().addTo(map);
+            
+            // Limit to prevent browser crash (show sample if too many)
+            const displayFilms = filtered.length > 2000 
+                ? filtered.sort((a, b) => b.dist - a.dist).slice(0, 2000)
+                : filtered;
+            
+            // Add lines and markers
+            displayFilms.forEach(film => {
+                const [fLat, fLon] = film.f_ctr;
+                const [rLat, rLon] = film.r_ctr;
+                
+                // Skip if coordinates are invalid
+                if (!fLat || !fLon || !rLat || !rLon) return;
+                
+                const color = getDistanceColor(film.dist);
+                
+                // Line connecting filming to story location
+                const line = L.polyline([[fLat, fLon], [rLat, rLon]], {
+                    color: color,
+                    weight: 1.5,
+                    opacity: 0.6
+                });
+                
+                line.on('click', () => showFilmInfo(film));
+                line.addTo(linesLayer);
+                
+                // Filming centroid marker (blue)
+                L.circleMarker([fLat, fLon], {
+                    radius: 4,
+                    fillColor: '#3498db',
+                    color: '#fff',
+                    weight: 1,
+                    fillOpacity: 0.8
+                }).addTo(markersLayer);
+                
+                // Story centroid marker (purple)
+                L.circleMarker([rLat, rLon], {
+                    radius: 4,
+                    fillColor: '#9b59b6',
+                    color: '#fff',
+                    weight: 1,
+                    fillOpacity: 0.8
+                }).addTo(markersLayer);
+            });
+            
+            // Update film list (show extremes)
+            updateFilmList(filtered);
+        }
+        
+        function updateFilmList(films) {
+            // Show top 5 most imaginative
+            const sorted = [...films].sort((a, b) => b.dist - a.dist);
+            const top = sorted.slice(0, 10);
+            
+            const container = document.getElementById('film-list');
+            container.innerHTML = top.map(f => `
+                <div class="film-item" onclick='showFilmInfo(${JSON.stringify(f)})'>
+                    <div class="film-title">${f.en || f.jp || 'Unknown'}</div>
+                    <div class="film-meta">
+                        <span class="film-distance">${Math.round(f.dist).toLocaleString()} km</span>
+                        ${f.year ? ` · ${f.year}` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function showFilmInfo(film) {
+            document.getElementById('info-title').textContent = film.en || film.jp || 'Unknown';
+            document.getElementById('info-subtitle').textContent = film.jp && film.en ? film.jp : '';
+            document.getElementById('info-distance').textContent = `${Math.round(film.dist).toLocaleString()} km`;
+            document.getElementById('info-filming').textContent = `${film.f_n} locations`;
+            document.getElementById('info-represented').textContent = `${film.r_n} mentions`;
+            document.getElementById('info-year').textContent = film.year || 'Unknown';
+            
+            document.getElementById('info-panel').classList.add('active');
+            
+            // Pan to show both centroids
+            const bounds = L.latLngBounds([film.f_ctr, film.r_ctr]);
+            map.fitBounds(bounds, { padding: [100, 100], maxZoom: 8 });
+        }
+        
+        function closeInfoPanel() {
+            document.getElementById('info-panel').classList.remove('active');
+        }
+        
+        // Start
+        init();
+    </script>
+</body>
+</html>
