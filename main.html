@@ -647,29 +647,32 @@
         // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
                 const DATA_BASE_URL = './';
-        const RANDOM_SUFFIX = '2a28badcae99c6b8';
+        const RANDOM_SUFFIX = 'b66483cb668e1037';
         
         const DATA_FILES = {
-            meta: 'cm_meta_2a28badcae99c6b8.json',
+            meta: 'cm_meta_b66483cb668e1037.json',
             filming: [
-                'cm_film_2a28badcae99c6b8_1.json',
-                'cm_film_2a28badcae99c6b8_2.json',
-                'cm_film_2a28badcae99c6b8_3.json',
-                'cm_film_2a28badcae99c6b8_4.json',
-                'cm_film_2a28badcae99c6b8_5.json',
-                'cm_film_2a28badcae99c6b8_6.json'
+                'cm_film_b66483cb668e1037_1.json',
+                'cm_film_b66483cb668e1037_2.json',
+                'cm_film_b66483cb668e1037_3.json',
+                'cm_film_b66483cb668e1037_4.json',
+                'cm_film_b66483cb668e1037_5.json',
+                'cm_film_b66483cb668e1037_6.json'
             ],
             represented: [
-                'cm_repr_2a28badcae99c6b8_1.json',
-                'cm_repr_2a28badcae99c6b8_2.json',
-                'cm_repr_2a28badcae99c6b8_3.json',
-                'cm_repr_2a28badcae99c6b8_4.json',
-                'cm_repr_2a28badcae99c6b8_5.json',
-                'cm_repr_2a28badcae99c6b8_6.json',
-                'cm_repr_2a28badcae99c6b8_7.json',
-                'cm_repr_2a28badcae99c6b8_8.json',
-                'cm_repr_2a28badcae99c6b8_9.json',
-                'cm_repr_2a28badcae99c6b8_10.json'
+                'cm_repr_b66483cb668e1037_1.json',
+                'cm_repr_b66483cb668e1037_2.json',
+                'cm_repr_b66483cb668e1037_3.json',
+                'cm_repr_b66483cb668e1037_4.json',
+                'cm_repr_b66483cb668e1037_5.json',
+                'cm_repr_b66483cb668e1037_6.json',
+                'cm_repr_b66483cb668e1037_7.json',
+                'cm_repr_b66483cb668e1037_8.json',
+                'cm_repr_b66483cb668e1037_9.json',
+                'cm_repr_b66483cb668e1037_10.json',
+                'cm_repr_b66483cb668e1037_11.json',
+                'cm_repr_b66483cb668e1037_12.json',
+                'cm_repr_b66483cb668e1037_13.json'
             ]
         };
         // ============================================================
@@ -813,7 +816,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.filming[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.filming[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.filming_locations.push(...transformLocationData(chunk, 'filming'));
+                    allData.filming_locations.push(...chunk);
                 }
                 
                 // Load represented locations (2 chunks)
@@ -824,7 +827,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.represented[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.represented[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.represented_locations.push(...transformLocationData(chunk, 'represented'));
+                    allData.represented_locations.push(...chunk);
                 }
                 
                 console.log('Data loaded:', {
