@@ -1,1 +1,2455 @@
-{"generated": "2025-12-19T16:08:51.388990", "prefectures": {"北海道": {"total_films": 516, "studio_count": 173, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 97}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 64}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 34}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 28}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 24}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 21}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 14}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 14}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 11}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 9}]}, "岩手県": {"total_films": 150, "studio_count": 40, "top_studios": [{"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 94}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 10}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 5}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 2, "english_name": "Alpha core", "japanese_name": "アルファコア", "film_count": 1}, {"studio_id": 1724, "english_name": "\"Laughing Policeman\" Production Committee", "japanese_name": "「笑う警官」製作委員会", "film_count": 1}, {"studio_id": 372, "english_name": "Tôa Kinema, Tojiin Studio", "japanese_name": "東亜キネマ、等持院撮影所", "film_count": 1}, {"studio_id": 1679, "english_name": "", "japanese_name": "「映画ドラえもん」製作委員会", "film_count": 1}, {"studio_id": 5263, "english_name": "Root Pictures", "japanese_name": "", "film_count": 1}]}, "茨城県": {"total_films": 183, "studio_count": 108, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 20}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 18}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 9}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 5}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 4}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 4}, {"studio_id": 6987, "english_name": "Amuse Soft Entertainment | Bear Entertainment | Dong-a Export | Fields Pictures (JP) | GAGA Corporation | MBS | Shogakukan | Suplex | TBS | Toshiba Entertainment | Tristone Entertainment | dentsu", "japanese_name": "", "film_count": 4}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 3}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 3}]}, "新潟県": {"total_films": 95, "studio_count": 58, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 10}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 7}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 6}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 5}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 3}, {"studio_id": 2336, "english_name": "Sozosha = Nippon ATG", "japanese_name": "創造社=日本ATG", "film_count": 2}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 2}, {"studio_id": 6987, "english_name": "Amuse Soft Entertainment | Bear Entertainment | Dong-a Export | Fields Pictures (JP) | GAGA Corporation | MBS | Shogakukan | Suplex | TBS | Toshiba Entertainment | Tristone Entertainment | dentsu", "japanese_name": "", "film_count": 2}]}, "兵庫県": {"total_films": 608, "studio_count": 155, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 100}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 96}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 76}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 55}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 24}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 24}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 20}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 11}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 9}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 6}]}, "山梨県": {"total_films": 147, "studio_count": 81, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 17}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 12}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 5}, {"studio_id": 6987, "english_name": "Amuse Soft Entertainment | Bear Entertainment | Dong-a Export | Fields Pictures (JP) | GAGA Corporation | MBS | Shogakukan | Suplex | TBS | Toshiba Entertainment | Tristone Entertainment | dentsu", "japanese_name": "", "film_count": 5}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 5}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 5}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 4}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}]}, "長野県": {"total_films": 228, "studio_count": 115, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 36}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 18}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 10}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 9}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 9}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 9}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 5}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 4}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 4}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}]}, "京都府": {"total_films": 1779, "studio_count": 242, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 479}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 243}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 206}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 190}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 98}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 84}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 44}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 27}, {"studio_id": 433, "english_name": "Daiei Kyoto Daiichi", "japanese_name": "大映＝パテ・オーバーシーズ", "film_count": 26}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 19}]}, "石川県": {"total_films": 127, "studio_count": 59, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 22}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 13}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 8}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 6}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 6}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 4}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 4}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 4}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 3}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 3}]}, "愛知県": {"total_films": 325, "studio_count": 105, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 57}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 49}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 22}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 14}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 12}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 10}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 9}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 9}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 6}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 6}]}, "滋賀県": {"total_films": 567, "studio_count": 92, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 166}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 92}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 46}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 42}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 33}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 28}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 18}, {"studio_id": 433, "english_name": "Daiei Kyoto Daiichi", "japanese_name": "大映＝パテ・オーバーシーズ", "film_count": 11}, {"studio_id": 14459, "english_name": "TV Asahi", "japanese_name": "テレビ朝日", "film_count": 10}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 8}]}, "東京都": {"total_films": 2622, "studio_count": 906, "top_studios": [{"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 193}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 189}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 142}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 129}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 112}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 86}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 54}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 51}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 43}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 36}]}, "鳥取県": {"total_films": 289, "studio_count": 39, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 119}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 39}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 38}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 27}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 12}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 9}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 6}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 3}, {"studio_id": 8246, "english_name": "", "japanese_name": "フジテレビ | 村上光一出演者", "film_count": 3}, {"studio_id": 14453, "english_name": "KADOKAWA", "japanese_name": "角川映画", "film_count": 2}]}, "岐阜県": {"total_films": 135, "studio_count": 76, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 24}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 7}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 6}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 5}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 5}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}, {"studio_id": 14453, "english_name": "KADOKAWA", "japanese_name": "角川映画", "film_count": 3}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 3}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 3}]}, "福岡県": {"total_films": 146, "studio_count": 86, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 14}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 13}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 9}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 7}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 6}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 5}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 4}, {"studio_id": 14910, "english_name": "東映（東京撮影所）", "japanese_name": "", "film_count": 4}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 2}, {"studio_id": 14447, "english_name": "dentsu Music and Entertainment", "japanese_name": "", "film_count": 2}]}, "長崎県": {"total_films": 144, "studio_count": 61, "top_studios": [{"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 43}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 18}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 6}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 5}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 4}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 2}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 2}]}, "静岡県": {"total_films": 400, "studio_count": 159, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 46}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 30}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 28}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 27}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 16}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 14}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 13}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 12}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 9}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 7}]}, "埼玉県": {"total_films": 349, "studio_count": 171, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 35}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 27}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 16}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 12}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 10}, {"studio_id": 6987, "english_name": "Amuse Soft Entertainment | Bear Entertainment | Dong-a Export | Fields Pictures (JP) | GAGA Corporation | MBS | Shogakukan | Suplex | TBS | Toshiba Entertainment | Tristone Entertainment | dentsu", "japanese_name": "", "film_count": 10}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 9}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 8}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 8}, {"studio_id": 579, "english_name": "Shin-Ei Animation", "japanese_name": "シンエイ動画", "film_count": 8}]}, "群馬県": {"total_films": 880, "studio_count": 501, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 49}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 43}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 30}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 22}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 20}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 16}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 15}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 15}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 10}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 8}]}, "神奈川県": {"total_films": 902, "studio_count": 294, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 93}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 92}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 69}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 56}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 46}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 39}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 24}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 16}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 15}, {"studio_id": 6987, "english_name": "Amuse Soft Entertainment | Bear Entertainment | Dong-a Export | Fields Pictures (JP) | GAGA Corporation | MBS | Shogakukan | Suplex | TBS | Toshiba Entertainment | Tristone Entertainment | dentsu", "japanese_name": "", "film_count": 15}]}, "Overseas": {"total_films": 268, "studio_count": 176, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 21}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 10}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 8}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 6}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 6}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 6}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 5}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 5}, {"studio_id": 3121, "english_name": "ワーナー・ブラザース映画", "japanese_name": "ワーナー・ブラザース映画", "film_count": 5}, {"studio_id": 289, "english_name": "Teikoku Kinema", "japanese_name": "帝国キネマ", "film_count": 5}]}, "広島県": {"total_films": 189, "studio_count": 98, "top_studios": [{"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 32}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 19}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 10}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 8}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 5}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 5}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 4}, {"studio_id": 1275, "english_name": "Zuno Films=NHK　KAMATAKi Partners", "japanese_name": "ズノーフィルムズ=NHK 鎌滝パートナーズ", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}]}, "福島県": {"total_films": 294, "studio_count": 95, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 71}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 42}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 16}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 16}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 14}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 14}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 9}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 9}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 4}, {"studio_id": 14459, "english_name": "TV Asahi", "japanese_name": "テレビ朝日", "film_count": 4}]}, "栃木県": {"total_films": 201, "studio_count": 106, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 17}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 16}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 11}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 9}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 7}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 6}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 6}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 5}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}]}, "高知県": {"total_films": 56, "studio_count": 39, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 8}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 6}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 2}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 2}, {"studio_id": 42, "english_name": "Production I.G.", "japanese_name": "フジテレビジョン", "film_count": 2}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 2}, {"studio_id": 15097, "english_name": "", "japanese_name": "", "film_count": 1}, {"studio_id": 5021, "english_name": "Embassy International Pictures", "japanese_name": "", "film_count": 1}, {"studio_id": 14449, "english_name": "Showgate", "japanese_name": "", "film_count": 1}]}, "千葉県": {"total_films": 317, "studio_count": 154, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 27}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 20}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 18}, {"studio_id": 6987, "english_name": "Amuse Soft Entertainment | Bear Entertainment | Dong-a Export | Fields Pictures (JP) | GAGA Corporation | MBS | Shogakukan | Suplex | TBS | Toshiba Entertainment | Tristone Entertainment | dentsu", "japanese_name": "", "film_count": 12}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 11}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 11}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 11}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 6}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 6}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 6}]}, "大阪府": {"total_films": 345, "studio_count": 169, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 33}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 31}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 21}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 20}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 14}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 9}, {"studio_id": 300, "english_name": "Takarazuka Eiga", "japanese_name": "宝塚映画", "film_count": 8}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 7}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 4}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 4}]}, "香川県": {"total_films": 78, "studio_count": 46, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 8}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 7}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 5}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 20220, "english_name": "NETZGEN", "japanese_name": "", "film_count": 3}, {"studio_id": 6659, "english_name": "Tokyo Eiga", "japanese_name": "東京映画", "film_count": 3}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 2}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 2}, {"studio_id": 42, "english_name": "Production I.G.", "japanese_name": "フジテレビジョン", "film_count": 2}]}, "徳島県": {"total_films": 32, "studio_count": 24, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 4}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 4}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 14975, "english_name": "AWA DANCE Film Pertners", "japanese_name": "", "film_count": 2}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 1}, {"studio_id": 5263, "english_name": "Root Pictures", "japanese_name": "", "film_count": 1}, {"studio_id": 5070, "english_name": "Hot House Entertainment", "japanese_name": "", "film_count": 1}, {"studio_id": 1994, "english_name": "CIA=Hammers (Production Cooperation: Discovery Entertainment/Planning: Index Gun Pictures/Production Cooperation: Build Up", "japanese_name": "シー・アイ・エー＝ハマーズ（製作協力　ディスカバリー・エンターテインメント／企画　インデックス・ガン・ピクチャーズ／制作協力　ビルドアップ）", "film_count": 1}, {"studio_id": 16529, "english_name": "", "japanese_name": "", "film_count": 1}, {"studio_id": 14550, "english_name": "hyogensha", "japanese_name": "", "film_count": 1}]}, "愛媛県": {"total_films": 64, "studio_count": 34, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 10}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 9}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 6}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 3}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 2}, {"studio_id": 15155, "english_name": "ヘラルド・エース", "japanese_name": "", "film_count": 2}, {"studio_id": 1, "english_name": "Toho Co., Ltd.", "japanese_name": "フジテレビジョン＝集英社＝東宝（制作プロダクション：AOI Pro.）", "film_count": 2}, {"studio_id": 1760, "english_name": "\"Gravity Clown\" Production Committee (Asmik Ace = ROBOT = TV Asahi = Asahi Broadcasting = Higashi-Nippon Broadcasting = Kyushu Asahi Broadcasting = Yahoo! JAPAN = Kahoku Shimpo = Sumitomo Corporation", "japanese_name": "「重力ピエロ」製作委員会（アスミック・エース=ROBOT=テレビ朝日=朝日放送=東日本放送=九州朝日放送=Yahoo！JAPAN=河北新報社=住友商事）", "film_count": 1}]}, "宮城県": {"total_films": 147, "studio_count": 76, "top_studios": [{"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 23}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 14}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 8}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 7}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 5}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 4}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 3}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 2}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 2}]}, "三重県": {"total_films": 92, "studio_count": 41, "top_studios": [{"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 22}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 11}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 7}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 6}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 3}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 3}, {"studio_id": 2063, "english_name": "Directors Company=Suntory", "japanese_name": "ディレクターズ・カンパニー＝サントリー", "film_count": 2}, {"studio_id": 5264, "english_name": "Rossignon", "japanese_name": "", "film_count": 1}]}, "岡山県": {"total_films": 94, "studio_count": 55, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 17}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 7}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 7}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 3}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 9, "english_name": "Shôchiku Eiga", "japanese_name": "", "film_count": 2}, {"studio_id": 15557, "english_name": "東横映画", "japanese_name": "", "film_count": 2}, {"studio_id": 14447, "english_name": "dentsu Music and Entertainment", "japanese_name": "", "film_count": 1}]}, "鹿児島県": {"total_films": 63, "studio_count": 37, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 14}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 5}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 3}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 3}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 2}, {"studio_id": 520, "english_name": "Toei Company/ TV Asahi/ Asatsu-DK/ Toei Advertising K.K./ Bandai/ Kinoshita Komuten (as Kinoshita Group)/ Toei Television Production/ Toei Tokyo Movie Studios", "japanese_name": "「ゴーバスターズVSゴーカイジャー」製作委員会（東映=テレビ朝日=東映ビデオ=東映エージェンシー=木下工務店）", "film_count": 2}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 2}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 2}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 14569, "english_name": "Studio Ghibli", "japanese_name": "スタジオジブリ", "film_count": 1}]}, "奈良県": {"total_films": 231, "studio_count": 71, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 49}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 49}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 18}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 8}, {"studio_id": 433, "english_name": "Daiei Kyoto Daiichi", "japanese_name": "大映＝パテ・オーバーシーズ", "film_count": 7}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 5}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 5}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 4}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}]}, "宮崎県": {"total_films": 22, "studio_count": 19, "top_studios": [{"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 2}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 1}, {"studio_id": 7610, "english_name": "Nagoya Broadcasting Network", "japanese_name": "", "film_count": 1}, {"studio_id": 1978, "english_name": "Cinema Haute ATG", "japanese_name": "シネマハウト ＡＴＧ", "film_count": 1}, {"studio_id": 15021, "english_name": "\"Where I Belong\" Production Committee", "japanese_name": "", "film_count": 1}, {"studio_id": 779, "english_name": "CLANG", "japanese_name": "", "film_count": 1}, {"studio_id": 16601, "english_name": "", "japanese_name": "", "film_count": 1}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 1}, {"studio_id": 14463, "english_name": "\"Morning", "japanese_name": "", "film_count": 1}]}, "青森県": {"total_films": 72, "studio_count": 52, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 6}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 5}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 3}, {"studio_id": 42, "english_name": "Production I.G.", "japanese_name": "フジテレビジョン", "film_count": 2}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 2}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 2}, {"studio_id": 2748, "english_name": "Kindai Eiga Kyokai", "japanese_name": "近代映画協会", "film_count": 2}, {"studio_id": 3611, "english_name": "\"Detective Conan\" Production Committee (Shogakukan = Yomiuri TV = PolyGram = Shogakukan Production = Kyokuichi", "japanese_name": "「名探偵コナン」製作委員会（小学館＝読売テレビ＝ポリグラム＝小学館プロダクション＝キョクイチ）作品（アニメーション制作＊キョクイチ東京ムービー）", "film_count": 1}]}, "熊本県": {"total_films": 69, "studio_count": 39, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 10}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 6}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 6}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 4}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 4}, {"studio_id": 14630, "english_name": "", "japanese_name": "", "film_count": 3}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 3}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 2}, {"studio_id": 734, "english_name": "Art Port, Honda Entertainment, Tsuburaya Entertainment", "japanese_name": "アートポート、本多エンターテインメント、ツブラヤエンターテイメント", "film_count": 1}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 1}]}, "山口県": {"total_films": 56, "studio_count": 40, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 8}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 3}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 2}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 2}, {"studio_id": 3323, "english_name": "TBS", "japanese_name": "TBS", "film_count": 2}, {"studio_id": 2767, "english_name": "(Planning & Production: Loaded Films=Tokyo Theatres=Uzbekfilm / Production Cooperation: Django Film", "japanese_name": "（企画・制作：ローデッド・フィルムズ＝東京テアトル＝Uzbekfilm／制作協力：ジャンゴフィルム）", "film_count": 1}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 1}, {"studio_id": 5263, "english_name": "Root Pictures", "japanese_name": "", "film_count": 1}]}, "山形県": {"total_films": 56, "studio_count": 43, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 5}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 5}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 4}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 2}, {"studio_id": 2800, "english_name": "フジテレビジョン", "japanese_name": "フジテレビジョン", "film_count": 2}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 1}, {"studio_id": 14619, "english_name": "Tetsu Productions", "japanese_name": "", "film_count": 1}, {"studio_id": 14453, "english_name": "KADOKAWA", "japanese_name": "角川映画", "film_count": 1}, {"studio_id": 14620, "english_name": "", "japanese_name": "", "film_count": 1}, {"studio_id": 1477, "english_name": "\"Odayaka na Nichijo\" Production Committee (Production Wa Entertainment", "japanese_name": "「おだやかな日常」製作委員会（制作　和エンタテインメント）", "film_count": 1}]}, "秋田県": {"total_films": 135, "studio_count": 39, "top_studios": [{"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 45}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 27}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 9}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 8}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 5}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 3}, {"studio_id": 8436, "english_name": "", "japanese_name": "永田雅一ナレーター | 第一映画社[1]", "film_count": 3}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 3}, {"studio_id": 6967, "english_name": "Altamira Pictures | Fuji Television Network | Pony Canyon", "japanese_name": "", "film_count": 2}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 1}]}, "富山県": {"total_films": 133, "studio_count": 57, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 31}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 15}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 9}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 6}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 4}, {"studio_id": 1857, "english_name": "Ark Entertainment", "japanese_name": "アークエンタテインメント", "film_count": 3}, {"studio_id": 433, "english_name": "Daiei Kyoto Daiichi", "japanese_name": "大映＝パテ・オーバーシーズ", "film_count": 3}, {"studio_id": 14459, "english_name": "TV Asahi", "japanese_name": "テレビ朝日", "film_count": 3}, {"studio_id": 20809, "english_name": "", "japanese_name": "横山博人プロダクション", "film_count": 3}, {"studio_id": 582, "english_name": "NTV", "japanese_name": "日本テレビ", "film_count": 2}]}, "和歌山県": {"total_films": 57, "studio_count": 38, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 11}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 4}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 2}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 2}, {"studio_id": 14457, "english_name": "Daiei Film", "japanese_name": "大映", "film_count": 2}, {"studio_id": 1958, "english_name": "Satellite", "japanese_name": "サテライト", "film_count": 1}, {"studio_id": 14549, "english_name": "Amuse Pictures", "japanese_name": "", "film_count": 1}, {"studio_id": 567, "english_name": "Manglobe", "japanese_name": "マングローブ", "film_count": 1}, {"studio_id": 2461, "english_name": "Nippan=Pony Canyon=Video Planning (Production: Video Planning", "japanese_name": "日本出版販売=ポニーキャニオン=ビデオプランニング（制作　ビデオプランニング）", "film_count": 1}]}, "島根県": {"total_films": 48, "studio_count": 26, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 10}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 7}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 4}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 2}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 2}, {"studio_id": 9, "english_name": "Shôchiku Eiga", "japanese_name": "", "film_count": 1}, {"studio_id": 1760, "english_name": "\"Gravity Clown\" Production Committee (Asmik Ace = ROBOT = TV Asahi = Asahi Broadcasting = Higashi-Nippon Broadcasting = Kyushu Asahi Broadcasting = Yahoo! JAPAN = Kahoku Shimpo = Sumitomo Corporation", "japanese_name": "「重力ピエロ」製作委員会（アスミック・エース=ROBOT=テレビ朝日=朝日放送=東日本放送=九州朝日放送=Yahoo！JAPAN=河北新報社=住友商事）", "film_count": 1}, {"studio_id": 4989, "english_name": "Culture Publishers", "japanese_name": "", "film_count": 1}, {"studio_id": 14924, "english_name": "シレシア・フィルム", "japanese_name": "", "film_count": 1}]}, "沖縄県": {"total_films": 121, "studio_count": 91, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 10}, {"studio_id": 1084, "english_name": "Royal Ballet and Opera Principal Julia Rausing Trust", "japanese_name": "ロイヤル・バレエ&オペラ プリンシパル・ジュリア・ラウジング・トラスト", "film_count": 6}, {"studio_id": 2270, "english_name": "Mediage", "japanese_name": "メディアージュ", "film_count": 3}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 3}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 14453, "english_name": "KADOKAWA", "japanese_name": "角川映画", "film_count": 3}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 2}, {"studio_id": 603, "english_name": "Aniplex", "japanese_name": "アニプレックス", "film_count": 2}, {"studio_id": 1275, "english_name": "Zuno Films=NHK　KAMATAKi Partners", "japanese_name": "ズノーフィルムズ=NHK 鎌滝パートナーズ", "film_count": 2}, {"studio_id": 42, "english_name": "Production I.G.", "japanese_name": "フジテレビジョン", "film_count": 2}]}, "大分県": {"total_films": 67, "studio_count": 38, "top_studios": [{"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 7}, {"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 7}, {"studio_id": 1, "english_name": "Toho Co., Ltd.", "japanese_name": "フジテレビジョン＝集英社＝東宝（制作プロダクション：AOI Pro.）", "film_count": 6}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 5}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 3}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 2}, {"studio_id": 2210, "english_name": "Fuji TV = Gakken = Kurahara Pro", "japanese_name": "フジテレビ＝学研＝蔵原プロ", "film_count": 1}, {"studio_id": 15148, "english_name": "", "japanese_name": "", "film_count": 1}]}, "Ocean": {"total_films": 7, "studio_count": 4, "top_studios": [{"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 2}, {"studio_id": 14874, "english_name": "Fox Animation Studios", "japanese_name": "", "film_count": 1}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 1}]}, "福井県": {"total_films": 61, "studio_count": 36, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 13}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 4}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 3}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 3}, {"studio_id": 20936, "english_name": "", "japanese_name": "「Ｘ」製作委員会", "film_count": 3}, {"studio_id": 847, "english_name": "Film Messenger", "japanese_name": "フィルム・メッセンジャー", "film_count": 2}, {"studio_id": 1395, "english_name": "{Jennifer Garner}", "japanese_name": "ジェニファー・ガーナー", "film_count": 2}, {"studio_id": 14905, "english_name": "日活", "japanese_name": "日活", "film_count": 2}, {"studio_id": 433, "english_name": "Daiei Kyoto Daiichi", "japanese_name": "大映＝パテ・オーバーシーズ", "film_count": 2}, {"studio_id": 2270, "english_name": "Mediage", "japanese_name": "メディアージュ", "film_count": 1}]}, "佐賀県": {"total_films": 105, "studio_count": 57, "top_studios": [{"studio_id": 11393, "english_name": "Shochiku", "japanese_name": "松竹", "film_count": 16}, {"studio_id": 14458, "english_name": "Toei Company", "japanese_name": "東映", "film_count": 14}, {"studio_id": 135, "english_name": "IMAGICA | Nikkatsu Corporation | PIA Corporation | Tokyo FM", "japanese_name": "日活＝ゲリラメラフィルムズ", "film_count": 8}, {"studio_id": 1433, "english_name": "{Usher}", "japanese_name": "アッシャー", "film_count": 5}, {"studio_id": 14442, "english_name": "TOHO", "japanese_name": "東宝", "film_count": 4}, {"studio_id": 21, "english_name": "Shochiku | Shochiku Ofuna Film Studio", "japanese_name": "バンダイビジュアル＝松竹第一興行作品（製作協力＊ライトヴィジョン＝ライトヴィジョンエンタテイメント／企画協力＊オフィス北野）", "film_count": 3}, {"studio_id": 1908, "english_name": "All In Entertainment", "japanese_name": "オールインエンタテインメント", "film_count": 2}, {"studio_id": 2082, "english_name": "Nakachika Pictures (Herald Ace = Nippon Herald Films", "japanese_name": "ナカチカピクチャーズ（ヘラルド・エース＝日本ヘラルド映画）", "film_count": 2}, {"studio_id": 9120, "english_name": "Toei Video Company", "japanese_name": "", "film_count": 2}, {"studio_id": 19726, "english_name": "Shintoho", "japanese_name": "新東宝", "film_count": 2}]}}}
+{
+  "metadata": {
+    "generated": "2025-12-19T19:31:28.905874",
+    "total_prefectures": 47,
+    "total_studios": 11,
+    "description": "Studio dominance by prefecture (percentage-based)"
+  },
+  "studios": {
+    "Tsuburaya": {
+      "name_en": "Tsuburaya",
+      "name_jp": "円谷",
+      "color": "#ff6b9d",
+      "total_films": 128
+    },
+    "Toei": {
+      "name_en": "Toei",
+      "name_jp": "東映",
+      "color": "#e74c3c",
+      "total_films": 11085
+    },
+    "Shintoho": {
+      "name_en": "Shintoho",
+      "name_jp": "新東宝",
+      "color": "#e67e22",
+      "total_films": 569
+    },
+    "Other": {
+      "name_en": "Other",
+      "name_jp": "その他",
+      "color": "#636e72",
+      "total_films": 44612
+    },
+    "Ghibli": {
+      "name_en": "Ghibli",
+      "name_jp": "ジブリ",
+      "color": "#00bcd4",
+      "total_films": 54
+    },
+    "Tohokushinsha": {
+      "name_en": "Tohokushinsha",
+      "name_jp": "東北新社",
+      "color": "#ff9f43",
+      "total_films": 114
+    },
+    "Shochiku": {
+      "name_en": "Shochiku",
+      "name_jp": "松竹",
+      "color": "#3498db",
+      "total_films": 8784
+    },
+    "Kadokawa": {
+      "name_en": "Kadokawa",
+      "name_jp": "角川",
+      "color": "#1abc9c",
+      "total_films": 548
+    },
+    "Toho": {
+      "name_en": "Toho",
+      "name_jp": "東宝",
+      "color": "#f1c40f",
+      "total_films": 3216
+    },
+    "Nikkatsu": {
+      "name_en": "Nikkatsu",
+      "name_jp": "日活",
+      "color": "#2ecc71",
+      "total_films": 3309
+    },
+    "Daiei": {
+      "name_en": "Daiei",
+      "name_jp": "大映",
+      "color": "#9b59b6",
+      "total_films": 3086
+    }
+  },
+  "prefectures": {
+    "群馬県": {
+      "coordinates": [
+        36.3912,
+        139.0608
+      ],
+      "total_films": 2470,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 9.6,
+      "studios": {
+        "Other": {
+          "count": 1850,
+          "percentage": 74.9
+        },
+        "Nikkatsu": {
+          "count": 61,
+          "percentage": 2.5
+        },
+        "Tohokushinsha": {
+          "count": 9,
+          "percentage": 0.4
+        },
+        "Shochiku": {
+          "count": 161,
+          "percentage": 6.5
+        },
+        "Toei": {
+          "count": 238,
+          "percentage": 9.6
+        },
+        "Toho": {
+          "count": 68,
+          "percentage": 2.8
+        },
+        "Kadokawa": {
+          "count": 11,
+          "percentage": 0.4
+        },
+        "Daiei": {
+          "count": 58,
+          "percentage": 2.3
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.0
+        },
+        "Ghibli": {
+          "count": 3,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 10,
+          "percentage": 0.4
+        }
+      }
+    },
+    "東京都": {
+      "coordinates": [
+        35.6895,
+        139.6917
+      ],
+      "total_films": 14118,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 12.0,
+      "studios": {
+        "Other": {
+          "count": 8880,
+          "percentage": 62.9
+        },
+        "Nikkatsu": {
+          "count": 654,
+          "percentage": 4.6
+        },
+        "Toho": {
+          "count": 529,
+          "percentage": 3.7
+        },
+        "Tsuburaya": {
+          "count": 29,
+          "percentage": 0.2
+        },
+        "Kadokawa": {
+          "count": 85,
+          "percentage": 0.6
+        },
+        "Toei": {
+          "count": 1692,
+          "percentage": 12.0
+        },
+        "Shochiku": {
+          "count": 1570,
+          "percentage": 11.1
+        },
+        "Tohokushinsha": {
+          "count": 18,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 124,
+          "percentage": 0.9
+        },
+        "Daiei": {
+          "count": 523,
+          "percentage": 3.7
+        },
+        "Ghibli": {
+          "count": 14,
+          "percentage": 0.1
+        }
+      }
+    },
+    "神奈川県": {
+      "coordinates": [
+        35.4478,
+        139.6425
+      ],
+      "total_films": 3807,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 13.1,
+      "studios": {
+        "Other": {
+          "count": 2234,
+          "percentage": 58.7
+        },
+        "Nikkatsu": {
+          "count": 200,
+          "percentage": 5.3
+        },
+        "Toho": {
+          "count": 181,
+          "percentage": 4.8
+        },
+        "Toei": {
+          "count": 499,
+          "percentage": 13.1
+        },
+        "Shochiku": {
+          "count": 484,
+          "percentage": 12.7
+        },
+        "Tohokushinsha": {
+          "count": 7,
+          "percentage": 0.2
+        },
+        "Daiei": {
+          "count": 142,
+          "percentage": 3.7
+        },
+        "Kadokawa": {
+          "count": 30,
+          "percentage": 0.8
+        },
+        "Shintoho": {
+          "count": 20,
+          "percentage": 0.5
+        },
+        "Tsuburaya": {
+          "count": 6,
+          "percentage": 0.2
+        },
+        "Ghibli": {
+          "count": 4,
+          "percentage": 0.1
+        }
+      }
+    },
+    "北海道": {
+      "coordinates": [
+        43.0642,
+        141.3469
+      ],
+      "total_films": 3088,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 16.6,
+      "studios": {
+        "Toho": {
+          "count": 130,
+          "percentage": 4.2
+        },
+        "Other": {
+          "count": 1699,
+          "percentage": 55.0
+        },
+        "Nikkatsu": {
+          "count": 122,
+          "percentage": 4.0
+        },
+        "Shochiku": {
+          "count": 440,
+          "percentage": 14.2
+        },
+        "Toei": {
+          "count": 512,
+          "percentage": 16.6
+        },
+        "Daiei": {
+          "count": 126,
+          "percentage": 4.1
+        },
+        "Tohokushinsha": {
+          "count": 4,
+          "percentage": 0.1
+        },
+        "Kadokawa": {
+          "count": 23,
+          "percentage": 0.7
+        },
+        "Shintoho": {
+          "count": 30,
+          "percentage": 1.0
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.1
+        }
+      }
+    },
+    "岩手県": {
+      "coordinates": [
+        39.7036,
+        141.1527
+      ],
+      "total_films": 644,
+      "dominant_studio": "Nikkatsu",
+      "dominant_percentage": 17.4,
+      "studios": {
+        "Other": {
+          "count": 301,
+          "percentage": 46.7
+        },
+        "Nikkatsu": {
+          "count": 112,
+          "percentage": 17.4
+        },
+        "Shochiku": {
+          "count": 79,
+          "percentage": 12.3
+        },
+        "Toei": {
+          "count": 98,
+          "percentage": 15.2
+        },
+        "Daiei": {
+          "count": 26,
+          "percentage": 4.0
+        },
+        "Toho": {
+          "count": 20,
+          "percentage": 3.1
+        },
+        "Shintoho": {
+          "count": 4,
+          "percentage": 0.6
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Kadokawa": {
+          "count": 3,
+          "percentage": 0.5
+        }
+      }
+    },
+    "茨城県": {
+      "coordinates": [
+        36.3419,
+        140.4468
+      ],
+      "total_films": 1012,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 13.9,
+      "studios": {
+        "Other": {
+          "count": 595,
+          "percentage": 58.8
+        },
+        "Nikkatsu": {
+          "count": 48,
+          "percentage": 4.7
+        },
+        "Shochiku": {
+          "count": 118,
+          "percentage": 11.7
+        },
+        "Toei": {
+          "count": 141,
+          "percentage": 13.9
+        },
+        "Toho": {
+          "count": 50,
+          "percentage": 4.9
+        },
+        "Kadokawa": {
+          "count": 12,
+          "percentage": 1.2
+        },
+        "Daiei": {
+          "count": 37,
+          "percentage": 3.7
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Shintoho": {
+          "count": 6,
+          "percentage": 0.6
+        },
+        "Ghibli": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.1
+        }
+      }
+    },
+    "新潟県": {
+      "coordinates": [
+        37.9026,
+        139.0236
+      ],
+      "total_films": 921,
+      "dominant_studio": "Shochiku",
+      "dominant_percentage": 14.5,
+      "studios": {
+        "Other": {
+          "count": 539,
+          "percentage": 58.5
+        },
+        "Nikkatsu": {
+          "count": 42,
+          "percentage": 4.6
+        },
+        "Shochiku": {
+          "count": 134,
+          "percentage": 14.5
+        },
+        "Toho": {
+          "count": 39,
+          "percentage": 4.2
+        },
+        "Toei": {
+          "count": 123,
+          "percentage": 13.4
+        },
+        "Daiei": {
+          "count": 29,
+          "percentage": 3.1
+        },
+        "Shintoho": {
+          "count": 5,
+          "percentage": 0.5
+        },
+        "Kadokawa": {
+          "count": 6,
+          "percentage": 0.7
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.2
+        }
+      }
+    },
+    "兵庫県": {
+      "coordinates": [
+        34.6913,
+        135.183
+      ],
+      "total_films": 2652,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 17.2,
+      "studios": {
+        "Other": {
+          "count": 1411,
+          "percentage": 53.2
+        },
+        "Toho": {
+          "count": 99,
+          "percentage": 3.7
+        },
+        "Shochiku": {
+          "count": 310,
+          "percentage": 11.7
+        },
+        "Nikkatsu": {
+          "count": 193,
+          "percentage": 7.3
+        },
+        "Toei": {
+          "count": 455,
+          "percentage": 17.2
+        },
+        "Ghibli": {
+          "count": 2,
+          "percentage": 0.1
+        },
+        "Kadokawa": {
+          "count": 14,
+          "percentage": 0.5
+        },
+        "Tohokushinsha": {
+          "count": 5,
+          "percentage": 0.2
+        },
+        "Daiei": {
+          "count": 133,
+          "percentage": 5.0
+        },
+        "Shintoho": {
+          "count": 26,
+          "percentage": 1.0
+        },
+        "Tsuburaya": {
+          "count": 4,
+          "percentage": 0.2
+        }
+      }
+    },
+    "山梨県": {
+      "coordinates": [
+        35.6642,
+        138.5683
+      ],
+      "total_films": 616,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.8,
+      "studios": {
+        "Other": {
+          "count": 353,
+          "percentage": 57.3
+        },
+        "Nikkatsu": {
+          "count": 23,
+          "percentage": 3.7
+        },
+        "Shochiku": {
+          "count": 69,
+          "percentage": 11.2
+        },
+        "Toei": {
+          "count": 91,
+          "percentage": 14.8
+        },
+        "Toho": {
+          "count": 40,
+          "percentage": 6.5
+        },
+        "Kadokawa": {
+          "count": 5,
+          "percentage": 0.8
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.3
+        },
+        "Daiei": {
+          "count": 32,
+          "percentage": 5.2
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "長野県": {
+      "coordinates": [
+        36.6513,
+        138.181
+      ],
+      "total_films": 6760,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 11.8,
+      "studios": {
+        "Other": {
+          "count": 4461,
+          "percentage": 66.0
+        },
+        "Toho": {
+          "count": 325,
+          "percentage": 4.8
+        },
+        "Kadokawa": {
+          "count": 58,
+          "percentage": 0.9
+        },
+        "Toei": {
+          "count": 797,
+          "percentage": 11.8
+        },
+        "Tsuburaya": {
+          "count": 17,
+          "percentage": 0.3
+        },
+        "Nikkatsu": {
+          "count": 209,
+          "percentage": 3.1
+        },
+        "Shochiku": {
+          "count": 558,
+          "percentage": 8.3
+        },
+        "Daiei": {
+          "count": 260,
+          "percentage": 3.8
+        },
+        "Shintoho": {
+          "count": 60,
+          "percentage": 0.9
+        },
+        "Tohokushinsha": {
+          "count": 7,
+          "percentage": 0.1
+        },
+        "Ghibli": {
+          "count": 8,
+          "percentage": 0.1
+        }
+      }
+    },
+    "京都府": {
+      "coordinates": [
+        35.0116,
+        135.7681
+      ],
+      "total_films": 5877,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 17.9,
+      "studios": {
+        "Toho": {
+          "count": 259,
+          "percentage": 4.4
+        },
+        "Other": {
+          "count": 3250,
+          "percentage": 55.3
+        },
+        "Kadokawa": {
+          "count": 37,
+          "percentage": 0.6
+        },
+        "Nikkatsu": {
+          "count": 195,
+          "percentage": 3.3
+        },
+        "Shochiku": {
+          "count": 732,
+          "percentage": 12.5
+        },
+        "Toei": {
+          "count": 1051,
+          "percentage": 17.9
+        },
+        "Daiei": {
+          "count": 290,
+          "percentage": 4.9
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.0
+        },
+        "Tohokushinsha": {
+          "count": 7,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 47,
+          "percentage": 0.8
+        },
+        "Tsuburaya": {
+          "count": 8,
+          "percentage": 0.1
+        }
+      }
+    },
+    "石川県": {
+      "coordinates": [
+        36.5947,
+        136.6256
+      ],
+      "total_films": 483,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 15.3,
+      "studios": {
+        "Shochiku": {
+          "count": 61,
+          "percentage": 12.6
+        },
+        "Other": {
+          "count": 275,
+          "percentage": 56.9
+        },
+        "Nikkatsu": {
+          "count": 26,
+          "percentage": 5.4
+        },
+        "Toho": {
+          "count": 20,
+          "percentage": 4.1
+        },
+        "Daiei": {
+          "count": 18,
+          "percentage": 3.7
+        },
+        "Kadokawa": {
+          "count": 2,
+          "percentage": 0.4
+        },
+        "Toei": {
+          "count": 74,
+          "percentage": 15.3
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Shintoho": {
+          "count": 6,
+          "percentage": 1.2
+        }
+      }
+    },
+    "青森県": {
+      "coordinates": [
+        40.8244,
+        140.74
+      ],
+      "total_films": 666,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 13.7,
+      "studios": {
+        "Other": {
+          "count": 397,
+          "percentage": 59.6
+        },
+        "Nikkatsu": {
+          "count": 27,
+          "percentage": 4.1
+        },
+        "Toei": {
+          "count": 91,
+          "percentage": 13.7
+        },
+        "Shochiku": {
+          "count": 75,
+          "percentage": 11.3
+        },
+        "Toho": {
+          "count": 26,
+          "percentage": 3.9
+        },
+        "Daiei": {
+          "count": 39,
+          "percentage": 5.9
+        },
+        "Shintoho": {
+          "count": 3,
+          "percentage": 0.5
+        },
+        "Kadokawa": {
+          "count": 5,
+          "percentage": 0.8
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.3
+        }
+      }
+    },
+    "愛知県": {
+      "coordinates": [
+        35.1802,
+        136.9066
+      ],
+      "total_films": 1899,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 15.6,
+      "studios": {
+        "Other": {
+          "count": 1085,
+          "percentage": 57.1
+        },
+        "Toho": {
+          "count": 105,
+          "percentage": 5.5
+        },
+        "Nikkatsu": {
+          "count": 80,
+          "percentage": 4.2
+        },
+        "Shochiku": {
+          "count": 234,
+          "percentage": 12.3
+        },
+        "Toei": {
+          "count": 297,
+          "percentage": 15.6
+        },
+        "Daiei": {
+          "count": 77,
+          "percentage": 4.1
+        },
+        "Kadokawa": {
+          "count": 9,
+          "percentage": 0.5
+        },
+        "Shintoho": {
+          "count": 8,
+          "percentage": 0.4
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.1
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        }
+      }
+    },
+    "滋賀県": {
+      "coordinates": [
+        35.0045,
+        135.8686
+      ],
+      "total_films": 1038,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 22.9,
+      "studios": {
+        "Other": {
+          "count": 480,
+          "percentage": 46.2
+        },
+        "Nikkatsu": {
+          "count": 32,
+          "percentage": 3.1
+        },
+        "Toei": {
+          "count": 238,
+          "percentage": 22.9
+        },
+        "Shochiku": {
+          "count": 147,
+          "percentage": 14.2
+        },
+        "Toho": {
+          "count": 61,
+          "percentage": 5.9
+        },
+        "Daiei": {
+          "count": 71,
+          "percentage": 6.8
+        },
+        "Kadokawa": {
+          "count": 5,
+          "percentage": 0.5
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 3,
+          "percentage": 0.3
+        }
+      }
+    },
+    "鳥取県": {
+      "coordinates": [
+        35.5039,
+        134.2381
+      ],
+      "total_films": 603,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 28.2,
+      "studios": {
+        "Kadokawa": {
+          "count": 6,
+          "percentage": 1.0
+        },
+        "Other": {
+          "count": 282,
+          "percentage": 46.8
+        },
+        "Shochiku": {
+          "count": 77,
+          "percentage": 12.8
+        },
+        "Toho": {
+          "count": 22,
+          "percentage": 3.6
+        },
+        "Daiei": {
+          "count": 19,
+          "percentage": 3.2
+        },
+        "Toei": {
+          "count": 170,
+          "percentage": 28.2
+        },
+        "Nikkatsu": {
+          "count": 23,
+          "percentage": 3.8
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.3
+        },
+        "Shintoho": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "岐阜県": {
+      "coordinates": [
+        35.3912,
+        136.7223
+      ],
+      "total_films": 649,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 18.2,
+      "studios": {
+        "Shochiku": {
+          "count": 86,
+          "percentage": 13.3
+        },
+        "Other": {
+          "count": 360,
+          "percentage": 55.5
+        },
+        "Toho": {
+          "count": 29,
+          "percentage": 4.5
+        },
+        "Kadokawa": {
+          "count": 4,
+          "percentage": 0.6
+        },
+        "Nikkatsu": {
+          "count": 19,
+          "percentage": 2.9
+        },
+        "Daiei": {
+          "count": 26,
+          "percentage": 4.0
+        },
+        "Toei": {
+          "count": 118,
+          "percentage": 18.2
+        },
+        "Shintoho": {
+          "count": 5,
+          "percentage": 0.8
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "福岡県": {
+      "coordinates": [
+        33.6064,
+        130.4183
+      ],
+      "total_films": 1096,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 17.1,
+      "studios": {
+        "Other": {
+          "count": 605,
+          "percentage": 55.2
+        },
+        "Nikkatsu": {
+          "count": 42,
+          "percentage": 3.8
+        },
+        "Toei": {
+          "count": 187,
+          "percentage": 17.1
+        },
+        "Shochiku": {
+          "count": 127,
+          "percentage": 11.6
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Daiei": {
+          "count": 55,
+          "percentage": 5.0
+        },
+        "Tsuburaya": {
+          "count": 3,
+          "percentage": 0.3
+        },
+        "Toho": {
+          "count": 55,
+          "percentage": 5.0
+        },
+        "Shintoho": {
+          "count": 10,
+          "percentage": 0.9
+        },
+        "Kadokawa": {
+          "count": 9,
+          "percentage": 0.8
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        }
+      }
+    },
+    "長崎県": {
+      "coordinates": [
+        32.7448,
+        129.8737
+      ],
+      "total_films": 906,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.7,
+      "studios": {
+        "Toho": {
+          "count": 36,
+          "percentage": 4.0
+        },
+        "Other": {
+          "count": 478,
+          "percentage": 52.8
+        },
+        "Kadokawa": {
+          "count": 6,
+          "percentage": 0.7
+        },
+        "Shochiku": {
+          "count": 108,
+          "percentage": 11.9
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Toei": {
+          "count": 133,
+          "percentage": 14.7
+        },
+        "Nikkatsu": {
+          "count": 90,
+          "percentage": 9.9
+        },
+        "Daiei": {
+          "count": 42,
+          "percentage": 4.6
+        },
+        "Ghibli": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Shintoho": {
+          "count": 9,
+          "percentage": 1.0
+        }
+      }
+    },
+    "沖縄県": {
+      "coordinates": [
+        26.2124,
+        127.6809
+      ],
+      "total_films": 1198,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 13.5,
+      "studios": {
+        "Other": {
+          "count": 784,
+          "percentage": 65.4
+        },
+        "Toei": {
+          "count": 162,
+          "percentage": 13.5
+        },
+        "Kadokawa": {
+          "count": 19,
+          "percentage": 1.6
+        },
+        "Shochiku": {
+          "count": 104,
+          "percentage": 8.7
+        },
+        "Toho": {
+          "count": 49,
+          "percentage": 4.1
+        },
+        "Nikkatsu": {
+          "count": 31,
+          "percentage": 2.6
+        },
+        "Daiei": {
+          "count": 34,
+          "percentage": 2.8
+        },
+        "Shintoho": {
+          "count": 11,
+          "percentage": 0.9
+        },
+        "Tsuburaya": {
+          "count": 3,
+          "percentage": 0.3
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        }
+      }
+    },
+    "静岡県": {
+      "coordinates": [
+        34.9769,
+        138.3831
+      ],
+      "total_films": 2568,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 16.0,
+      "studios": {
+        "Other": {
+          "count": 1374,
+          "percentage": 53.5
+        },
+        "Nikkatsu": {
+          "count": 106,
+          "percentage": 4.1
+        },
+        "Shochiku": {
+          "count": 363,
+          "percentage": 14.1
+        },
+        "Toei": {
+          "count": 410,
+          "percentage": 16.0
+        },
+        "Daiei": {
+          "count": 132,
+          "percentage": 5.1
+        },
+        "Toho": {
+          "count": 125,
+          "percentage": 4.9
+        },
+        "Kadokawa": {
+          "count": 23,
+          "percentage": 0.9
+        },
+        "Shintoho": {
+          "count": 32,
+          "percentage": 1.2
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.1
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.0
+        }
+      }
+    },
+    "大阪府": {
+      "coordinates": [
+        34.6863,
+        135.52
+      ],
+      "total_films": 3704,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 15.3,
+      "studios": {
+        "Other": {
+          "count": 2162,
+          "percentage": 58.4
+        },
+        "Nikkatsu": {
+          "count": 147,
+          "percentage": 4.0
+        },
+        "Toho": {
+          "count": 167,
+          "percentage": 4.5
+        },
+        "Toei": {
+          "count": 565,
+          "percentage": 15.3
+        },
+        "Shochiku": {
+          "count": 432,
+          "percentage": 11.7
+        },
+        "Daiei": {
+          "count": 162,
+          "percentage": 4.4
+        },
+        "Kadokawa": {
+          "count": 27,
+          "percentage": 0.7
+        },
+        "Tohokushinsha": {
+          "count": 8,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 6,
+          "percentage": 0.2
+        },
+        "Shintoho": {
+          "count": 28,
+          "percentage": 0.8
+        }
+      }
+    },
+    "埼玉県": {
+      "coordinates": [
+        35.8569,
+        139.6489
+      ],
+      "total_films": 1928,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 13.7,
+      "studios": {
+        "Other": {
+          "count": 1197,
+          "percentage": 62.1
+        },
+        "Nikkatsu": {
+          "count": 115,
+          "percentage": 6.0
+        },
+        "Shochiku": {
+          "count": 194,
+          "percentage": 10.1
+        },
+        "Toho": {
+          "count": 54,
+          "percentage": 2.8
+        },
+        "Daiei": {
+          "count": 60,
+          "percentage": 3.1
+        },
+        "Toei": {
+          "count": 264,
+          "percentage": 13.7
+        },
+        "Kadokawa": {
+          "count": 20,
+          "percentage": 1.0
+        },
+        "Tsuburaya": {
+          "count": 5,
+          "percentage": 0.3
+        },
+        "Shintoho": {
+          "count": 14,
+          "percentage": 0.7
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Tohokushinsha": {
+          "count": 4,
+          "percentage": 0.2
+        }
+      }
+    },
+    "宮城県": {
+      "coordinates": [
+        38.2688,
+        140.8721
+      ],
+      "total_films": 1057,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 13.7,
+      "studios": {
+        "Other": {
+          "count": 643,
+          "percentage": 60.8
+        },
+        "Nikkatsu": {
+          "count": 57,
+          "percentage": 5.4
+        },
+        "Shochiku": {
+          "count": 102,
+          "percentage": 9.6
+        },
+        "Toei": {
+          "count": 145,
+          "percentage": 13.7
+        },
+        "Tohokushinsha": {
+          "count": 4,
+          "percentage": 0.4
+        },
+        "Toho": {
+          "count": 41,
+          "percentage": 3.9
+        },
+        "Daiei": {
+          "count": 49,
+          "percentage": 4.6
+        },
+        "Shintoho": {
+          "count": 6,
+          "percentage": 0.6
+        },
+        "Kadokawa": {
+          "count": 8,
+          "percentage": 0.8
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.2
+        }
+      }
+    },
+    "三重県": {
+      "coordinates": [
+        34.7303,
+        136.5086
+      ],
+      "total_films": 664,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.6,
+      "studios": {
+        "Other": {
+          "count": 359,
+          "percentage": 54.1
+        },
+        "Nikkatsu": {
+          "count": 52,
+          "percentage": 7.8
+        },
+        "Shochiku": {
+          "count": 75,
+          "percentage": 11.3
+        },
+        "Kadokawa": {
+          "count": 3,
+          "percentage": 0.5
+        },
+        "Toho": {
+          "count": 33,
+          "percentage": 5.0
+        },
+        "Toei": {
+          "count": 97,
+          "percentage": 14.6
+        },
+        "Daiei": {
+          "count": 42,
+          "percentage": 6.3
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Shintoho": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "香川県": {
+      "coordinates": [
+        34.3401,
+        134.0434
+      ],
+      "total_films": 469,
+      "dominant_studio": "Shochiku",
+      "dominant_percentage": 14.7,
+      "studios": {
+        "Other": {
+          "count": 269,
+          "percentage": 57.4
+        },
+        "Nikkatsu": {
+          "count": 28,
+          "percentage": 6.0
+        },
+        "Shochiku": {
+          "count": 69,
+          "percentage": 14.7
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Toho": {
+          "count": 22,
+          "percentage": 4.7
+        },
+        "Toei": {
+          "count": 57,
+          "percentage": 12.2
+        },
+        "Daiei": {
+          "count": 19,
+          "percentage": 4.1
+        },
+        "Kadokawa": {
+          "count": 2,
+          "percentage": 0.4
+        },
+        "Shintoho": {
+          "count": 2,
+          "percentage": 0.4
+        }
+      }
+    },
+    "福島県": {
+      "coordinates": [
+        37.75,
+        140.4678
+      ],
+      "total_films": 1005,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 18.7,
+      "studios": {
+        "Other": {
+          "count": 546,
+          "percentage": 54.3
+        },
+        "Nikkatsu": {
+          "count": 42,
+          "percentage": 4.2
+        },
+        "Tsuburaya": {
+          "count": 3,
+          "percentage": 0.3
+        },
+        "Shochiku": {
+          "count": 135,
+          "percentage": 13.4
+        },
+        "Toei": {
+          "count": 188,
+          "percentage": 18.7
+        },
+        "Toho": {
+          "count": 46,
+          "percentage": 4.6
+        },
+        "Daiei": {
+          "count": 31,
+          "percentage": 3.1
+        },
+        "Kadokawa": {
+          "count": 6,
+          "percentage": 0.6
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 7,
+          "percentage": 0.7
+        }
+      }
+    },
+    "千葉県": {
+      "coordinates": [
+        35.6047,
+        140.1233
+      ],
+      "total_films": 2181,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.4,
+      "studios": {
+        "Other": {
+          "count": 1320,
+          "percentage": 60.5
+        },
+        "Nikkatsu": {
+          "count": 79,
+          "percentage": 3.6
+        },
+        "Toei": {
+          "count": 313,
+          "percentage": 14.4
+        },
+        "Shochiku": {
+          "count": 239,
+          "percentage": 11.0
+        },
+        "Kadokawa": {
+          "count": 25,
+          "percentage": 1.1
+        },
+        "Toho": {
+          "count": 92,
+          "percentage": 4.2
+        },
+        "Daiei": {
+          "count": 93,
+          "percentage": 4.3
+        },
+        "Shintoho": {
+          "count": 15,
+          "percentage": 0.7
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.1
+        },
+        "Tsuburaya": {
+          "count": 3,
+          "percentage": 0.1
+        }
+      }
+    },
+    "広島県": {
+      "coordinates": [
+        34.3966,
+        132.4596
+      ],
+      "total_films": 1038,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 12.2,
+      "studios": {
+        "Other": {
+          "count": 631,
+          "percentage": 60.8
+        },
+        "Nikkatsu": {
+          "count": 69,
+          "percentage": 6.6
+        },
+        "Toei": {
+          "count": 127,
+          "percentage": 12.2
+        },
+        "Tsuburaya": {
+          "count": 6,
+          "percentage": 0.6
+        },
+        "Shochiku": {
+          "count": 100,
+          "percentage": 9.6
+        },
+        "Kadokawa": {
+          "count": 10,
+          "percentage": 1.0
+        },
+        "Toho": {
+          "count": 38,
+          "percentage": 3.7
+        },
+        "Daiei": {
+          "count": 47,
+          "percentage": 4.5
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 9,
+          "percentage": 0.9
+        }
+      }
+    },
+    "徳島県": {
+      "coordinates": [
+        34.0658,
+        134.5593
+      ],
+      "total_films": 234,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 18.8,
+      "studios": {
+        "Other": {
+          "count": 125,
+          "percentage": 53.4
+        },
+        "Nikkatsu": {
+          "count": 8,
+          "percentage": 3.4
+        },
+        "Toei": {
+          "count": 44,
+          "percentage": 18.8
+        },
+        "Shochiku": {
+          "count": 29,
+          "percentage": 12.4
+        },
+        "Daiei": {
+          "count": 14,
+          "percentage": 6.0
+        },
+        "Shintoho": {
+          "count": 2,
+          "percentage": 0.9
+        },
+        "Toho": {
+          "count": 10,
+          "percentage": 4.3
+        },
+        "Kadokawa": {
+          "count": 2,
+          "percentage": 0.9
+        }
+      }
+    },
+    "栃木県": {
+      "coordinates": [
+        36.5657,
+        139.8836
+      ],
+      "total_films": 822,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.5,
+      "studios": {
+        "Nikkatsu": {
+          "count": 37,
+          "percentage": 4.5
+        },
+        "Other": {
+          "count": 513,
+          "percentage": 62.4
+        },
+        "Toho": {
+          "count": 39,
+          "percentage": 4.7
+        },
+        "Shochiku": {
+          "count": 68,
+          "percentage": 8.3
+        },
+        "Daiei": {
+          "count": 33,
+          "percentage": 4.0
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.2
+        },
+        "Toei": {
+          "count": 119,
+          "percentage": 14.5
+        },
+        "Kadokawa": {
+          "count": 8,
+          "percentage": 1.0
+        },
+        "Shintoho": {
+          "count": 3,
+          "percentage": 0.4
+        }
+      }
+    },
+    "高知県": {
+      "coordinates": [
+        33.5597,
+        133.5311
+      ],
+      "total_films": 519,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 20.2,
+      "studios": {
+        "Nikkatsu": {
+          "count": 19,
+          "percentage": 3.7
+        },
+        "Other": {
+          "count": 262,
+          "percentage": 50.5
+        },
+        "Shochiku": {
+          "count": 90,
+          "percentage": 17.3
+        },
+        "Toei": {
+          "count": 105,
+          "percentage": 20.2
+        },
+        "Daiei": {
+          "count": 17,
+          "percentage": 3.3
+        },
+        "Toho": {
+          "count": 20,
+          "percentage": 3.9
+        },
+        "Shintoho": {
+          "count": 3,
+          "percentage": 0.6
+        },
+        "Kadokawa": {
+          "count": 3,
+          "percentage": 0.6
+        }
+      }
+    },
+    "佐賀県": {
+      "coordinates": [
+        33.2494,
+        130.2988
+      ],
+      "total_films": 456,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 18.2,
+      "studios": {
+        "Other": {
+          "count": 230,
+          "percentage": 50.4
+        },
+        "Shochiku": {
+          "count": 71,
+          "percentage": 15.6
+        },
+        "Toei": {
+          "count": 83,
+          "percentage": 18.2
+        },
+        "Nikkatsu": {
+          "count": 20,
+          "percentage": 4.4
+        },
+        "Daiei": {
+          "count": 21,
+          "percentage": 4.6
+        },
+        "Shintoho": {
+          "count": 5,
+          "percentage": 1.1
+        },
+        "Kadokawa": {
+          "count": 2,
+          "percentage": 0.4
+        },
+        "Toho": {
+          "count": 22,
+          "percentage": 4.8
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "愛媛県": {
+      "coordinates": [
+        33.8416,
+        132.7657
+      ],
+      "total_films": 365,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.8,
+      "studios": {
+        "Nikkatsu": {
+          "count": 6,
+          "percentage": 1.6
+        },
+        "Other": {
+          "count": 209,
+          "percentage": 57.3
+        },
+        "Toei": {
+          "count": 54,
+          "percentage": 14.8
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.3
+        },
+        "Toho": {
+          "count": 22,
+          "percentage": 6.0
+        },
+        "Shochiku": {
+          "count": 54,
+          "percentage": 14.8
+        },
+        "Daiei": {
+          "count": 9,
+          "percentage": 2.5
+        },
+        "Shintoho": {
+          "count": 4,
+          "percentage": 1.1
+        },
+        "Tsuburaya": {
+          "count": 4,
+          "percentage": 1.1
+        },
+        "Kadokawa": {
+          "count": 2,
+          "percentage": 0.5
+        }
+      }
+    },
+    "山形県": {
+      "coordinates": [
+        38.2404,
+        140.3633
+      ],
+      "total_films": 717,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.5,
+      "studios": {
+        "Other": {
+          "count": 458,
+          "percentage": 63.9
+        },
+        "Nikkatsu": {
+          "count": 17,
+          "percentage": 2.4
+        },
+        "Kadokawa": {
+          "count": 4,
+          "percentage": 0.6
+        },
+        "Shochiku": {
+          "count": 70,
+          "percentage": 9.8
+        },
+        "Toho": {
+          "count": 31,
+          "percentage": 4.3
+        },
+        "Toei": {
+          "count": 104,
+          "percentage": 14.5
+        },
+        "Daiei": {
+          "count": 19,
+          "percentage": 2.6
+        },
+        "Shintoho": {
+          "count": 7,
+          "percentage": 1.0
+        },
+        "Tsuburaya": {
+          "count": 3,
+          "percentage": 0.4
+        },
+        "Tohokushinsha": {
+          "count": 3,
+          "percentage": 0.4
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.1
+        }
+      }
+    },
+    "福井県": {
+      "coordinates": [
+        36.0652,
+        136.2216
+      ],
+      "total_films": 305,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 15.7,
+      "studios": {
+        "Other": {
+          "count": 157,
+          "percentage": 51.5
+        },
+        "Nikkatsu": {
+          "count": 9,
+          "percentage": 3.0
+        },
+        "Toei": {
+          "count": 48,
+          "percentage": 15.7
+        },
+        "Shochiku": {
+          "count": 48,
+          "percentage": 15.7
+        },
+        "Daiei": {
+          "count": 24,
+          "percentage": 7.9
+        },
+        "Toho": {
+          "count": 12,
+          "percentage": 3.9
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.3
+        },
+        "Kadokawa": {
+          "count": 4,
+          "percentage": 1.3
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.3
+        },
+        "Shintoho": {
+          "count": 1,
+          "percentage": 0.3
+        }
+      }
+    },
+    "富山県": {
+      "coordinates": [
+        36.6953,
+        137.2114
+      ],
+      "total_films": 580,
+      "dominant_studio": "Shochiku",
+      "dominant_percentage": 15.9,
+      "studios": {
+        "Other": {
+          "count": 343,
+          "percentage": 59.1
+        },
+        "Toei": {
+          "count": 68,
+          "percentage": 11.7
+        },
+        "Shochiku": {
+          "count": 92,
+          "percentage": 15.9
+        },
+        "Daiei": {
+          "count": 19,
+          "percentage": 3.3
+        },
+        "Nikkatsu": {
+          "count": 20,
+          "percentage": 3.4
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.3
+        },
+        "Toho": {
+          "count": 30,
+          "percentage": 5.2
+        },
+        "Kadokawa": {
+          "count": 6,
+          "percentage": 1.0
+        }
+      }
+    },
+    "岡山県": {
+      "coordinates": [
+        34.6618,
+        133.9344
+      ],
+      "total_films": 742,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 16.6,
+      "studios": {
+        "Nikkatsu": {
+          "count": 32,
+          "percentage": 4.3
+        },
+        "Other": {
+          "count": 389,
+          "percentage": 52.4
+        },
+        "Shochiku": {
+          "count": 108,
+          "percentage": 14.6
+        },
+        "Toei": {
+          "count": 123,
+          "percentage": 16.6
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.3
+        },
+        "Kadokawa": {
+          "count": 8,
+          "percentage": 1.1
+        },
+        "Toho": {
+          "count": 37,
+          "percentage": 5.0
+        },
+        "Daiei": {
+          "count": 37,
+          "percentage": 5.0
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 5,
+          "percentage": 0.7
+        }
+      }
+    },
+    "鹿児島県": {
+      "coordinates": [
+        31.5602,
+        130.5581
+      ],
+      "total_films": 613,
+      "dominant_studio": "Shochiku",
+      "dominant_percentage": 14.4,
+      "studios": {
+        "Other": {
+          "count": 362,
+          "percentage": 59.1
+        },
+        "Nikkatsu": {
+          "count": 25,
+          "percentage": 4.1
+        },
+        "Ghibli": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Toei": {
+          "count": 80,
+          "percentage": 13.1
+        },
+        "Shochiku": {
+          "count": 88,
+          "percentage": 14.4
+        },
+        "Toho": {
+          "count": 33,
+          "percentage": 5.4
+        },
+        "Kadokawa": {
+          "count": 6,
+          "percentage": 1.0
+        },
+        "Daiei": {
+          "count": 13,
+          "percentage": 2.1
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.2
+        },
+        "Shintoho": {
+          "count": 3,
+          "percentage": 0.5
+        }
+      }
+    },
+    "奈良県": {
+      "coordinates": [
+        34.6851,
+        135.8328
+      ],
+      "total_films": 1103,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 19.9,
+      "studios": {
+        "Other": {
+          "count": 584,
+          "percentage": 52.9
+        },
+        "Nikkatsu": {
+          "count": 31,
+          "percentage": 2.8
+        },
+        "Daiei": {
+          "count": 59,
+          "percentage": 5.3
+        },
+        "Toei": {
+          "count": 220,
+          "percentage": 19.9
+        },
+        "Shochiku": {
+          "count": 146,
+          "percentage": 13.2
+        },
+        "Toho": {
+          "count": 45,
+          "percentage": 4.1
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Kadokawa": {
+          "count": 7,
+          "percentage": 0.6
+        },
+        "Shintoho": {
+          "count": 8,
+          "percentage": 0.7
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.2
+        }
+      }
+    },
+    "和歌山県": {
+      "coordinates": [
+        34.226,
+        135.1675
+      ],
+      "total_films": 591,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 19.8,
+      "studios": {
+        "Other": {
+          "count": 315,
+          "percentage": 53.3
+        },
+        "Shochiku": {
+          "count": 85,
+          "percentage": 14.4
+        },
+        "Toei": {
+          "count": 117,
+          "percentage": 19.8
+        },
+        "Nikkatsu": {
+          "count": 17,
+          "percentage": 2.9
+        },
+        "Kadokawa": {
+          "count": 3,
+          "percentage": 0.5
+        },
+        "Toho": {
+          "count": 21,
+          "percentage": 3.6
+        },
+        "Shintoho": {
+          "count": 4,
+          "percentage": 0.7
+        },
+        "Daiei": {
+          "count": 27,
+          "percentage": 4.6
+        },
+        "Ghibli": {
+          "count": 2,
+          "percentage": 0.3
+        }
+      }
+    },
+    "宮崎県": {
+      "coordinates": [
+        31.9111,
+        131.4239
+      ],
+      "total_films": 892,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 20.9,
+      "studios": {
+        "Other": {
+          "count": 438,
+          "percentage": 49.1
+        },
+        "Shochiku": {
+          "count": 145,
+          "percentage": 16.3
+        },
+        "Nikkatsu": {
+          "count": 39,
+          "percentage": 4.4
+        },
+        "Toho": {
+          "count": 44,
+          "percentage": 4.9
+        },
+        "Toei": {
+          "count": 186,
+          "percentage": 20.9
+        },
+        "Kadokawa": {
+          "count": 3,
+          "percentage": 0.3
+        },
+        "Daiei": {
+          "count": 26,
+          "percentage": 2.9
+        },
+        "Ghibli": {
+          "count": 5,
+          "percentage": 0.6
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Shintoho": {
+          "count": 4,
+          "percentage": 0.4
+        }
+      }
+    },
+    "大分県": {
+      "coordinates": [
+        33.2382,
+        131.6126
+      ],
+      "total_films": 471,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.4,
+      "studios": {
+        "Other": {
+          "count": 275,
+          "percentage": 58.4
+        },
+        "Shochiku": {
+          "count": 58,
+          "percentage": 12.3
+        },
+        "Nikkatsu": {
+          "count": 17,
+          "percentage": 3.6
+        },
+        "Toei": {
+          "count": 68,
+          "percentage": 14.4
+        },
+        "Daiei": {
+          "count": 24,
+          "percentage": 5.1
+        },
+        "Toho": {
+          "count": 21,
+          "percentage": 4.5
+        },
+        "Shintoho": {
+          "count": 7,
+          "percentage": 1.5
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "熊本県": {
+      "coordinates": [
+        32.7898,
+        130.7417
+      ],
+      "total_films": 507,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 14.0,
+      "studios": {
+        "Nikkatsu": {
+          "count": 24,
+          "percentage": 4.7
+        },
+        "Other": {
+          "count": 324,
+          "percentage": 63.9
+        },
+        "Toho": {
+          "count": 14,
+          "percentage": 2.8
+        },
+        "Tsuburaya": {
+          "count": 2,
+          "percentage": 0.4
+        },
+        "Shochiku": {
+          "count": 51,
+          "percentage": 10.1
+        },
+        "Toei": {
+          "count": 71,
+          "percentage": 14.0
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.4
+        },
+        "Kadokawa": {
+          "count": 3,
+          "percentage": 0.6
+        },
+        "Daiei": {
+          "count": 13,
+          "percentage": 2.6
+        },
+        "Shintoho": {
+          "count": 3,
+          "percentage": 0.6
+        }
+      }
+    },
+    "秋田県": {
+      "coordinates": [
+        39.7186,
+        140.1024
+      ],
+      "total_films": 738,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 17.8,
+      "studios": {
+        "Other": {
+          "count": 419,
+          "percentage": 56.8
+        },
+        "Shochiku": {
+          "count": 98,
+          "percentage": 13.3
+        },
+        "Toho": {
+          "count": 23,
+          "percentage": 3.1
+        },
+        "Nikkatsu": {
+          "count": 23,
+          "percentage": 3.1
+        },
+        "Toei": {
+          "count": 131,
+          "percentage": 17.8
+        },
+        "Daiei": {
+          "count": 31,
+          "percentage": 4.2
+        },
+        "Kadokawa": {
+          "count": 9,
+          "percentage": 1.2
+        },
+        "Tohokushinsha": {
+          "count": 2,
+          "percentage": 0.3
+        },
+        "Shintoho": {
+          "count": 1,
+          "percentage": 0.1
+        },
+        "Tsuburaya": {
+          "count": 1,
+          "percentage": 0.1
+        }
+      }
+    },
+    "山口県": {
+      "coordinates": [
+        34.1859,
+        131.4714
+      ],
+      "total_films": 403,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 17.4,
+      "studios": {
+        "Nikkatsu": {
+          "count": 21,
+          "percentage": 5.2
+        },
+        "Other": {
+          "count": 217,
+          "percentage": 53.8
+        },
+        "Shochiku": {
+          "count": 57,
+          "percentage": 14.1
+        },
+        "Toei": {
+          "count": 70,
+          "percentage": 17.4
+        },
+        "Shintoho": {
+          "count": 5,
+          "percentage": 1.2
+        },
+        "Toho": {
+          "count": 15,
+          "percentage": 3.7
+        },
+        "Kadokawa": {
+          "count": 4,
+          "percentage": 1.0
+        },
+        "Daiei": {
+          "count": 13,
+          "percentage": 3.2
+        },
+        "Tohokushinsha": {
+          "count": 1,
+          "percentage": 0.2
+        }
+      }
+    },
+    "島根県": {
+      "coordinates": [
+        35.4723,
+        133.0505
+      ],
+      "total_films": 330,
+      "dominant_studio": "Toei",
+      "dominant_percentage": 18.5,
+      "studios": {
+        "Other": {
+          "count": 172,
+          "percentage": 52.1
+        },
+        "Shochiku": {
+          "count": 43,
+          "percentage": 13.0
+        },
+        "Nikkatsu": {
+          "count": 20,
+          "percentage": 6.1
+        },
+        "Toei": {
+          "count": 61,
+          "percentage": 18.5
+        },
+        "Toho": {
+          "count": 16,
+          "percentage": 4.8
+        },
+        "Kadokawa": {
+          "count": 1,
+          "percentage": 0.3
+        },
+        "Daiei": {
+          "count": 15,
+          "percentage": 4.5
+        },
+        "Shintoho": {
+          "count": 2,
+          "percentage": 0.6
+        }
+      }
+    }
+  }
+}
