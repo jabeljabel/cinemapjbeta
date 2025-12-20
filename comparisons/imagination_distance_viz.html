@@ -661,6 +661,24 @@
                     <option value="1000">Under 1000 km (Japan only)</option>
                 </select>
             </div>
+            <div class="control-group">
+                <span class="control-label">Genre</span>
+                <select id="filter-genre">
+                    <option value="">All Genres</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <span class="control-label">Studio</span>
+                <select id="filter-studio">
+                    <option value="">All Studios</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <span class="control-label">Prefecture</span>
+                <select id="filter-prefecture">
+                    <option value="">All Prefectures</option>
+                </select>
+            </div>
         </div>
         
         <div class="distribution-section">
@@ -802,6 +820,39 @@
                     decadeSelect.appendChild(opt);
                 });
                 
+                // Populate genre filter
+                if (data.filters && data.filters.genres) {
+                    const genreSelect = document.getElementById('filter-genre');
+                    data.filters.genres.forEach(g => {
+                        const opt = document.createElement('option');
+                        opt.value = g;
+                        opt.textContent = g;
+                        genreSelect.appendChild(opt);
+                    });
+                }
+                
+                // Populate studio filter
+                if (data.filters && data.filters.studios) {
+                    const studioSelect = document.getElementById('filter-studio');
+                    data.filters.studios.forEach(s => {
+                        const opt = document.createElement('option');
+                        opt.value = s;
+                        opt.textContent = s;
+                        studioSelect.appendChild(opt);
+                    });
+                }
+                
+                // Populate prefecture filter
+                if (data.filters && data.filters.prefectures) {
+                    const prefSelect = document.getElementById('filter-prefecture');
+                    data.filters.prefectures.forEach(p => {
+                        const opt = document.createElement('option');
+                        opt.value = p;
+                        opt.textContent = p;
+                        prefSelect.appendChild(opt);
+                    });
+                }
+                
                 // Build legend
                 buildLegend();
                 
@@ -858,10 +909,16 @@
         function applyFilters() {
             const decade = document.getElementById('filter-decade').value;
             const maxDist = parseInt(document.getElementById('filter-max').value);
+            const genre = document.getElementById('filter-genre').value;
+            const studio = document.getElementById('filter-studio').value;
+            const prefecture = document.getElementById('filter-prefecture').value;
             
             filteredFilms = allFilms.filter(f => {
                 if (decade && f.year && Math.floor(f.year / 10) * 10 !== parseInt(decade)) return false;
                 if (f.dist > maxDist) return false;
+                if (genre && f.genre !== genre) return false;
+                if (studio && f.studio !== studio) return false;
+                if (prefecture && f.pref !== prefecture) return false;
                 return true;
             });
             
@@ -1007,6 +1064,9 @@
         // === EVENT LISTENERS ===
         document.getElementById('filter-decade').addEventListener('change', applyFilters);
         document.getElementById('filter-max').addEventListener('change', applyFilters);
+        document.getElementById('filter-genre').addEventListener('change', applyFilters);
+        document.getElementById('filter-studio').addEventListener('change', applyFilters);
+        document.getElementById('filter-prefecture').addEventListener('change', applyFilters);
         document.getElementById('color-by').addEventListener('change', () => {
             buildLegend();
             updateStripPlot();
