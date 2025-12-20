@@ -679,6 +679,15 @@
                     <option value="">All Prefectures</option>
                 </select>
             </div>
+            <div class="control-group">
+                <span class="control-label">Location Source</span>
+                <select id="filter-source">
+                    <option value="">All Sources</option>
+                    <option value="title">From Title</option>
+                    <option value="synopsis">From Synopsis</option>
+                    <option value="subtitle">From Subtitle</option>
+                </select>
+            </div>
         </div>
         
         <div class="distribution-section">
@@ -912,6 +921,7 @@
             const genre = document.getElementById('filter-genre').value;
             const studio = document.getElementById('filter-studio').value;
             const prefecture = document.getElementById('filter-prefecture').value;
+            const source = document.getElementById('filter-source').value;
             
             filteredFilms = allFilms.filter(f => {
                 if (decade && f.year && Math.floor(f.year / 10) * 10 !== parseInt(decade)) return false;
@@ -919,6 +929,7 @@
                 if (genre && f.genre !== genre) return false;
                 if (studio && f.studio !== studio) return false;
                 if (prefecture && f.pref !== prefecture) return false;
+                if (source && (!f.sources || !f.sources.includes(source))) return false;
                 return true;
             });
             
@@ -1067,6 +1078,7 @@
         document.getElementById('filter-genre').addEventListener('change', applyFilters);
         document.getElementById('filter-studio').addEventListener('change', applyFilters);
         document.getElementById('filter-prefecture').addEventListener('change', applyFilters);
+        document.getElementById('filter-source').addEventListener('change', applyFilters);
         document.getElementById('color-by').addEventListener('change', () => {
             buildLegend();
             updateStripPlot();
