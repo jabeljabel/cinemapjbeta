@@ -422,6 +422,10 @@
                 <button class="filter-btn" onclick="showOnlyMajor()">Major Studios Only</button>
                 <button class="filter-btn" onclick="showAll()">Show All</button>
             </div>
+            <div class="legend-title" style="margin-top: 16px;">Time Period</div>
+            <select id="decade-filter" onchange="changeDecade(this.value)" style="width: 100%; padding: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff; font-size: 13px; margin-top: 8px;">
+                <option value="all">All Time</option>
+            </select>
         </div>
         
         <div class="rankings" id="rankings">
@@ -453,6 +457,7 @@
         let geoJson = null;
         let studioVisibility = {};
         let selectedPrefecture = null;
+        let selectedDecade = 'all';
         
         // Prefecture name mapping (GeoJSON uses different names)
         const PREF_NAME_MAP = {
@@ -538,6 +543,7 @@
                 }
                 
                 buildLegend();
+                populateDecadeFilter();
                 updateVisualization();
                 document.getElementById('loading').style.display = 'none';
                 
@@ -572,6 +578,28 @@
             }
         }
         
+        function populateDecadeFilter() {
+            const select = document.getElementById('decade-filter');
+            if (data.metadata && data.metadata.decades) {
+                data.metadata.decades.forEach(decade => {
+                    const opt = document.createElement('option');
+                    opt.value = decade;
+                    opt.textContent = decade + 's';
+                    select.appendChild(opt);
+                });
+            }
+        }
+        
+        function changeDecade(decade) {
+            selectedDecade = decade;
+            updateVisualization();
+        }
+        
+        function getDecadeData(prefData) {
+            if (!prefData || !prefData.by_decade) return null;
+            return prefData.by_decade[selectedDecade] || null;
+        }
+        
         function toggleStudio(studio) {
             studioVisibility[studio] = !studioVisibility[studio];
             document.querySelector(`.legend-item[data-studio="${studio}"]`)
@@ -601,13 +629,14 @@
         }
         
         function recalculateDominance(prefData) {
-            if (!prefData) return { studio: 'Other', percentage: 0, total: 0 };
+            const decadeData = getDecadeData(prefData);
+            if (!decadeData) return { studio: 'Other', percentage: 0, total: 0 };
             
             // Recalculate with only visible studios
             let total = 0;
             const visibleCounts = {};
             
-            for (const [studio, stats] of Object.entries(prefData.studios)) {
+            for (const [studio, stats] of Object.entries(decadeData.studios)) {
                 if (studioVisibility[studio] !== false) {
                     visibleCounts[studio] = stats.count;
                     total += stats.count;
@@ -682,13 +711,14 @@
                     const studioInfo = data.studios[dominance.studio] || { color: '#444' };
                     
                     // Add to rankings if not Other
-                    if (dominance.studio !== 'Other' && dominance.percentage > 0) {
+                    const decadeData = getDecadeData(prefData);
+                    if (dominance.studio !== 'Other' && dominance.percentage > 0 && decadeData) {
                         rankings.push({
                             pref: prefName,
                             studio: dominance.studio,
                             studioInfo: data.studios[dominance.studio],
                             percentage: dominance.percentage,
-                            total: prefData.total_films
+                            total: decadeData.total_films
                         });
                     }
                     
@@ -793,11 +823,14 @@
             selectedPrefecture = prefName;
             
             document.getElementById('detail-title').textContent = prefName;
+            const decadeData = getDecadeData(prefData);
+            const filmCount = decadeData ? decadeData.total_films : 0;
+            const decadeLabel = selectedDecade === 'all' ? '' : ` (${selectedDecade}s)`;
             document.getElementById('detail-films').textContent = 
-                `${prefData.total_films.toLocaleString()} films with location data`;
+                `${filmCount.toLocaleString()} films${decadeLabel}`;
             
             // Build bars for visible studios only
-            const bars = Object.entries(prefData.studios)
+            const bars = (decadeData ? Object.entries(decadeData.studios) : [])
                 .filter(([studio]) => studioVisibility[studio] !== false && studio !== 'Other')
                 .sort((a, b) => b[1].count - a[1].count)
                 .slice(0, 8);
