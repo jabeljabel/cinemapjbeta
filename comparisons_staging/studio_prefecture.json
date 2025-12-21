@@ -1,0 +1,3171 @@
+{
+  "metadata": {
+    "generated": "2025-12-21T14:30:47.650075",
+    "total_prefectures": 49,
+    "total_studios": 11,
+    "decades": [
+      "1890",
+      "1900",
+      "1910",
+      "1920",
+      "1930",
+      "1940",
+      "1950",
+      "1960",
+      "1970",
+      "1980",
+      "1990",
+      "2000",
+      "2010",
+      "2020"
+    ]
+  },
+  "studios": {
+    "Toei": {
+      "color": "#e74c3c",
+      "name_jp": "東映"
+    },
+    "Shochiku": {
+      "color": "#3498db",
+      "name_jp": "松竹"
+    },
+    "Toho": {
+      "color": "#2ecc71",
+      "name_jp": "東宝"
+    },
+    "Nikkatsu": {
+      "color": "#9b59b6",
+      "name_jp": "日活"
+    },
+    "Daiei": {
+      "color": "#f39c12",
+      "name_jp": "大映"
+    },
+    "Kadokawa": {
+      "color": "#1abc9c",
+      "name_jp": "角川"
+    },
+    "Shintoho": {
+      "color": "#e67e22",
+      "name_jp": "新東宝"
+    },
+    "Tsuburaya": {
+      "color": "#34495e",
+      "name_jp": "円谷"
+    },
+    "Tohokushinsha": {
+      "color": "#16a085",
+      "name_jp": "東北新社"
+    },
+    "Ghibli": {
+      "color": "#27ae60",
+      "name_jp": "ジブリ"
+    },
+    "Other": {
+      "color": "#95a5a6",
+      "name_jp": "その他"
+    }
+  },
+  "prefectures": {
+    "Ocean": {
+      "coordinates": [
+        33.3754,
+        133.3288
+      ],
+      "by_decade": {
+        "1990": {
+          "Other": 2,
+          "Shochiku": 1
+        },
+        "1950": {
+          "Other": 1
+        },
+        "1970": {
+          "Other": 3
+        },
+        "1980": {
+          "Shochiku": 4
+        }
+      }
+    },
+    "Overseas": {
+      "coordinates": [
+        39.6522,
+        26.1435
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 110,
+          "Daiei": 3,
+          "Nikkatsu": 1,
+          "Toei": 1,
+          "Shochiku": 4,
+          "Kadokawa": 3
+        },
+        "2010": {
+          "Other": 145,
+          "Nikkatsu": 1,
+          "Toho": 1,
+          "Toei": 2,
+          "Kadokawa": 2
+        },
+        "2020": {
+          "Other": 9,
+          "Nikkatsu": 1,
+          "Toho": 1
+        },
+        "1960": {
+          "Other": 57,
+          "Shochiku": 2,
+          "Nikkatsu": 38
+        },
+        "1970": {
+          "Other": 20,
+          "Shochiku": 4,
+          "Daiei": 1,
+          "Nikkatsu": 3,
+          "Toho": 3,
+          "Toei": 1
+        },
+        "1980": {
+          "Other": 23,
+          "Shochiku": 7,
+          "Daiei": 2,
+          "Kadokawa": 3
+        },
+        "1990": {
+          "Other": 41,
+          "Shochiku": 13,
+          "Toei": 1
+        },
+        "1950": {
+          "Other": 16,
+          "Nikkatsu": 40,
+          "Toei": 1
+        },
+        "1910": {
+          "Other": 2
+        },
+        "1930": {
+          "Other": 7,
+          "Tohokushinsha": 6,
+          "Toho": 1
+        },
+        "1940": {
+          "Other": 3,
+          "Toho": 1
+        },
+        "1920": {
+          "Other": 2
+        }
+      }
+    },
+    "三重県": {
+      "coordinates": [
+        34.6694,
+        136.5951
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 2,
+          "Nikkatsu": 22,
+          "Toho": 1,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 29,
+          "Shochiku": 3,
+          "Nikkatsu": 1,
+          "Kadokawa": 5
+        },
+        "2010": {
+          "Other": 28,
+          "Nikkatsu": 10,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 4,
+          "Nikkatsu": 1,
+          "Shochiku": 5,
+          "Kadokawa": 1
+        },
+        "1950": {
+          "Other": 3,
+          "Nikkatsu": 27,
+          "Toho": 2,
+          "Shochiku": 4
+        },
+        "1970": {
+          "Other": 16,
+          "Toei": 1,
+          "Nikkatsu": 2,
+          "Shochiku": 7
+        },
+        "1960": {
+          "Other": 28,
+          "Shochiku": 10,
+          "Daiei": 2,
+          "Nikkatsu": 9,
+          "Toho": 6,
+          "Toei": 11
+        },
+        "1990": {
+          "Toho": 1
+        }
+      }
+    },
+    "京都府": {
+      "coordinates": [
+        35.033,
+        135.6848
+      ],
+      "by_decade": {
+        "1970": {
+          "Other": 830,
+          "Daiei": 54,
+          "Toho": 381,
+          "Shochiku": 129,
+          "Nikkatsu": 46,
+          "Toei": 113,
+          "Kadokawa": 1
+        },
+        "2020": {
+          "Other": 45,
+          "Shochiku": 6,
+          "Daiei": 1,
+          "Nikkatsu": 7,
+          "Toho": 1,
+          "Toei": 1
+        },
+        "2010": {
+          "Other": 369,
+          "Toei": 69,
+          "Daiei": 2,
+          "Nikkatsu": 9,
+          "Toho": 45,
+          "Shochiku": 70,
+          "Kadokawa": 4
+        },
+        "1950": {
+          "Other": 30,
+          "Daiei": 163,
+          "Nikkatsu": 161,
+          "Toho": 21,
+          "Toei": 241,
+          "Shochiku": 77
+        },
+        "1930": {
+          "Other": 12,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 7,
+          "Toei": 1,
+          "Shochiku": 5
+        },
+        "2000": {
+          "Other": 209,
+          "Toei": 32,
+          "Tohokushinsha": 1,
+          "Shochiku": 391,
+          "Daiei": 17,
+          "Nikkatsu": 4,
+          "Toho": 10,
+          "Kadokawa": 19
+        },
+        "1960": {
+          "Other": 70,
+          "Shintoho": 1,
+          "Shochiku": 296,
+          "Toho": 70,
+          "Daiei": 120,
+          "Nikkatsu": 15,
+          "Toei": 391
+        },
+        "1940": {
+          "Other": 14,
+          "Daiei": 12,
+          "Toho": 4,
+          "Toei": 3,
+          "Shochiku": 2
+        },
+        "1980": {
+          "Other": 1774,
+          "Toei": 2068,
+          "Ghibli": 1,
+          "Shochiku": 67,
+          "Daiei": 59,
+          "Nikkatsu": 11,
+          "Toho": 36,
+          "Kadokawa": 3
+        },
+        "1990": {
+          "Other": 705,
+          "Toei": 325,
+          "Daiei": 11,
+          "Nikkatsu": 1,
+          "Toho": 11,
+          "Shochiku": 462
+        },
+        "1920": {
+          "Other": 11,
+          "Nikkatsu": 1,
+          "Toei": 1
+        },
+        "1900": {
+          "Other": 1
+        },
+        "1910": {
+          "Nikkatsu": 1
+        }
+      }
+    },
+    "佐賀県": {
+      "coordinates": [
+        33.2384,
+        130.1998
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 14,
+          "Nikkatsu": 4,
+          "Toei": 1
+        },
+        "2000": {
+          "Other": 8,
+          "Shochiku": 1,
+          "Nikkatsu": 2
+        },
+        "1970": {
+          "Other": 13,
+          "Toei": 4,
+          "Toho": 1,
+          "Shochiku": 5
+        },
+        "1930": {
+          "Shintoho": 1,
+          "Other": 2,
+          "Toho": 1,
+          "Shochiku": 3
+        },
+        "1980": {
+          "Other": 5,
+          "Shochiku": 23,
+          "Daiei": 1,
+          "Toei": 1,
+          "Kadokawa": 1
+        },
+        "2020": {
+          "Toei": 2,
+          "Other": 1,
+          "Nikkatsu": 2
+        },
+        "1990": {
+          "Other": 3,
+          "Shochiku": 2
+        },
+        "1950": {
+          "Other": 5,
+          "Daiei": 1,
+          "Toho": 2,
+          "Nikkatsu": 5,
+          "Toei": 3,
+          "Shochiku": 4
+        },
+        "1920": {
+          "Other": 1,
+          "Toei": 1,
+          "Shochiku": 2
+        },
+        "1960": {
+          "Shochiku": 5,
+          "Other": 1,
+          "Daiei": 1,
+          "Toho": 7,
+          "Toei": 7
+        },
+        "1940": {
+          "Shochiku": 1
+        }
+      }
+    },
+    "兵庫県": {
+      "coordinates": [
+        34.8015,
+        135.1057
+      ],
+      "by_decade": {
+        "1970": {
+          "Other": 20,
+          "Shochiku": 44,
+          "Daiei": 1,
+          "Toho": 15,
+          "Nikkatsu": 3,
+          "Toei": 17
+        },
+        "2020": {
+          "Other": 6,
+          "Nikkatsu": 52,
+          "Toho": 1,
+          "Shochiku": 2
+        },
+        "2000": {
+          "Other": 113,
+          "Tsuburaya": 8,
+          "Toei": 4,
+          "Shochiku": 19,
+          "Daiei": 4,
+          "Nikkatsu": 16,
+          "Toho": 2,
+          "Kadokawa": 2
+        },
+        "1990": {
+          "Other": 31,
+          "Toei": 10,
+          "Tohokushinsha": 2,
+          "Toho": 2,
+          "Shochiku": 25
+        },
+        "2010": {
+          "Other": 116,
+          "Tohokushinsha": 4,
+          "Shochiku": 7,
+          "Daiei": 2,
+          "Nikkatsu": 116,
+          "Toho": 13,
+          "Toei": 3
+        },
+        "1950": {
+          "Other": 11,
+          "Daiei": 5,
+          "Nikkatsu": 66,
+          "Shochiku": 11
+        },
+        "1960": {
+          "Other": 78,
+          "Shintoho": 1,
+          "Tsuburaya": 1,
+          "Daiei": 5,
+          "Toho": 7,
+          "Nikkatsu": 80,
+          "Toei": 6,
+          "Shochiku": 20
+        },
+        "1980": {
+          "Other": 92,
+          "Ghibli": 3,
+          "Daiei": 6,
+          "Nikkatsu": 1,
+          "Toho": 8,
+          "Toei": 95,
+          "Shochiku": 4
+        },
+        "1940": {
+          "Daiei": 1,
+          "Other": 1,
+          "Nikkatsu": 1,
+          "Toei": 2
+        },
+        "1930": {
+          "Nikkatsu": 3
+        }
+      }
+    },
+    "北海道": {
+      "coordinates": [
+        41.2905,
+        140.3917
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 32,
+          "Nikkatsu": 7,
+          "Toho": 1,
+          "Shochiku": 2
+        },
+        "1970": {
+          "Other": 81,
+          "Daiei": 2,
+          "Nikkatsu": 5,
+          "Toho": 10,
+          "Toei": 10,
+          "Shochiku": 11
+        },
+        "2000": {
+          "Other": 114,
+          "Shochiku": 37,
+          "Daiei": 3,
+          "Nikkatsu": 4,
+          "Toei": 7
+        },
+        "1990": {
+          "Other": 147,
+          "Shochiku": 18,
+          "Tohokushinsha": 19,
+          "Toho": 1,
+          "Toei": 12,
+          "Kadokawa": 1
+        },
+        "2010": {
+          "Other": 105,
+          "Daiei": 1,
+          "Nikkatsu": 5,
+          "Toho": 6,
+          "Toei": 5,
+          "Shochiku": 5
+        },
+        "1980": {
+          "Other": 91,
+          "Shochiku": 39,
+          "Daiei": 3,
+          "Toho": 9,
+          "Toei": 64,
+          "Kadokawa": 3
+        },
+        "1940": {
+          "Other": 1,
+          "Toho": 2
+        },
+        "1950": {
+          "Other": 26,
+          "Daiei": 1,
+          "Nikkatsu": 78,
+          "Toho": 7,
+          "Toei": 6,
+          "Shochiku": 15
+        },
+        "1960": {
+          "Other": 20,
+          "Toei": 18,
+          "Toho": 20,
+          "Daiei": 6,
+          "Nikkatsu": 18,
+          "Shochiku": 6
+        },
+        "1910": {
+          "Other": 6
+        },
+        "1930": {
+          "Other": 1
+        }
+      }
+    },
+    "千葉県": {
+      "coordinates": [
+        35.6228,
+        140.0806
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 60,
+          "Nikkatsu": 2,
+          "Toho": 3,
+          "Toei": 2,
+          "Shochiku": 5
+        },
+        "2010": {
+          "Other": 223,
+          "Daiei": 6,
+          "Toei": 10,
+          "Nikkatsu": 6,
+          "Toho": 9,
+          "Shochiku": 4,
+          "Kadokawa": 2
+        },
+        "2000": {
+          "Other": 186,
+          "Shochiku": 28,
+          "Daiei": 1,
+          "Toho": 20,
+          "Toei": 9,
+          "Kadokawa": 9
+        },
+        "1990": {
+          "Other": 41,
+          "Shochiku": 5,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 16,
+          "Toei": 2
+        },
+        "1960": {
+          "Daiei": 5,
+          "Other": 12,
+          "Toei": 6,
+          "Nikkatsu": 12,
+          "Toho": 5,
+          "Shochiku": 9,
+          "Kadokawa": 1
+        },
+        "1940": {
+          "Other": 1
+        },
+        "1970": {
+          "Other": 13,
+          "Toho": 2,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "1950": {
+          "Other": 3,
+          "Daiei": 2,
+          "Nikkatsu": 9,
+          "Toei": 2,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 5,
+          "Toei": 2,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        }
+      }
+    },
+    "和歌山県": {
+      "coordinates": [
+        34.2574,
+        135.2216
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 2,
+          "Toho": 1
+        },
+        "2010": {
+          "Other": 15,
+          "Shochiku": 4
+        },
+        "2000": {
+          "Other": 10,
+          "Toei": 2,
+          "Shochiku": 1,
+          "Kadokawa": 1
+        },
+        "1960": {
+          "Other": 5,
+          "Daiei": 3,
+          "Toei": 1,
+          "Shochiku": 4
+        },
+        "1950": {
+          "Shintoho": 1,
+          "Other": 2,
+          "Shochiku": 4,
+          "Nikkatsu": 2
+        },
+        "1970": {
+          "Other": 7
+        },
+        "1980": {
+          "Other": 4,
+          "Shochiku": 10,
+          "Toei": 2
+        },
+        "1990": {
+          "Other": 2,
+          "Shochiku": 2
+        }
+      }
+    },
+    "埼玉県": {
+      "coordinates": [
+        35.8325,
+        139.425
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 36,
+          "Daiei": 2,
+          "Nikkatsu": 7,
+          "Toho": 2,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 195,
+          "Toei": 7,
+          "Tsuburaya": 1,
+          "Daiei": 4,
+          "Nikkatsu": 11,
+          "Toho": 2,
+          "Shochiku": 8,
+          "Kadokawa": 2
+        },
+        "2000": {
+          "Other": 113,
+          "Tsuburaya": 1,
+          "Shochiku": 14,
+          "Nikkatsu": 1,
+          "Toho": 6,
+          "Toei": 48,
+          "Kadokawa": 1
+        },
+        "1990": {
+          "Other": 23,
+          "Toho": 1,
+          "Toei": 2,
+          "Shochiku": 10
+        },
+        "1960": {
+          "Other": 31,
+          "Nikkatsu": 18,
+          "Toho": 1,
+          "Toei": 4,
+          "Shochiku": 4
+        },
+        "1980": {
+          "Other": 11,
+          "Daiei": 1,
+          "Toho": 1,
+          "Toei": 13,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        },
+        "1970": {
+          "Other": 20,
+          "Daiei": 1,
+          "Nikkatsu": 3,
+          "Toho": 2,
+          "Toei": 3,
+          "Shochiku": 4
+        },
+        "1950": {
+          "Toho": 2,
+          "Nikkatsu": 7,
+          "Other": 3
+        },
+        "1940": {
+          "Shochiku": 1
+        }
+      }
+    },
+    "大分県": {
+      "coordinates": [
+        33.2821,
+        131.5379
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 11,
+          "Nikkatsu": 4
+        },
+        "2000": {
+          "Other": 36,
+          "Nikkatsu": 2,
+          "Toho": 1
+        },
+        "2020": {
+          "Other": 2,
+          "Daiei": 1
+        },
+        "1970": {
+          "Other": 13,
+          "Shochiku": 3
+        },
+        "1960": {
+          "Other": 1,
+          "Shochiku": 2,
+          "Toho": 6,
+          "Nikkatsu": 4,
+          "Toei": 14
+        },
+        "1990": {
+          "Other": 6,
+          "Shochiku": 31,
+          "Nikkatsu": 2,
+          "Toho": 1,
+          "Toei": 1
+        },
+        "1980": {
+          "Other": 8
+        },
+        "1950": {
+          "Toho": 1,
+          "Shochiku": 7
+        },
+        "1930": {
+          "Toho": 2
+        },
+        "1940": {
+          "Shochiku": 1,
+          "Other": 1
+        }
+      }
+    },
+    "大阪府": {
+      "coordinates": [
+        34.659,
+        135.4508
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 7,
+          "Nikkatsu": 3,
+          "Toho": 3,
+          "Toei": 1,
+          "Shochiku": 3
+        },
+        "2000": {
+          "Other": 132,
+          "Tsuburaya": 3,
+          "Tohokushinsha": 1,
+          "Daiei": 4,
+          "Nikkatsu": 5,
+          "Toho": 3,
+          "Toei": 7,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        },
+        "1950": {
+          "Other": 9,
+          "Shintoho": 1,
+          "Daiei": 3,
+          "Nikkatsu": 18,
+          "Toho": 60,
+          "Toei": 4,
+          "Shochiku": 3
+        },
+        "1930": {
+          "Other": 11,
+          "Toho": 1,
+          "Shochiku": 2
+        },
+        "2010": {
+          "Other": 121,
+          "Nikkatsu": 3,
+          "Toho": 5,
+          "Toei": 2,
+          "Shochiku": 8,
+          "Kadokawa": 1
+        },
+        "1990": {
+          "Other": 61,
+          "Toho": 2,
+          "Toei": 6,
+          "Shochiku": 3
+        },
+        "1960": {
+          "Other": 71,
+          "Toei": 13,
+          "Daiei": 4,
+          "Nikkatsu": 66,
+          "Toho": 8,
+          "Shochiku": 8
+        },
+        "1970": {
+          "Other": 31,
+          "Shochiku": 4,
+          "Daiei": 3,
+          "Nikkatsu": 1,
+          "Toho": 3,
+          "Toei": 23
+        },
+        "1920": {
+          "Other": 1
+        },
+        "1940": {
+          "Other": 3,
+          "Toei": 2
+        },
+        "1980": {
+          "Other": 41,
+          "Shochiku": 29,
+          "Toho": 1,
+          "Toei": 10,
+          "Kadokawa": 4
+        }
+      }
+    },
+    "奈良県": {
+      "coordinates": [
+        34.6454,
+        135.8238
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 17,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toei": 2,
+          "Shochiku": 2
+        },
+        "1950": {
+          "Other": 45,
+          "Shintoho": 1,
+          "Daiei": 1,
+          "Nikkatsu": 6,
+          "Toho": 1,
+          "Toei": 2,
+          "Shochiku": 4
+        },
+        "2000": {
+          "Other": 16,
+          "Toei": 3,
+          "Tohokushinsha": 1,
+          "Shochiku": 23,
+          "Daiei": 2,
+          "Toho": 1,
+          "Kadokawa": 1
+        },
+        "2020": {
+          "Other": 3,
+          "Nikkatsu": 2
+        },
+        "1980": {
+          "Other": 19,
+          "Daiei": 2,
+          "Nikkatsu": 1,
+          "Toho": 2,
+          "Toei": 30,
+          "Shochiku": 12
+        },
+        "1930": {
+          "Other": 8,
+          "Toho": 1,
+          "Toei": 1
+        },
+        "1970": {
+          "Toho": 5,
+          "Toei": 1,
+          "Shochiku": 2,
+          "Other": 2
+        },
+        "1990": {
+          "Other": 30,
+          "Daiei": 2,
+          "Toei": 11,
+          "Shochiku": 19
+        },
+        "1960": {
+          "Other": 11,
+          "Shochiku": 14,
+          "Daiei": 3,
+          "Nikkatsu": 5,
+          "Toei": 6
+        },
+        "1920": {
+          "Daiei": 1
+        }
+      }
+    },
+    "宮城県": {
+      "coordinates": [
+        37.8959,
+        140.7131
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 16,
+          "Daiei": 2,
+          "Nikkatsu": 21,
+          "Toho": 1,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 34,
+          "Nikkatsu": 21,
+          "Shochiku": 8
+        },
+        "2000": {
+          "Other": 41,
+          "Nikkatsu": 6,
+          "Tohokushinsha": 1,
+          "Shochiku": 1
+        },
+        "1970": {
+          "Other": 5,
+          "Nikkatsu": 1,
+          "Toho": 2,
+          "Toei": 1,
+          "Shochiku": 5
+        },
+        "1920": {
+          "Other": 1
+        },
+        "1980": {
+          "Other": 14,
+          "Toho": 1,
+          "Toei": 2,
+          "Shochiku": 12
+        },
+        "1990": {
+          "Other": 22,
+          "Toho": 9,
+          "Shochiku": 2
+        },
+        "1960": {
+          "Other": 21,
+          "Toei": 3,
+          "Shochiku": 2,
+          "Daiei": 2,
+          "Nikkatsu": 1,
+          "Toho": 1
+        },
+        "1950": {
+          "Toho": 2,
+          "Nikkatsu": 6,
+          "Shochiku": 2
+        }
+      }
+    },
+    "宮崎県": {
+      "coordinates": [
+        31.928,
+        131.3053
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 2
+        },
+        "2010": {
+          "Other": 4,
+          "Nikkatsu": 1
+        },
+        "1960": {
+          "Other": 14,
+          "Tohokushinsha": 1
+        },
+        "2000": {
+          "Other": 3,
+          "Shochiku": 6,
+          "Nikkatsu": 1
+        },
+        "1990": {
+          "Shochiku": 19
+        },
+        "1980": {
+          "Toho": 1
+        },
+        "1970": {
+          "Other": 1
+        }
+      }
+    },
+    "富山県": {
+      "coordinates": [
+        36.5728,
+        137.123
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 7,
+          "Shochiku": 1,
+          "Kadokawa": 1
+        },
+        "2000": {
+          "Other": 11,
+          "Toei": 3,
+          "Shochiku": 8,
+          "Daiei": 1
+        },
+        "2010": {
+          "Other": 53,
+          "Tohokushinsha": 3,
+          "Daiei": 1,
+          "Nikkatsu": 11,
+          "Toho": 2,
+          "Toei": 2,
+          "Shochiku": 4,
+          "Kadokawa": 1
+        },
+        "1990": {
+          "Other": 20,
+          "Daiei": 1,
+          "Toei": 2,
+          "Shochiku": 18
+        },
+        "1970": {
+          "Other": 4,
+          "Toei": 1,
+          "Toho": 4,
+          "Shochiku": 1
+        },
+        "1960": {
+          "Other": 6,
+          "Toei": 1
+        },
+        "1980": {
+          "Other": 8,
+          "Toei": 3,
+          "Toho": 1
+        },
+        "1950": {
+          "Daiei": 1,
+          "Toei": 1
+        }
+      }
+    },
+    "山口県": {
+      "coordinates": [
+        34.1184,
+        131.3705
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 12
+        },
+        "2000": {
+          "Other": 25,
+          "Shochiku": 4,
+          "Nikkatsu": 2
+        },
+        "2010": {
+          "Other": 8,
+          "Toei": 2,
+          "Nikkatsu": 1,
+          "Shochiku": 1
+        },
+        "1950": {
+          "Shintoho": 1,
+          "Nikkatsu": 8,
+          "Shochiku": 3
+        },
+        "1970": {
+          "Other": 7,
+          "Toei": 3,
+          "Shochiku": 2
+        },
+        "1960": {
+          "Other": 28,
+          "Nikkatsu": 4,
+          "Toho": 1,
+          "Toei": 2,
+          "Shochiku": 3
+        },
+        "1980": {
+          "Other": 3
+        },
+        "1940": {
+          "Other": 2
+        },
+        "1930": {
+          "Other": 1
+        }
+      }
+    },
+    "山形県": {
+      "coordinates": [
+        38.5268,
+        140.0643
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 56,
+          "Toho": 12
+        },
+        "2010": {
+          "Other": 37,
+          "Shochiku": 5
+        },
+        "2020": {
+          "Other": 1,
+          "Daiei": 1
+        },
+        "1950": {
+          "Shintoho": 1,
+          "Nikkatsu": 5
+        },
+        "1980": {
+          "Other": 7,
+          "Toei": 1,
+          "Kadokawa": 2
+        },
+        "1970": {
+          "Toei": 1,
+          "Other": 2,
+          "Toho": 2,
+          "Shochiku": 13
+        },
+        "1990": {
+          "Other": 2,
+          "Shochiku": 6
+        },
+        "1960": {
+          "Other": 1,
+          "Toho": 1
+        },
+        "1930": {
+          "Shochiku": 1
+        }
+      }
+    },
+    "山梨県": {
+      "coordinates": [
+        35.5645,
+        138.363
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 84,
+          "Daiei": 1,
+          "Nikkatsu": 4,
+          "Toho": 4,
+          "Shochiku": 6
+        },
+        "2000": {
+          "Other": 98,
+          "Tsuburaya": 1,
+          "Nikkatsu": 2,
+          "Toho": 4,
+          "Toei": 3,
+          "Shochiku": 2,
+          "Kadokawa": 2
+        },
+        "2020": {
+          "Other": 3,
+          "Toho": 1,
+          "Shochiku": 3
+        },
+        "1960": {
+          "Other": 6,
+          "Daiei": 2,
+          "Nikkatsu": 12,
+          "Toho": 6,
+          "Toei": 1,
+          "Shochiku": 4
+        },
+        "1980": {
+          "Other": 2,
+          "Shochiku": 2
+        },
+        "1970": {
+          "Other": 9,
+          "Shochiku": 13,
+          "Nikkatsu": 1,
+          "Toho": 2
+        },
+        "1990": {
+          "Other": 8,
+          "Toho": 2,
+          "Shochiku": 3
+        },
+        "1950": {
+          "Other": 4,
+          "Daiei": 1,
+          "Nikkatsu": 14,
+          "Toho": 1,
+          "Shochiku": 1
+        }
+      }
+    },
+    "岐阜県": {
+      "coordinates": [
+        35.4449,
+        137.0726
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 17,
+          "Daiei": 5,
+          "Toho": 4,
+          "Toei": 1,
+          "Shochiku": 1,
+          "Kadokawa": 2
+        },
+        "2020": {
+          "Other": 6,
+          "Toei": 1,
+          "Daiei": 2,
+          "Shochiku": 4
+        },
+        "2000": {
+          "Other": 27,
+          "Nikkatsu": 2,
+          "Shochiku": 2
+        },
+        "1990": {
+          "Other": 19,
+          "Shochiku": 13
+        },
+        "1950": {
+          "Other": 2,
+          "Toho": 2,
+          "Nikkatsu": 2,
+          "Toei": 1,
+          "Shochiku": 9
+        },
+        "1970": {
+          "Toei": 5,
+          "Other": 8,
+          "Toho": 1,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        },
+        "1980": {
+          "Other": 11,
+          "Shochiku": 9,
+          "Nikkatsu": 1,
+          "Toei": 2,
+          "Kadokawa": 1
+        },
+        "1960": {
+          "Other": 5,
+          "Toei": 3,
+          "Daiei": 1,
+          "Nikkatsu": 6,
+          "Toho": 9,
+          "Shochiku": 1
+        },
+        "1930": {
+          "Other": 2,
+          "Daiei": 1,
+          "Shochiku": 1
+        }
+      }
+    },
+    "岡山県": {
+      "coordinates": [
+        34.6814,
+        133.9624
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 25,
+          "Shochiku": 2
+        },
+        "2020": {
+          "Other": 3,
+          "Nikkatsu": 6,
+          "Toho": 2,
+          "Shochiku": 4
+        },
+        "2000": {
+          "Other": 11,
+          "Toei": 1,
+          "Shochiku": 3,
+          "Kadokawa": 8
+        },
+        "1960": {
+          "Other": 14,
+          "Tsuburaya": 2,
+          "Shochiku": 3,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 4,
+          "Toei": 1
+        },
+        "1970": {
+          "Other": 11,
+          "Shochiku": 4,
+          "Nikkatsu": 2,
+          "Toho": 5,
+          "Toei": 4
+        },
+        "1940": {
+          "Other": 4,
+          "Shochiku": 1
+        },
+        "1990": {
+          "Other": 5,
+          "Shochiku": 28,
+          "Toei": 1
+        },
+        "1950": {
+          "Other": 3,
+          "Toho": 5,
+          "Daiei": 3,
+          "Nikkatsu": 3,
+          "Toei": 1
+        },
+        "1980": {
+          "Other": 8,
+          "Toei": 1,
+          "Shochiku": 1,
+          "Kadokawa": 1
+        },
+        "1930": {
+          "Toho": 1
+        }
+      }
+    },
+    "岩手県": {
+      "coordinates": [
+        39.583,
+        141.1462
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 4,
+          "Daiei": 1,
+          "Nikkatsu": 13,
+          "Shochiku": 1
+        },
+        "1990": {
+          "Other": 7,
+          "Nikkatsu": 4,
+          "Shochiku": 4
+        },
+        "2010": {
+          "Other": 21,
+          "Nikkatsu": 26,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 10,
+          "Daiei": 1,
+          "Nikkatsu": 6,
+          "Shochiku": 3
+        },
+        "1970": {
+          "Other": 4,
+          "Nikkatsu": 7,
+          "Toho": 1,
+          "Toei": 2,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 2,
+          "Nikkatsu": 7,
+          "Toei": 3,
+          "Shochiku": 9
+        },
+        "1950": {
+          "Toho": 1,
+          "Nikkatsu": 235
+        },
+        "1960": {
+          "Nikkatsu": 8,
+          "Other": 1,
+          "Toei": 1,
+          "Shochiku": 2
+        },
+        "1920": {
+          "Nikkatsu": 2
+        },
+        "1940": {
+          "Shochiku": 2
+        }
+      }
+    },
+    "島根県": {
+      "coordinates": [
+        35.394,
+        132.8952
+      ],
+      "by_decade": {
+        "1990": {
+          "Other": 5,
+          "Shochiku": 5,
+          "Toei": 1
+        },
+        "1960": {
+          "Other": 1,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 34,
+          "Shochiku": 11,
+          "Nikkatsu": 2
+        },
+        "2010": {
+          "Other": 5,
+          "Nikkatsu": 7,
+          "Shochiku": 1
+        },
+        "1970": {
+          "Other": 14,
+          "Toho": 1,
+          "Toei": 1,
+          "Shochiku": 36
+        },
+        "1980": {
+          "Other": 2,
+          "Toei": 6
+        },
+        "1950": {
+          "Nikkatsu": 2
+        },
+        "2020": {
+          "Shochiku": 1
+        }
+      }
+    },
+    "広島県": {
+      "coordinates": [
+        34.4313,
+        132.8836
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 17,
+          "Nikkatsu": 20,
+          "Toei": 2,
+          "Shochiku": 2
+        },
+        "2010": {
+          "Other": 68,
+          "Tsuburaya": 1,
+          "Nikkatsu": 21,
+          "Toei": 5,
+          "Shochiku": 3
+        },
+        "2000": {
+          "Other": 28,
+          "Nikkatsu": 27,
+          "Shochiku": 3,
+          "Kadokawa": 2
+        },
+        "1990": {
+          "Other": 76,
+          "Daiei": 1,
+          "Shochiku": 1
+        },
+        "1940": {
+          "Other": 2
+        },
+        "1960": {
+          "Other": 25,
+          "Tsuburaya": 1,
+          "Shochiku": 10,
+          "Nikkatsu": 11,
+          "Toho": 3,
+          "Toei": 6
+        },
+        "1950": {
+          "Other": 15,
+          "Daiei": 1,
+          "Nikkatsu": 12,
+          "Toho": 1,
+          "Toei": 1,
+          "Shochiku": 4
+        },
+        "1970": {
+          "Other": 7,
+          "Shochiku": 8,
+          "Daiei": 3,
+          "Nikkatsu": 1,
+          "Toho": 4,
+          "Toei": 17
+        },
+        "1980": {
+          "Other": 56,
+          "Daiei": 1,
+          "Kadokawa": 1
+        }
+      }
+    },
+    "徳島県": {
+      "coordinates": [
+        34.0649,
+        134.5412
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 5,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 4,
+          "Nikkatsu": 1,
+          "Shochiku": 1
+        },
+        "1960": {
+          "Other": 1,
+          "Daiei": 1,
+          "Toho": 1,
+          "Toei": 1,
+          "Shochiku": 2
+        },
+        "1980": {
+          "Other": 2
+        },
+        "1990": {
+          "Other": 1,
+          "Shochiku": 2
+        },
+        "1950": {
+          "Daiei": 2,
+          "Toho": 1,
+          "Nikkatsu": 9,
+          "Toei": 1
+        },
+        "2020": {
+          "Other": 1,
+          "Nikkatsu": 2
+        }
+      }
+    },
+    "愛媛県": {
+      "coordinates": [
+        33.6941,
+        132.7412
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 64,
+          "Tohokushinsha": 2
+        },
+        "2020": {
+          "Other": 4,
+          "Shochiku": 2
+        },
+        "2010": {
+          "Other": 11,
+          "Nikkatsu": 1
+        },
+        "1960": {
+          "Other": 1,
+          "Toho": 5,
+          "Daiei": 7,
+          "Toei": 1,
+          "Shochiku": 4
+        },
+        "1970": {
+          "Other": 27,
+          "Shochiku": 3,
+          "Toho": 3,
+          "Toei": 4
+        },
+        "1980": {
+          "Other": 8,
+          "Toei": 4,
+          "Shochiku": 1
+        },
+        "1990": {
+          "Other": 20,
+          "Toei": 1,
+          "Shochiku": 3
+        },
+        "1950": {
+          "Toho": 2,
+          "Nikkatsu": 4,
+          "Shochiku": 1
+        }
+      }
+    },
+    "愛知県": {
+      "coordinates": [
+        35.1357,
+        136.9795
+      ],
+      "by_decade": {
+        "1970": {
+          "Other": 14,
+          "Shochiku": 6,
+          "Daiei": 1,
+          "Toho": 11,
+          "Nikkatsu": 2,
+          "Toei": 3
+        },
+        "2020": {
+          "Other": 13,
+          "Nikkatsu": 4,
+          "Toho": 1,
+          "Shochiku": 3
+        },
+        "2010": {
+          "Other": 81,
+          "Daiei": 1,
+          "Nikkatsu": 3,
+          "Toho": 4,
+          "Toei": 6,
+          "Shochiku": 7
+        },
+        "1990": {
+          "Other": 36,
+          "Toei": 10,
+          "Shochiku": 16,
+          "Daiei": 1,
+          "Toho": 8
+        },
+        "2000": {
+          "Other": 27,
+          "Shochiku": 16,
+          "Nikkatsu": 2,
+          "Toho": 1,
+          "Toei": 2,
+          "Kadokawa": 9
+        },
+        "1980": {
+          "Other": 24,
+          "Shochiku": 10,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 1,
+          "Toei": 27
+        },
+        "1960": {
+          "Other": 16,
+          "Toei": 9,
+          "Toho": 36,
+          "Daiei": 7,
+          "Nikkatsu": 27,
+          "Shochiku": 13
+        },
+        "1950": {
+          "Other": 5,
+          "Daiei": 4,
+          "Nikkatsu": 25,
+          "Toei": 1,
+          "Shochiku": 9
+        },
+        "1930": {
+          "Other": 2,
+          "Toho": 2,
+          "Shochiku": 1
+        },
+        "1940": {
+          "Toho": 1,
+          "Daiei": 1,
+          "Shochiku": 2
+        }
+      }
+    },
+    "新潟県": {
+      "coordinates": [
+        37.6181,
+        138.8289
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 7,
+          "Nikkatsu": 1,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 26,
+          "Shochiku": 3,
+          "Toei": 1
+        },
+        "1990": {
+          "Other": 7,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 49,
+          "Daiei": 1,
+          "Toho": 1,
+          "Shochiku": 2
+        },
+        "1980": {
+          "Other": 9,
+          "Shochiku": 20,
+          "Nikkatsu": 1,
+          "Toei": 3
+        },
+        "1970": {
+          "Other": 17,
+          "Toei": 2,
+          "Toho": 1,
+          "Shochiku": 1
+        },
+        "1920": {
+          "Other": 1,
+          "Shochiku": 1
+        },
+        "1960": {
+          "Other": 4,
+          "Toei": 7,
+          "Toho": 4,
+          "Shochiku": 4
+        },
+        "1950": {
+          "Shochiku": 5,
+          "Nikkatsu": 20,
+          "Other": 2,
+          "Toei": 1
+        }
+      }
+    },
+    "東京都": {
+      "coordinates": [
+        35.6034,
+        139.6192
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 209,
+          "Daiei": 4,
+          "Toei": 7,
+          "Tohokushinsha": 1,
+          "Nikkatsu": 18,
+          "Toho": 8,
+          "Shochiku": 12,
+          "Kadokawa": 1
+        },
+        "2010": {
+          "Other": 1538,
+          "Daiei": 70,
+          "Toei": 56,
+          "Tohokushinsha": 16,
+          "Shochiku": 54,
+          "Toho": 79,
+          "Nikkatsu": 66,
+          "Kadokawa": 10
+        },
+        "1950": {
+          "Other": 208,
+          "Shintoho": 9,
+          "Toho": 103,
+          "Daiei": 23,
+          "Nikkatsu": 806,
+          "Toei": 9,
+          "Shochiku": 51
+        },
+        "2000": {
+          "Other": 2088,
+          "Tsuburaya": 2,
+          "Toei": 116,
+          "Shochiku": 187,
+          "Daiei": 29,
+          "Nikkatsu": 15,
+          "Tohokushinsha": 2,
+          "Toho": 150,
+          "Kadokawa": 39
+        },
+        "1990": {
+          "Other": 249,
+          "Daiei": 5,
+          "Toei": 44,
+          "Tohokushinsha": 1,
+          "Shochiku": 50,
+          "Nikkatsu": 4,
+          "Toho": 11
+        },
+        "1960": {
+          "Other": 552,
+          "Daiei": 40,
+          "Shintoho": 2,
+          "Tsuburaya": 2,
+          "Tohokushinsha": 3,
+          "Toei": 52,
+          "Shochiku": 159,
+          "Toho": 362,
+          "Nikkatsu": 736,
+          "Kadokawa": 4
+        },
+        "1980": {
+          "Other": 192,
+          "Tohokushinsha": 1,
+          "Shochiku": 69,
+          "Daiei": 2,
+          "Toho": 5,
+          "Nikkatsu": 7,
+          "Toei": 41,
+          "Kadokawa": 17
+        },
+        "1970": {
+          "Other": 227,
+          "Toho": 47,
+          "Toei": 33,
+          "Shochiku": 53,
+          "Daiei": 4,
+          "Nikkatsu": 19
+        },
+        "1940": {
+          "Other": 16,
+          "Toho": 11,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Shochiku": 18
+        },
+        "1930": {
+          "Other": 41,
+          "Shintoho": 1,
+          "Tohokushinsha": 1,
+          "Nikkatsu": 1,
+          "Toho": 1,
+          "Shochiku": 28
+        },
+        "1910": {
+          "Other": 3,
+          "Nikkatsu": 1
+        },
+        "1890": {
+          "Other": 1
+        },
+        "1920": {
+          "Other": 5,
+          "Daiei": 1,
+          "Toei": 10,
+          "Shochiku": 2
+        },
+        "1900": {
+          "Other": 1
+        }
+      }
+    },
+    "栃木県": {
+      "coordinates": [
+        36.4529,
+        139.5418
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 164,
+          "Daiei": 6,
+          "Tohokushinsha": 1,
+          "Nikkatsu": 3,
+          "Toho": 18,
+          "Toei": 9,
+          "Shochiku": 16,
+          "Kadokawa": 1
+        },
+        "2020": {
+          "Other": 22,
+          "Toei": 3,
+          "Nikkatsu": 6,
+          "Toho": 5,
+          "Shochiku": 2
+        },
+        "2000": {
+          "Other": 55,
+          "Daiei": 2,
+          "Toho": 7,
+          "Toei": 6,
+          "Shochiku": 13,
+          "Kadokawa": 1
+        },
+        "1930": {
+          "Other": 4
+        },
+        "1980": {
+          "Other": 8,
+          "Toho": 1,
+          "Toei": 5
+        },
+        "1960": {
+          "Other": 10,
+          "Nikkatsu": 6,
+          "Toho": 8,
+          "Toei": 1
+        },
+        "1970": {
+          "Other": 8
+        },
+        "1990": {
+          "Other": 3,
+          "Shochiku": 6
+        },
+        "1950": {
+          "Daiei": 2,
+          "Nikkatsu": 6,
+          "Shochiku": 1
+        }
+      }
+    },
+    "沖縄県": {
+      "coordinates": [
+        26.1573,
+        127.5439
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 18,
+          "Nikkatsu": 4,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 39,
+          "Daiei": 1,
+          "Toei": 2,
+          "Shochiku": 2
+        },
+        "2000": {
+          "Other": 92,
+          "Shochiku": 11,
+          "Kadokawa": 1
+        },
+        "1970": {
+          "Other": 14,
+          "Toho": 1,
+          "Toei": 1,
+          "Kadokawa": 1
+        },
+        "1950": {
+          "Other": 3,
+          "Toei": 1,
+          "Shochiku": 2
+        },
+        "1960": {
+          "Other": 4,
+          "Toei": 3,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 44,
+          "Shochiku": 2,
+          "Kadokawa": 2
+        },
+        "1990": {
+          "Other": 7,
+          "Toho": 1,
+          "Toei": 1,
+          "Shochiku": 3
+        }
+      }
+    },
+    "滋賀県": {
+      "coordinates": [
+        35.1744,
+        136.066
+      ],
+      "by_decade": {
+        "1970": {
+          "Other": 33,
+          "Daiei": 4,
+          "Shochiku": 14,
+          "Toho": 61,
+          "Nikkatsu": 1,
+          "Toei": 15
+        },
+        "2000": {
+          "Other": 31,
+          "Toei": 13,
+          "Shochiku": 30,
+          "Toho": 5,
+          "Kadokawa": 1
+        },
+        "2020": {
+          "Other": 8,
+          "Nikkatsu": 3,
+          "Toho": 4
+        },
+        "1960": {
+          "Other": 20,
+          "Daiei": 26,
+          "Nikkatsu": 2,
+          "Toho": 15,
+          "Toei": 78,
+          "Shochiku": 43
+        },
+        "2010": {
+          "Other": 74,
+          "Shochiku": 16,
+          "Daiei": 6,
+          "Nikkatsu": 2,
+          "Toho": 1,
+          "Toei": 9
+        },
+        "1990": {
+          "Other": 63,
+          "Daiei": 5,
+          "Toho": 3,
+          "Toei": 26,
+          "Shochiku": 48
+        },
+        "1980": {
+          "Other": 94,
+          "Daiei": 5,
+          "Nikkatsu": 2,
+          "Toho": 2,
+          "Toei": 132,
+          "Shochiku": 6,
+          "Kadokawa": 2
+        },
+        "1950": {
+          "Other": 16,
+          "Daiei": 30,
+          "Nikkatsu": 11,
+          "Toho": 1,
+          "Toei": 23,
+          "Shochiku": 11
+        },
+        "1940": {
+          "Daiei": 2
+        },
+        "1910": {
+          "Other": 4
+        },
+        "1920": {
+          "Nikkatsu": 1,
+          "Other": 1
+        }
+      }
+    },
+    "熊本県": {
+      "coordinates": [
+        33.2134,
+        131.1157
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 8,
+          "Shochiku": 1
+        },
+        "1950": {
+          "Other": 1,
+          "Toho": 1,
+          "Nikkatsu": 5,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 18,
+          "Toei": 5,
+          "Shochiku": 1
+        },
+        "2020": {
+          "Other": 5,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 14,
+          "Toho": 1,
+          "Toei": 4,
+          "Shochiku": 3
+        },
+        "1970": {
+          "Toei": 1,
+          "Other": 33,
+          "Nikkatsu": 2,
+          "Toho": 4,
+          "Shochiku": 3
+        },
+        "1990": {
+          "Other": 6,
+          "Nikkatsu": 1
+        },
+        "1960": {
+          "Tohokushinsha": 1,
+          "Other": 2,
+          "Nikkatsu": 39,
+          "Toho": 3,
+          "Toei": 8,
+          "Shochiku": 1
+        }
+      }
+    },
+    "石川県": {
+      "coordinates": [
+        36.6441,
+        136.7843
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 25,
+          "Daiei": 1,
+          "Nikkatsu": 12,
+          "Toei": 1,
+          "Shochiku": 4,
+          "Kadokawa": 1
+        },
+        "2000": {
+          "Other": 14,
+          "Nikkatsu": 7,
+          "Shochiku": 1
+        },
+        "2020": {
+          "Other": 4,
+          "Nikkatsu": 6,
+          "Toho": 1,
+          "Toei": 15,
+          "Shochiku": 2
+        },
+        "1970": {
+          "Other": 23,
+          "Toei": 4,
+          "Tohokushinsha": 1,
+          "Shochiku": 1,
+          "Toho": 3
+        },
+        "1990": {
+          "Other": 4,
+          "Toho": 1,
+          "Toei": 1,
+          "Shochiku": 3
+        },
+        "1980": {
+          "Other": 19,
+          "Toho": 8,
+          "Toei": 15,
+          "Shochiku": 2
+        },
+        "1960": {
+          "Other": 34,
+          "Toei": 3,
+          "Shochiku": 20,
+          "Toho": 10,
+          "Daiei": 2,
+          "Nikkatsu": 19
+        },
+        "1950": {
+          "Daiei": 3,
+          "Toho": 8,
+          "Nikkatsu": 6,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "1910": {
+          "Nikkatsu": 1
+        },
+        "1940": {
+          "Toho": 1
+        }
+      }
+    },
+    "神奈川県": {
+      "coordinates": [
+        35.4124,
+        139.4812
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 100,
+          "Daiei": 1,
+          "Nikkatsu": 5,
+          "Toho": 2,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 405,
+          "Daiei": 8,
+          "Toei": 35,
+          "Shochiku": 48,
+          "Tsuburaya": 1,
+          "Nikkatsu": 45,
+          "Toho": 24,
+          "Kadokawa": 28
+        },
+        "1990": {
+          "Other": 61,
+          "Toei": 19,
+          "Shochiku": 23,
+          "Daiei": 1,
+          "Nikkatsu": 2,
+          "Toho": 9
+        },
+        "2000": {
+          "Other": 537,
+          "Toei": 20,
+          "Shochiku": 59,
+          "Daiei": 8,
+          "Nikkatsu": 3,
+          "Toho": 22,
+          "Kadokawa": 11
+        },
+        "1960": {
+          "Other": 154,
+          "Shintoho": 1,
+          "Toei": 16,
+          "Shochiku": 30,
+          "Daiei": 16,
+          "Nikkatsu": 230,
+          "Toho": 66
+        },
+        "1980": {
+          "Other": 45,
+          "Shochiku": 27,
+          "Daiei": 2,
+          "Toho": 2,
+          "Nikkatsu": 1,
+          "Toei": 34,
+          "Kadokawa": 3
+        },
+        "1970": {
+          "Other": 46,
+          "Toei": 14,
+          "Daiei": 3,
+          "Nikkatsu": 5,
+          "Toho": 8,
+          "Shochiku": 12
+        },
+        "1930": {
+          "Other": 8,
+          "Tohokushinsha": 1,
+          "Toei": 1,
+          "Shochiku": 5
+        },
+        "1950": {
+          "Other": 94,
+          "Shintoho": 1,
+          "Daiei": 2,
+          "Toho": 10,
+          "Nikkatsu": 190,
+          "Toei": 1,
+          "Shochiku": 25
+        },
+        "1910": {
+          "Other": 5
+        },
+        "1920": {
+          "Other": 2
+        },
+        "1940": {
+          "Other": 21,
+          "Toho": 1,
+          "Shochiku": 5
+        }
+      }
+    },
+    "福井県": {
+      "coordinates": [
+        36.0039,
+        136.2306
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 1,
+          "Nikkatsu": 20
+        },
+        "2010": {
+          "Other": 25,
+          "Daiei": 1
+        },
+        "1960": {
+          "Other": 5,
+          "Shochiku": 4,
+          "Toho": 4
+        },
+        "2000": {
+          "Other": 2,
+          "Daiei": 1,
+          "Toei": 1,
+          "Shochiku": 3
+        },
+        "1990": {
+          "Other": 4,
+          "Toei": 1,
+          "Shochiku": 6
+        },
+        "1970": {
+          "Other": 20,
+          "Toho": 1,
+          "Toei": 3,
+          "Shochiku": 6
+        },
+        "1980": {
+          "Other": 5,
+          "Toho": 1,
+          "Toei": 3,
+          "Shochiku": 1
+        },
+        "1920": {
+          "Nikkatsu": 1
+        },
+        "1950": {
+          "Nikkatsu": 1
+        }
+      }
+    },
+    "福岡県": {
+      "coordinates": [
+        33.5944,
+        130.5323
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 34,
+          "Nikkatsu": 1,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 35,
+          "Tsuburaya": 1,
+          "Nikkatsu": 2,
+          "Tohokushinsha": 2,
+          "Toei": 3,
+          "Shochiku": 2
+        },
+        "1950": {
+          "Other": 7,
+          "Toho": 10,
+          "Daiei": 4,
+          "Nikkatsu": 7,
+          "Shochiku": 5
+        },
+        "1960": {
+          "Other": 11,
+          "Daiei": 2,
+          "Nikkatsu": 8,
+          "Toho": 1,
+          "Toei": 5,
+          "Shochiku": 2
+        },
+        "1970": {
+          "Other": 10,
+          "Shochiku": 7,
+          "Daiei": 2,
+          "Toho": 1,
+          "Nikkatsu": 1,
+          "Toei": 7
+        },
+        "1980": {
+          "Other": 25,
+          "Shochiku": 5,
+          "Toei": 5
+        },
+        "1990": {
+          "Other": 13,
+          "Shochiku": 2,
+          "Toho": 2,
+          "Toei": 1
+        },
+        "2020": {
+          "Nikkatsu": 1,
+          "Toho": 1,
+          "Toei": 1
+        },
+        "1940": {
+          "Toho": 3
+        }
+      }
+    },
+    "福島県": {
+      "coordinates": [
+        37.4871,
+        140.1497
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 18,
+          "Shochiku": 1,
+          "Daiei": 1,
+          "Nikkatsu": 5
+        },
+        "1970": {
+          "Other": 16,
+          "Toho": 8,
+          "Toei": 8,
+          "Shochiku": 4,
+          "Kadokawa": 1
+        },
+        "2000": {
+          "Other": 30,
+          "Toei": 3,
+          "Shochiku": 12,
+          "Nikkatsu": 1,
+          "Toho": 3
+        },
+        "2010": {
+          "Other": 27,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toei": 5,
+          "Shochiku": 4
+        },
+        "1950": {
+          "Other": 22,
+          "Toho": 1,
+          "Toei": 8,
+          "Nikkatsu": 39
+        },
+        "1980": {
+          "Other": 32,
+          "Daiei": 1,
+          "Toho": 1,
+          "Toei": 43,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        },
+        "1960": {
+          "Tsuburaya": 7,
+          "Other": 23,
+          "Toho": 8,
+          "Daiei": 1,
+          "Nikkatsu": 3,
+          "Toei": 5,
+          "Shochiku": 7
+        },
+        "1990": {
+          "Other": 26,
+          "Daiei": 1,
+          "Toei": 10,
+          "Shochiku": 13
+        },
+        "1940": {
+          "Toei": 1,
+          "Shochiku": 3
+        }
+      }
+    },
+    "秋田県": {
+      "coordinates": [
+        39.7536,
+        140.3764
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 4
+        },
+        "1990": {
+          "Other": 12,
+          "Toei": 11,
+          "Shochiku": 1
+        },
+        "1960": {
+          "Other": 2,
+          "Toho": 2,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 10,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 35,
+          "Shochiku": 6,
+          "Nikkatsu": 18,
+          "Toei": 1
+        },
+        "1980": {
+          "Other": 33,
+          "Nikkatsu": 3,
+          "Toho": 2,
+          "Toei": 31,
+          "Shochiku": 5
+        },
+        "1970": {
+          "Other": 3,
+          "Toho": 1,
+          "Toei": 2,
+          "Shochiku": 5
+        },
+        "1950": {
+          "Other": 4,
+          "Daiei": 1,
+          "Nikkatsu": 5,
+          "Toei": 1
+        },
+        "1930": {
+          "Toho": 1
+        }
+      }
+    },
+    "群馬県": {
+      "coordinates": [
+        36.6038,
+        139.2081
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 255,
+          "Daiei": 5,
+          "Toei": 6,
+          "Tohokushinsha": 2,
+          "Nikkatsu": 6,
+          "Toho": 6,
+          "Shochiku": 13,
+          "Kadokawa": 20
+        },
+        "2020": {
+          "Other": 25,
+          "Toei": 12,
+          "Nikkatsu": 10,
+          "Toho": 7,
+          "Shochiku": 1,
+          "Kadokawa": 2
+        },
+        "1990": {
+          "Other": 65,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 2,
+          "Toei": 5,
+          "Shochiku": 5
+        },
+        "1950": {
+          "Other": 19,
+          "Shintoho": 2,
+          "Tohokushinsha": 1,
+          "Daiei": 1,
+          "Nikkatsu": 23,
+          "Toho": 2,
+          "Shochiku": 4
+        },
+        "2000": {
+          "Other": 312,
+          "Toei": 15,
+          "Tsuburaya": 1,
+          "Tohokushinsha": 2,
+          "Ghibli": 2,
+          "Shochiku": 13,
+          "Toho": 21,
+          "Daiei": 4,
+          "Nikkatsu": 1,
+          "Kadokawa": 3
+        },
+        "1960": {
+          "Other": 32,
+          "Tohokushinsha": 1,
+          "Toei": 6,
+          "Shochiku": 13,
+          "Daiei": 14,
+          "Nikkatsu": 10,
+          "Toho": 3
+        },
+        "1980": {
+          "Other": 45,
+          "Shochiku": 3,
+          "Toho": 1,
+          "Toei": 18
+        },
+        "1970": {
+          "Other": 36,
+          "Toho": 5,
+          "Nikkatsu": 2,
+          "Toei": 3,
+          "Shochiku": 2
+        },
+        "1900": {
+          "Other": 3
+        },
+        "1930": {
+          "Other": 8,
+          "Tohokushinsha": 1,
+          "Shochiku": 5
+        },
+        "1910": {
+          "Other": 8
+        },
+        "1940": {
+          "Other": 1,
+          "Shochiku": 2
+        }
+      }
+    },
+    "茨城県": {
+      "coordinates": [
+        36.2231,
+        140.1801
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 15,
+          "Tohokushinsha": 2,
+          "Nikkatsu": 1,
+          "Toho": 4,
+          "Shochiku": 6,
+          "Kadokawa": 1
+        },
+        "2010": {
+          "Other": 100,
+          "Daiei": 2,
+          "Toho": 2,
+          "Toei": 3,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        },
+        "2000": {
+          "Other": 103,
+          "Toei": 6,
+          "Shochiku": 8,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 6,
+          "Kadokawa": 2
+        },
+        "1960": {
+          "Daiei": 1,
+          "Other": 6,
+          "Nikkatsu": 3,
+          "Toho": 8,
+          "Toei": 2,
+          "Shochiku": 7
+        },
+        "1970": {
+          "Other": 8,
+          "Nikkatsu": 1,
+          "Toho": 3,
+          "Shochiku": 2
+        },
+        "1990": {
+          "Other": 2,
+          "Daiei": 1,
+          "Toho": 2,
+          "Shochiku": 1
+        },
+        "1950": {
+          "Other": 5,
+          "Nikkatsu": 43,
+          "Toei": 1
+        },
+        "1980": {
+          "Other": 9,
+          "Shochiku": 9,
+          "Toho": 1
+        }
+      }
+    },
+    "長崎県": {
+      "coordinates": [
+        33.0268,
+        130.5273
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 54,
+          "Daiei": 1,
+          "Nikkatsu": 44,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 48,
+          "Shochiku": 16,
+          "Nikkatsu": 9,
+          "Tohokushinsha": 24,
+          "Toho": 12,
+          "Toei": 3
+        },
+        "1980": {
+          "Other": 12,
+          "Shochiku": 17,
+          "Nikkatsu": 5,
+          "Toei": 2,
+          "Kadokawa": 2
+        },
+        "2020": {
+          "Other": 5,
+          "Nikkatsu": 15
+        },
+        "1910": {
+          "Other": 1
+        },
+        "1960": {
+          "Other": 28,
+          "Toho": 3,
+          "Nikkatsu": 7,
+          "Toei": 4,
+          "Shochiku": 3,
+          "Kadokawa": 8
+        },
+        "1990": {
+          "Other": 3,
+          "Nikkatsu": 3,
+          "Toho": 2,
+          "Shochiku": 2
+        },
+        "1970": {
+          "Other": 23,
+          "Shochiku": 9,
+          "Daiei": 1,
+          "Toho": 2,
+          "Toei": 2
+        },
+        "1950": {
+          "Other": 4,
+          "Nikkatsu": 47,
+          "Shochiku": 10
+        },
+        "1930": {
+          "Shochiku": 3
+        }
+      }
+    },
+    "長野県": {
+      "coordinates": [
+        36.2928,
+        138.1587
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 13,
+          "Nikkatsu": 2,
+          "Toei": 1,
+          "Shochiku": 1
+        },
+        "2000": {
+          "Other": 86,
+          "Daiei": 1,
+          "Nikkatsu": 8,
+          "Toho": 1,
+          "Toei": 3,
+          "Shochiku": 4
+        },
+        "1990": {
+          "Other": 35,
+          "Shochiku": 3
+        },
+        "2010": {
+          "Other": 97,
+          "Tohokushinsha": 1,
+          "Nikkatsu": 5,
+          "Toho": 3,
+          "Toei": 11,
+          "Shochiku": 4,
+          "Kadokawa": 2
+        },
+        "1980": {
+          "Other": 27,
+          "Shochiku": 33,
+          "Toei": 2
+        },
+        "1930": {
+          "Other": 5,
+          "Shochiku": 2
+        },
+        "1970": {
+          "Other": 39,
+          "Toei": 2,
+          "Nikkatsu": 6,
+          "Toho": 3,
+          "Shochiku": 5
+        },
+        "1950": {
+          "Shintoho": 1,
+          "Other": 14,
+          "Daiei": 2,
+          "Nikkatsu": 41,
+          "Toho": 1,
+          "Shochiku": 15
+        },
+        "1960": {
+          "Tsuburaya": 8,
+          "Other": 28,
+          "Shochiku": 14,
+          "Daiei": 2,
+          "Nikkatsu": 29,
+          "Toho": 3,
+          "Toei": 1
+        },
+        "1920": {
+          "Other": 1,
+          "Shochiku": 1
+        },
+        "1940": {
+          "Other": 1,
+          "Toho": 4,
+          "Toei": 1,
+          "Shochiku": 3
+        }
+      }
+    },
+    "青森県": {
+      "coordinates": [
+        40.644,
+        140.61
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 7,
+          "Shochiku": 2,
+          "Toei": 1
+        },
+        "2010": {
+          "Other": 29
+        },
+        "1990": {
+          "Other": 10,
+          "Toho": 1
+        },
+        "1970": {
+          "Other": 32,
+          "Nikkatsu": 1,
+          "Toho": 2,
+          "Toei": 2
+        },
+        "1960": {
+          "Other": 6,
+          "Shochiku": 4,
+          "Nikkatsu": 7,
+          "Toho": 7,
+          "Toei": 8
+        },
+        "2020": {
+          "Other": 1,
+          "Daiei": 1,
+          "Toho": 1,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 8,
+          "Toei": 1,
+          "Shochiku": 3
+        },
+        "1950": {
+          "Other": 4,
+          "Daiei": 2,
+          "Toho": 2,
+          "Nikkatsu": 9,
+          "Shochiku": 2
+        },
+        "1930": {
+          "Shochiku": 1
+        }
+      }
+    },
+    "静岡県": {
+      "coordinates": [
+        34.945,
+        138.4126
+      ],
+      "by_decade": {
+        "2010": {
+          "Other": 135,
+          "Daiei": 3,
+          "Nikkatsu": 5,
+          "Toho": 6,
+          "Toei": 2,
+          "Shochiku": 24,
+          "Kadokawa": 1
+        },
+        "2020": {
+          "Other": 20,
+          "Nikkatsu": 1,
+          "Toei": 2,
+          "Shochiku": 2
+        },
+        "1990": {
+          "Other": 21,
+          "Shochiku": 24,
+          "Nikkatsu": 1
+        },
+        "2000": {
+          "Other": 148,
+          "Toei": 4,
+          "Shochiku": 28,
+          "Daiei": 1,
+          "Nikkatsu": 1,
+          "Toho": 4,
+          "Kadokawa": 7
+        },
+        "1950": {
+          "Other": 40,
+          "Toho": 5,
+          "Daiei": 3,
+          "Nikkatsu": 52,
+          "Toei": 3,
+          "Shochiku": 16
+        },
+        "1970": {
+          "Other": 44,
+          "Nikkatsu": 2,
+          "Toho": 8,
+          "Toei": 3,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 28,
+          "Shochiku": 10,
+          "Daiei": 1,
+          "Toho": 2,
+          "Toei": 13,
+          "Kadokawa": 1
+        },
+        "1940": {
+          "Shintoho": 1,
+          "Daiei": 2,
+          "Toho": 1,
+          "Nikkatsu": 5,
+          "Shochiku": 4
+        },
+        "1960": {
+          "Shintoho": 3,
+          "Other": 77,
+          "Toei": 14,
+          "Toho": 24,
+          "Daiei": 10,
+          "Nikkatsu": 39,
+          "Shochiku": 7
+        },
+        "1920": {
+          "Other": 1
+        },
+        "1910": {
+          "Other": 4
+        },
+        "1930": {
+          "Toho": 1,
+          "Shochiku": 1,
+          "Other": 1
+        }
+      }
+    },
+    "香川県": {
+      "coordinates": [
+        34.3492,
+        134.0357
+      ],
+      "by_decade": {
+        "2020": {
+          "Other": 9,
+          "Toho": 3
+        },
+        "2000": {
+          "Other": 18,
+          "Nikkatsu": 2,
+          "Shochiku": 15
+        },
+        "2010": {
+          "Other": 46,
+          "Tohokushinsha": 1,
+          "Nikkatsu": 2,
+          "Toho": 2,
+          "Toei": 1
+        },
+        "1960": {
+          "Other": 20,
+          "Toho": 17,
+          "Daiei": 3,
+          "Nikkatsu": 12,
+          "Shochiku": 4
+        },
+        "1970": {
+          "Other": 3,
+          "Daiei": 1,
+          "Shochiku": 1
+        },
+        "1950": {
+          "Other": 1,
+          "Nikkatsu": 7,
+          "Shochiku": 6
+        },
+        "1980": {
+          "Other": 7,
+          "Shochiku": 6
+        },
+        "1990": {
+          "Other": 1,
+          "Shochiku": 18
+        },
+        "1930": {
+          "Shochiku": 2
+        }
+      }
+    },
+    "高知県": {
+      "coordinates": [
+        33.5523,
+        133.6074
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 2,
+          "Shochiku": 3
+        },
+        "1960": {
+          "Other": 5,
+          "Toei": 2,
+          "Shochiku": 9
+        },
+        "2020": {
+          "Other": 6,
+          "Nikkatsu": 1
+        },
+        "1990": {
+          "Other": 11,
+          "Shochiku": 1
+        },
+        "2010": {
+          "Other": 55,
+          "Shochiku": 1
+        },
+        "1970": {
+          "Other": 12,
+          "Daiei": 7,
+          "Toho": 1,
+          "Toei": 7
+        },
+        "1950": {
+          "Other": 4,
+          "Nikkatsu": 6
+        },
+        "1980": {
+          "Other": 5,
+          "Toei": 2,
+          "Shochiku": 1
+        }
+      }
+    },
+    "鳥取県": {
+      "coordinates": [
+        35.4736,
+        134.3359
+      ],
+      "by_decade": {
+        "2000": {
+          "Other": 4,
+          "Ghibli": 1,
+          "Shochiku": 1,
+          "Toho": 3
+        },
+        "2010": {
+          "Other": 5,
+          "Nikkatsu": 3,
+          "Shochiku": 1
+        },
+        "1970": {
+          "Other": 5,
+          "Toei": 2,
+          "Shochiku": 1
+        },
+        "1990": {
+          "Other": 73,
+          "Daiei": 1,
+          "Shochiku": 65
+        },
+        "2020": {
+          "Other": 1,
+          "Nikkatsu": 10,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 54,
+          "Daiei": 6,
+          "Nikkatsu": 1,
+          "Toho": 3,
+          "Toei": 116,
+          "Shochiku": 2,
+          "Kadokawa": 2
+        },
+        "1950": {
+          "Daiei": 1,
+          "Nikkatsu": 6
+        },
+        "1960": {
+          "Daiei": 2,
+          "Toei": 4,
+          "Shochiku": 3
+        }
+      }
+    },
+    "鹿児島県": {
+      "coordinates": [
+        31.5979,
+        130.8354
+      ],
+      "by_decade": {
+        "1990": {
+          "Other": 18,
+          "Ghibli": 3,
+          "Shochiku": 26
+        },
+        "1950": {
+          "Other": 1,
+          "Nikkatsu": 20,
+          "Toei": 1,
+          "Shochiku": 2
+        },
+        "1960": {
+          "Other": 49,
+          "Daiei": 1,
+          "Toho": 10,
+          "Toei": 8,
+          "Shochiku": 6
+        },
+        "2000": {
+          "Other": 10,
+          "Toei": 2,
+          "Shochiku": 3,
+          "Kadokawa": 1
+        },
+        "2010": {
+          "Other": 11,
+          "Toei": 1
+        },
+        "1970": {
+          "Other": 7,
+          "Toei": 2,
+          "Toho": 2,
+          "Shochiku": 1
+        },
+        "1980": {
+          "Other": 27,
+          "Toei": 1,
+          "Shochiku": 2
+        },
+        "1940": {
+          "Other": 1
+        },
+        "1900": {
+          "Other": 2
+        },
+        "2020": {
+          "Nikkatsu": 3
+        }
+      }
+    }
+  }
+}
