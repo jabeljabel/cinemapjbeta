@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2025-12-21T17:13:07.373739",
+    "generated": "2025-12-21T18:10:38.334157",
     "total_prefectures": 49,
     "total_studios": 11,
     "decades": [
@@ -22,48 +22,59 @@
   },
   "studios": {
     "Toei": {
-      "color": "#e74c3c",
-      "name_jp": "東映"
+      "name_en": "Toei",
+      "name_jp": "東映",
+      "color": "#e74c3c"
     },
     "Shochiku": {
-      "color": "#3498db",
-      "name_jp": "松竹"
+      "name_en": "Shochiku",
+      "name_jp": "松竹",
+      "color": "#3498db"
     },
     "Toho": {
-      "color": "#2ecc71",
-      "name_jp": "東宝"
+      "name_en": "Toho",
+      "name_jp": "東宝",
+      "color": "#2ecc71"
     },
     "Nikkatsu": {
-      "color": "#9b59b6",
-      "name_jp": "日活"
+      "name_en": "Nikkatsu",
+      "name_jp": "日活",
+      "color": "#9b59b6"
     },
     "Daiei": {
-      "color": "#f39c12",
-      "name_jp": "大映"
+      "name_en": "Daiei",
+      "name_jp": "大映",
+      "color": "#f39c12"
     },
     "Kadokawa": {
-      "color": "#1abc9c",
-      "name_jp": "角川"
+      "name_en": "Kadokawa",
+      "name_jp": "角川",
+      "color": "#1abc9c"
     },
     "Shintoho": {
-      "color": "#e67e22",
-      "name_jp": "新東宝"
+      "name_en": "Shintoho",
+      "name_jp": "新東宝",
+      "color": "#e67e22"
     },
     "Tsuburaya": {
-      "color": "#34495e",
-      "name_jp": "円谷"
+      "name_en": "Tsuburaya",
+      "name_jp": "円谷",
+      "color": "#34495e"
     },
     "Tohokushinsha": {
-      "color": "#16a085",
-      "name_jp": "東北新社"
+      "name_en": "Tohokushinsha",
+      "name_jp": "東北新社",
+      "color": "#16a085"
     },
     "Ghibli": {
-      "color": "#27ae60",
-      "name_jp": "ジブリ"
+      "name_en": "Ghibli",
+      "name_jp": "ジブリ",
+      "color": "#27ae60"
     },
     "Other": {
-      "color": "#95a5a6",
-      "name_jp": "その他"
+      "name_en": "Other",
+      "name_jp": "その他",
+      "color": "#95a5a6"
     }
   },
   "prefectures": {
