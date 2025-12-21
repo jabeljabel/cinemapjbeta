@@ -3,142 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMAP Staging - Test Visualizations</title>
+    <title>CineMAP - Japanese Cinema Location Database (STAGING)</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0a0f;
             color: #fff;
-            padding: 40px 20px;
+            min-height: 100vh;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        h1 { 
-            text-align: center; 
-            margin-bottom: 10px;
-            font-size: 2.5em;
-            background: linear-gradient(90deg, #e74c3c, #f39c12);
+        .staging-banner {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+        }
+        .staging-banner code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            margin-top: 45px;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #2ecc71);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .subtitle { 
-            text-align: center; 
-            color: #888; 
-            margin-bottom: 40px;
-            font-size: 1.1em;
-        }
-        .warning {
-            background: #f39c12;
-            color: #000;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 500;
-        }
-        .section { margin-bottom: 30px; }
-        .section h2 { 
-            color: #f39c12; 
-            margin-bottom: 15px;
+        .hero p {
             font-size: 1.3em;
-            border-bottom: 1px solid #333;
-            padding-bottom: 8px;
+            color: #a0a0a0;
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
-        .links { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        a { 
-            display: block;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            color: #fff;
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .stat-label {
+            color: #888;
+            margin-top: 5px;
+        }
+        .main-cta {
+            display: inline-block;
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 30px;
             text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .main-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #f39c12;
+        }
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .viz-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-decoration: none;
+            color: white;
             transition: all 0.3s;
         }
-        a:hover { 
-            background: rgba(255,255,255,0.1);
+        .viz-card:hover {
+            background: rgba(255,255,255,0.08);
             border-color: #e74c3c;
-            transform: translateY(-2px);
+            transform: translateY(-5px);
         }
-        a .title { font-weight: 600; font-size: 1.1em; margin-bottom: 5px; }
-        a .desc { color: #888; font-size: 0.9em; }
-        .meta { 
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
+        .viz-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .viz-card p {
+            color: #888;
+            line-height: 1.6;
+        }
+        .viz-card .icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px;
             color: #666;
-            font-size: 0.85em;
+            border-top: 1px solid #222;
+        }
+        .promote-section {
+            background: #1a1a2e;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
             text-align: center;
         }
-        .promote-cmd {
-            background: #1a1a1a;
-            padding: 15px;
+        .promote-section code {
+            background: #0a0a0f;
+            padding: 15px 30px;
             border-radius: 8px;
-            font-family: monospace;
-            margin-top: 20px;
+            display: inline-block;
+            margin-top: 15px;
             color: #2ecc71;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎬 CineMAP Staging</h1>
-        <p class="subtitle">Test visualizations before promoting to production</p>
-        
-        <div class="warning">
-            ⚠️ STAGING ENVIRONMENT - These are test versions. Data suffix: 50a445511394a21b
-        </div>
-        
-        <div class="section">
-            <h2>🗺️ Main Map</h2>
-            <div class="links">
-                <a href="../main_staging.html">
-                    <div class="title">Main Map (Staging)</div>
-                    <div class="desc">Full interactive map with filming & represented locations</div>
-                </a>
+    <div class="staging-banner">
+        ⚠️ STAGING ENVIRONMENT - Testing data suffix: <code>ea4f0e62e400f812</code>
+    </div>
+    
+    <div class="hero">
+        <h1>🎬 CineMAP</h1>
+        <p>Mapping the Geography of Japanese Cinema - Over 88,000 films and 300,000+ location relationships</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">88,629</div>
+                <div class="stat-label">Films</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">304,742</div>
+                <div class="stat-label">Location Links</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">66,349</div>
+                <div class="stat-label">Unique Locations</div>
             </div>
         </div>
-        
-        <div class="section">
-            <h2>📊 Comparison Visualizations</h2>
-            <div class="links">
-                <a href="tokyo.html">
-                    <div class="title">Tokyo Time-lapse</div>
-                    <div class="desc">Film locations in Tokyo by year (1897-present)</div>
-                </a>
-                <a href="franchise.html">
-                    <div class="title">Franchise Comparison</div>
-                    <div class="desc">Godzilla vs Tora-san filming locations</div>
-                </a>
-                <a href="directors.html">
-                    <div class="title">Three Masters</div>
-                    <div class="desc">Ozu, Kurosawa, Mizoguchi location patterns</div>
-                </a>
-                <a href="prefectures.html">
-                    <div class="title">Prefecture Genres</div>
-                    <div class="desc">Genre distribution by Japanese prefecture</div>
-                </a>
-                <a href="studios.html">
-                    <div class="title">Studio Dominance</div>
-                    <div class="desc">Studio presence by prefecture over time</div>
-                </a>
-                <a href="directors_map.html">
-                    <div class="title">Directors Map</div>
-                    <div class="desc">Director filming locations by prefecture</div>
-                </a>
-                <a href="imagination_distance_viz.html">
-                    <div class="title">Imagination Distance</div>
-                    <div class="desc">Gap between filming and represented locations</div>
-                </a>
-            </div>
+        <a href="../main_staging.html" class="main-cta">🗺️ Explore the Map</a>
+    </div>
+    
+    <div class="section">
+        <h2>📊 Visualizations</h2>
+        <div class="viz-grid">
+            <a href="tokyo.html" class="viz-card">
+                <div class="icon">🗼</div>
+                <h3>Tokyo Time-lapse</h3>
+                <p>Watch film locations in Tokyo evolve from 1897 to present day</p>
+            </a>
+            <a href="franchise.html" class="viz-card">
+                <div class="icon">🦖</div>
+                <h3>Godzilla vs Tora-san</h3>
+                <p>Compare filming patterns of Japan's most iconic franchises</p>
+            </a>
+            <a href="directors.html" class="viz-card">
+                <div class="icon">🎬</div>
+                <h3>Three Masters</h3>
+                <p>Ozu, Kurosawa, and Mizoguchi's geographic signatures</p>
+            </a>
+            <a href="prefectures.html" class="viz-card">
+                <div class="icon">🎭</div>
+                <h3>Prefecture Genres</h3>
+                <p>Which genres dominate each Japanese prefecture?</p>
+            </a>
+            <a href="studios.html" class="viz-card">
+                <div class="icon">🏢</div>
+                <h3>Studio Dominance</h3>
+                <p>Major studio presence across Japan by decade</p>
+            </a>
+            <a href="directors_map.html" class="viz-card">
+                <div class="icon">🎥</div>
+                <h3>Directors by Prefecture</h3>
+                <p>Which directors filmed most in each region?</p>
+            </a>
+            <a href="imagination_distance_viz.html" class="viz-card">
+                <div class="icon">🌏</div>
+                <h3>Imagination Distance</h3>
+                <p>The gap between where films are shot vs. where stories are set</p>
+            </a>
         </div>
         
-        <div class="meta">
-            <p>Generated: 2025-12-21 14:43:50</p>
-            <p>When testing is complete, promote to production:</p>
-            <div class="promote-cmd">python3 cinemap_refresh_v4.py --promote</div>
+        <div class="promote-section">
+            <h3>✅ Ready to promote to production?</h3>
+            <p>After testing, run this command:</p>
+            <code>python3 cinemap_refresh_v4.py --promote</code>
         </div>
+    </div>
+    
+    <div class="footer">
+        <p>CineMAP Project - Japanese Cinema Location Database</p>
+        <p>Staging generated: 2025-12-21 15:22:16</p>
     </div>
 </body>
 </html>
