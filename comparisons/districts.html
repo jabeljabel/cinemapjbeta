@@ -22,7 +22,7 @@
             align-items: center;
         }
         
-        .header h1 { font-size: 1.5em; color: #fff; }
+        .header h1 { font-size: 1.4em; color: #fff; }
         
         .city-toggle { display: flex; gap: 5px; }
         
@@ -43,7 +43,7 @@
         .container { display: flex; height: calc(100vh - 60px); }
         
         .sidebar {
-            width: 360px;
+            width: 320px;
             background: #16213e;
             display: flex;
             flex-direction: column;
@@ -51,46 +51,78 @@
             overflow: hidden;
         }
         
-        .genre-selector {
+        .genre-toggles {
             padding: 15px;
             border-bottom: 1px solid #0f3460;
+            max-height: 280px;
+            overflow-y: auto;
         }
         
-        .genre-selector h3 {
+        .genre-toggles h3 {
             margin-bottom: 10px;
             color: #e94560;
             font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .genre-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
-        }
-        
-        .genre-btn {
-            padding: 8px 4px;
-            background: #0f3460;
-            border: 2px solid transparent;
-            color: #ccc;
-            cursor: pointer;
-            border-radius: 6px;
+        .toggle-all-btn {
             font-size: 0.75em;
-            transition: all 0.2s;
-            text-align: center;
+            padding: 4px 8px;
+            background: #0f3460;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            border-radius: 4px;
         }
         
-        .genre-btn:hover { background: #1a4a7a; }
-        .genre-btn.active { border-color: currentColor; color: #fff; font-weight: bold; }
+        .toggle-all-btn:hover { background: #1a4a7a; color: #fff; }
         
-        .city-average {
-            padding: 10px 15px;
+        .genre-toggle {
+            display: flex;
+            align-items: center;
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            background: #0f3460;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .genre-toggle:hover { background: #1a4a7a; }
+        .genre-toggle.disabled { opacity: 0.4; }
+        
+        .genre-toggle input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .genre-color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .genre-toggle-name { flex: 1; font-size: 0.85em; }
+        
+        .genre-toggle-count {
+            font-size: 0.75em;
+            color: #888;
+            background: #0a1628;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        
+        .dominance-summary {
+            padding: 12px 15px;
             background: #0f3460;
             border-bottom: 1px solid #0f3460;
             font-size: 0.85em;
         }
         
-        .city-average span { color: #e94560; font-weight: bold; }
+        .dominance-summary strong { color: #e94560; }
         
         .district-list {
             flex: 1;
@@ -105,54 +137,35 @@
         }
         
         .district-item {
+            display: flex;
+            align-items: center;
             padding: 10px 12px;
             margin-bottom: 6px;
             background: #0f3460;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
-            border-left: 4px solid transparent;
         }
         
         .district-item:hover { background: #1a4a7a; }
         .district-item.selected { background: #e94560; }
         
-        .district-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
+        .district-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 12px;
+            border: 2px solid rgba(255,255,255,0.3);
         }
         
-        .district-name { font-weight: 500; }
-        .district-name-en { font-size: 0.75em; color: #888; margin-left: 5px; }
+        .district-info { flex: 1; }
+        .district-name { font-weight: 500; font-size: 0.95em; }
+        .district-genre { font-size: 0.8em; color: #aaa; }
         
         .district-pct {
             font-size: 0.9em;
             font-weight: bold;
-        }
-        
-        .district-diff {
-            font-size: 0.75em;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 5px;
-        }
-        
-        .district-diff.positive { background: rgba(46, 204, 113, 0.3); color: #2ecc71; }
-        .district-diff.negative { background: rgba(231, 76, 60, 0.3); color: #e74c3c; }
-        
-        .district-bar {
-            height: 4px;
-            background: #0a1628;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .district-bar-fill {
-            height: 100%;
-            border-radius: 2px;
-            transition: width 0.3s;
+            color: #e94560;
         }
         
         .back-link {
@@ -168,12 +181,12 @@
         .legend {
             position: absolute;
             bottom: 30px;
-            left: 380px;
+            left: 340px;
             background: rgba(22, 33, 62, 0.95);
             padding: 15px;
             border-radius: 8px;
             z-index: 1000;
-            min-width: 180px;
+            max-width: 200px;
         }
         
         .legend h4 {
@@ -182,17 +195,24 @@
             font-size: 0.85em;
         }
         
-        .legend-gradient {
-            height: 15px;
-            border-radius: 4px;
+        .legend-item {
+            display: flex;
+            align-items: center;
             margin-bottom: 5px;
+            font-size: 0.8em;
         }
         
-        .legend-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75em;
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+        
+        .legend-count {
+            margin-left: auto;
             color: #888;
+            font-size: 0.85em;
         }
         
         .info-panel {
@@ -228,53 +248,55 @@
         
         .close-btn:hover { color: #e94560; }
         
-        .genre-row {
+        .panel-summary {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #0f3460;
+        }
+        
+        .panel-stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .panel-stat-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #e94560;
+        }
+        
+        .panel-stat-label {
+            font-size: 0.75em;
+            color: #888;
+        }
+        
+        .genre-breakdown-item {
             display: flex;
             align-items: center;
             padding: 8px 0;
             border-bottom: 1px solid #0f3460;
         }
         
-        .genre-row:last-child { border-bottom: none; }
+        .genre-breakdown-item:last-child { border-bottom: none; }
         
-        .genre-color {
+        .genre-breakdown-color {
             width: 12px;
             height: 12px;
             border-radius: 3px;
             margin-right: 10px;
         }
         
-        .genre-info { flex: 1; }
-        .genre-name { font-size: 0.9em; }
+        .genre-breakdown-name { flex: 1; font-size: 0.9em; }
         
-        .genre-stats {
-            display: flex;
-            gap: 10px;
-            font-size: 0.8em;
-            color: #888;
+        .genre-breakdown-stats {
+            text-align: right;
+            font-size: 0.85em;
         }
         
-        .genre-pct { font-weight: bold; color: #fff; min-width: 45px; }
-        
-        .genre-diff-badge {
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-size: 0.75em;
-        }
-        
-        .genre-diff-badge.up { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
-        .genre-diff-badge.down { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
-        
-        .panel-summary {
-            background: #0f3460;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .panel-summary .total { font-size: 1.5em; font-weight: bold; color: #e94560; }
-        .panel-summary .label { font-size: 0.8em; color: #888; }
+        .genre-breakdown-pct { font-weight: bold; }
+        .genre-breakdown-count { color: #888; font-size: 0.8em; }
         
         .leaflet-popup-content-wrapper { background: #16213e; color: #eee; border-radius: 8px; }
         .leaflet-popup-tip { background: #16213e; }
@@ -312,17 +334,20 @@
     
     <div class="container">
         <div class="sidebar">
-            <div class="genre-selector">
-                <h3>🎭 SELECT GENRE TO MAP</h3>
-                <div class="genre-grid" id="genre-grid"></div>
+            <div class="genre-toggles">
+                <h3>
+                    🎭 GENRE FILTERS
+                    <button class="toggle-all-btn" id="toggle-all">Show All</button>
+                </h3>
+                <div id="genre-toggle-list"></div>
             </div>
             
-            <div class="city-average" id="city-average">
-                City average: <span id="avg-value">--</span>
+            <div class="dominance-summary" id="dominance-summary">
+                Loading...
             </div>
             
             <div class="district-list">
-                <h3>📍 DISTRICTS BY <span id="genre-label">DRAMA</span> %</h3>
+                <h3>📍 DISTRICTS BY DOMINANT GENRE</h3>
                 <div id="district-items"></div>
             </div>
             
@@ -339,13 +364,8 @@
         </div>
         
         <div class="legend" id="legend">
-            <h4 id="legend-title">Drama Coverage</h4>
-            <div class="legend-gradient" id="legend-gradient"></div>
-            <div class="legend-labels">
-                <span>0%</span>
-                <span>Avg</span>
-                <span id="legend-max">50%</span>
-            </div>
+            <h4>Dominant Genres</h4>
+            <div id="legend-items"></div>
         </div>
         
         <div class="info-panel" id="info-panel">
@@ -367,7 +387,9 @@
             'Romance': '#e91e63', 'Animation': '#ff9800', 'Horror': '#9b59b6',
             'Documentary': '#795548', 'Biography': '#4caf50', 'Crime': '#00bcd4',
             'Adventure': '#16a085', 'Mystery': '#673ab7', 'Thriller': '#607d8b',
-            'War': '#455a64', 'Fantasy': '#8e44ad', 'Music': '#c0392b'
+            'War': '#455a64', 'Fantasy': '#8e44ad', 'Music': '#c0392b',
+            'Period Drama': '#d35400', 'Science Fiction': '#1abc9c', 
+            'Suspense': '#7f8c8d', 'Literary': '#9b59b6', 'Disaster': '#c0392b'
         };
         
         const CITY_CONFIG = {
@@ -380,7 +402,7 @@
         let map = null;
         let geoLayer = null;
         let currentCity = 'tokyo';
-        let currentGenre = 'Drama';
+        let enabledGenres = new Set(Object.keys(GENRE_COLORS));
         
         function initMap() {
             const config = CITY_CONFIG[currentCity];
@@ -401,7 +423,6 @@
                     const geoResponse = await fetch(TOKYO_GEOJSON);
                     if (geoResponse.ok) {
                         tokyoGeoJSON = await geoResponse.json();
-                        console.log('Tokyo GeoJSON loaded');
                     }
                 } catch (e) { console.warn('No Tokyo GeoJSON'); }
                 
@@ -427,130 +448,197 @@
                 });
             });
             
-            // Genre buttons
-            const grid = document.getElementById('genre-grid');
-            Object.entries(GENRE_COLORS).forEach(([genre, color]) => {
-                const btn = document.createElement('button');
-                btn.className = 'genre-btn' + (genre === currentGenre ? ' active' : '');
-                btn.style.color = color;
-                btn.textContent = genre;
-                btn.onclick = () => {
-                    currentGenre = genre;
-                    document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+            // Toggle all button
+            document.getElementById('toggle-all').addEventListener('click', () => {
+                const allEnabled = enabledGenres.size === Object.keys(GENRE_COLORS).length;
+                if (allEnabled) {
+                    // Disable all except top 3
+                    const cityData = data.cities[currentCity];
+                    const genreTotals = {};
+                    Object.values(cityData.districts).forEach(d => {
+                        Object.entries(d.genres || {}).forEach(([g, info]) => {
+                            genreTotals[g] = (genreTotals[g] || 0) + (info.total || 0);
+                        });
+                    });
+                    const top3 = Object.entries(genreTotals)
+                        .sort((a, b) => b[1] - a[1])
+                        .slice(0, 3)
+                        .map(([g]) => g);
+                    enabledGenres = new Set(top3);
+                } else {
+                    enabledGenres = new Set(Object.keys(GENRE_COLORS));
+                }
+                updateDisplay();
+            });
+            
+            buildGenreToggles();
+        }
+        
+        function buildGenreToggles() {
+            const container = document.getElementById('genre-toggle-list');
+            const cityData = data.cities[currentCity];
+            
+            // Calculate genre totals for this city
+            const genreTotals = {};
+            Object.values(cityData.districts).forEach(d => {
+                Object.entries(d.genres || {}).forEach(([genre, info]) => {
+                    genreTotals[genre] = (genreTotals[genre] || 0) + (info.total || 0);
+                });
+            });
+            
+            // Sort by total
+            const sortedGenres = Object.entries(genreTotals)
+                .sort((a, b) => b[1] - a[1]);
+            
+            container.innerHTML = '';
+            sortedGenres.forEach(([genre, total]) => {
+                const color = GENRE_COLORS[genre] || '#888';
+                const enabled = enabledGenres.has(genre);
+                
+                const div = document.createElement('div');
+                div.className = 'genre-toggle' + (enabled ? '' : ' disabled');
+                div.innerHTML = `
+                    <input type="checkbox" ${enabled ? 'checked' : ''} data-genre="${genre}">
+                    <div class="genre-color-box" style="background: ${color}"></div>
+                    <span class="genre-toggle-name">${genre}</span>
+                    <span class="genre-toggle-count">${total.toLocaleString()}</span>
+                `;
+                
+                div.querySelector('input').addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        enabledGenres.add(genre);
+                    } else {
+                        enabledGenres.delete(genre);
+                    }
                     updateDisplay();
-                };
-                grid.appendChild(btn);
+                });
+                
+                div.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'INPUT') {
+                        const checkbox = div.querySelector('input');
+                        checkbox.checked = !checkbox.checked;
+                        if (checkbox.checked) {
+                            enabledGenres.add(genre);
+                        } else {
+                            enabledGenres.delete(genre);
+                        }
+                        updateDisplay();
+                    }
+                });
+                
+                container.appendChild(div);
             });
         }
         
-        function getColorByPercentage(pct, avgPct, baseColor) {
-            // Color intensity based on how far above/below average
-            // Above average = more saturated color
-            // Below average = darker/grayer
-            const diff = pct - avgPct;
-            const maxDiff = 20; // Cap at ±20% difference
-            const normalizedDiff = Math.max(-1, Math.min(1, diff / maxDiff));
+        function findDominantGenre(genres) {
+            // Find the dominant genre among enabled genres only
+            let dominant = null;
+            let maxPct = 0;
             
-            const r = parseInt(baseColor.slice(1, 3), 16);
-            const g = parseInt(baseColor.slice(3, 5), 16);
-            const b = parseInt(baseColor.slice(5, 7), 16);
+            Object.entries(genres || {}).forEach(([genre, info]) => {
+                if (enabledGenres.has(genre) && (info.percentage || 0) > maxPct) {
+                    maxPct = info.percentage;
+                    dominant = { genre, ...info };
+                }
+            });
             
-            if (normalizedDiff >= 0) {
-                // Above average: full color with varying opacity
-                const intensity = 0.4 + normalizedDiff * 0.6;
-                return `rgba(${r}, ${g}, ${b}, ${intensity})`;
-            } else {
-                // Below average: blend toward gray
-                const grayBlend = Math.abs(normalizedDiff);
-                const gray = 60;
-                const newR = Math.round(r * (1 - grayBlend) + gray * grayBlend);
-                const newG = Math.round(g * (1 - grayBlend) + gray * grayBlend);
-                const newB = Math.round(b * (1 - grayBlend) + gray * grayBlend);
-                return `rgba(${newR}, ${newG}, ${newB}, 0.6)`;
-            }
+            return dominant;
         }
         
         function updateDisplay() {
             if (!data) return;
             
             const cityData = data.cities[currentCity];
-            const color = GENRE_COLORS[currentGenre];
-            const avgPct = cityData.city_averages?.[currentGenre] || 0;
             
-            // Update UI labels
-            document.getElementById('genre-label').textContent = currentGenre.toUpperCase();
-            document.getElementById('avg-value').textContent = avgPct.toFixed(1) + '%';
-            document.getElementById('legend-title').textContent = `${currentGenre} Coverage`;
-            document.getElementById('legend-gradient').style.background = 
-                `linear-gradient(to right, #333, ${color}40, ${color})`;
+            // Rebuild genre toggles for new city
+            buildGenreToggles();
             
-            // Find max percentage for legend
-            let maxPct = 0;
-            Object.values(cityData.districts).forEach(d => {
-                const pct = d.genres[currentGenre]?.percentage || 0;
-                if (pct > maxPct) maxPct = pct;
-            });
-            document.getElementById('legend-max').textContent = Math.round(maxPct) + '%';
+            // Calculate dominance with current genre filters
+            const districtDominance = [];
+            const genreDominanceCount = {};
             
-            // Build district stats sorted by percentage
-            const districtStats = Object.entries(cityData.districts)
-                .map(([key, d]) => ({
+            Object.entries(cityData.districts).forEach(([key, district]) => {
+                const dominant = findDominantGenre(district.genres);
+                
+                if (dominant) {
+                    genreDominanceCount[dominant.genre] = (genreDominanceCount[dominant.genre] || 0) + 1;
+                }
+                
+                districtDominance.push({
                     key,
-                    ...d,
-                    pct: d.genres[currentGenre]?.percentage || 0,
-                    diff: d.genres[currentGenre]?.difference || 0,
-                    count: d.genres[currentGenre]?.total || 0
-                }))
-                .sort((a, b) => b.pct - a.pct);
+                    ...district,
+                    dominant
+                });
+            });
+            
+            // Sort by dominance percentage
+            districtDominance.sort((a, b) => {
+                const pctA = a.dominant?.percentage || 0;
+                const pctB = b.dominant?.percentage || 0;
+                return pctB - pctA;
+            });
+            
+            // Update summary
+            const summaryParts = Object.entries(genreDominanceCount)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 3)
+                .map(([g, c]) => `<strong style="color:${GENRE_COLORS[g]}">${g}</strong> (${c})`);
+            
+            document.getElementById('dominance-summary').innerHTML = 
+                `Top dominators: ${summaryParts.join(', ')}`;
             
             // Update sidebar
-            updateSidebar(districtStats, color, avgPct);
+            updateSidebar(districtDominance);
+            
+            // Update legend
+            updateLegend(genreDominanceCount);
             
             // Update map
             if (geoLayer) map.removeLayer(geoLayer);
             
             if (currentCity === 'tokyo' && tokyoGeoJSON) {
-                renderChoropleth(districtStats, avgPct, color);
+                renderChoropleth(districtDominance);
             } else {
-                renderCircles(districtStats, avgPct, color, maxPct);
+                renderCircles(districtDominance);
             }
         }
         
-        function renderChoropleth(stats, avgPct, baseColor) {
-            const statsMap = {};
-            stats.forEach(s => { statsMap[s.name_ja] = s; statsMap[s.key] = s; });
+        function renderChoropleth(districts) {
+            const districtMap = {};
+            districts.forEach(d => {
+                districtMap[d.name_ja] = d;
+                districtMap[d.key] = d;
+            });
             
             geoLayer = L.geoJSON(tokyoGeoJSON, {
                 style: feature => {
                     const wardName = feature.properties.ward_ja || feature.properties.name;
-                    const stat = statsMap[wardName];
-                    const pct = stat?.pct || 0;
+                    const district = districtMap[wardName];
+                    const dominant = district?.dominant;
                     
                     return {
-                        fillColor: getColorByPercentage(pct, avgPct, baseColor),
+                        fillColor: dominant ? (GENRE_COLORS[dominant.genre] || '#888') : '#333',
                         weight: 2,
                         opacity: 1,
                         color: '#fff',
-                        fillOpacity: 0.85
+                        fillOpacity: dominant ? 0.7 + (dominant.percentage / 100) * 0.3 : 0.3
                     };
                 },
                 onEachFeature: (feature, layer) => {
                     const wardName = feature.properties.ward_ja || feature.properties.name;
-                    const stat = statsMap[wardName];
+                    const district = districtMap[wardName];
                     
-                    if (stat) {
-                        const diffStr = stat.diff >= 0 ? `+${stat.diff.toFixed(1)}` : stat.diff.toFixed(1);
-                        const diffClass = stat.diff >= 0 ? 'up' : 'down';
-                        
+                    if (district) {
+                        const dominant = district.dominant;
                         layer.bindPopup(`
-                            <strong>${stat.name_ja}</strong> (${stat.name_en})<br>
-                            <b>${currentGenre}: ${stat.pct.toFixed(1)}%</b><br>
-                            <span style="color: ${stat.diff >= 0 ? '#2ecc71' : '#e74c3c'}">${diffStr}% vs city avg</span><br>
-                            ${stat.count.toLocaleString()} locations
+                            <strong>${district.name_ja}</strong> (${district.name_en})<br>
+                            ${dominant ? `
+                                <b style="color:${GENRE_COLORS[dominant.genre]}">${dominant.genre}: ${dominant.percentage.toFixed(1)}%</b><br>
+                                ${dominant.total.toLocaleString()} locations
+                            ` : 'No data for enabled genres'}
                         `);
                         
-                        layer.on('click', () => showDistrictDetails(stat));
+                        layer.on('click', () => showDistrictDetails(district));
                         layer.on('mouseover', () => layer.setStyle({ weight: 4, color: '#e94560' }));
                         layer.on('mouseout', () => layer.setStyle({ weight: 2, color: '#fff' }));
                     }
@@ -558,60 +646,51 @@
             }).addTo(map);
         }
         
-        function renderCircles(stats, avgPct, baseColor, maxPct) {
-            stats.forEach(d => {
-                if (!d.center?.lat) return;
+        function renderCircles(districts) {
+            geoLayer = L.layerGroup().addTo(map);
+            
+            districts.forEach(d => {
+                if (!d.center?.lat || !d.dominant) return;
                 
-                const radius = Math.max(15, Math.min(40, 15 + (d.pct / maxPct) * 25));
+                const color = GENRE_COLORS[d.dominant.genre] || '#888';
+                const radius = 15 + (d.dominant.percentage / 100) * 25;
                 
                 const marker = L.circleMarker([d.center.lat, d.center.lon], {
                     radius,
-                    fillColor: getColorByPercentage(d.pct, avgPct, baseColor),
+                    fillColor: color,
                     color: '#fff',
                     weight: 2,
-                    fillOpacity: 0.85
-                }).addTo(map);
+                    fillOpacity: 0.8
+                });
                 
-                const diffStr = d.diff >= 0 ? `+${d.diff.toFixed(1)}` : d.diff.toFixed(1);
                 marker.bindPopup(`
                     <strong>${d.name_ja}</strong><br>
-                    ${currentGenre}: ${d.pct.toFixed(1)}%<br>
-                    <span style="color: ${d.diff >= 0 ? '#2ecc71' : '#e74c3c'}">${diffStr}% vs avg</span>
+                    <b style="color:${color}">${d.dominant.genre}: ${d.dominant.percentage.toFixed(1)}%</b>
                 `);
                 
                 marker.on('click', () => showDistrictDetails(d));
-                
-                if (!geoLayer) geoLayer = L.layerGroup().addTo(map);
                 geoLayer.addLayer(marker);
             });
         }
         
-        function updateSidebar(stats, color, avgPct) {
+        function updateSidebar(districts) {
             const container = document.getElementById('district-items');
             container.innerHTML = '';
             
-            stats.forEach(d => {
+            districts.forEach(d => {
+                if (!d.dominant) return;
+                
+                const color = GENRE_COLORS[d.dominant.genre] || '#888';
+                
                 const item = document.createElement('div');
                 item.className = 'district-item';
-                item.style.borderLeftColor = color;
-                
-                const diffStr = d.diff >= 0 ? `+${d.diff.toFixed(1)}%` : `${d.diff.toFixed(1)}%`;
-                const diffClass = d.diff >= 0 ? 'positive' : 'negative';
-                
                 item.innerHTML = `
-                    <div class="district-header">
-                        <span>
-                            <span class="district-name">${d.name_ja}</span>
-                            <span class="district-name-en">${d.name_en}</span>
-                        </span>
-                        <span>
-                            <span class="district-pct" style="color: ${color}">${d.pct.toFixed(1)}%</span>
-                            <span class="district-diff ${diffClass}">${diffStr}</span>
-                        </span>
+                    <div class="district-color" style="background: ${color}"></div>
+                    <div class="district-info">
+                        <div class="district-name">${d.name_ja}</div>
+                        <div class="district-genre">${d.dominant.genre}</div>
                     </div>
-                    <div class="district-bar">
-                        <div class="district-bar-fill" style="width: ${Math.min(100, d.pct * 2)}%; background: ${color}"></div>
-                    </div>
+                    <div class="district-pct">${d.dominant.percentage.toFixed(1)}%</div>
                 `;
                 
                 item.onclick = () => {
@@ -624,40 +703,59 @@
             });
         }
         
+        function updateLegend(genreCounts) {
+            const container = document.getElementById('legend-items');
+            container.innerHTML = '';
+            
+            Object.entries(genreCounts)
+                .sort((a, b) => b[1] - a[1])
+                .forEach(([genre, count]) => {
+                    const item = document.createElement('div');
+                    item.className = 'legend-item';
+                    item.innerHTML = `
+                        <div class="legend-color" style="background: ${GENRE_COLORS[genre] || '#888'}"></div>
+                        <span>${genre}</span>
+                        <span class="legend-count">${count}</span>
+                    `;
+                    container.appendChild(item);
+                });
+        }
+        
         function showDistrictDetails(district) {
             const panel = document.getElementById('info-panel');
-            document.getElementById('panel-title').textContent = `${district.name_ja} (${district.name_en})`;
+            document.getElementById('panel-title').textContent = 
+                `${district.name_ja} (${district.name_en})`;
             
-            const cityAvg = data.cities[currentCity].city_averages || {};
-            
-            // Sort genres by percentage in this district
+            // Sort all genres by percentage
             const sortedGenres = Object.entries(district.genres || {})
-                .filter(([_, g]) => g.total > 0)
-                .sort((a, b) => b[1].percentage - a[1].percentage);
+                .filter(([g]) => enabledGenres.has(g))
+                .sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0));
+            
+            const totalLocs = district.total || 
+                Object.values(district.genres || {}).reduce((sum, g) => sum + (g.total || 0), 0);
             
             let html = `
                 <div class="panel-summary">
-                    <div class="total">${district.total?.toLocaleString() || 0}</div>
-                    <div class="label">Total genre-tagged locations</div>
+                    <div class="panel-stat">
+                        <div class="panel-stat-value">${totalLocs.toLocaleString()}</div>
+                        <div class="panel-stat-label">Total Locations</div>
+                    </div>
+                    <div class="panel-stat">
+                        <div class="panel-stat-value">${sortedGenres.length}</div>
+                        <div class="panel-stat-label">Active Genres</div>
+                    </div>
                 </div>
             `;
             
-            sortedGenres.forEach(([genre, g]) => {
-                const avg = cityAvg[genre] || 0;
-                const diff = g.percentage - avg;
-                const diffStr = diff >= 0 ? `+${diff.toFixed(1)}%` : `${diff.toFixed(1)}%`;
-                const diffClass = diff >= 0 ? 'up' : 'down';
-                
+            sortedGenres.forEach(([genre, info]) => {
+                const color = GENRE_COLORS[genre] || '#888';
                 html += `
-                    <div class="genre-row">
-                        <div class="genre-color" style="background: ${GENRE_COLORS[genre]}"></div>
-                        <div class="genre-info">
-                            <div class="genre-name">${genre}</div>
-                            <div class="genre-stats">
-                                <span class="genre-pct">${g.percentage.toFixed(1)}%</span>
-                                <span class="genre-diff-badge ${diffClass}">${diffStr}</span>
-                                <span>${g.total.toLocaleString()} locs</span>
-                            </div>
+                    <div class="genre-breakdown-item">
+                        <div class="genre-breakdown-color" style="background: ${color}"></div>
+                        <span class="genre-breakdown-name">${genre}</span>
+                        <div class="genre-breakdown-stats">
+                            <div class="genre-breakdown-pct">${(info.percentage || 0).toFixed(1)}%</div>
+                            <div class="genre-breakdown-count">${(info.total || 0).toLocaleString()}</div>
                         </div>
                     </div>
                 `;
