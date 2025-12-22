@@ -1,0 +1,379 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "北区",
+        "ward_en": "Kita Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.72,
+              35.08
+            ],
+            [
+              135.8,
+              35.08
+            ],
+            [
+              135.8,
+              35.12
+            ],
+            [
+              135.72,
+              35.12
+            ],
+            [
+              135.72,
+              35.08
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "上京区",
+        "ward_en": "Kamigyo Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.74,
+              35.02
+            ],
+            [
+              135.78,
+              35.02
+            ],
+            [
+              135.78,
+              35.05
+            ],
+            [
+              135.74,
+              35.05
+            ],
+            [
+              135.74,
+              35.02
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "左京区",
+        "ward_en": "Sakyo Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.78,
+              35.0
+            ],
+            [
+              135.88,
+              35.0
+            ],
+            [
+              135.88,
+              35.12
+            ],
+            [
+              135.78,
+              35.12
+            ],
+            [
+              135.78,
+              35.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "中京区",
+        "ward_en": "Nakagyo Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.74,
+              34.99
+            ],
+            [
+              135.78,
+              34.99
+            ],
+            [
+              135.78,
+              35.02
+            ],
+            [
+              135.74,
+              35.02
+            ],
+            [
+              135.74,
+              34.99
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "東山区",
+        "ward_en": "Higashiyama Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.77,
+              34.96
+            ],
+            [
+              135.82,
+              34.96
+            ],
+            [
+              135.82,
+              35.0
+            ],
+            [
+              135.77,
+              35.0
+            ],
+            [
+              135.77,
+              34.96
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "山科区",
+        "ward_en": "Yamashina Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.8,
+              34.94
+            ],
+            [
+              135.86,
+              34.94
+            ],
+            [
+              135.86,
+              35.0
+            ],
+            [
+              135.8,
+              35.0
+            ],
+            [
+              135.8,
+              34.94
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "下京区",
+        "ward_en": "Shimogyo Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.74,
+              34.97
+            ],
+            [
+              135.78,
+              34.97
+            ],
+            [
+              135.78,
+              34.99
+            ],
+            [
+              135.74,
+              34.99
+            ],
+            [
+              135.74,
+              34.97
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "南区",
+        "ward_en": "Minami Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.72,
+              34.93
+            ],
+            [
+              135.78,
+              34.93
+            ],
+            [
+              135.78,
+              34.97
+            ],
+            [
+              135.72,
+              34.97
+            ],
+            [
+              135.72,
+              34.93
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "右京区",
+        "ward_en": "Ukyo Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.64,
+              34.98
+            ],
+            [
+              135.74,
+              34.98
+            ],
+            [
+              135.74,
+              35.08
+            ],
+            [
+              135.64,
+              35.08
+            ],
+            [
+              135.64,
+              34.98
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "西京区",
+        "ward_en": "Nishikyo Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.64,
+              34.92
+            ],
+            [
+              135.72,
+              34.92
+            ],
+            [
+              135.72,
+              34.98
+            ],
+            [
+              135.64,
+              34.98
+            ],
+            [
+              135.64,
+              34.92
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_ja": "伏見区",
+        "ward_en": "Fushimi Ward"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.72,
+              34.88
+            ],
+            [
+              135.82,
+              34.88
+            ],
+            [
+              135.82,
+              34.96
+            ],
+            [
+              135.72,
+              34.96
+            ],
+            [
+              135.72,
+              34.88
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
