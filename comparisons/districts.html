@@ -381,6 +381,7 @@
     <script>
         const DATA_FILE = 'district_genres.json';
         const TOKYO_GEOJSON = '../boundaries/tokyo_wards.geojson';
+        const KYOTO_GEOJSON = '../boundaries/kyoto_wards.geojson';
         
         const GENRE_COLORS = {
             'Drama': '#3498db', 'Action': '#e74c3c', 'Comedy': '#f1c40f',
@@ -399,6 +400,7 @@
         
         let data = null;
         let tokyoGeoJSON = null;
+        let kyotoGeoJSON = null;
         let map = null;
         let geoLayer = null;
         let currentCity = 'tokyo';
@@ -419,12 +421,23 @@
                 data = await dataResponse.json();
                 console.log('Loaded:', data.method);
                 
+                // Load Tokyo GeoJSON
                 try {
                     const geoResponse = await fetch(TOKYO_GEOJSON);
                     if (geoResponse.ok) {
                         tokyoGeoJSON = await geoResponse.json();
+                        console.log('Tokyo GeoJSON loaded:', tokyoGeoJSON.features?.length, 'features');
                     }
                 } catch (e) { console.warn('No Tokyo GeoJSON'); }
+                
+                // Load Kyoto GeoJSON
+                try {
+                    const kyotoResponse = await fetch(KYOTO_GEOJSON);
+                    if (kyotoResponse.ok) {
+                        kyotoGeoJSON = await kyotoResponse.json();
+                        console.log('Kyoto GeoJSON loaded:', kyotoGeoJSON.features?.length, 'features');
+                    }
+                } catch (e) { console.warn('No Kyoto GeoJSON'); }
                 
                 document.getElementById('loading').style.display = 'none';
                 initUI();
@@ -596,23 +609,36 @@
             // Update map
             if (geoLayer) map.removeLayer(geoLayer);
             
-            if (currentCity === 'tokyo' && tokyoGeoJSON) {
-                renderChoropleth(districtDominance);
+            // Select appropriate GeoJSON for current city
+            const geojson = currentCity === 'tokyo' ? tokyoGeoJSON : kyotoGeoJSON;
+            
+            if (geojson && geojson.features && geojson.features.length > 0) {
+                // Check if it has real polygons (not just points)
+                const hasPolygons = geojson.features.some(f => 
+                    f.geometry?.type === 'Polygon' || f.geometry?.type === 'MultiPolygon'
+                );
+                if (hasPolygons) {
+                    renderChoropleth(districtDominance, geojson);
+                } else {
+                    renderCircles(districtDominance);
+                }
             } else {
                 renderCircles(districtDominance);
             }
         }
         
-        function renderChoropleth(districts) {
+        function renderChoropleth(districts, geojson) {
             const districtMap = {};
             districts.forEach(d => {
                 districtMap[d.name_ja] = d;
                 districtMap[d.key] = d;
             });
             
-            geoLayer = L.geoJSON(tokyoGeoJSON, {
+            geoLayer = L.geoJSON(geojson, {
                 style: feature => {
-                    const wardName = feature.properties.ward_ja || feature.properties.name;
+                    const wardName = feature.properties.ward_ja || 
+                                    feature.properties.name ||
+                                    feature.properties.N03_004;
                     const district = districtMap[wardName];
                     const dominant = district?.dominant;
                     
@@ -625,13 +651,16 @@
                     };
                 },
                 onEachFeature: (feature, layer) => {
-                    const wardName = feature.properties.ward_ja || feature.properties.name;
+                    const wardName = feature.properties.ward_ja || 
+                                    feature.properties.name ||
+                                    feature.properties.N03_004;
                     const district = districtMap[wardName];
                     
                     if (district) {
                         const dominant = district.dominant;
+                        const nameEn = district.name_en || feature.properties.ward_en || '';
                         layer.bindPopup(`
-                            <strong>${district.name_ja}</strong> (${district.name_en})<br>
+                            <strong>${district.name_ja}</strong> (${nameEn})<br>
                             ${dominant ? `
                                 <b style="color:${GENRE_COLORS[dominant.genre]}">${dominant.genre}: ${dominant.percentage.toFixed(1)}%</b><br>
                                 ${dominant.total.toLocaleString()} locations
