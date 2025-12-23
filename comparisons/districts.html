@@ -20,9 +20,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .header h1 { font-size: 1.4em; color: #fff; }
+        
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
         
         .city-toggle { display: flex; gap: 5px; }
         
@@ -40,7 +49,36 @@
         .city-btn.active { background: #e94560; color: #fff; }
         .city-btn:hover:not(.active) { background: #1a4a7a; }
         
-        .container { display: flex; height: calc(100vh - 60px); }
+        .decade-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0f3460;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .decade-control label {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+        
+        .decade-control select {
+            background: #16213e;
+            color: #fff;
+            border: 1px solid #0f3460;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        
+        .decade-control select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+        
+        .container { display: flex; height: calc(100vh - 70px); }
         
         .sidebar {
             width: 320px;
@@ -217,7 +255,7 @@
         
         .info-panel {
             position: absolute;
-            top: 80px;
+            top: 90px;
             right: 20px;
             background: rgba(22, 33, 62, 0.95);
             padding: 20px;
@@ -321,14 +359,29 @@
         }
         
         @keyframes spin { to { transform: rotate(360deg); } }
+        
+        @media (max-width: 768px) {
+            .header { flex-direction: column; padding: 10px; }
+            .header-controls { width: 100%; justify-content: center; }
+            .sidebar { width: 100%; max-height: 40vh; }
+            .container { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🏙️ District Genre Dominance</h1>
-        <div class="city-toggle">
-            <button class="city-btn active" data-city="tokyo">🗼 Tokyo (23 Wards)</button>
-            <button class="city-btn" data-city="kyoto">⛩️ Kyoto (11 Wards)</button>
+        <div class="header-controls">
+            <div class="city-toggle">
+                <button class="city-btn active" data-city="tokyo">🗼 Tokyo (23 Wards)</button>
+                <button class="city-btn" data-city="kyoto">⛩️ Kyoto (11 Wards)</button>
+            </div>
+            <div class="decade-control">
+                <label>📅 Decade:</label>
+                <select id="decade-select">
+                    <option value="all">All Time</option>
+                </select>
+            </div>
         </div>
     </div>
     
@@ -352,7 +405,7 @@
             </div>
             
             <div class="back-link">
-                <a href="index.html">← Back to CineMAP</a>
+                <a href="../index.html">← Back to CineMAP</a>
             </div>
         </div>
         
@@ -404,6 +457,7 @@
         let map = null;
         let geoLayer = null;
         let currentCity = 'tokyo';
+        let currentDecade = 'all';
         let enabledGenres = new Set(Object.keys(GENRE_COLORS));
         
         function initMap() {
@@ -440,6 +494,7 @@
                 } catch (e) { console.warn('No Kyoto GeoJSON'); }
                 
                 document.getElementById('loading').style.display = 'none';
+                populateDecadeDropdown();
                 initUI();
                 updateDisplay();
             } catch (error) {
@@ -447,6 +502,25 @@
                 document.getElementById('loading').innerHTML = 
                     `<p style="color:#e94560;">Error: ${error.message}</p>`;
             }
+        }
+        
+        function populateDecadeDropdown() {
+            const select = document.getElementById('decade-select');
+            const cityData = data.cities[currentCity];
+            const decades = cityData.decades || [];
+            
+            // Clear existing options except "All Time"
+            select.innerHTML = '<option value="all">All Time</option>';
+            
+            // Add decades
+            decades.forEach(decade => {
+                const option = document.createElement('option');
+                option.value = decade;
+                option.textContent = `${decade}s`;
+                select.appendChild(option);
+            });
+            
+            select.value = currentDecade;
         }
         
         function initUI() {
@@ -457,8 +531,15 @@
                     document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     map.setView(CITY_CONFIG[currentCity].center, CITY_CONFIG[currentCity].zoom);
+                    populateDecadeDropdown();
                     updateDisplay();
                 });
+            });
+            
+            // Decade dropdown
+            document.getElementById('decade-select').addEventListener('change', (e) => {
+                currentDecade = e.target.value;
+                updateDisplay();
             });
             
             // Toggle all button
@@ -469,7 +550,8 @@
                     const cityData = data.cities[currentCity];
                     const genreTotals = {};
                     Object.values(cityData.districts).forEach(d => {
-                        Object.entries(d.genres || {}).forEach(([g, info]) => {
+                        const decadeData = d.by_decade?.[currentDecade] || d.by_decade?.['all'] || {};
+                        Object.entries(decadeData.genres || {}).forEach(([g, info]) => {
                             genreTotals[g] = (genreTotals[g] || 0) + (info.total || 0);
                         });
                     });
@@ -487,14 +569,29 @@
             buildGenreToggles();
         }
         
+        function getDistrictData(district) {
+            // Get data for current decade
+            if (district.by_decade) {
+                return district.by_decade[currentDecade] || district.by_decade['all'] || {};
+            }
+            // Fallback for old data format
+            return {
+                total: district.total,
+                genres: district.genres,
+                dominant_genre: district.dominant_genre,
+                dominant_percentage: district.dominant_percentage
+            };
+        }
+        
         function buildGenreToggles() {
             const container = document.getElementById('genre-toggle-list');
             const cityData = data.cities[currentCity];
             
-            // Calculate genre totals for this city
+            // Calculate genre totals for this city/decade
             const genreTotals = {};
             Object.values(cityData.districts).forEach(d => {
-                Object.entries(d.genres || {}).forEach(([genre, info]) => {
+                const decadeData = getDistrictData(d);
+                Object.entries(decadeData.genres || {}).forEach(([genre, info]) => {
                     genreTotals[genre] = (genreTotals[genre] || 0) + (info.total || 0);
                 });
             });
@@ -563,7 +660,7 @@
             
             const cityData = data.cities[currentCity];
             
-            // Rebuild genre toggles for new city
+            // Rebuild genre toggles for new city/decade
             buildGenreToggles();
             
             // Calculate dominance with current genre filters
@@ -571,7 +668,8 @@
             const genreDominanceCount = {};
             
             Object.entries(cityData.districts).forEach(([key, district]) => {
-                const dominant = findDominantGenre(district.genres);
+                const decadeData = getDistrictData(district);
+                const dominant = findDominantGenre(decadeData.genres);
                 
                 if (dominant) {
                     genreDominanceCount[dominant.genre] = (genreDominanceCount[dominant.genre] || 0) + 1;
@@ -579,7 +677,11 @@
                 
                 districtDominance.push({
                     key,
-                    ...district,
+                    name_ja: district.name_ja,
+                    name_en: district.name_en,
+                    center: district.center,
+                    total: decadeData.total || 0,
+                    genres: decadeData.genres,
                     dominant
                 });
             });
@@ -597,8 +699,10 @@
                 .slice(0, 3)
                 .map(([g, c]) => `<strong style="color:${GENRE_COLORS[g]}">${g}</strong> (${c})`);
             
+            const decadeLabel = currentDecade === 'all' ? 'All Time' : `${currentDecade}s`;
             document.getElementById('dominance-summary').innerHTML = 
-                `Top dominators: ${summaryParts.join(', ')}`;
+                `<div style="margin-bottom: 5px; color: #888; font-size: 0.8em;">${decadeLabel}</div>
+                 Top dominators: ${summaryParts.join(', ')}`;
             
             // Update sidebar
             updateSidebar(districtDominance);
@@ -613,7 +717,6 @@
             const geojson = currentCity === 'tokyo' ? tokyoGeoJSON : kyotoGeoJSON;
             
             if (geojson && geojson.features && geojson.features.length > 0) {
-                // Check if it has real polygons (not just points)
                 const hasPolygons = geojson.features.some(f => 
                     f.geometry?.type === 'Polygon' || f.geometry?.type === 'MultiPolygon'
                 );
@@ -753,7 +856,7 @@
         function showDistrictDetails(district) {
             const panel = document.getElementById('info-panel');
             document.getElementById('panel-title').textContent = 
-                `${district.name_ja} (${district.name_en})`;
+                `${district.name_ja} (${district.name_en || ''})`;
             
             // Sort all genres by percentage
             const sortedGenres = Object.entries(district.genres || {})
