@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP - Japanese Cinema Locations</title>
+    
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Chart.js for timeline -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a2e;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+        
+        /* Control Panel - Dark Theme */
+        .control-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: #16213e;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+            max-width: 320px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            color: #e8e8e8;
+        }
+        
+        .control-panel h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            border-bottom: 2px solid #f4d03f;
+            padding-bottom: 8px;
+        }
+        
+        .control-section {
+            margin-bottom: 15px;
+        }
+        
+        .control-section h3 {
+            font-size: 13px;
+            color: #a0a0a0;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Toggle Switches */
+        .toggle-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border: 2px solid #333;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+            background: #1a1a2e;
+            color: #888;
+        }
+        
+        .toggle-btn.active {
+            border-color: currentColor;
+            color: inherit;
+        }
+        
+        .toggle-btn.shooting {
+            color: #e6a800;
+        }
+        
+        .toggle-btn.shooting.active {
+            background: rgba(230, 168, 0, 0.15);
+            border-color: #e6a800;
+            color: #e6a800;
+        }
+        
+        .toggle-btn.represented {
+            color: #1e8449;
+        }
+        
+        .toggle-btn.represented.active {
+            background: rgba(30, 132, 73, 0.15);
+            border-color: #1e8449;
+            color: #1e8449;
+        }
+        
+        .toggle-btn .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        
+        /* Search Inputs */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #1a1a2e;
+            color: #e8e8e8;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #f4d03f;
+        }
+        
+        .search-input::placeholder {
+            color: #666;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-result-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            border-bottom: 1px solid #2a2a4e;
+        }
+        
+        .search-result-item:hover {
+            background: #2a2a4e;
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-count {
+            color: #888;
+            font-size: 11px;
+        }
+        
+        .search-clear {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px 6px;
+        }
+        
+        .search-clear:hover {
+            color: #fff;
+        }
+        
+        /* Select Dropdowns - Dark Theme */
+        .filter-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #1a1a2e;
+            color: #e8e8e8;
+            cursor: pointer;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: #f4d03f;
+        }
+        
+        .filter-select option {
+            background: #1a1a2e;
+            color: #e8e8e8;
+        }
+        
+        /* Year Range */
+        .year-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .year-input {
+            width: 70px;
+            padding: 6px 8px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-size: 13px;
+            text-align: center;
+            background: #1a1a2e;
+            color: #e8e8e8;
+        }
+        
+        .year-input:focus {
+            outline: none;
+            border-color: #f4d03f;
+        }
+        
+        .year-range span {
+            color: #888;
+        }
+        
+        /* Stats */
+        .stats {
+            background: #1a1a2e;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #888;
+            border: 1px solid #333;
+        }
+        
+        .stats .count {
+            font-weight: bold;
+        }
+        
+        .stats .shooting-count {
+            color: #f4d03f;
+        }
+        
+        .stats .represented-count {
+            color: #2ecc71;
+        }
+        
+        /* Timeline Chart */
+        .timeline-container {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+        
+        .timeline-container h3 {
+            font-size: 13px;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .timeline-wrapper {
+            width: 100%;
+            height: 100px;
+            max-height: 100px;
+            overflow: hidden;
+            position: relative;
+            display: block;
+        }
+        
+        .timeline-wrapper canvas {
+            display: block;
+            height: 100px !important;
+            max-height: 100px !important;
+        }
+        
+        /* Reset Button */
+        .reset-btn {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #aaa;
+            transition: background 0.2s;
+        }
+        
+        .reset-btn:hover {
+            background: #444;
+            color: #fff;
+        }
+        
+        /* Popup Styles - Works with lighter basemap */
+        .leaflet-popup-content-wrapper {
+            background: #1e2939;
+            color: #e8e8e8;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+        }
+        
+        .leaflet-popup-tip {
+            background: #1e2939;
+        }
+        
+        .leaflet-popup-content {
+            margin: 12px 14px;
+            min-width: 240px;
+            line-height: 1.5;
+        }
+        
+        .popup-title-jp {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+            color: #fff;
+        }
+        
+        .popup-title-en {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .popup-meta {
+            font-size: 12px;
+            color: #bbb;
+            margin-bottom: 4px;
+        }
+        
+        .popup-meta-label {
+            color: #888;
+            display: inline-block;
+            min-width: 70px;
+        }
+        
+        .popup-location {
+            font-size: 12px;
+            color: #fff;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+        }
+        
+        .popup-location-name {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .popup-source {
+            margin-top: 10px;
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        .popup-source.shooting {
+            background: rgba(244, 208, 63, 0.15);
+            color: #f4d03f;
+            border-left: 3px solid #f4d03f;
+        }
+        
+        .popup-source.represented {
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            border-left: 3px solid #2ecc71;
+        }
+        
+        .popup-source-type {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+        
+        .popup-source-detail {
+            margin-top: 3px;
+            color: #ccc;
+        }
+        
+        .popup-synopsis {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            color: #e8e8e8;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #333;
+            border-top: 4px solid #f4d03f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .control-panel {
+                top: auto;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                max-height: 50vh;
+            }
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: #888;
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .legend-dot.shooting {
+            background: #f4d03f;
+        }
+        
+        .legend-dot.represented {
+            background: #2ecc71;
+        }
+        
+        /* Close button styling */
+        .leaflet-popup-close-button {
+            color: #888 !important;
+        }
+        
+        .leaflet-popup-close-button:hover {
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div>Loading CineMAP data...</div>
+    </div>
+    
+    <!-- Map Container -->
+    <div id="map"></div>
+    
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <h2>🎬 CineMAP Japan</h2>
+        
+        <!-- Location Type Toggles -->
+        <div class="control-section">
+            <h3>Location Type</h3>
+            <div class="toggle-group">
+                <button class="toggle-btn shooting active" id="toggle-shooting" onclick="toggleLocationType('shooting')">
+                    <span class="dot"></span>
+                    <span>Shooting</span>
+                </button>
+                <button class="toggle-btn represented active" id="toggle-represented" onclick="toggleLocationType('represented')">
+                    <span class="dot"></span>
+                    <span>Represented</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Film Title Search -->
+        <div class="control-section">
+            <h3>Film Title</h3>
+            <div class="search-container">
+                <input type="text" id="search-film" class="search-input" placeholder="Type film title..." oninput="onFilmSearch(this.value)" onfocus="showFilmResults()" onblur="hideFilmResultsDelayed()" onkeydown="if(event.key==='Enter'){applyFilmSearch()}">
+                <button class="search-clear" onclick="clearFilmSearch()" style="display:none;" id="clear-film">×</button>
+                <div class="search-results" id="film-results"></div>
+            </div>
+        </div>
+        
+        <!-- Genre Filter -->
+        <div class="control-section">
+            <h3>Genre</h3>
+            <select id="filter-genre" class="filter-select" onchange="applyFilters()">
+                <option value="">All Genres</option>
+            </select>
+        </div>
+        
+        <!-- Director Search -->
+        <div class="control-section">
+            <h3>Director</h3>
+            <div class="search-container">
+                <input type="text" id="search-director" class="search-input" placeholder="Type director name..." oninput="onDirectorSearch(this.value)" onfocus="showDirectorResults()" onblur="hideDirectorResultsDelayed()" onkeydown="if(event.key==='Enter'){applyDirectorSearch()}">
+                <button class="search-clear" onclick="clearDirectorSearch()" style="display:none;" id="clear-director">×</button>
+                <div class="search-results" id="director-results"></div>
+            </div>
+        </div>
+        
+        <!-- Production Company Search -->
+        <div class="control-section">
+            <h3>Production Company</h3>
+            <div class="search-container">
+                <input type="text" id="search-studio" class="search-input" placeholder="Type studio name..." oninput="onStudioSearch(this.value)" onfocus="showStudioResults()" onblur="hideStudioResultsDelayed()" onkeydown="if(event.key==='Enter'){applyStudioSearch()}">
+                <button class="search-clear" onclick="clearStudioSearch()" style="display:none;" id="clear-studio">×</button>
+                <div class="search-results" id="studio-results"></div>
+            </div>
+        </div>
+        
+        <!-- Prefecture Filter -->
+        <div class="control-section">
+            <h3>Prefecture</h3>
+            <select id="filter-prefecture" class="filter-select" onchange="applyFilters()">
+                <option value="">All Prefectures</option>
+            </select>
+        </div>
+        
+        <!-- Year Range -->
+        <div class="control-section">
+            <h3>Year Range</h3>
+            <div class="year-range">
+                <input type="number" id="year-min" class="year-input" placeholder="Min" onchange="applyFilters()">
+                <span>to</span>
+                <input type="number" id="year-max" class="year-input" placeholder="Max" onchange="applyFilters()">
+            </div>
+        </div>
+        
+        <!-- Synopsis Search -->
+        <div class="control-section">
+            <h3>Synopsis Search</h3>
+            <div class="search-container">
+                <input type="text" id="search-synopsis" class="search-input" placeholder="Search in synopses..." oninput="onSynopsisSearchDebounced(this.value)">
+                <button class="search-clear" onclick="clearSynopsisSearch()" style="display:none;" id="clear-synopsis">×</button>
+            </div>
+            <div class="synopsis-hint" style="font-size:10px;color:#666;margin-top:4px;">Press Enter or wait to search</div>
+        </div>
+        
+        <!-- Reset Button -->
+        <div class="control-section">
+            <button class="reset-btn" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+        
+        <!-- Stats -->
+        <div class="control-section">
+            <div class="stats">
+                <div>Showing: <span class="count shooting-count" id="stat-shooting">0</span> shooting + <span class="count represented-count" id="stat-represented">0</span> represented</div>
+                <div style="margin-top: 5px;">Total: <span class="count" id="stat-total">0</span> locations</div>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot shooting"></div>
+                    <span>Shooting location</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot represented"></div>
+                    <span>Represented location</span>
+                </div>
+            </div>
+            
+            <!-- Timeline Chart -->
+            <div class="timeline-container">
+                <h3>Films by Year</h3>
+                <div class="timeline-wrapper">
+                    <canvas id="timeline-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Leaflet MarkerCluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    
+    <script>
+        // ============================================================
+        // CONFIGURATION - GitHub Pages (<25MB chunks)
+        // ============================================================
+                const DATA_BASE_URL = './';
+        const RANDOM_SUFFIX = '479fb9b141848e7c';
+        
+        const DATA_FILES = {
+            meta: 'cm_meta_2a28badcae99c6b8.json',
+            filming: [
+                'cm_film_2a28badcae99c6b8_1.json',
+                'cm_film_2a28badcae99c6b8_2.json',
+                'cm_film_2a28badcae99c6b8_3.json',
+                'cm_film_2a28badcae99c6b8_4.json',
+                'cm_film_2a28badcae99c6b8_5.json',
+                'cm_film_2a28badcae99c6b8_6.json'
+            ],
+            represented: [
+                'cm_repr_2a28badcae99c6b8_1.json',
+                'cm_repr_2a28badcae99c6b8_2.json',
+                'cm_repr_2a28badcae99c6b8_3.json',
+                'cm_repr_2a28badcae99c6b8_4.json',
+                'cm_repr_2a28badcae99c6b8_5.json',
+                'cm_repr_2a28badcae99c6b8_6.json',
+                'cm_repr_2a28badcae99c6b8_7.json',
+                'cm_repr_2a28badcae99c6b8_8.json',
+                'cm_repr_2a28badcae99c6b8_9.json',
+                'cm_repr_2a28badcae99c6b8_10.json',
+            ]
+        };
+        // ============================================================
+        
+        // === GLOBAL STATE ===
+        let map;
+        let shootingCluster;
+        let representedCluster;
+        let allData = { filming_locations: [], represented_locations: [], filters: {}, metadata: {} };
+        
+        let filters = {
+            showShooting: true,
+            showRepresented: true,
+            genre: '',
+            director: '',
+            studio: '',
+            prefecture: '',
+            filmTitle: '',
+            yearMin: null,
+            yearMax: null,
+            synopsisQuery: ''
+        };
+        
+        // Search state
+        let allFilmTitles = [];
+        let allDirectors = [];
+        let allStudios = [];
+        
+        // Synopsis search debounce
+        let synopsisSearchTimer = null;
+        
+        // Timeline chart
+        let timelineChart = null;
+        
+        // === TEXT NORMALIZATION FOR SEARCH ===
+        // Handles both Japanese and English text
+        function normalizeText(text) {
+            if (!text) return '';
+            // Normalize Unicode (NFKC converts half-width to full-width, etc.)
+            let normalized = text.normalize('NFKC');
+            // Convert to lowercase for English
+            normalized = normalized.toLowerCase();
+            // Remove extra whitespace
+            normalized = normalized.replace(/\s+/g, ' ').trim();
+            return normalized;
+        }
+        
+        // === INITIALIZE MAP ===
+        function initMap() {
+            // Center on Japan
+            map = L.map('map').setView([36.5, 138], 5);
+            
+            // Basemap - CartoDB Positron (light with subtle colors) or Voyager (medium)
+            // Options: 'dark_all' (very dark), 'voyager' (medium), 'positron' (light)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> | CineMAP Japan',
+                maxZoom: 19,
+                subdomains: 'abcd'
+            }).addTo(map);
+            
+            // Initialize marker cluster groups with custom colors
+            // Clustering options:
+            // - maxClusterRadius: lower = less clustering (default 80, we use 40)
+            // - disableClusteringAtZoom: show individual markers at this zoom level
+            shootingCluster = L.markerClusterGroup({
+                iconCreateFunction: function(cluster) {
+                    const count = cluster.getChildCount();
+                    let size = 30;
+                    let fontSize = '10px';
+                    if (count > 50) { size = 36; fontSize = '11px'; }
+                    if (count > 200) { size = 42; fontSize = '12px'; }
+                    if (count > 1000) { size = 50; fontSize = '13px'; }
+                    if (count > 5000) { size = 58; fontSize = '14px'; }
+                    return L.divIcon({
+                        html: '<div style="background:#e6a800;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + fontSize + ';border:2px solid #b38600;">' + (count > 999 ? Math.round(count/1000) + 'k' : count) + '</div>',
+                        className: 'marker-cluster-shooting',
+                        iconSize: [size, size]
+                    });
+                },
+                maxClusterRadius: 100,           // Higher = more clustering (was 40)
+                disableClusteringAtZoom: 17,    // Only show individual at max zoom (was 14)
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                spiderfyDistanceMultiplier: 1.5,
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50
+            });
+            
+            representedCluster = L.markerClusterGroup({
+                iconCreateFunction: function(cluster) {
+                    const count = cluster.getChildCount();
+                    let size = 30;
+                    let fontSize = '10px';
+                    if (count > 50) { size = 36; fontSize = '11px'; }
+                    if (count > 200) { size = 42; fontSize = '12px'; }
+                    if (count > 1000) { size = 50; fontSize = '13px'; }
+                    if (count > 5000) { size = 58; fontSize = '14px'; }
+                    return L.divIcon({
+                        html: '<div style="background:#1e8449;color:#fff;border-radius:50%;width:' + size + 'px;height:' + size + 'px;display:flex;align-items:center;justify-content:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.3);font-size:' + fontSize + ';border:2px solid #145a32;">' + (count > 999 ? Math.round(count/1000) + 'k' : count) + '</div>',
+                        className: 'marker-cluster-represented',
+                        iconSize: [size, size]
+                    });
+                },
+                maxClusterRadius: 80,           // Higher = more clustering (was 40)
+                disableClusteringAtZoom: 16,    // Only show individual at max zoom (was 14)
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                spiderfyDistanceMultiplier: 1.5,
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50
+            });
+            
+            map.addLayer(shootingCluster);
+            map.addLayer(representedCluster);
+        }
+        
+        // === LOAD DATA ===
+        async function loadData() {
+            const loadingDiv = document.getElementById('loading');
+            
+            try {
+                // Load metadata first
+                console.log('Loading metadata...');
+                loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading metadata...</p>';
+                const metaResponse = await fetch(DATA_BASE_URL + DATA_FILES.meta);
+                if (!metaResponse.ok) throw new Error('Failed to load metadata: ' + metaResponse.status);
+                const metaData = await metaResponse.json();
+                
+                allData.metadata = metaData.metadata;
+                allData.filters = metaData.filters;
+                
+                // Load filming locations (4 chunks)
+                console.log('Loading filming locations...');
+                allData.filming_locations = [];
+                for (let i = 0; i < DATA_FILES.filming.length; i++) {
+                    loadingDiv.innerHTML = `<div class="loading-spinner"></div><p>Loading filming locations (${i+1}/${DATA_FILES.filming.length})...</p>`;
+                    const response = await fetch(DATA_BASE_URL + DATA_FILES.filming[i]);
+                    if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.filming[i] + ': ' + response.status);
+                    const chunk = await response.json();
+                    allData.filming_locations.push(...chunk);
+                }
+                
+                // Load represented locations (2 chunks)
+                console.log('Loading represented locations...');
+                allData.represented_locations = [];
+                for (let i = 0; i < DATA_FILES.represented.length; i++) {
+                    loadingDiv.innerHTML = `<div class="loading-spinner"></div><p>Loading represented locations (${i+1}/${DATA_FILES.represented.length})...</p>`;
+                    const response = await fetch(DATA_BASE_URL + DATA_FILES.represented[i]);
+                    if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.represented[i] + ': ' + response.status);
+                    const chunk = await response.json();
+                    allData.represented_locations.push(...chunk);
+                }
+                
+                console.log('Data loaded:', {
+                    filming: allData.filming_locations.length,
+                    represented: allData.represented_locations.length
+                });
+                
+                // Populate filter dropdowns
+                populateFilters();
+                
+                // Set year range
+                if (allData.metadata) {
+                    document.getElementById('year-min').placeholder = allData.metadata.year_min || '1900';
+                    document.getElementById('year-max').placeholder = allData.metadata.year_max || '2025';
+                }
+                
+                // Display initial data
+                applyFilters();
+                
+                // Hide loading overlay
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div style="text-align:center;padding:20px;">
+                        <h3 style="color:#f4d03f;">Error Loading Data</h3>
+                        <p style="margin-top:10px;color:#888;">${error.message}</p>
+                        <p style="margin-top:10px;color:#666;font-size:12px;">
+                            Check browser console for details (F12)
+                        </p>
+                    </div>
+                `;
+            }
+        }
+        
+        // === POPULATE FILTER DROPDOWNS ===
+        function populateFilters() {
+            // Genres (keep as dropdown)
+            const genreSelect = document.getElementById('filter-genre');
+            allData.filters.genres.forEach(g => {
+                const option = document.createElement('option');
+                option.value = g.english;
+                option.textContent = `${g.english} (${g.japanese})`;
+                genreSelect.appendChild(option);
+            });
+            
+            // Store directors for search
+            allDirectors = allData.filters.directors;
+            
+            // Store studios for search
+            allStudios = allData.filters.studios;
+            
+            // Build film title index from location data
+            const filmMap = new Map();
+            [...allData.filming_locations, ...allData.represented_locations].forEach(f => {
+                const props = f.properties;
+                if (!filmMap.has(props.film_id)) {
+                    filmMap.set(props.film_id, {
+                        id: props.film_id,
+                        title: props.film_title,
+                        english: props.english_title,
+                        year: props.year
+                    });
+                }
+            });
+            allFilmTitles = Array.from(filmMap.values());
+            
+            // Prefectures (keep as dropdown)
+            const prefectureSelect = document.getElementById('filter-prefecture');
+            allData.filters.prefectures.forEach(p => {
+                const option = document.createElement('option');
+                option.value = p.name;
+                option.textContent = `${p.name} (${p.count} locations)`;
+                prefectureSelect.appendChild(option);
+            });
+        }
+        
+        // === FILM TITLE SEARCH ===
+        function onFilmSearch(query) {
+            const clearBtn = document.getElementById('clear-film');
+            clearBtn.style.display = query ? 'block' : 'none';
+            
+            if (query.length < 2) {
+                document.getElementById('film-results').classList.remove('active');
+                return;
+            }
+            
+            const queryLower = query.toLowerCase();
+            const matches = allFilmTitles.filter(f => 
+                (f.title && f.title.toLowerCase().includes(queryLower)) ||
+                (f.english && f.english.toLowerCase().includes(queryLower))
+            ).slice(0, 15);
+            
+            const resultsDiv = document.getElementById('film-results');
+            if (matches.length > 0) {
+                resultsDiv.innerHTML = matches.map(f => 
+                    `<div class="search-result-item" onmousedown="selectFilm('${f.title.replace(/'/g, "\\'")}')">
+                        ${f.title}${f.english ? ` <span class="search-result-count">(${f.english})</span>` : ''}
+                        ${f.year ? ` <span class="search-result-count">${f.year}</span>` : ''}
+                    </div>`
+                ).join('');
+                resultsDiv.classList.add('active');
+            } else {
+                resultsDiv.classList.remove('active');
+            }
+            
+            // DON'T filter on every keystroke - wait for selection or Enter
+        }
+        
+        function selectFilm(title) {
+            document.getElementById('search-film').value = title;
+            document.getElementById('film-results').classList.remove('active');
+            document.getElementById('clear-film').style.display = 'block';
+            filters.filmTitle = title;
+            applyFilters();
+        }
+        
+        function clearFilmSearch() {
+            document.getElementById('search-film').value = '';
+            document.getElementById('film-results').classList.remove('active');
+            document.getElementById('clear-film').style.display = 'none';
+            filters.filmTitle = '';
+            applyFilters();
+        }
+        
+        function showFilmResults() {
+            const query = document.getElementById('search-film').value;
+            if (query.length >= 2) {
+                document.getElementById('film-results').classList.add('active');
+            }
+        }
+        
+        function hideFilmResultsDelayed() {
+            setTimeout(() => document.getElementById('film-results').classList.remove('active'), 200);
+        }
+        
+        // Apply film search on Enter key
+        function applyFilmSearch() {
+            const query = document.getElementById('search-film').value;
+            document.getElementById('film-results').classList.remove('active');
+            if (query.length >= 2) {
+                filters.filmTitle = query;
+                applyFilters();
+            }
+        }
+        
+        // === DIRECTOR SEARCH ===
+        function onDirectorSearch(query) {
+            const clearBtn = document.getElementById('clear-director');
+            clearBtn.style.display = query ? 'block' : 'none';
+            
+            if (query.length < 2) {
+                document.getElementById('director-results').classList.remove('active');
+                return;
+            }
+            
+            const queryLower = query.toLowerCase();
+            const matches = allDirectors.filter(d => 
+                (d.name && d.name.toLowerCase().includes(queryLower)) ||
+                (d.japanese && d.japanese.includes(query))
+            ).slice(0, 15);
+            
+            const resultsDiv = document.getElementById('director-results');
+            if (matches.length > 0) {
+                resultsDiv.innerHTML = matches.map(d => 
+                    `<div class="search-result-item" onmousedown="selectDirector('${d.name.replace(/'/g, "\\'")}')">
+                        ${d.name}${d.japanese ? ` <span class="search-result-count">(${d.japanese})</span>` : ''}
+                        <span class="search-result-count">${d.films} films</span>
+                    </div>`
+                ).join('');
+                resultsDiv.classList.add('active');
+            } else {
+                resultsDiv.classList.remove('active');
+            }
+            
+            // DON'T filter on every keystroke - wait for selection or Enter
+        }
+        
+        function selectDirector(name) {
+            document.getElementById('search-director').value = name;
+            document.getElementById('director-results').classList.remove('active');
+            document.getElementById('clear-director').style.display = 'block';
+            filters.director = name;
+            applyFilters();
+        }
+        
+        function clearDirectorSearch() {
+            document.getElementById('search-director').value = '';
+            document.getElementById('director-results').classList.remove('active');
+            document.getElementById('clear-director').style.display = 'none';
+            filters.director = '';
+            applyFilters();
+        }
+        
+        function showDirectorResults() {
+            const query = document.getElementById('search-director').value;
+            if (query.length >= 2) {
+                document.getElementById('director-results').classList.add('active');
+            }
+        }
+        
+        function hideDirectorResultsDelayed() {
+            setTimeout(() => document.getElementById('director-results').classList.remove('active'), 200);
+        }
+        
+        // Apply director search on Enter key
+        function applyDirectorSearch() {
+            const query = document.getElementById('search-director').value;
+            document.getElementById('director-results').classList.remove('active');
+            if (query.length >= 2) {
+                filters.director = query;
+                applyFilters();
+            }
+        }
+        
+        // === STUDIO SEARCH ===
+        function onStudioSearch(query) {
+            const clearBtn = document.getElementById('clear-studio');
+            clearBtn.style.display = query ? 'block' : 'none';
+            
+            if (query.length < 2) {
+                document.getElementById('studio-results').classList.remove('active');
+                return;
+            }
+            
+            const queryLower = query.toLowerCase();
+            const matches = allStudios.filter(s => 
+                (s.name && s.name.toLowerCase().includes(queryLower)) ||
+                (s.japanese && s.japanese.includes(query))
+            ).slice(0, 15);
+            
+            const resultsDiv = document.getElementById('studio-results');
+            if (matches.length > 0) {
+                resultsDiv.innerHTML = matches.map(s => 
+                    `<div class="search-result-item" onmousedown="selectStudio('${(s.name || s.japanese).replace(/'/g, "\\'")}')">
+                        ${s.name || s.japanese}${s.japanese && s.name ? ` <span class="search-result-count">(${s.japanese})</span>` : ''}
+                        <span class="search-result-count">${s.films} films</span>
+                    </div>`
+                ).join('');
+                resultsDiv.classList.add('active');
+            } else {
+                resultsDiv.classList.remove('active');
+            }
+            
+            // DON'T filter on every keystroke - wait for selection or Enter
+        }
+        
+        function selectStudio(name) {
+            document.getElementById('search-studio').value = name;
+            document.getElementById('studio-results').classList.remove('active');
+            document.getElementById('clear-studio').style.display = 'block';
+            filters.studio = name;
+            applyFilters();
+        }
+        
+        function clearStudioSearch() {
+            document.getElementById('search-studio').value = '';
+            document.getElementById('studio-results').classList.remove('active');
+            document.getElementById('clear-studio').style.display = 'none';
+            filters.studio = '';
+            applyFilters();
+        }
+        
+        function showStudioResults() {
+            const query = document.getElementById('search-studio').value;
+            if (query.length >= 2) {
+                document.getElementById('studio-results').classList.add('active');
+            }
+        }
+        
+        function hideStudioResultsDelayed() {
+            setTimeout(() => document.getElementById('studio-results').classList.remove('active'), 200);
+        }
+        
+        // Apply studio search on Enter key
+        function applyStudioSearch() {
+            const query = document.getElementById('search-studio').value;
+            document.getElementById('studio-results').classList.remove('active');
+            if (query.length >= 2) {
+                filters.studio = query;
+                applyFilters();
+            }
+        }
+        
+        // === SYNOPSIS SEARCH ===
+        function onSynopsisSearchDebounced(query) {
+            const clearBtn = document.getElementById('clear-synopsis');
+            clearBtn.style.display = query ? 'block' : 'none';
+            
+            // Clear existing timer
+            if (synopsisSearchTimer) {
+                clearTimeout(synopsisSearchTimer);
+            }
+            
+            // Debounce - wait 500ms after typing stops
+            synopsisSearchTimer = setTimeout(() => {
+                filters.synopsisQuery = query;
+                applyFilters();
+            }, 500);
+        }
+        
+        function clearSynopsisSearch() {
+            document.getElementById('search-synopsis').value = '';
+            document.getElementById('clear-synopsis').style.display = 'none';
+            filters.synopsisQuery = '';
+            if (synopsisSearchTimer) {
+                clearTimeout(synopsisSearchTimer);
+            }
+            applyFilters();
+        }
+        
+        // === FORMAT INFO SOURCE ===
+        function formatInfoSource(infoSource, locationType) {
+            if (!infoSource) {
+                return locationType === 'filming' ? 'Database' : 'Unknown';
+            }
+            
+            // Parse InfoSource format: "source|url" or just "source"
+            const parts = infoSource.split('|');
+            const source = parts[0];
+            const sourceLower = source.toLowerCase();
+            
+            // Clean up common source names (filming locations)
+            const sourceMap = {
+                'agua': 'Agua Film Archive',
+                'imdb': 'IMDB',
+                'nfaj': 'NFAJ Archive',
+                'nikkatsu': 'Nikkatsu',
+                'nikkatsu website': 'Nikkatsu',
+                'nikkatsu migration': 'Nikkatsu',
+                'wikipedia': 'Wikipedia',
+                'wikidata': 'Wikidata',
+                'loca_ash': 'loca.ash.jp',
+                'locanavi': 'Locanavi',
+                'roke jiten': 'Roke Jiten',
+                'filminglocation.work': 'Film Location DB',
+                'ysotake_coocan': 'Ysotake Archive',
+                'subtitle_extraction': 'Subtitle',
+                'synopsis_extraction': 'Synopsis',
+                'title_extraction': 'Title'
+            };
+            
+            // Check for FC: prefix (Film Commissions)
+            if (sourceLower.startsWith('fc:')) {
+                return 'Film Commission';
+            }
+            
+            // Check for recovered data
+            if (sourceLower.includes('recovered')) {
+                return 'Recovered Data';
+            }
+            
+            // Check for loca_ash with URL
+            if (sourceLower.startsWith('loca_ash')) {
+                return 'loca.ash.jp';
+            }
+            
+            // Check for http URLs
+            if (sourceLower.startsWith('http')) {
+                return 'Web Archive';
+            }
+            
+            return sourceMap[sourceLower] || sourceMap[source] || source;
+        }
+        
+        // === GET EXTRACTION TYPE FOR REPRESENTED LOCATIONS ===
+        function getExtractionType(infoSource) {
+            if (!infoSource) return 'database';
+            
+            const sourceLower = infoSource.toLowerCase();
+            
+            // Check for extraction method patterns first (most specific)
+            if (sourceLower.includes('represented_synopsis') || sourceLower.includes('synopsis')) return 'synopsis';
+            if (sourceLower.includes('represented_title') || sourceLower.includes('title')) return 'title';
+            if (sourceLower.includes('represented_subtitle') || sourceLower.includes('subtitle')) return 'subtitle';
+            
+            // Database sources
+            if (sourceLower === 'wikidata') return 'Wikidata';
+            if (sourceLower === 'wikipedia') return 'Wikipedia';
+            if (sourceLower === 'imdb') return 'IMDB';
+            if (sourceLower.includes('nikkatsu')) return 'Nikkatsu records';
+            if (sourceLower.includes('gangm')) return 'web archive';
+            if (sourceLower.includes('restored') || sourceLower.includes('cleaned')) return 'restored data';
+            
+            return 'database';
+        }
+        
+        // === CREATE MARKER ===
+        function createMarker(feature) {
+            const props = feature.properties;
+            const isShooting = props.location_type === 'filming';
+            
+            // Create circle marker with colors visible on lighter map
+            const marker = L.circleMarker(
+                [feature.geometry.coordinates[1], feature.geometry.coordinates[0]],
+                {
+                    radius: 7,
+                    fillColor: isShooting ? '#e6a800' : '#1e8449',  // Slightly darker yellow/green
+                    color: isShooting ? '#b38600' : '#145a32',       // Darker border
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.85
+                }
+            );
+            
+            // Format source information
+            const sourceName = formatInfoSource(props.info_source, props.location_type);
+            const extractionType = getExtractionType(props.info_source);
+            
+            // Build popup content with new format
+            let popupContent = `
+                <div class="popup-title-jp">${props.film_title || 'タイトル不明'}</div>
+                <div class="popup-title-en">${props.english_title || ''}</div>
+                
+                <div class="popup-meta">
+                    <span class="popup-meta-label">Year:</span> ${props.year || 'Unknown'}
+                </div>
+                <div class="popup-meta">
+                    <span class="popup-meta-label">Director:</span> ${props.directors && props.directors.length ? props.directors.slice(0, 2).join(', ') : 'Unknown'}
+                </div>
+                <div class="popup-meta">
+                    <span class="popup-meta-label">Genre:</span> ${props.genres && props.genres.length ? props.genres.slice(0, 3).join(', ') : 'Unknown'}
+                </div>
+                <div class="popup-meta">
+                    <span class="popup-meta-label">Studio:</span> ${props.studio || 'Unknown'}
+                </div>
+                
+                <div class="popup-location">
+                    <div class="popup-location-name">📍 ${props.location_name || 'Unknown location'}</div>
+                    <div style="color:#888;font-size:11px;margin-top:2px;">${props.prefecture || ''}</div>
+                </div>
+            `;
+            
+            // Add source attribution
+            if (isShooting) {
+                popupContent += `
+                    <div class="popup-source shooting">
+                        <div class="popup-source-type">🎥 Shooting Location</div>
+                        <div class="popup-source-detail">from ${sourceName}</div>
+                    </div>
+                `;
+            } else {
+                popupContent += `
+                    <div class="popup-source represented">
+                        <div class="popup-source-type">📖 Represented Location</div>
+                        <div class="popup-source-detail">extracted from ${extractionType}</div>
+                    </div>
+                `;
+            }
+            
+            marker.bindPopup(popupContent);
+            
+            return marker;
+        }
+        
+        // === FILTER LOGIC ===
+        function passesFilter(feature) {
+            const props = feature.properties;
+            
+            // Film title filter (partial match)
+            if (filters.filmTitle) {
+                const query = filters.filmTitle.toLowerCase();
+                const titleMatch = (props.film_title && props.film_title.toLowerCase().includes(query)) ||
+                                   (props.english_title && props.english_title.toLowerCase().includes(query));
+                if (!titleMatch) return false;
+            }
+            
+            // Genre filter
+            if (filters.genre && props.genres) {
+                if (!props.genres.includes(filters.genre)) return false;
+            }
+            
+            // Director filter (partial match for incremental search)
+            if (filters.director) {
+                if (!props.directors || !props.directors.length) return false;
+                const query = filters.director.toLowerCase();
+                const directorMatch = props.directors.some(d => d.toLowerCase().includes(query));
+                if (!directorMatch) return false;
+            }
+            
+            // Studio filter (partial match for incremental search)
+            if (filters.studio) {
+                if (!props.studio && !props.studio_japanese) return false;
+                const query = filters.studio.toLowerCase();
+                const studioMatch = (props.studio && props.studio.toLowerCase().includes(query)) ||
+                                    (props.studio_japanese && props.studio_japanese.includes(filters.studio));
+                if (!studioMatch) return false;
+            }
+            
+            // Prefecture filter
+            if (filters.prefecture && props.prefecture !== filters.prefecture) return false;
+            
+            // Year range filter
+            if (filters.yearMin && props.year && props.year < filters.yearMin) return false;
+            if (filters.yearMax && props.year && props.year > filters.yearMax) return false;
+            
+            // Synopsis search filter
+            if (filters.synopsisQuery) {
+                const query = normalizeText(filters.synopsisQuery);
+                const synopsis = normalizeText(props.synopsis || '');
+                if (!synopsis.includes(query)) {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        // === APPLY FILTERS ===
+        function applyFilters() {
+            if (!allData.filming_locations.length && !allData.represented_locations.length) return;
+            
+            // Show loading cursor
+            document.body.style.cursor = 'wait';
+            
+            // Use requestAnimationFrame to allow UI to update before heavy processing
+            requestAnimationFrame(() => {
+                // Update filter state from UI (only for dropdowns - search inputs update directly)
+                filters.genre = document.getElementById('filter-genre').value;
+                filters.prefecture = document.getElementById('filter-prefecture').value;
+                filters.yearMin = parseInt(document.getElementById('year-min').value) || null;
+                filters.yearMax = parseInt(document.getElementById('year-max').value) || null;
+                
+                // Clear existing markers
+                shootingCluster.clearLayers();
+                representedCluster.clearLayers();
+                
+                let shootingCount = 0;
+                let representedCount = 0;
+                
+                // Track unique films per year for timeline (using Set to avoid duplicates)
+                const filmsByYear = {};
+                
+                // Add shooting locations (formerly "filming")
+                if (filters.showShooting) {
+                    allData.filming_locations.forEach(feature => {
+                        if (passesFilter(feature)) {
+                            shootingCluster.addLayer(createMarker(feature));
+                            shootingCount++;
+                            // Track unique film by year
+                            const year = feature.properties.year;
+                            const filmId = feature.properties.film_id;
+                            if (year && year >= 1900 && year <= 2030 && filmId) {
+                                if (!filmsByYear[year]) filmsByYear[year] = new Set();
+                                filmsByYear[year].add(filmId);
+                            }
+                        }
+                    });
+                }
+                
+                // Add represented locations
+                if (filters.showRepresented) {
+                    allData.represented_locations.forEach(feature => {
+                        if (passesFilter(feature)) {
+                            representedCluster.addLayer(createMarker(feature));
+                            representedCount++;
+                            // Track unique film by year
+                            const year = feature.properties.year;
+                            const filmId = feature.properties.film_id;
+                            if (year && year >= 1900 && year <= 2030 && filmId) {
+                                if (!filmsByYear[year]) filmsByYear[year] = new Set();
+                                filmsByYear[year].add(filmId);
+                            }
+                        }
+                    });
+                }
+                
+                // Convert Sets to counts for timeline
+                const yearCounts = {};
+                for (const year in filmsByYear) {
+                    yearCounts[year] = filmsByYear[year].size;
+                }
+                
+                // Update stats
+                document.getElementById('stat-shooting').textContent = shootingCount.toLocaleString();
+                document.getElementById('stat-represented').textContent = representedCount.toLocaleString();
+                document.getElementById('stat-total').textContent = (shootingCount + representedCount).toLocaleString();
+                
+                // Update timeline
+                updateTimeline(yearCounts);
+                
+                // Reset cursor
+                document.body.style.cursor = 'default';
+            });
+        }
+        
+        // === TOGGLE LOCATION TYPE ===
+        function toggleLocationType(type) {
+            const btn = document.getElementById('toggle-' + type);
+            
+            if (type === 'shooting') {
+                filters.showShooting = !filters.showShooting;
+                btn.classList.toggle('active', filters.showShooting);
+            } else {
+                filters.showRepresented = !filters.showRepresented;
+                btn.classList.toggle('active', filters.showRepresented);
+            }
+            
+            applyFilters();
+        }
+        
+        // === UPDATE TIMELINE ===
+        function updateTimeline(yearCounts) {
+            const ctx = document.getElementById('timeline-chart');
+            if (!ctx) return;
+            
+            // Get sorted years
+            const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+            
+            if (years.length === 0) {
+                if (timelineChart) {
+                    timelineChart.destroy();
+                    timelineChart = null;
+                }
+                return;
+            }
+            
+            // Create bins (group by decade if range is large)
+            const yearRange = years[years.length - 1] - years[0];
+            let labels = [];
+            let data = [];
+            
+            if (yearRange > 50) {
+                // Group by decade
+                const decades = {};
+                years.forEach(year => {
+                    const decade = Math.floor(year / 10) * 10;
+                    decades[decade] = (decades[decade] || 0) + yearCounts[year];
+                });
+                labels = Object.keys(decades).map(d => d + 's');
+                data = Object.values(decades);
+            } else {
+                // Show individual years
+                labels = years.map(String);
+                data = years.map(y => yearCounts[y]);
+            }
+            
+            // Destroy existing chart
+            if (timelineChart) {
+                timelineChart.destroy();
+            }
+            
+            // Ensure canvas has proper dimensions
+            ctx.style.height = '100px';
+            ctx.parentElement.style.height = '100px';
+            
+            // Create new chart
+            timelineChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: 'rgba(244, 208, 63, 0.7)',
+                        borderColor: '#f4d03f',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 300 },
+                    layout: {
+                        padding: { top: 5, bottom: 0, left: 0, right: 0 }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw.toLocaleString() + ' films';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { 
+                                color: '#888',
+                                maxRotation: 45,
+                                font: { size: 9 }
+                            },
+                            grid: { display: false }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: { 
+                                color: '#888',
+                                font: { size: 9 },
+                                callback: function(value) {
+                                    if (value >= 1000) {
+                                        return (value / 1000).toFixed(0) + 'k';
+                                    }
+                                    return value;
+                                }
+                            },
+                            grid: { color: '#333' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // === RESET FILTERS ===
+        function resetFilters() {
+            // Reset filter state
+            filters = {
+                showShooting: true,
+                showRepresented: true,
+                genre: '',
+                director: '',
+                studio: '',
+                prefecture: '',
+                filmTitle: '',
+                yearMin: null,
+                yearMax: null,
+                synopsisQuery: ''
+            };
+            
+            // Reset UI
+            document.getElementById('toggle-shooting').classList.add('active');
+            document.getElementById('toggle-represented').classList.add('active');
+            document.getElementById('filter-genre').value = '';
+            document.getElementById('filter-prefecture').value = '';
+            document.getElementById('year-min').value = '';
+            document.getElementById('year-max').value = '';
+            
+            // Reset search inputs
+            document.getElementById('search-film').value = '';
+            document.getElementById('search-director').value = '';
+            document.getElementById('search-studio').value = '';
+            document.getElementById('search-synopsis').value = '';
+            document.getElementById('clear-film').style.display = 'none';
+            document.getElementById('clear-director').style.display = 'none';
+            document.getElementById('clear-studio').style.display = 'none';
+            document.getElementById('clear-synopsis').style.display = 'none';
+            document.getElementById('film-results').classList.remove('active');
+            document.getElementById('director-results').classList.remove('active');
+            document.getElementById('studio-results').classList.remove('active');
+            
+            // Reset map view
+            map.setView([36.5, 138], 5);
+            
+            // Reapply filters
+            applyFilters();
+        }
+        
+        // === INITIALIZE ===
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadData();
+        });
+    </script>
+    
+    <!-- GoatCounter Analytics -->
+    <script data-goatcounter="https://cinemapjapan.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
