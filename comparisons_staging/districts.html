@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP - Tokyo & Kyoto District Genre Dominance</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e; 
+            color: #eee;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 15px 30px;
+            border-bottom: 2px solid #e94560;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .header h1 { font-size: 1.4em; color: #fff; }
+        
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .city-toggle { display: flex; gap: 5px; }
+        
+        .city-btn {
+            padding: 8px 20px;
+            background: #0f3460;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .city-btn.active { background: #e94560; color: #fff; }
+        .city-btn:hover:not(.active) { background: #1a4a7a; }
+        
+        .decade-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0f3460;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .decade-control label {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+        
+        .decade-control select {
+            background: #16213e;
+            color: #fff;
+            border: 1px solid #0f3460;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        
+        .decade-control select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+        
+        .container { display: flex; height: calc(100vh - 70px); }
+        
+        .sidebar {
+            width: 320px;
+            background: #16213e;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #0f3460;
+            overflow: hidden;
+        }
+        
+        .genre-toggles {
+            padding: 15px;
+            border-bottom: 1px solid #0f3460;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        
+        .genre-toggles h3 {
+            margin-bottom: 10px;
+            color: #e94560;
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .toggle-all-btn {
+            font-size: 0.75em;
+            padding: 4px 8px;
+            background: #0f3460;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .toggle-all-btn:hover { background: #1a4a7a; color: #fff; }
+        
+        .genre-toggle {
+            display: flex;
+            align-items: center;
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            background: #0f3460;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .genre-toggle:hover { background: #1a4a7a; }
+        .genre-toggle.disabled { opacity: 0.4; }
+        
+        .genre-toggle input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .genre-color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .genre-toggle-name { flex: 1; font-size: 0.85em; }
+        
+        .genre-toggle-count {
+            font-size: 0.75em;
+            color: #888;
+            background: #0a1628;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        
+        .dominance-summary {
+            padding: 12px 15px;
+            background: #0f3460;
+            border-bottom: 1px solid #0f3460;
+            font-size: 0.85em;
+        }
+        
+        .dominance-summary strong { color: #e94560; }
+        
+        .district-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .district-list h3 {
+            margin-bottom: 10px;
+            color: #e94560;
+            font-size: 0.9em;
+        }
+        
+        .district-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            background: #0f3460;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .district-item:hover { background: #1a4a7a; }
+        .district-item.selected { background: #e94560; }
+        
+        .district-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .district-info { flex: 1; }
+        .district-name { font-weight: 500; font-size: 0.95em; }
+        .district-genre { font-size: 0.8em; color: #aaa; }
+        
+        .district-pct {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #e94560;
+        }
+        
+        .back-link {
+            padding: 15px;
+            border-top: 1px solid #0f3460;
+        }
+        
+        .back-link a { color: #e94560; text-decoration: none; }
+        .back-link a:hover { text-decoration: underline; }
+        
+        #map { flex: 1; height: 100%; }
+        
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            left: 340px;
+            background: rgba(22, 33, 62, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            max-width: 200px;
+        }
+        
+        .legend h4 {
+            margin-bottom: 10px;
+            color: #e94560;
+            font-size: 0.85em;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 0.8em;
+        }
+        
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+        
+        .legend-count {
+            margin-left: auto;
+            color: #888;
+            font-size: 0.85em;
+        }
+        
+        .info-panel {
+            position: absolute;
+            top: 90px;
+            right: 20px;
+            background: rgba(22, 33, 62, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            width: 320px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        .info-panel h3 {
+            color: #e94560;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        
+        .close-btn:hover { color: #e94560; }
+        
+        .panel-summary {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #0f3460;
+        }
+        
+        .panel-stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .panel-stat-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #e94560;
+        }
+        
+        .panel-stat-label {
+            font-size: 0.75em;
+            color: #888;
+        }
+        
+        .genre-breakdown-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #0f3460;
+        }
+        
+        .genre-breakdown-item:last-child { border-bottom: none; }
+        
+        .genre-breakdown-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .genre-breakdown-name { flex: 1; font-size: 0.9em; }
+        
+        .genre-breakdown-stats {
+            text-align: right;
+            font-size: 0.85em;
+        }
+        
+        .genre-breakdown-pct { font-weight: bold; }
+        .genre-breakdown-count { color: #888; font-size: 0.8em; }
+        
+        .leaflet-popup-content-wrapper { background: #16213e; color: #eee; border-radius: 8px; }
+        .leaflet-popup-tip { background: #16213e; }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1001;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #0f3460;
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        @media (max-width: 768px) {
+            .header { flex-direction: column; padding: 10px; }
+            .header-controls { width: 100%; justify-content: center; }
+            .sidebar { width: 100%; max-height: 40vh; }
+            .container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏙️ District Genre Dominance</h1>
+        <div class="header-controls">
+            <div class="city-toggle">
+                <button class="city-btn active" data-city="tokyo">🗼 Tokyo (23 Wards)</button>
+                <button class="city-btn" data-city="kyoto">⛩️ Kyoto (11 Wards)</button>
+            </div>
+            <div class="decade-control">
+                <label>📅 Decade:</label>
+                <select id="decade-select">
+                    <option value="all">All Time</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="genre-toggles">
+                <h3>
+                    🎭 GENRE FILTERS
+                    <button class="toggle-all-btn" id="toggle-all">Show All</button>
+                </h3>
+                <div id="genre-toggle-list"></div>
+            </div>
+            
+            <div class="dominance-summary" id="dominance-summary">
+                Loading...
+            </div>
+            
+            <div class="district-list">
+                <h3>📍 DISTRICTS BY DOMINANT GENRE</h3>
+                <div id="district-items"></div>
+            </div>
+            
+            <div class="back-link">
+                <a href="../index.html">← Back to CineMAP</a>
+            </div>
+        </div>
+        
+        <div id="map">
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading district data...</p>
+            </div>
+        </div>
+        
+        <div class="legend" id="legend">
+            <h4>Dominant Genres</h4>
+            <div id="legend-items"></div>
+        </div>
+        
+        <div class="info-panel" id="info-panel">
+            <h3>
+                <span id="panel-title"></span>
+                <button class="close-btn" onclick="closePanel()">×</button>
+            </h3>
+            <div id="panel-content"></div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const DATA_FILE = 'district_genres.json';
+        const TOKYO_GEOJSON = '../boundaries/tokyo_wards.geojson';
+        const KYOTO_GEOJSON = '../boundaries/kyoto_wards.geojson';
+        
+        const GENRE_COLORS = {
+            'Drama': '#3498db', 'Action': '#e74c3c', 'Comedy': '#f1c40f',
+            'Romance': '#e91e63', 'Animation': '#ff9800', 'Horror': '#9b59b6',
+            'Documentary': '#795548', 'Biography': '#4caf50', 'Crime': '#00bcd4',
+            'Adventure': '#16a085', 'Mystery': '#673ab7', 'Thriller': '#607d8b',
+            'War': '#455a64', 'Fantasy': '#8e44ad', 'Music': '#c0392b',
+            'Period Drama': '#d35400', 'Science Fiction': '#1abc9c', 
+            'Suspense': '#7f8c8d', 'Literary': '#9b59b6', 'Disaster': '#c0392b'
+        };
+        
+        const CITY_CONFIG = {
+            tokyo: { center: [35.6762, 139.6503], zoom: 11 },
+            kyoto: { center: [35.0116, 135.7681], zoom: 12 }
+        };
+        
+        let data = null;
+        let tokyoGeoJSON = null;
+        let kyotoGeoJSON = null;
+        let map = null;
+        let geoLayer = null;
+        let currentCity = 'tokyo';
+        let currentDecade = 'all';
+        let enabledGenres = new Set(Object.keys(GENRE_COLORS));
+        
+        function initMap() {
+            const config = CITY_CONFIG[currentCity];
+            map = L.map('map').setView(config.center, config.zoom);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap &copy; CARTO',
+                maxZoom: 18
+            }).addTo(map);
+        }
+        
+        async function loadAllData() {
+            try {
+                const dataResponse = await fetch(DATA_FILE);
+                data = await dataResponse.json();
+                console.log('Loaded:', data.method);
+                
+                // Load Tokyo GeoJSON
+                try {
+                    const geoResponse = await fetch(TOKYO_GEOJSON);
+                    if (geoResponse.ok) {
+                        tokyoGeoJSON = await geoResponse.json();
+                        console.log('Tokyo GeoJSON loaded:', tokyoGeoJSON.features?.length, 'features');
+                    }
+                } catch (e) { console.warn('No Tokyo GeoJSON'); }
+                
+                // Load Kyoto GeoJSON
+                try {
+                    const kyotoResponse = await fetch(KYOTO_GEOJSON);
+                    if (kyotoResponse.ok) {
+                        kyotoGeoJSON = await kyotoResponse.json();
+                        console.log('Kyoto GeoJSON loaded:', kyotoGeoJSON.features?.length, 'features');
+                    }
+                } catch (e) { console.warn('No Kyoto GeoJSON'); }
+                
+                document.getElementById('loading').style.display = 'none';
+                populateDecadeDropdown();
+                initUI();
+                updateDisplay();
+            } catch (error) {
+                console.error('Load error:', error);
+                document.getElementById('loading').innerHTML = 
+                    `<p style="color:#e94560;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        function populateDecadeDropdown() {
+            const select = document.getElementById('decade-select');
+            const cityData = data.cities[currentCity];
+            const decades = cityData.decades || [];
+            
+            // Clear existing options except "All Time"
+            select.innerHTML = '<option value="all">All Time</option>';
+            
+            // Add decades
+            decades.forEach(decade => {
+                const option = document.createElement('option');
+                option.value = decade;
+                option.textContent = `${decade}s`;
+                select.appendChild(option);
+            });
+            
+            select.value = currentDecade;
+        }
+        
+        function initUI() {
+            // City toggle
+            document.querySelectorAll('.city-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentCity = btn.dataset.city;
+                    document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    map.setView(CITY_CONFIG[currentCity].center, CITY_CONFIG[currentCity].zoom);
+                    populateDecadeDropdown();
+                    updateDisplay();
+                });
+            });
+            
+            // Decade dropdown
+            document.getElementById('decade-select').addEventListener('change', (e) => {
+                currentDecade = e.target.value;
+                updateDisplay();
+            });
+            
+            // Toggle all button
+            document.getElementById('toggle-all').addEventListener('click', () => {
+                const allEnabled = enabledGenres.size === Object.keys(GENRE_COLORS).length;
+                if (allEnabled) {
+                    // Disable all except top 3
+                    const cityData = data.cities[currentCity];
+                    const genreTotals = {};
+                    Object.values(cityData.districts).forEach(d => {
+                        const decadeData = d.by_decade?.[currentDecade] || d.by_decade?.['all'] || {};
+                        Object.entries(decadeData.genres || {}).forEach(([g, info]) => {
+                            genreTotals[g] = (genreTotals[g] || 0) + (info.total || 0);
+                        });
+                    });
+                    const top3 = Object.entries(genreTotals)
+                        .sort((a, b) => b[1] - a[1])
+                        .slice(0, 3)
+                        .map(([g]) => g);
+                    enabledGenres = new Set(top3);
+                } else {
+                    enabledGenres = new Set(Object.keys(GENRE_COLORS));
+                }
+                updateDisplay();
+            });
+            
+            buildGenreToggles();
+        }
+        
+        function getDistrictData(district) {
+            // Get data for current decade
+            if (district.by_decade) {
+                return district.by_decade[currentDecade] || district.by_decade['all'] || {};
+            }
+            // Fallback for old data format
+            return {
+                total: district.total,
+                genres: district.genres,
+                dominant_genre: district.dominant_genre,
+                dominant_percentage: district.dominant_percentage
+            };
+        }
+        
+        function buildGenreToggles() {
+            const container = document.getElementById('genre-toggle-list');
+            const cityData = data.cities[currentCity];
+            
+            // Calculate genre totals for this city/decade
+            const genreTotals = {};
+            Object.values(cityData.districts).forEach(d => {
+                const decadeData = getDistrictData(d);
+                Object.entries(decadeData.genres || {}).forEach(([genre, info]) => {
+                    genreTotals[genre] = (genreTotals[genre] || 0) + (info.total || 0);
+                });
+            });
+            
+            // Sort by total
+            const sortedGenres = Object.entries(genreTotals)
+                .sort((a, b) => b[1] - a[1]);
+            
+            container.innerHTML = '';
+            sortedGenres.forEach(([genre, total]) => {
+                const color = GENRE_COLORS[genre] || '#888';
+                const enabled = enabledGenres.has(genre);
+                
+                const div = document.createElement('div');
+                div.className = 'genre-toggle' + (enabled ? '' : ' disabled');
+                div.innerHTML = `
+                    <input type="checkbox" ${enabled ? 'checked' : ''} data-genre="${genre}">
+                    <div class="genre-color-box" style="background: ${color}"></div>
+                    <span class="genre-toggle-name">${genre}</span>
+                    <span class="genre-toggle-count">${total.toLocaleString()}</span>
+                `;
+                
+                div.querySelector('input').addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        enabledGenres.add(genre);
+                    } else {
+                        enabledGenres.delete(genre);
+                    }
+                    updateDisplay();
+                });
+                
+                div.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'INPUT') {
+                        const checkbox = div.querySelector('input');
+                        checkbox.checked = !checkbox.checked;
+                        if (checkbox.checked) {
+                            enabledGenres.add(genre);
+                        } else {
+                            enabledGenres.delete(genre);
+                        }
+                        updateDisplay();
+                    }
+                });
+                
+                container.appendChild(div);
+            });
+        }
+        
+        function findDominantGenre(genres) {
+            // Find the dominant genre among enabled genres only
+            let dominant = null;
+            let maxPct = 0;
+            
+            Object.entries(genres || {}).forEach(([genre, info]) => {
+                if (enabledGenres.has(genre) && (info.percentage || 0) > maxPct) {
+                    maxPct = info.percentage;
+                    dominant = { genre, ...info };
+                }
+            });
+            
+            return dominant;
+        }
+        
+        function updateDisplay() {
+            if (!data) return;
+            
+            const cityData = data.cities[currentCity];
+            
+            // Rebuild genre toggles for new city/decade
+            buildGenreToggles();
+            
+            // Calculate dominance with current genre filters
+            const districtDominance = [];
+            const genreDominanceCount = {};
+            
+            Object.entries(cityData.districts).forEach(([key, district]) => {
+                const decadeData = getDistrictData(district);
+                const dominant = findDominantGenre(decadeData.genres);
+                
+                if (dominant) {
+                    genreDominanceCount[dominant.genre] = (genreDominanceCount[dominant.genre] || 0) + 1;
+                }
+                
+                districtDominance.push({
+                    key,
+                    name_ja: district.name_ja,
+                    name_en: district.name_en,
+                    center: district.center,
+                    total: decadeData.total || 0,
+                    genres: decadeData.genres,
+                    dominant
+                });
+            });
+            
+            // Sort by dominance percentage
+            districtDominance.sort((a, b) => {
+                const pctA = a.dominant?.percentage || 0;
+                const pctB = b.dominant?.percentage || 0;
+                return pctB - pctA;
+            });
+            
+            // Update summary
+            const summaryParts = Object.entries(genreDominanceCount)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 3)
+                .map(([g, c]) => `<strong style="color:${GENRE_COLORS[g]}">${g}</strong> (${c})`);
+            
+            const decadeLabel = currentDecade === 'all' ? 'All Time' : `${currentDecade}s`;
+            document.getElementById('dominance-summary').innerHTML = 
+                `<div style="margin-bottom: 5px; color: #888; font-size: 0.8em;">${decadeLabel}</div>
+                 Top dominators: ${summaryParts.join(', ')}`;
+            
+            // Update sidebar
+            updateSidebar(districtDominance);
+            
+            // Update legend
+            updateLegend(genreDominanceCount);
+            
+            // Update map
+            if (geoLayer) map.removeLayer(geoLayer);
+            
+            // Select appropriate GeoJSON for current city
+            const geojson = currentCity === 'tokyo' ? tokyoGeoJSON : kyotoGeoJSON;
+            
+            if (geojson && geojson.features && geojson.features.length > 0) {
+                const hasPolygons = geojson.features.some(f => 
+                    f.geometry?.type === 'Polygon' || f.geometry?.type === 'MultiPolygon'
+                );
+                if (hasPolygons) {
+                    renderChoropleth(districtDominance, geojson);
+                } else {
+                    renderCircles(districtDominance);
+                }
+            } else {
+                renderCircles(districtDominance);
+            }
+        }
+        
+        function renderChoropleth(districts, geojson) {
+            const districtMap = {};
+            districts.forEach(d => {
+                districtMap[d.name_ja] = d;
+                districtMap[d.key] = d;
+            });
+            
+            geoLayer = L.geoJSON(geojson, {
+                style: feature => {
+                    const wardName = feature.properties.ward_ja || 
+                                    feature.properties.name ||
+                                    feature.properties.N03_004;
+                    const district = districtMap[wardName];
+                    const dominant = district?.dominant;
+                    
+                    return {
+                        fillColor: dominant ? (GENRE_COLORS[dominant.genre] || '#888') : '#333',
+                        weight: 2,
+                        opacity: 1,
+                        color: '#fff',
+                        fillOpacity: dominant ? 0.7 + (dominant.percentage / 100) * 0.3 : 0.3
+                    };
+                },
+                onEachFeature: (feature, layer) => {
+                    const wardName = feature.properties.ward_ja || 
+                                    feature.properties.name ||
+                                    feature.properties.N03_004;
+                    const district = districtMap[wardName];
+                    
+                    if (district) {
+                        const dominant = district.dominant;
+                        const nameEn = district.name_en || feature.properties.ward_en || '';
+                        layer.bindPopup(`
+                            <strong>${district.name_ja}</strong> (${nameEn})<br>
+                            ${dominant ? `
+                                <b style="color:${GENRE_COLORS[dominant.genre]}">${dominant.genre}: ${dominant.percentage.toFixed(1)}%</b><br>
+                                ${dominant.total.toLocaleString()} locations
+                            ` : 'No data for enabled genres'}
+                        `);
+                        
+                        layer.on('click', () => showDistrictDetails(district));
+                        layer.on('mouseover', () => layer.setStyle({ weight: 4, color: '#e94560' }));
+                        layer.on('mouseout', () => layer.setStyle({ weight: 2, color: '#fff' }));
+                    }
+                }
+            }).addTo(map);
+        }
+        
+        function renderCircles(districts) {
+            geoLayer = L.layerGroup().addTo(map);
+            
+            districts.forEach(d => {
+                if (!d.center?.lat || !d.dominant) return;
+                
+                const color = GENRE_COLORS[d.dominant.genre] || '#888';
+                const radius = 15 + (d.dominant.percentage / 100) * 25;
+                
+                const marker = L.circleMarker([d.center.lat, d.center.lon], {
+                    radius,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    fillOpacity: 0.8
+                });
+                
+                marker.bindPopup(`
+                    <strong>${d.name_ja}</strong><br>
+                    <b style="color:${color}">${d.dominant.genre}: ${d.dominant.percentage.toFixed(1)}%</b>
+                `);
+                
+                marker.on('click', () => showDistrictDetails(d));
+                geoLayer.addLayer(marker);
+            });
+        }
+        
+        function updateSidebar(districts) {
+            const container = document.getElementById('district-items');
+            container.innerHTML = '';
+            
+            districts.forEach(d => {
+                if (!d.dominant) return;
+                
+                const color = GENRE_COLORS[d.dominant.genre] || '#888';
+                
+                const item = document.createElement('div');
+                item.className = 'district-item';
+                item.innerHTML = `
+                    <div class="district-color" style="background: ${color}"></div>
+                    <div class="district-info">
+                        <div class="district-name">${d.name_ja}</div>
+                        <div class="district-genre">${d.dominant.genre}</div>
+                    </div>
+                    <div class="district-pct">${d.dominant.percentage.toFixed(1)}%</div>
+                `;
+                
+                item.onclick = () => {
+                    showDistrictDetails(d);
+                    document.querySelectorAll('.district-item').forEach(i => i.classList.remove('selected'));
+                    item.classList.add('selected');
+                };
+                
+                container.appendChild(item);
+            });
+        }
+        
+        function updateLegend(genreCounts) {
+            const container = document.getElementById('legend-items');
+            container.innerHTML = '';
+            
+            Object.entries(genreCounts)
+                .sort((a, b) => b[1] - a[1])
+                .forEach(([genre, count]) => {
+                    const item = document.createElement('div');
+                    item.className = 'legend-item';
+                    item.innerHTML = `
+                        <div class="legend-color" style="background: ${GENRE_COLORS[genre] || '#888'}"></div>
+                        <span>${genre}</span>
+                        <span class="legend-count">${count}</span>
+                    `;
+                    container.appendChild(item);
+                });
+        }
+        
+        function showDistrictDetails(district) {
+            const panel = document.getElementById('info-panel');
+            document.getElementById('panel-title').textContent = 
+                `${district.name_ja} (${district.name_en || ''})`;
+            
+            // Sort all genres by percentage
+            const sortedGenres = Object.entries(district.genres || {})
+                .filter(([g]) => enabledGenres.has(g))
+                .sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0));
+            
+            const totalLocs = district.total || 
+                Object.values(district.genres || {}).reduce((sum, g) => sum + (g.total || 0), 0);
+            
+            let html = `
+                <div class="panel-summary">
+                    <div class="panel-stat">
+                        <div class="panel-stat-value">${totalLocs.toLocaleString()}</div>
+                        <div class="panel-stat-label">Total Locations</div>
+                    </div>
+                    <div class="panel-stat">
+                        <div class="panel-stat-value">${sortedGenres.length}</div>
+                        <div class="panel-stat-label">Active Genres</div>
+                    </div>
+                </div>
+            `;
+            
+            sortedGenres.forEach(([genre, info]) => {
+                const color = GENRE_COLORS[genre] || '#888';
+                html += `
+                    <div class="genre-breakdown-item">
+                        <div class="genre-breakdown-color" style="background: ${color}"></div>
+                        <span class="genre-breakdown-name">${genre}</span>
+                        <div class="genre-breakdown-stats">
+                            <div class="genre-breakdown-pct">${(info.percentage || 0).toFixed(1)}%</div>
+                            <div class="genre-breakdown-count">${(info.total || 0).toLocaleString()}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('panel-content').innerHTML = html;
+            panel.style.display = 'block';
+        }
+        
+        function closePanel() {
+            document.getElementById('info-panel').style.display = 'none';
+            document.querySelectorAll('.district-item').forEach(i => i.classList.remove('selected'));
+        }
+        
+        initMap();
+        loadAllData();
+    </script>
+</body>
+</html>
