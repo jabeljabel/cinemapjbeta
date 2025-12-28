@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP: City Film Time-Lapse</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background: #0a0a0f;
+            color: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        #map {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1;
+        }
+        
+        /* City Toggle */
+        .city-toggle {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex;
+            gap: 4px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            padding: 6px;
+            border-radius: 12px;
+        }
+        
+        .city-btn {
+            padding: 10px 24px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #888;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .city-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        
+        .city-btn.active[data-city="tokyo"] {
+            background: linear-gradient(135deg, #f1c40f, #d4ac0d);
+            color: #1a1a1a;
+            box-shadow: 0 4px 20px rgba(241,196,15,0.4);
+        }
+        
+        .city-btn.active[data-city="kyoto"] {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(155,89,182,0.4);
+        }
+        
+        /* Year Display */
+        #year-display {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            text-align: center;
+        }
+        
+        .year-number {
+            font-size: 96px;
+            font-weight: 700;
+            letter-spacing: -4px;
+            color: #fff;
+            text-shadow: 0 0 60px rgba(241,196,15,0.5);
+            line-height: 1;
+            transition: transform 0.15s ease-out, text-shadow 0.15s ease-out;
+        }
+        
+        .year-number.flash-pulse {
+            animation: yearPulse 0.3s ease-out;
+        }
+        
+        /* Kyoto-specific year styling */
+        body.city-kyoto .year-number {
+            text-shadow: 0 0 60px rgba(155,89,182,0.5);
+        }
+        
+        @keyframes yearPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        
+        .year-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 8px;
+            transition: color 0.2s;
+        }
+        
+        .year-label.flash-active {
+            color: #f1c40f;
+        }
+        
+        body.city-kyoto .year-label.flash-active {
+            color: #9b59b6;
+        }
+        
+        .mode-indicator {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(241,196,15,0.2);
+            border: 1px solid rgba(241,196,15,0.4);
+            border-radius: 12px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #f1c40f;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        
+        .mode-indicator.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        body.city-kyoto .mode-indicator {
+            background: rgba(155,89,182,0.2);
+            border-color: rgba(155,89,182,0.4);
+            color: #9b59b6;
+        }
+        
+        /* Controls */
+        #controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .timeline-container {
+            width: 600px;
+            max-width: 90vw;
+        }
+        
+        .timeline-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .timeline-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #f1c40f, #2ecc71);
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+        
+        body.city-kyoto .timeline-progress {
+            background: linear-gradient(90deg, #9b59b6, #3498db);
+        }
+        
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 11px;
+            color: #555;
+        }
+        
+        .playback-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .play-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #f1c40f, #d4ac0d);
+            color: #1a1a1a;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(241,196,15,0.4);
+            transition: all 0.2s;
+        }
+        
+        body.city-kyoto .play-btn {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(155,89,182,0.4);
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .speed-btn, .view-btn, .mode-btn {
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 4px;
+            color: #888;
+            font-family: inherit;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .speed-btn.active, .view-btn.active {
+            background: rgba(241,196,15,0.3);
+            color: #f1c40f;
+        }
+        
+        body.city-kyoto .speed-btn.active,
+        body.city-kyoto .view-btn.active {
+            background: rgba(155,89,182,0.3);
+            color: #9b59b6;
+        }
+        
+        .speed-btn:hover, .view-btn:hover, .mode-btn:hover { 
+            background: rgba(255,255,255,0.2); 
+        }
+        
+        /* Mode Toggle */
+        .mode-toggle {
+            display: flex;
+            gap: 4px;
+            background: rgba(0,0,0,0.3);
+            padding: 4px;
+            border-radius: 8px;
+        }
+        
+        .mode-btn {
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        .mode-btn.active {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        
+        .mode-btn.flash-btn.active {
+            background: linear-gradient(135deg, rgba(241,196,15,0.3), rgba(241,196,15,0.1));
+            color: #f1c40f;
+            box-shadow: 0 0 12px rgba(241,196,15,0.3);
+        }
+        
+        body.city-kyoto .mode-btn.flash-btn.active {
+            background: linear-gradient(135deg, rgba(155,89,182,0.3), rgba(155,89,182,0.1));
+            color: #9b59b6;
+            box-shadow: 0 0 12px rgba(155,89,182,0.3);
+        }
+        
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+            background: rgba(0,0,0,0.3);
+            padding: 4px;
+            border-radius: 8px;
+        }
+        
+        .view-btn {
+            padding: 8px 14px;
+            border-radius: 6px;
+        }
+        
+        /* Stats Panel */
+        #stats {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 180px;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .stat-row:last-child { border-bottom: none; }
+        
+        .stat-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .stat-value.filming { color: #f1c40f; }
+        .stat-value.represented { color: #2ecc71; }
+        
+        body.city-kyoto .stat-value.filming { color: #9b59b6; }
+        body.city-kyoto .stat-value.represented { color: #3498db; }
+        
+        /* Title */
+        #title {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+        
+        .title-main {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .title-sub {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .title-jp {
+            font-size: 14px;
+            color: #888;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        /* Settings Panel */
+        #settings-panel {
+            position: fixed;
+            top: 280px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px 20px;
+            min-width: 200px;
+        }
+        
+        .settings-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .slider-group {
+            margin-bottom: 14px;
+        }
+        
+        .slider-group:last-child { margin-bottom: 0; }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #aaa;
+        }
+        
+        .slider-value {
+            font-weight: 600;
+            color: #f1c40f;
+        }
+        
+        body.city-kyoto .slider-value {
+            color: #9b59b6;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #f1c40f;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        body.city-kyoto input[type="range"]::-webkit-slider-thumb {
+            background: #9b59b6;
+        }
+        
+        #heatmap-settings { display: block; }
+        #points-settings { display: none; }
+        
+        /* Loading */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #0a0a0f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .loader {
+            width: 48px; height: 48px;
+            border: 3px solid #333;
+            border-top-color: #f1c40f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .loading-msg {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Legend */
+        #legend {
+            position: fixed;
+            bottom: 140px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 11px;
+        }
+        
+        .legend-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 4px 6px;
+            margin: 0 -6px 6px -6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .legend-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .legend-item:last-child { margin-bottom: 0; }
+        
+        .legend-item.disabled {
+            opacity: 0.4;
+        }
+        
+        .legend-item.disabled .legend-dot {
+            background: #555 !important;
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+        
+        .legend-dot.filming { background: #f1c40f; }
+        .legend-dot.represented { background: #2ecc71; }
+        
+        body.city-kyoto .legend-dot.filming { background: #9b59b6; }
+        body.city-kyoto .legend-dot.represented { background: #3498db; }
+        
+        .legend-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #555;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.2s;
+        }
+        
+        .legend-item:not(.disabled) .legend-checkbox {
+            border-color: #888;
+            color: #fff;
+        }
+        
+        .legend-item:not(.disabled) .legend-checkbox::after {
+            content: '✓';
+        }
+        
+        /* Keyboard shortcuts */
+        #shortcuts {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            font-size: 10px;
+            color: #444;
+            line-height: 1.6;
+        }
+        
+        .shortcut-key {
+            display: inline-block;
+            padding: 2px 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            font-family: monospace;
+            margin-right: 4px;
+        }
+        
+        @media (max-width: 700px) {
+            .year-number { font-size: 64px; }
+            .timeline-container { width: 90vw; }
+            #stats { display: none; }
+            #settings-panel { display: none; }
+            #shortcuts { display: none; }
+            .city-toggle { top: 10px; }
+            #year-display { top: 70px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="loader"></div>
+        <div class="loading-msg">Loading film data...</div>
+    </div>
+    
+    <!-- City Toggle -->
+    <div class="city-toggle">
+        <button class="city-btn active" data-city="tokyo" onclick="switchCity('tokyo')">🗼 Tokyo</button>
+        <button class="city-btn" data-city="kyoto" onclick="switchCity('kyoto')">⛩️ Kyoto</button>
+    </div>
+    
+    <div id="title">
+        <div class="title-main" id="title-main">Tokyo Film Time-Lapse</div>
+        <div class="title-jp" id="title-jp">東京映画ロケ地の変遷</div>
+        <div class="title-sub" id="title-sub">128 years of cinema locations</div>
+    </div>
+    
+    <div id="year-display">
+        <div class="year-number" id="current-year">1920</div>
+        <div class="year-label" id="year-label">Year</div>
+        <div class="mode-indicator" id="mode-indicator">FLASH MODE</div>
+    </div>
+    
+    <div id="stats">
+        <div class="stat-row">
+            <span class="stat-label" id="stat-total-label">Total Locations</span>
+            <span class="stat-value" id="stat-total">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Filming</span>
+            <span class="stat-value filming" id="stat-filming">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Represented</span>
+            <span class="stat-value represented" id="stat-represented">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label" id="stat-films-label">Films</span>
+            <span class="stat-value" id="stat-films">0</span>
+        </div>
+    </div>
+    
+    <div id="settings-panel">
+        <div id="heatmap-settings">
+            <div class="settings-title">Heatmap Settings</div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Radius</span>
+                    <span class="slider-value" id="radius-val">20</span>
+                </div>
+                <input type="range" id="radius" min="5" max="50" value="20" oninput="updateSettings()">
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Blur</span>
+                    <span class="slider-value" id="blur-val">15</span>
+                </div>
+                <input type="range" id="blur" min="5" max="40" value="15" oninput="updateSettings()">
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Intensity</span>
+                    <span class="slider-value" id="intensity-val">0.8</span>
+                </div>
+                <input type="range" id="intensity" min="0.1" max="1.5" step="0.1" value="0.8" oninput="updateSettings()">
+            </div>
+        </div>
+        
+        <div id="points-settings">
+            <div class="settings-title">Points Settings</div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Point Size</span>
+                    <span class="slider-value" id="pointsize-val">6</span>
+                </div>
+                <input type="range" id="pointsize" min="2" max="15" value="6" oninput="updateSettings()">
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Opacity</span>
+                    <span class="slider-value" id="opacity-val">0.7</span>
+                </div>
+                <input type="range" id="opacity" min="0.2" max="1.0" step="0.1" value="0.7" oninput="updateSettings()">
+            </div>
+        </div>
+    </div>
+    
+    <div id="legend">
+        <div class="legend-title">Layers (click to toggle)</div>
+        <div class="legend-item" id="toggle-filming" onclick="toggleLayer('filming')">
+            <div class="legend-checkbox"></div>
+            <div class="legend-dot filming"></div>
+            <span>Filming locations</span>
+        </div>
+        <div class="legend-item" id="toggle-represented" onclick="toggleLayer('represented')">
+            <div class="legend-checkbox"></div>
+            <div class="legend-dot represented"></div>
+            <span>Represented locations</span>
+        </div>
+    </div>
+    
+    <div id="shortcuts">
+        <div><span class="shortcut-key">Space</span> Play/Pause</div>
+        <div><span class="shortcut-key">←</span><span class="shortcut-key">→</span> Step year</div>
+        <div><span class="shortcut-key">C</span> Cycle time mode</div>
+        <div><span class="shortcut-key">H</span> Heatmap <span class="shortcut-key">P</span> Points</div>
+        <div><span class="shortcut-key">T</span> Tokyo <span class="shortcut-key">K</span> Kyoto</div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div id="controls">
+        <div class="timeline-container">
+            <div class="timeline-bar" id="timeline">
+                <div class="timeline-progress" id="timeline-progress"></div>
+            </div>
+            <div class="timeline-labels">
+                <span id="label-start">1920</span>
+                <span id="label-end">2020</span>
+            </div>
+        </div>
+        
+        <div class="playback-controls">
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="cumulative" onclick="setMode('cumulative')">Cumulative</button>
+                <button class="mode-btn" data-mode="decade" onclick="setMode('decade')">By Decade</button>
+                <button class="mode-btn flash-btn" data-mode="flash" onclick="setMode('flash')">Flash ⚡</button>
+            </div>
+            
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="heatmap" onclick="setView('heatmap')">🔥 Heatmap</button>
+                <button class="view-btn" data-view="points" onclick="setView('points')">📍 Points</button>
+            </div>
+            
+            <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+            
+            <div class="speed-control">
+                <span>Speed:</span>
+                <button class="speed-btn" data-speed="500" onclick="setSpeed(500)">Slow</button>
+                <button class="speed-btn active" data-speed="200" onclick="setSpeed(200)">Normal</button>
+                <button class="speed-btn" data-speed="50" onclick="setSpeed(50)">Fast</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    
+    <script>
+        // City configurations
+        const CITY_CONFIG = {
+            tokyo: {
+                dataFile: 'tokyo_timelapse.json',
+                center: [35.6762, 139.6503],
+                zoom: 11,
+                title: 'Tokyo Film Time-Lapse',
+                titleJp: '東京映画ロケ地の変遷',
+                filmingColor: '#f1c40f',
+                representedColor: '#2ecc71'
+            },
+            kyoto: {
+                dataFile: 'kyoto_timelapse.json',
+                center: [35.0116, 135.7681],
+                zoom: 12,
+                title: 'Kyoto Film Time-Lapse',
+                titleJp: '京都映画ロケ地の変遷',
+                filmingColor: '#9b59b6',
+                representedColor: '#3498db'
+            }
+        };
+        
+        // State
+        let currentCity = 'tokyo';
+        let cityData = {};
+        let map = null;
+        let data = null;
+        let minYear = 1920;
+        let maxYear = 2020;
+        let currentYear = 1920;
+        let previousYear = 1920;
+        let isPlaying = false;
+        let playInterval = null;
+        let speed = 200;
+        let mode = 'cumulative';  // 'cumulative' | 'decade' | 'flash'
+        let viewMode = 'heatmap';
+        
+        // Layer visibility
+        let showFilming = true;
+        let showRepresented = true;
+        
+        // Heatmap settings
+        let heatRadius = 20;
+        let heatBlur = 15;
+        let heatIntensity = 0.8;
+        
+        // Points settings
+        let pointSize = 6;
+        let pointOpacity = 0.7;
+        
+        // Layers
+        let filmingHeatLayer = null;
+        let representedHeatLayer = null;
+        let filmingPointsLayer = null;
+        let representedPointsLayer = null;
+        
+        function initMap() {
+            const config = CITY_CONFIG[currentCity];
+            map = L.map('map', {
+                center: config.center,
+                zoom: config.zoom,
+                zoomControl: false
+            });
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OSM © CARTO',
+                maxZoom: 19
+            }).addTo(map);
+            
+            L.control.zoom({ position: 'bottomleft' }).addTo(map);
+        }
+        
+        async function loadCityData(city) {
+            if (cityData[city]) {
+                return cityData[city];
+            }
+            
+            const config = CITY_CONFIG[city];
+            try {
+                const response = await fetch(config.dataFile);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                cityData[city] = await response.json();
+                return cityData[city];
+            } catch (error) {
+                console.error(`Error loading ${city} data:`, error);
+                throw error;
+            }
+        }
+        
+        async function switchCity(city) {
+            if (city === currentCity && data) return;
+            
+            // Stop playback
+            if (isPlaying) togglePlay();
+            
+            // Update UI
+            document.querySelectorAll('.city-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.city === city);
+            });
+            
+            currentCity = city;
+            document.body.className = `city-${city}`;
+            
+            // Update titles
+            const config = CITY_CONFIG[city];
+            document.getElementById('title-main').textContent = config.title;
+            document.getElementById('title-jp').textContent = config.titleJp;
+            
+            // Load data
+            try {
+                document.getElementById('loading').style.display = 'flex';
+                document.querySelector('.loading-msg').textContent = `Loading ${city} data...`;
+                
+                data = await loadCityData(city);
+                
+                minYear = data.metadata.min_year;
+                maxYear = data.metadata.max_year;
+                currentYear = minYear;
+                previousYear = minYear;
+                
+                document.getElementById('label-start').textContent = minYear;
+                document.getElementById('label-end').textContent = maxYear;
+                document.getElementById('current-year').textContent = minYear;
+                
+                // Update subtitle
+                const yearSpan = maxYear - minYear;
+                document.getElementById('title-sub').textContent = `${yearSpan} years of cinema locations`;
+                
+                // Pan map to new city
+                map.setView(config.center, config.zoom);
+                
+                updateVisualization();
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                document.querySelector('.loading-msg').textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        function updateSettings() {
+            heatRadius = parseInt(document.getElementById('radius').value);
+            heatBlur = parseInt(document.getElementById('blur').value);
+            heatIntensity = parseFloat(document.getElementById('intensity').value);
+            document.getElementById('radius-val').textContent = heatRadius;
+            document.getElementById('blur-val').textContent = heatBlur;
+            document.getElementById('intensity-val').textContent = heatIntensity.toFixed(1);
+            
+            pointSize = parseInt(document.getElementById('pointsize').value);
+            pointOpacity = parseFloat(document.getElementById('opacity').value);
+            document.getElementById('pointsize-val').textContent = pointSize;
+            document.getElementById('opacity-val').textContent = pointOpacity.toFixed(1);
+            
+            updateVisualization();
+        }
+        
+        function setView(newView) {
+            viewMode = newView;
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === newView);
+            });
+            
+            document.getElementById('heatmap-settings').style.display = newView === 'heatmap' ? 'block' : 'none';
+            document.getElementById('points-settings').style.display = newView === 'points' ? 'block' : 'none';
+            
+            updateVisualization();
+        }
+        
+        function clearLayers() {
+            if (filmingHeatLayer) { map.removeLayer(filmingHeatLayer); filmingHeatLayer = null; }
+            if (representedHeatLayer) { map.removeLayer(representedHeatLayer); representedHeatLayer = null; }
+            if (filmingPointsLayer) { map.removeLayer(filmingPointsLayer); filmingPointsLayer = null; }
+            if (representedPointsLayer) { map.removeLayer(representedPointsLayer); representedPointsLayer = null; }
+        }
+        
+        function updateVisualization() {
+            if (!data) return;
+            
+            clearLayers();
+            
+            const filmingLocs = [];
+            const representedLocs = [];
+            let totalFilming = 0;
+            let totalRepresented = 0;
+            
+            // Determine year range based on mode
+            let startYear, endYear;
+            
+            if (mode === 'flash') {
+                startYear = currentYear;
+                endYear = currentYear;
+            } else if (mode === 'decade') {
+                startYear = Math.floor(currentYear / 10) * 10;
+                endYear = startYear + 9;
+            } else {
+                startYear = minYear;
+                endYear = currentYear;
+            }
+            
+            // Collect locations
+            for (let year = startYear; year <= Math.min(endYear, currentYear); year++) {
+                const yearData = data.years[String(year)];
+                if (!yearData) continue;
+                
+                yearData.locations.forEach(loc => {
+                    if (loc.type === 'filming') {
+                        filmingLocs.push(loc);
+                        totalFilming++;
+                    } else {
+                        representedLocs.push(loc);
+                        totalRepresented++;
+                    }
+                });
+            }
+            
+            // Render
+            if (viewMode === 'heatmap') {
+                renderHeatmap(filmingLocs, representedLocs);
+            } else {
+                renderPoints(filmingLocs, representedLocs);
+            }
+            
+            updateStats(totalFilming, totalRepresented);
+            
+            // Update year display
+            const yearEl = document.getElementById('current-year');
+            yearEl.textContent = currentYear;
+            
+            if (mode === 'flash' && currentYear !== previousYear) {
+                yearEl.classList.remove('flash-pulse');
+                void yearEl.offsetWidth;
+                yearEl.classList.add('flash-pulse');
+            }
+            previousYear = currentYear;
+            
+            // Update timeline
+            const progress = ((currentYear - minYear) / (maxYear - minYear)) * 100;
+            document.getElementById('timeline-progress').style.width = `${progress}%`;
+        }
+        
+        function getColors() {
+            const config = CITY_CONFIG[currentCity];
+            return {
+                filming: config.filmingColor,
+                represented: config.representedColor
+            };
+        }
+        
+        function renderHeatmap(filmingLocs, representedLocs) {
+            const colors = getColors();
+            
+            let adjustedIntensity = heatIntensity;
+            if (mode === 'flash' && (filmingLocs.length + representedLocs.length) < 100) {
+                adjustedIntensity = Math.min(1.5, heatIntensity * 2);
+            }
+            
+            if (showFilming && filmingLocs.length > 0) {
+                const points = filmingLocs.map(loc => [loc.lat, loc.lon, adjustedIntensity]);
+                
+                // Dynamic gradient based on city
+                const gradient = currentCity === 'kyoto' ? {
+                    0.2: '#f5eef8', 0.4: '#d7bde2', 0.6: '#bb8fce', 0.8: '#9b59b6', 1: '#8e44ad'
+                } : {
+                    0.2: '#fef9e7', 0.4: '#f9e79f', 0.6: '#f4d03f', 0.8: '#f1c40f', 1: '#d4ac0d'
+                };
+                
+                filmingHeatLayer = L.heatLayer(points, {
+                    radius: heatRadius,
+                    blur: heatBlur,
+                    maxZoom: 17,
+                    max: 1.0,
+                    gradient: gradient
+                }).addTo(map);
+            }
+            
+            if (showRepresented && representedLocs.length > 0) {
+                const points = representedLocs.map(loc => [loc.lat, loc.lon, adjustedIntensity]);
+                
+                const gradient = currentCity === 'kyoto' ? {
+                    0.2: '#ebf5fb', 0.4: '#aed6f1', 0.6: '#5dade2', 0.8: '#3498db', 1: '#2980b9'
+                } : {
+                    0.2: '#e8f8f5', 0.4: '#a9dfbf', 0.6: '#58d68d', 0.8: '#2ecc71', 1: '#27ae60'
+                };
+                
+                representedHeatLayer = L.heatLayer(points, {
+                    radius: heatRadius,
+                    blur: heatBlur,
+                    maxZoom: 17,
+                    max: 1.0,
+                    gradient: gradient
+                }).addTo(map);
+            }
+        }
+        
+        function renderPoints(filmingLocs, representedLocs) {
+            const colors = getColors();
+            
+            filmingPointsLayer = L.layerGroup();
+            representedPointsLayer = L.layerGroup();
+            
+            if (showFilming) {
+                filmingLocs.forEach(loc => {
+                    const marker = L.circleMarker([loc.lat, loc.lon], {
+                        radius: pointSize,
+                        fillColor: colors.filming,
+                        color: colors.filming,
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: pointOpacity
+                    });
+                    if (loc.t) {
+                        const jpTitle = loc.tj ? `<div style="font-family: 'Noto Sans JP', sans-serif; color: #aaa; font-size: 12px;">${loc.tj}</div>` : '';
+                        marker.bindPopup(`<b>${loc.t}</b>${jpTitle}<div style="color: #888; font-size: 11px; margin-top: 4px;">${loc.loc || ''}</div>`);
+                    }
+                    filmingPointsLayer.addLayer(marker);
+                });
+            }
+            
+            if (showRepresented) {
+                representedLocs.forEach(loc => {
+                    const marker = L.circleMarker([loc.lat, loc.lon], {
+                        radius: pointSize,
+                        fillColor: colors.represented,
+                        color: colors.represented,
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: pointOpacity
+                    });
+                    if (loc.t) {
+                        const jpTitle = loc.tj ? `<div style="font-family: 'Noto Sans JP', sans-serif; color: #aaa; font-size: 12px;">${loc.tj}</div>` : '';
+                        marker.bindPopup(`<b>${loc.t}</b>${jpTitle}<div style="color: #888; font-size: 11px; margin-top: 4px;">${loc.loc || ''}</div>`);
+                    }
+                    representedPointsLayer.addLayer(marker);
+                });
+            }
+            
+            if (showRepresented) representedPointsLayer.addTo(map);
+            if (showFilming) filmingPointsLayer.addTo(map);
+        }
+        
+        function updateStats(filmingCount, representedCount) {
+            const total = filmingCount + representedCount;
+            
+            document.getElementById('stat-total').textContent = total.toLocaleString();
+            document.getElementById('stat-filming').textContent = filmingCount.toLocaleString();
+            document.getElementById('stat-represented').textContent = representedCount.toLocaleString();
+            
+            const totalLabel = document.getElementById('stat-total-label');
+            const filmsLabel = document.getElementById('stat-films-label');
+            
+            if (mode === 'flash') {
+                totalLabel.textContent = 'This Year';
+                filmsLabel.textContent = 'Films This Year';
+                const yearData = data.years[String(currentYear)];
+                const yearFilms = yearData ? (yearData.film_count || 0) : 0;
+                document.getElementById('stat-films').textContent = yearFilms.toLocaleString();
+            } else if (mode === 'decade') {
+                const decadeStart = Math.floor(currentYear / 10) * 10;
+                totalLabel.textContent = `${decadeStart}s`;
+                filmsLabel.textContent = 'Films (Decade)';
+                let decadeFilms = 0;
+                for (let y = decadeStart; y <= Math.min(decadeStart + 9, currentYear); y++) {
+                    const yd = data.years[String(y)];
+                    if (yd && yd.film_count) decadeFilms += yd.film_count;
+                }
+                document.getElementById('stat-films').textContent = decadeFilms.toLocaleString();
+            } else {
+                totalLabel.textContent = 'Total Locations';
+                filmsLabel.textContent = 'Films (Cumulative)';
+                let cumulativeFilms = 0;
+                for (let y = minYear; y <= currentYear; y++) {
+                    const yd = data.years[String(y)];
+                    if (yd && yd.film_count) cumulativeFilms += yd.film_count;
+                }
+                document.getElementById('stat-films').textContent = cumulativeFilms.toLocaleString();
+            }
+        }
+        
+        function toggleLayer(layerType) {
+            if (layerType === 'filming') {
+                showFilming = !showFilming;
+                document.getElementById('toggle-filming').classList.toggle('disabled', !showFilming);
+            } else if (layerType === 'represented') {
+                showRepresented = !showRepresented;
+                document.getElementById('toggle-represented').classList.toggle('disabled', !showRepresented);
+            }
+            updateVisualization();
+        }
+        
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            document.getElementById('play-btn').textContent = isPlaying ? '⏸' : '▶';
+            
+            if (isPlaying) {
+                if (currentYear >= maxYear) {
+                    currentYear = minYear;
+                }
+                playInterval = setInterval(() => {
+                    currentYear++;
+                    if (currentYear > maxYear) {
+                        currentYear = maxYear;
+                        togglePlay();
+                        return;
+                    }
+                    updateVisualization();
+                }, speed);
+            } else {
+                clearInterval(playInterval);
+            }
+        }
+        
+        function setSpeed(newSpeed) {
+            speed = newSpeed;
+            document.querySelectorAll('.speed-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.speed) === newSpeed);
+            });
+            
+            if (isPlaying) {
+                clearInterval(playInterval);
+                playInterval = setInterval(() => {
+                    currentYear++;
+                    if (currentYear > maxYear) {
+                        currentYear = maxYear;
+                        togglePlay();
+                        return;
+                    }
+                    updateVisualization();
+                }, speed);
+            }
+        }
+        
+        function setMode(newMode) {
+            mode = newMode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === newMode);
+            });
+            
+            const modeIndicator = document.getElementById('mode-indicator');
+            const yearLabel = document.getElementById('year-label');
+            
+            if (newMode === 'flash') {
+                modeIndicator.textContent = 'FLASH MODE';
+                modeIndicator.classList.add('visible');
+                yearLabel.classList.add('flash-active');
+            } else if (newMode === 'decade') {
+                modeIndicator.textContent = 'DECADE MODE';
+                modeIndicator.classList.add('visible');
+                yearLabel.classList.remove('flash-active');
+            } else {
+                modeIndicator.classList.remove('visible');
+                yearLabel.classList.remove('flash-active');
+            }
+            
+            updateVisualization();
+        }
+        
+        function cycleMode() {
+            const modes = ['cumulative', 'decade', 'flash'];
+            const currentIndex = modes.indexOf(mode);
+            const nextIndex = (currentIndex + 1) % modes.length;
+            setMode(modes[nextIndex]);
+        }
+        
+        // Timeline click
+        document.getElementById('timeline').addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const pct = x / rect.width;
+            currentYear = Math.round(minYear + pct * (maxYear - minYear));
+            currentYear = Math.max(minYear, Math.min(maxYear, currentYear));
+            updateVisualization();
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlay();
+            } else if (e.code === 'ArrowRight') {
+                currentYear = Math.min(maxYear, currentYear + 1);
+                updateVisualization();
+            } else if (e.code === 'ArrowLeft') {
+                currentYear = Math.max(minYear, currentYear - 1);
+                updateVisualization();
+            } else if (e.code === 'KeyH') {
+                setView('heatmap');
+            } else if (e.code === 'KeyP') {
+                setView('points');
+            } else if (e.code === 'KeyF') {
+                toggleLayer('filming');
+            } else if (e.code === 'KeyR') {
+                toggleLayer('represented');
+            } else if (e.code === 'KeyC') {
+                cycleMode();
+            } else if (e.code === 'KeyT') {
+                switchCity('tokyo');
+            } else if (e.code === 'KeyK') {
+                switchCity('kyoto');
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            switchCity('tokyo');
+        });
+    </script>
+
+<!-- StatCounter -->
+<script type="text/javascript">
+var sc_project=13194486; 
+var sc_invisible=1; 
+var sc_security="d3c74cbd"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+</body>
+</html>
