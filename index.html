@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMAP - Japanese Cinema Location Database</title>
+    <title>CineMAP: JAPAN Beta - Japanese Cinema Location Database</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
         /* Header */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 30px;
         }
         
         .logo {
@@ -51,6 +51,95 @@
             color: #666;
             margin-top: 8px;
             font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f1c40f;
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 25px 20px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .filter-btn {
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: #888;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.25);
+            color: #fff;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #f1c40f, #e67e22);
+            border-color: transparent;
+            color: #1a1a1a;
+        }
+        
+        .filter-btn[data-category="cities"].active {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: #fff;
+        }
+        
+        .filter-btn[data-category="prefectures"].active {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: #fff;
+        }
+        
+        .filter-btn[data-category="people"].active {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+        }
+        
+        .filter-btn[data-category="spatial"].active {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: #fff;
+        }
+        
+        .filter-btn[data-category="studios"].active {
+            background: linear-gradient(135deg, #f39c12, #d68910);
+            color: #1a1a1a;
         }
         
         /* Main Grid */
@@ -98,6 +187,10 @@
             transform: scale(1.05);
         }
         
+        .viz-card.hidden {
+            display: none;
+        }
+        
         /* Preview area */
         .card-preview-container {
             height: 220px;
@@ -116,7 +209,7 @@
             position: relative;
         }
         
-        /* Preview backgrounds - stylized representations */
+        /* Preview backgrounds */
         .preview-main {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             display: flex;
@@ -146,7 +239,7 @@
         }
         
         .preview-franchise {
-            background: linear-gradient(135deg, #e74c3c 0%, #3498db 100%);
+            background: linear-gradient(135deg, #27ae60 0%, #f1c40f 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -171,9 +264,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 25% 50%, rgba(241,196,15,0.4) 0%, transparent 40%),
+                radial-gradient(circle at 25% 50%, rgba(231,76,60,0.4) 0%, transparent 40%),
                 radial-gradient(circle at 50% 50%, rgba(46,204,113,0.4) 0%, transparent 40%),
-                radial-gradient(circle at 75% 50%, rgba(255,152,0,0.4) 0%, transparent 40%);
+                radial-gradient(circle at 75% 50%, rgba(241,196,15,0.4) 0%, transparent 40%);
         }
         
         .preview-genres {
@@ -227,10 +320,32 @@
             z-index: 1;
         }
         
-        .japan-silhouette {
-            width: 120px;
-            height: auto;
-            opacity: 0.6;
+        /* City timelapse preview - NEW with both cities */
+        .preview-city-timelapse {
+            background: linear-gradient(135deg, #f1c40f 0%, #9b59b6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-city-timelapse::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(255,255,255,0.2) 0%, transparent 40%),
+                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.2) 0%, transparent 40%);
+        }
+        
+        .city-icons {
+            display: flex;
+            gap: 30px;
+            font-size: 64px;
+            position: relative;
+            z-index: 1;
         }
         
         /* Studios preview */
@@ -262,7 +377,7 @@
             z-index: 1;
         }
         
-        /* Actors preview - NEW */
+        /* Actors preview */
         .preview-actors {
             background: linear-gradient(135deg, #1a2a1a 0%, #1a1a2e 100%);
             display: flex;
@@ -314,9 +429,8 @@
             position: relative;
             z-index: 1;
         }
-
         
-        /* Directors map preview - NEW */
+        /* Directors map preview */
         .preview-directors-map {
             background: linear-gradient(135deg, #2a1a2a 0%, #1a1a2e 100%);
             display: flex;
@@ -341,24 +455,6 @@
             font-size: 72px;
             position: relative;
             z-index: 1;
-        }
-        
-        /* Map dots overlay */
-        .map-dots {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        .dot {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            opacity: 0.8;
         }
         
         /* Card content */
@@ -399,54 +495,21 @@
         
         .card-description {
             font-size: 14px;
-            color: #999;
+            color: #888;
             line-height: 1.6;
         }
         
-        .card-stats {
-            display: flex;
-            gap: 20px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 20px;
-            font-weight: 700;
-            color: #f1c40f;
-        }
-        
-        .stat-label {
-            font-size: 10px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Arrow indicator */
         .card-arrow {
             position: absolute;
             bottom: 24px;
             right: 24px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            transition: all 0.3s ease;
+            font-size: 24px;
+            color: #444;
+            transition: all 0.3s;
         }
         
         .viz-card:hover .card-arrow {
-            background: #f1c40f;
-            color: #1a1a1a;
+            color: #f1c40f;
             transform: translateX(4px);
         }
         
@@ -459,192 +522,150 @@
         }
         
         footer a {
-            color: #888;
+            color: #3498db;
             text-decoration: none;
         }
         
         footer a:hover {
-            color: #fff;
+            text-decoration: underline;
         }
         
         /* Responsive */
-        @media (max-width: 600px) {
-            .logo { font-size: 36px; }
-            .tagline { font-size: 14px; }
-            .viz-grid { grid-template-columns: 1fr; }
-            .grid-container { padding: 20px; }
-            .card-preview-container { height: 180px; }
+        @media (max-width: 850px) {
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .viz-card.featured {
+                grid-column: 1;
+            }
+            
+            .logo {
+                font-size: 36px;
+            }
+            
+            .stats-row {
+                gap: 30px;
+            }
+            
+            .category-filter {
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 8px 14px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="logo">CineMAP</h1>
+        <h1 class="logo">CineMAP: JAPAN Beta</h1>
         <p class="tagline">Japanese Cinema Location Database</p>
         <p class="tagline-jp">日本映画ロケ地データベース</p>
+        
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-value">88,629</div>
+                <div class="stat-label">Films</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">304,742</div>
+                <div class="stat-label">Locations</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">135+</div>
+                <div class="stat-label">Years</div>
+            </div>
+        </div>
     </header>
+    
+    <!-- Category Filter -->
+    <nav class="category-filter">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="cities">Cities</button>
+        <button class="filter-btn" data-category="prefectures">Prefectures</button>
+        <button class="filter-btn" data-category="people">People</button>
+        <button class="filter-btn" data-category="spatial">Spatial Imaginary</button>
+        <button class="filter-btn" data-category="studios">Franchises & Studios</button>
+    </nav>
     
     <main class="grid-container">
         <div class="viz-grid">
             
-            <!-- Main Visualization (Featured) -->
-            <a href="main.html" class="viz-card featured" style="text-decoration: none; color: inherit;">
+            <!-- FEATURED: Main Interactive Map -->
+            <a href="main.html" class="viz-card featured" data-categories="all" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
                     <div class="card-preview preview-main">
-                        <div class="map-dots">
-                            <div class="dot" style="top: 35%; left: 70%; background: #f1c40f;"></div>
-                            <div class="dot" style="top: 40%; left: 72%; background: #2ecc71;"></div>
-                            <div class="dot" style="top: 38%; left: 68%; background: #f39c12;"></div>
-                            <div class="dot" style="top: 55%; left: 45%; background: #2ecc71;"></div>
-                            <div class="dot" style="top: 50%; left: 60%; background: #f1c40f;"></div>
-                            <div class="dot" style="top: 60%; left: 55%; background: #9b59b6;"></div>
-                            <div class="dot" style="top: 45%; left: 50%; background: #2ecc71;"></div>
-                            <div class="dot" style="top: 30%; left: 40%; background: #f39c12;"></div>
-                        </div>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge featured-badge">Main Database</span>
+                    <span class="card-badge featured-badge">Featured</span>
                     <h2 class="card-title">Complete Film Location Map</h2>
-                    <p class="card-title-jp">全映画ロケ地マップ</p>
+                    <p class="card-title-jp">日本映画ロケ地マップ</p>
                     <p class="card-description">
-                        Explore 88,000+ Japanese films and their locations across Japan. 
-                        Filter by filming locations, represented locations, era, and more.
+                        Explore every filming and story location in Japanese cinema history. Filter by year, genre, and location type to uncover geographic patterns across 135+ years of filmmaking.
                     </p>
-                    <div class="card-stats">
-                        <div class="stat">
-                            <div class="stat-value">88K+</div>
-                            <div class="stat-label">Films</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">300K+</div>
-                            <div class="stat-label">Locations</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">135</div>
-                            <div class="stat-label">Years</div>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-arrow">→</div>
             </a>
             
-            <!-- Tokyo Time-Lapse -->
-            <a href="comparisons/tokyo.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            <!-- CITIES: City Time-Lapse (Tokyo & Kyoto) -->
+            <a href="comparisons/city_timelapse.html" class="viz-card" data-categories="cities" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
-                    <div class="card-preview preview-tokyo">
-                        <span class="tokyo-year">1897</span>
+                    <div class="card-preview preview-city-timelapse">
+                        <div class="city-icons">🗼⛩️</div>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">⏱️ Time-Lapse</span>
-                    <h2 class="card-title">Tokyo Through Time</h2>
-                    <p class="card-title-jp">東京映画ロケ地の変遷</p>
+                    <span class="card-badge">Cities</span>
+                    <h2 class="card-title">Tokyo & Kyoto Time-Lapse</h2>
+                    <p class="card-title-jp">東京・京都映画ロケ地の変遷</p>
                     <p class="card-description">
-                        Watch 128 years of film locations appear across Tokyo. Toggle between 🔥 Heatmap and 📍 Points views.
+                        Watch 130 years of film locations emerge across Japan's two cultural capitals. Toggle between cumulative, decade, and flash modes.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
             </a>
             
-            <!-- Franchise Comparison -->
-            <a href="comparisons/franchise.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            <!-- CITIES: District Genres -->
+            <a href="comparisons/districts.html" class="viz-card" data-categories="cities" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
-                    <div class="card-preview preview-franchise">
-                        <span class="preview-icon">🦎💥</span>
-                        <span style="font-size: 36px; color: white; opacity: 0.9;">VS</span>
-                        <span class="preview-icon">🧳❤️</span>
+                    <div class="card-preview preview-districts">
+                        <span class="districts-icon">🏘️</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">Franchise</span>
-                    <h2 class="card-title">🦎 Godzilla vs Tora-san 💼</h2>
-                    <p class="card-title-jp">ゴジラ vs 男はつらいよ</p>
+                    <span class="card-badge">Cities</span>
+                    <h2 class="card-title">District Genre Dominance</h2>
+                    <p class="card-title-jp">東京・京都の区別ジャンル分析</p>
                     <p class="card-description">
-                        Compare Japan's two longest-running franchises. Adjustable cluster radius reveals geographic patterns.
+                        Explore genre dominance across Tokyo's 23 wards and Kyoto's 11 districts. Toggle between %, #, and ± modes to reveal patterns.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
             </a>
             
-            <!-- Directors Comparison -->
-            <a href="comparisons/directors.html" class="viz-card" style="text-decoration: none; color: inherit;">
-                <div class="card-preview-container">
-                    <div class="card-preview preview-directors">
-                        <div style="display: flex; gap: 30px; align-items: center; justify-content: center; position: relative; z-index: 1;">
-                            <span style="font-size: 36px; color: #f1c40f; text-shadow: 0 2px 10px rgba(241,196,15,0.5);">黒澤</span>
-                            <span style="font-size: 36px; color: #2ecc71; text-shadow: 0 2px 10px rgba(46,204,113,0.5);">小津</span>
-                            <span style="font-size: 36px; color: #ff9800; text-shadow: 0 2px 10px rgba(255,152,0,0.5);">溝口</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <span class="card-badge">Directors</span>
-                    <h2 class="card-title">Three Masters</h2>
-                    <p class="card-title-jp">黒澤明・小津安二郎・溝口健二</p>
-                    <p class="card-description">
-                        Heatmap comparison of Kurosawa, Ozu, and Mizoguchi. See how each director's geographic vision differs.
-                    </p>
-                </div>
-                <div class="card-arrow">→</div>
-            </a>
-            
-            <!-- Directors by Prefecture -->
-            <a href="comparisons/directors_map.html" class="viz-card" style="text-decoration: none; color: inherit;">
-                <div class="card-preview-container">
-                    <div class="card-preview preview-directors-map">
-                        <span class="directors-map-icon">📣</span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <span class="card-badge">📣 Directors</span>
-                    <h2 class="card-title">Director Power by Region</h2>
-                    <p class="card-title-jp">都道府県別映画監督</p>
-                    <p class="card-description">
-                        Which directors dominate which prefectures? Filter by decade to see auteur territories evolve.
-                    </p>
-                </div>
-                <div class="card-arrow">→</div>
-            </a>
-            
-            <!-- Genre Comparison -->
-            <a href="comparisons/actors.html" class="viz-card" style="text-decoration: none; color: inherit;">
-                <div class="card-preview-container">
-                    <div class="card-preview preview-actors">
-                        <span class="actors-icon">⭐</span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <span class="card-badge">⭐ Actors</span>
-                    <h2 class="card-title">Star Power by Region</h2>
-                    <p class="card-title-jp">都道府県別スター俳優</p>
-                    <p class="card-description">
-                        Which actors dominate which prefectures? Filter by decade and gender to track star power across eras.
-                    </p>
-                </div>
-                <div class="card-arrow">→</div>
-            </a>
-            
-            <!-- Prefecture Comparison -->
-            <a href="comparisons/genres.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            <!-- PREFECTURES: Genre Heatmaps -->
+            <a href="comparisons/genres.html" class="viz-card" data-categories="prefectures" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
                     <div class="card-preview preview-genres">
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">Genres</span>
+                    <span class="card-badge">Prefectures</span>
                     <h2 class="card-title">Genre Heatmaps</h2>
                     <p class="card-title-jp">ジャンル別ヒートマップ</p>
                     <p class="card-description">
-                        15 genres with adjustable layers. Drag to reorder, toggle visibility, discover where each genre concentrates.
+                        15 genres with adjustable layers. Drag to reorder, toggle visibility, discover where each genre concentrates across Japan.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
             </a>
-                
-
-            <!-- District Genre Dominance -->
-            <a href="comparisons/prefectures.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            
+            <!-- PREFECTURES: Prefecture Genre Specialization -->
+            <a href="comparisons/prefectures.html" class="viz-card" data-categories="prefectures" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
                     <div class="card-preview preview-prefectures" style="display: flex; align-items: center; justify-content: center;"><span style="font-size: 40px; line-height: 1.3;">🎭🗡️<br>💕👻</span></div>
                 </div>
@@ -658,34 +679,81 @@
                 </div>
                 <div class="card-arrow">→</div>
             </a>
-<!-- Studios Comparison -->
-            <a href="comparisons/studios.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            
+            <!-- PEOPLE: Three Masters -->
+            <a href="comparisons/three_masters.html" class="viz-card" data-categories="people" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
-                    <div class="card-preview preview-studios">
-                        <span class="studio-icon">🎬</span>
+                    <div class="card-preview preview-directors">
+                        <div style="display: flex; gap: 20px; align-items: center; justify-content: center; position: relative; z-index: 1; flex-direction: column;">
+                            <div style="display: flex; gap: 30px;">
+                                <span style="font-size: 32px; color: #e74c3c; text-shadow: 0 2px 10px rgba(231,76,60,0.5);">小津</span>
+                                <span style="font-size: 32px; color: #f1c40f; text-shadow: 0 2px 10px rgba(241,196,15,0.5);">黒澤</span>
+                                <span style="font-size: 32px; color: #2ecc71; text-shadow: 0 2px 10px rgba(46,204,113,0.5);">溝口</span>
+                            </div>
+                            <div style="display: flex; gap: 20px; font-size: 12px; color: #888;">
+                                <span>Ozu</span>
+                                <span>Kurosawa</span>
+                                <span>Mizoguchi</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">🎥 Studios</span>
-                    <h2 class="card-title">Studio Territories</h2>
-                    <p class="card-title-jp">映画会社の都道府県別シェア</p>
+                    <span class="card-badge">People</span>
+                    <h2 class="card-title">Three Masters</h2>
+                    <p class="card-title-jp">黒澤明・小津安二郎・溝口健二</p>
                     <p class="card-description">
-                        Which studios dominate which prefectures? Toei controls 42 of 47 — filter to reveal Shochiku, Nikkatsu, and more.
+                        Heatmap comparison of Kurosawa, Ozu, and Mizoguchi. See how each director's geographic vision differs.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
             </a>
             
+            <!-- PEOPLE: Directors by Prefecture -->
+            <a href="comparisons/directors_map.html" class="viz-card" data-categories="people" style="text-decoration: none; color: inherit;">
+                <div class="card-preview-container">
+                    <div class="card-preview preview-directors-map">
+                        <span class="directors-map-icon">📣</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-badge">People</span>
+                    <h2 class="card-title">Director Power by Region</h2>
+                    <p class="card-title-jp">都道府県別映画監督</p>
+                    <p class="card-description">
+                        Which directors dominate which prefectures? Filter by decade to see auteur territories evolve.
+                    </p>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
             
-            <!-- Imagination Gap: Prefecture Choropleth -->
-            <a href="comparisons/filmed_vs_represented.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            <!-- PEOPLE: Star Power -->
+            <a href="comparisons/actors.html" class="viz-card" data-categories="people" style="text-decoration: none; color: inherit;">
+                <div class="card-preview-container">
+                    <div class="card-preview preview-actors">
+                        <span class="actors-icon">⭐</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-badge">People</span>
+                    <h2 class="card-title">Star Power by Region</h2>
+                    <p class="card-title-jp">都道府県別スター俳優</p>
+                    <p class="card-description">
+                        Which actors dominate which prefectures? Filter by decade and gender to track star power across eras.
+                    </p>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+            
+            <!-- SPATIAL: Filmed vs Represented -->
+            <a href="comparisons/filmed_vs_represented.html" class="viz-card" data-categories="spatial" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
                     <div class="card-preview" style="background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%); display: flex; align-items: center; justify-content: center;">
                         <span style="font-size: 64px;">🧭</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">🗺️ Research</span>
+                    <span class="card-badge">Spatial Imaginary</span>
                     <h2 class="card-title">Filmed vs Mentioned</h2>
                     <p class="card-title-jp">撮影地 vs 物語の舞台</p>
                     <p class="card-description">
@@ -695,37 +763,56 @@
                 <div class="card-arrow">→</div>
             </a>
             
-            <!-- Imagination Distance: Per-Film Analysis -->
-            <a href="comparisons/imagination_distance_viz.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            <!-- SPATIAL: Imagination Distance -->
+            <a href="comparisons/imagination_distance_viz.html" class="viz-card" data-categories="spatial" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
                     <div class="card-preview" style="background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%); display: flex; align-items: center; justify-content: center;">
                         <span style="font-size: 64px;">📏</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">📊 Research</span>
+                    <span class="card-badge">Spatial Imaginary</span>
                     <h2 class="card-title">Imagination Distance</h2>
                     <p class="card-title-jp">想像の距離</p>
                     <p class="card-description">
-                        How far do film narratives travel from production reality? Filter by genre, studio, decade, prefecture, and source (title/synopsis/subtitle).
+                        How far do film narratives travel from production reality? Filter by genre, studio, decade, prefecture, and source.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
             </a>
-
-            <!-- Actors by Prefecture -->
-            <a href="comparisons/districts.html" class="viz-card" style="text-decoration: none; color: inherit;">
+            
+            <!-- STUDIOS: Godzilla vs Tora-san -->
+            <a href="comparisons/franchise.html" class="viz-card" data-categories="studios" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
-                    <div class="card-preview preview-districts">
-                        <span class="districts-icon">🗼⛩️</span>
+                    <div class="card-preview preview-franchise">
+                        <span class="preview-icon">🦎</span>
+                        <span class="preview-icon">💼</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <span class="card-badge">🏙️ Districts</span>
-                    <h2 class="card-title">District Genre Dominance</h2>
-                    <p class="card-title-jp">東京・京都の区別ジャンル分析</p>
+                    <span class="card-badge">Franchises</span>
+                    <h2 class="card-title">🦎 Godzilla vs Tora-san 💼</h2>
+                    <p class="card-title-jp">ゴジラ vs 男はつらいよ</p>
                     <p class="card-description">
-                        Explore genre dominance across Tokyo's 23 wards and Kyoto's 11 districts. Toggle genres to reveal patterns.
+                        Japan's longest-running monster and comedy franchises mapped. Where does destruction reign vs. heartwarming family drama?
+                    </p>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+            
+            <!-- STUDIOS: Studio Territories -->
+            <a href="comparisons/studios.html" class="viz-card" data-categories="studios" style="text-decoration: none; color: inherit;">
+                <div class="card-preview-container">
+                    <div class="card-preview preview-studios">
+                        <span class="studio-icon">🎬</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-badge">Studios</span>
+                    <h2 class="card-title">Studio Territories</h2>
+                    <p class="card-title-jp">映画会社の都道府県別シェア</p>
+                    <p class="card-description">
+                        Which studios dominate which prefectures? Toei controls 42 of 47 — filter to reveal Shochiku, Nikkatsu, and more.
                     </p>
                 </div>
                 <div class="card-arrow">→</div>
@@ -740,23 +827,39 @@
             <a href="https://github.com/jabeljabel/cinemapjbeta" target="_blank">GitHub</a>
         </p>
     </footer>
-<!-- Default Statcounter code for CineMAP
-https://jabeljabel.github.io/cinemapjbeta/ -->
+    
+    <script>
+        // Category filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.viz-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter cards
+                cards.forEach(card => {
+                    const cardCategories = card.dataset.categories;
+                    if (category === 'all' || cardCategories === 'all' || cardCategories === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+<!-- Default Statcounter code for CineMAP -->
 <script type="text/javascript">
 var sc_project=13194486; 
 var sc_invisible=1; 
 var sc_security="d3c74cbd"; 
 </script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"
-async></script>
-<noscript><div class="statcounter"><a title="Web Analytics
-Made Easy - Statcounter" href="https://statcounter.com/"
-target="_blank"><img class="statcounter"
-src="https://c.statcounter.com/13194486/0/d3c74cbd/1/"
-alt="Web Analytics Made Easy - Statcounter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
-
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
 </body>
 </html>
