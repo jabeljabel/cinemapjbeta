@@ -314,6 +314,19 @@
                 radial-gradient(circle at 70% 50%, rgba(255,255,255,0.2) 0%, transparent 40%);
         }
         
+        .preview-major-cities {
+            background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preview-major-cities .city-emoji {
+            font-size: 64px;
+            z-index: 1;
+        }
+
+
         .city-icons {
             display: flex;
             gap: 30px;
@@ -621,6 +634,25 @@
                 <div class="card-arrow">→</div>
             </a>
             
+            <!-- CITIES: Major Cities Genre Analysis -->
+            <a href="comparisons/cities.html" class="viz-card" data-categories="cities" style="text-decoration: none; color: inherit;">
+                <div class="card-preview-container">
+                    <div class="card-preview preview-major-cities">
+                        <span class="city-emoji">🌆🌃</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-badge">🏙️ Cities</span>
+                    <h2 class="card-title">48 Major Cities</h2>
+                    <p class="card-title-jp">主要48都市のジャンル分析</p>
+                    <p class="card-description">
+                        Compare genre patterns across Japan's 48 major cities. Toggle Films/Locations and %, #, ± modes to discover each city's cinematic identity.
+                    </p>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+
+
             <!-- PREFECTURES: Genre Heatmaps -->
             <a href="comparisons/genres.html" class="viz-card" data-categories="prefectures" style="text-decoration: none; color: inherit;">
                 <div class="card-preview-container">
