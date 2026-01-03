@@ -1013,19 +1013,19 @@
             }
             
             const queryLower = query.toLowerCase();
-            const matches = allDirectors.filter(d => 
-                (d.name && d.name.toLowerCase().includes(queryLower)) ||
-                (d.japanese && d.japanese.includes(query))
-            ).slice(0, 15);
+            const matches = allDirectors.filter(d => {
+                // Handle both string and object format
+                const name = typeof d === 'string' ? d : d.name;
+                return name && name.toLowerCase().includes(queryLower);
+            }).slice(0, 20);
             
             const resultsDiv = document.getElementById('director-results');
             if (matches.length > 0) {
-                resultsDiv.innerHTML = matches.map(d => 
-                    `<div class="search-result-item" onmousedown="selectDirector('${d.name.replace(/'/g, "\\'")}')">
-                        ${d.name}${d.japanese ? ` <span class="search-result-count">(${d.japanese})</span>` : ''}
-                        <span class="search-result-count">${d.films} films</span>
-                    </div>`
-                ).join('');
+                resultsDiv.innerHTML = matches.map(d => {
+                    const name = typeof d === 'string' ? d : d.name;
+                    const escapedName = name.replace(/'/g, "\\'");
+                    return `<div class="search-result-item" onmousedown="selectDirector('${escapedName}')">${name}</div>`;
+                }).join('');
                 resultsDiv.classList.add('active');
             } else {
                 resultsDiv.classList.remove('active');
@@ -1082,19 +1082,18 @@
             }
             
             const queryLower = query.toLowerCase();
-            const matches = allStudios.filter(s => 
-                (s.name && s.name.toLowerCase().includes(queryLower)) ||
-                (s.japanese && s.japanese.includes(query))
-            ).slice(0, 15);
+            const matches = allStudios.filter(s => {
+                const name = typeof s === 'string' ? s : s.name;
+                return name && name.toLowerCase().includes(queryLower);
+            }).slice(0, 15);
             
             const resultsDiv = document.getElementById('studio-results');
             if (matches.length > 0) {
-                resultsDiv.innerHTML = matches.map(s => 
-                    `<div class="search-result-item" onmousedown="selectStudio('${(s.name || s.japanese).replace(/'/g, "\\'")}')">
-                        ${s.name || s.japanese}${s.japanese && s.name ? ` <span class="search-result-count">(${s.japanese})</span>` : ''}
-                        <span class="search-result-count">${s.films} films</span>
-                    </div>`
-                ).join('');
+                resultsDiv.innerHTML = matches.map(s => {
+                    const name = typeof s === 'string' ? s : s.name;
+                    const escapedName = name.replace(/'/g, "\\'");
+                    return `<div class="search-result-item" onmousedown="selectStudio('${escapedName}')">${name}</div>`;
+                }).join('');
                 resultsDiv.classList.add('active');
             } else {
                 resultsDiv.classList.remove('active');
