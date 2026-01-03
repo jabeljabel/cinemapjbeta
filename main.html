@@ -890,8 +890,11 @@
             const genreSelect = document.getElementById('filter-genre');
             allData.filters.genres.forEach(g => {
                 const option = document.createElement('option');
-                option.value = g.english;
-                option.textContent = `${g.english} (${g.japanese})`;
+                // Handle both object format and plain string format
+                const english = typeof g === 'string' ? g : g.english;
+                const japanese = typeof g === 'string' ? '' : g.japanese;
+                option.value = english;
+                option.textContent = japanese ? `${english} (${japanese})` : english;
                 genreSelect.appendChild(option);
             });
             
@@ -904,7 +907,8 @@
             // Build film title index from location data
             const filmMap = new Map();
             [...allData.filming_locations, ...allData.represented_locations].forEach(f => {
-                const props = f.properties;
+                // Handle both GeoJSON format (f.properties) and flat format
+                const props = f.properties || f;
                 if (!filmMap.has(props.film_id)) {
                     filmMap.set(props.film_id, {
                         id: props.film_id,
@@ -920,8 +924,11 @@
             const prefectureSelect = document.getElementById('filter-prefecture');
             allData.filters.prefectures.forEach(p => {
                 const option = document.createElement('option');
-                option.value = p.name;
-                option.textContent = `${p.name} (${p.count} locations)`;
+                // Handle both object format and plain string format
+                const name = typeof p === 'string' ? p : p.name;
+                const count = typeof p === 'string' ? '' : p.count;
+                option.value = name;
+                option.textContent = count ? `${name} (${count} locations)` : name;
                 prefectureSelect.appendChild(option);
             });
         }
@@ -1238,7 +1245,7 @@
         
         // === CREATE MARKER ===
         function createMarker(feature) {
-            const props = feature.properties;
+            const props = feature.properties || feature;
             const isShooting = props.location_type === 'filming';
             
             // Create circle marker with colors visible on lighter map
@@ -1306,7 +1313,7 @@
         
         // === FILTER LOGIC ===
         function passesFilter(feature) {
-            const props = feature.properties;
+            const props = feature.properties || feature;
             
             // Film title filter (partial match)
             if (filters.filmTitle) {
@@ -1389,8 +1396,8 @@
                             shootingCluster.addLayer(createMarker(feature));
                             shootingCount++;
                             // Track unique film by year
-                            const year = feature.properties.year;
-                            const filmId = feature.properties.film_id;
+                            const year = (feature.properties || feature).year;
+                            const filmId = (feature.properties || feature).film_id;
                             if (year && year >= 1900 && year <= 2030 && filmId) {
                                 if (!filmsByYear[year]) filmsByYear[year] = new Set();
                                 filmsByYear[year].add(filmId);
@@ -1406,8 +1413,8 @@
                             representedCluster.addLayer(createMarker(feature));
                             representedCount++;
                             // Track unique film by year
-                            const year = feature.properties.year;
-                            const filmId = feature.properties.film_id;
+                            const year = (feature.properties || feature).year;
+                            const filmId = (feature.properties || feature).film_id;
                             if (year && year >= 1900 && year <= 2030 && filmId) {
                                 if (!filmsByYear[year]) filmsByYear[year] = new Set();
                                 filmsByYear[year].add(filmId);
