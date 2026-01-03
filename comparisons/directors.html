@@ -7,6 +7,8 @@
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -136,6 +138,21 @@
         }
         
         /* Sliders */
+        
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+        
+        .toggle-row input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+    
         .slider-group {
             margin-bottom: 20px;
         }
@@ -325,6 +342,94 @@
             #sidebar { width: 100%; height: 250px; top: auto; bottom: 0; }
             .heatmap-legend { left: 20px; bottom: 270px; }
         }
+
+        /* Popup styles */
+        .leaflet-popup-content-wrapper {
+            background: #1a1a2e;
+            color: #eee;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        .leaflet-popup-tip {
+            background: #1a1a2e;
+        }
+        
+        .leaflet-popup-content {
+            margin: 12px 16px;
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+        }
+        
+        .popup-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .popup-subtitle {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .popup-details {
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .popup-details dt {
+            color: #666;
+            float: left;
+            width: 70px;
+            clear: left;
+        }
+        
+        .popup-details dd {
+            margin-left: 80px;
+            margin-bottom: 4px;
+        }
+        
+        .popup-category {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 8px;
+            color: white;
+        }
+        
+        /* Custom cluster icons */
+        .marker-cluster-ozu {
+            background-color: rgba(231, 76, 60, 0.4);
+        }
+        .marker-cluster-ozu div {
+            background-color: rgba(231, 76, 60, 0.8);
+        }
+        .marker-cluster-kurosawa {
+            background-color: rgba(52, 152, 219, 0.4);
+        }
+        .marker-cluster-kurosawa div {
+            background-color: rgba(52, 152, 219, 0.8);
+        }
+        .marker-cluster-mizoguchi {
+            background-color: rgba(46, 204, 113, 0.4);
+        }
+        .marker-cluster-mizoguchi div {
+            background-color: rgba(46, 204, 113, 0.8);
+        }
+        .marker-cluster div {
+            width: 30px;
+            height: 30px;
+            margin-left: 5px;
+            margin-top: 5px;
+            text-align: center;
+            border-radius: 15px;
+            font: 12px 'Space Grotesk', sans-serif;
+            color: white;
+            line-height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -431,7 +536,7 @@
     </div>
     
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     
     <script>
         const DATA_FILE = 'comparison_directors.json';
