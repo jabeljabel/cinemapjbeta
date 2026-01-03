@@ -649,6 +649,27 @@
                 const DATA_BASE_URL = './';
         const RANDOM_SUFFIX = 'ea3f33e9e52ac84d';
         
+
+        // Transform short keys to long keys (v21 format -> main.html format)
+        function transformLocation(loc, locType) {
+            return {
+                film_id: loc.id,
+                film_title: loc.jp,
+                english_title: loc.en,
+                year: loc.y,
+                location_name: loc.loc,
+                prefecture: loc.pref,
+                lat: loc.lat,
+                lon: loc.lon,
+                directors: loc.dir || [],
+                genres: loc.gen || [],
+                studio: loc.stu || '',
+                synopsis: loc.syn || '',
+                info_source: loc.src || '',
+                location_type: locType
+            };
+        }
+
         const DATA_FILES = {
             meta: 'cm_meta_l0xahs9x31tj26dr.json',
             filming: [
@@ -815,7 +836,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.filming[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.filming[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.filming_locations.push(...chunk);
+                    allData.filming_locations.push(...chunk.map(loc => transformLocation(loc, 'filming')));
                 }
                 
                 // Load represented locations (2 chunks)
@@ -826,7 +847,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.represented[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.represented[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.represented_locations.push(...chunk);
+                    allData.represented_locations.push(...chunk.map(loc => transformLocation(loc, 'represented')));
                 }
                 
                 console.log('Data loaded:', {
