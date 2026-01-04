@@ -647,8 +647,29 @@
         // CONFIGURATION - GitHub Pages (<25MB chunks)
         // ============================================================
                 const DATA_BASE_URL = './';
-        const RANDOM_SUFFIX = 'bdf013a274632b63';
+        const RANDOM_SUFFIX = '8f7020030e2b2a92';
         
+
+        // Transform short keys to long keys (v21 format -> main.html format)
+        function transformLocation(loc, locType) {
+            return {
+                film_id: loc.id,
+                film_title: loc.jp,
+                english_title: loc.en,
+                year: loc.y,
+                location_name: loc.loc,
+                prefecture: loc.pref,
+                lat: loc.lat,
+                lon: loc.lon,
+                directors: loc.dir || [],
+                genres: loc.gen || [],
+                studio: loc.stu || '',
+                synopsis: loc.syn || '',
+                info_source: loc.src || '',
+                location_type: locType
+            };
+        }
+
         const DATA_FILES = {
             meta: 'cm_meta_bdf013a274632b63.json',
             filming: [
@@ -669,7 +690,9 @@
                 'cm_repr_bdf013a274632b63_7.json',
                 'cm_repr_bdf013a274632b63_8.json',
                 'cm_repr_bdf013a274632b63_9.json',
-                'cm_repr_bdf013a274632b63_10.json'
+                'cm_repr_bdf013a274632b63_10.json',
+                'cm_repr_bdf013a274632b63_11.json',
+                'cm_repr_bdf013a274632b63_12.json',
             ]
         };
         // ============================================================
@@ -813,7 +836,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.filming[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.filming[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.filming_locations.push(...chunk);
+                    allData.filming_locations.push(...chunk.map(loc => transformLocation(loc, 'filming')));
                 }
                 
                 // Load represented locations (2 chunks)
@@ -824,7 +847,7 @@
                     const response = await fetch(DATA_BASE_URL + DATA_FILES.represented[i]);
                     if (!response.ok) throw new Error('Failed to load ' + DATA_FILES.represented[i] + ': ' + response.status);
                     const chunk = await response.json();
-                    allData.represented_locations.push(...chunk);
+                    allData.represented_locations.push(...chunk.map(loc => transformLocation(loc, 'represented')));
                 }
                 
                 console.log('Data loaded:', {
@@ -867,8 +890,11 @@
             const genreSelect = document.getElementById('filter-genre');
             allData.filters.genres.forEach(g => {
                 const option = document.createElement('option');
-                option.value = g.english;
-                option.textContent = `${g.english} (${g.japanese})`;
+                // Handle both object format and plain string format
+                const english = typeof g === 'string' ? g : g.english;
+                const japanese = typeof g === 'string' ? '' : g.japanese;
+                option.value = english;
+                option.textContent = japanese ? `${english} (${japanese})` : english;
                 genreSelect.appendChild(option);
             });
             
@@ -881,7 +907,8 @@
             // Build film title index from location data
             const filmMap = new Map();
             [...allData.filming_locations, ...allData.represented_locations].forEach(f => {
-                const props = f.properties;
+                // Handle both GeoJSON format (f.properties) and flat format
+                const props = f.properties || f;
                 if (!filmMap.has(props.film_id)) {
                     filmMap.set(props.film_id, {
                         id: props.film_id,
@@ -897,8 +924,11 @@
             const prefectureSelect = document.getElementById('filter-prefecture');
             allData.filters.prefectures.forEach(p => {
                 const option = document.createElement('option');
-                option.value = p.name;
-                option.textContent = `${p.name} (${p.count} locations)`;
+                // Handle both object format and plain string format
+                const name = typeof p === 'string' ? p : p.name;
+                const count = typeof p === 'string' ? '' : p.count;
+                option.value = name;
+                option.textContent = count ? `${name} (${count} locations)` : name;
                 prefectureSelect.appendChild(option);
             });
         }
@@ -983,19 +1013,19 @@
             }
             
             const queryLower = query.toLowerCase();
-            const matches = allDirectors.filter(d => 
-                (d.name && d.name.toLowerCase().includes(queryLower)) ||
-                (d.japanese && d.japanese.includes(query))
-            ).slice(0, 15);
+            const matches = allDirectors.filter(d => {
+                // Handle both string and object format
+                const name = typeof d === 'string' ? d : d.name;
+                return name && name.toLowerCase().includes(queryLower);
+            }).slice(0, 20);
             
             const resultsDiv = document.getElementById('director-results');
             if (matches.length > 0) {
-                resultsDiv.innerHTML = matches.map(d => 
-                    `<div class="search-result-item" onmousedown="selectDirector('${d.name.replace(/'/g, "\\'")}')">
-                        ${d.name}${d.japanese ? ` <span class="search-result-count">(${d.japanese})</span>` : ''}
-                        <span class="search-result-count">${d.films} films</span>
-                    </div>`
-                ).join('');
+                resultsDiv.innerHTML = matches.map(d => {
+                    const name = typeof d === 'string' ? d : d.name;
+                    const escapedName = name.replace(/'/g, "\\'");
+                    return `<div class="search-result-item" onmousedown="selectDirector('${escapedName}')">${name}</div>`;
+                }).join('');
                 resultsDiv.classList.add('active');
             } else {
                 resultsDiv.classList.remove('active');
@@ -1052,19 +1082,18 @@
             }
             
             const queryLower = query.toLowerCase();
-            const matches = allStudios.filter(s => 
-                (s.name && s.name.toLowerCase().includes(queryLower)) ||
-                (s.japanese && s.japanese.includes(query))
-            ).slice(0, 15);
+            const matches = allStudios.filter(s => {
+                const name = typeof s === 'string' ? s : s.name;
+                return name && name.toLowerCase().includes(queryLower);
+            }).slice(0, 15);
             
             const resultsDiv = document.getElementById('studio-results');
             if (matches.length > 0) {
-                resultsDiv.innerHTML = matches.map(s => 
-                    `<div class="search-result-item" onmousedown="selectStudio('${(s.name || s.japanese).replace(/'/g, "\\'")}')">
-                        ${s.name || s.japanese}${s.japanese && s.name ? ` <span class="search-result-count">(${s.japanese})</span>` : ''}
-                        <span class="search-result-count">${s.films} films</span>
-                    </div>`
-                ).join('');
+                resultsDiv.innerHTML = matches.map(s => {
+                    const name = typeof s === 'string' ? s : s.name;
+                    const escapedName = name.replace(/'/g, "\\'");
+                    return `<div class="search-result-item" onmousedown="selectStudio('${escapedName}')">${name}</div>`;
+                }).join('');
                 resultsDiv.classList.add('active');
             } else {
                 resultsDiv.classList.remove('active');
@@ -1215,12 +1244,12 @@
         
         // === CREATE MARKER ===
         function createMarker(feature) {
-            const props = feature.properties;
+            const props = feature.properties || feature;
             const isShooting = props.location_type === 'filming';
             
             // Create circle marker with colors visible on lighter map
             const marker = L.circleMarker(
-                [feature.geometry.coordinates[1], feature.geometry.coordinates[0]],
+                [feature.geometry ? feature.geometry.coordinates[1] : feature.lat, feature.geometry ? feature.geometry.coordinates[0] : feature.lon],
                 {
                     radius: 7,
                     fillColor: isShooting ? '#e6a800' : '#1e8449',  // Slightly darker yellow/green
@@ -1283,7 +1312,7 @@
         
         // === FILTER LOGIC ===
         function passesFilter(feature) {
-            const props = feature.properties;
+            const props = feature.properties || feature;
             
             // Film title filter (partial match)
             if (filters.filmTitle) {
@@ -1366,8 +1395,8 @@
                             shootingCluster.addLayer(createMarker(feature));
                             shootingCount++;
                             // Track unique film by year
-                            const year = feature.properties.year;
-                            const filmId = feature.properties.film_id;
+                            const year = (feature.properties || feature).year;
+                            const filmId = (feature.properties || feature).film_id;
                             if (year && year >= 1900 && year <= 2030 && filmId) {
                                 if (!filmsByYear[year]) filmsByYear[year] = new Set();
                                 filmsByYear[year].add(filmId);
@@ -1383,8 +1412,8 @@
                             representedCluster.addLayer(createMarker(feature));
                             representedCount++;
                             // Track unique film by year
-                            const year = feature.properties.year;
-                            const filmId = feature.properties.film_id;
+                            const year = (feature.properties || feature).year;
+                            const filmId = (feature.properties || feature).film_id;
                             if (year && year >= 1900 && year <= 2030 && filmId) {
                                 if (!filmsByYear[year]) filmsByYear[year] = new Set();
                                 filmsByYear[year].add(filmId);
@@ -1583,5 +1612,23 @@
     <!-- GoatCounter Analytics -->
     <script data-goatcounter="https://cinemapjapan.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
+<!-- Default Statcounter code for CineMAP
+https://jabeljabel.github.io/cinemapjbeta/ -->
+<script type="text/javascript">
+var sc_project=13194486; 
+var sc_invisible=1; 
+var sc_security="d3c74cbd"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - Statcounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13194486/0/d3c74cbd/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
 </body>
 </html>
