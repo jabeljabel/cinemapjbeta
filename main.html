@@ -906,7 +906,7 @@
             
             // Build film title index from location data
             const filmMap = new Map();
-            [...allData.filming_locations, ...allData.represented_locations].forEach(f => {
+            [...allData.filming_locations, ...allData.represented_locations].filter(f => f).forEach(f => {
                 // Handle both GeoJSON format (f.properties) and flat format
                 const props = f.properties || f;
                 if (!filmMap.has(props.film_id)) {
