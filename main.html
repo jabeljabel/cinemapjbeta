@@ -1016,15 +1016,20 @@
             const matches = allDirectors.filter(d => {
                 // Handle both string and object format
                 const name = typeof d === 'string' ? d : d.name;
-                return name && name.toLowerCase().includes(queryLower);
+                const japanese = typeof d === 'object' ? (d.japanese || '') : '';
+                return (name && name.toLowerCase().includes(queryLower)) || (japanese && japanese.includes(query));
             }).slice(0, 20);
             
             const resultsDiv = document.getElementById('director-results');
             if (matches.length > 0) {
                 resultsDiv.innerHTML = matches.map(d => {
                     const name = typeof d === 'string' ? d : d.name;
+                    const japanese = typeof d === 'object' ? (d.japanese || '') : '';
+                    const films = typeof d === 'object' ? (d.films || 0) : 0;
                     const escapedName = name.replace(/'/g, "\\'");
-                    return `<div class="search-result-item" onmousedown="selectDirector('${escapedName}')">${name}</div>`;
+                    const displayText = japanese ? name + ' <span class="jp-name">(' + japanese + ')</span>' : name;
+                    const countText = films ? ' <span class="count">[' + films + ']</span>' : '';
+                    return `<div class="search-result-item" onmousedown="selectDirector('${escapedName}')">${displayText}${countText}</div>`;
                 }).join('');
                 resultsDiv.classList.add('active');
             } else {
