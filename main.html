@@ -1028,7 +1028,8 @@
                     const films = typeof d === 'object' ? (d.films || 0) : 0;
                     const escapedName = name.replace(/'/g, "\\'");
                     const displayText = japanese ? name + ' <span class="jp-name">(' + japanese + ')</span>' : name;
-                    const countText = films ? ' <span class="count">[' + films + ']</span>' : '';
+                    const locations = typeof d === 'object' ? (d.locations || 0) : 0;
+                    const countText = films ? ' <span class="count">[' + films + ' films, ' + locations + ' locs]</span>' : '';
                     return `<div class="search-result-item" onmousedown="selectDirector('${escapedName}')">${displayText}${countText}</div>`;
                 }).join('');
                 resultsDiv.classList.add('active');
