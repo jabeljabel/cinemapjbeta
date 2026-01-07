@@ -1232,10 +1232,11 @@
             
             const sourceLower = infoSource.toLowerCase();
             
-            // Check for extraction method patterns first (most specific)
-            if (sourceLower.includes('represented_synopsis') || sourceLower.includes('synopsis')) return 'synopsis';
-            if (sourceLower.includes('represented_title') || sourceLower.includes('title')) return 'title';
-            if (sourceLower.includes('represented_subtitle') || sourceLower.includes('subtitle')) return 'subtitle';
+            // Check for extraction method patterns - ORDER MATTERS!
+            // Check subtitle BEFORE title (since 'subtitle' contains 'title')
+            if (sourceLower.includes('synopsis')) return 'synopsis';
+            if (sourceLower.includes('subtitle')) return 'subtitle';
+            if (sourceLower.includes('title')) return 'title';
             
             // Database sources
             if (sourceLower === 'wikidata') return 'Wikidata';
