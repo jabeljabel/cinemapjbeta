@@ -1,0 +1,189 @@
+{
+  "generated": "2025-12-27T18:27:10.015771",
+  "total_locations": 506406,
+  "chunk_count": 75,
+  "chunk_files": [
+    "cg_94whil_0.json",
+    "cg_94whil_1.json",
+    "cg_94whil_2.json",
+    "cg_94whil_3.json",
+    "cg_94whil_4.json",
+    "cg_94whil_5.json",
+    "cg_94whil_6.json",
+    "cg_94whil_7.json",
+    "cg_94whil_8.json",
+    "cg_94whil_9.json",
+    "cg_94whil_10.json",
+    "cg_94whil_11.json",
+    "cg_94whil_12.json",
+    "cg_94whil_13.json",
+    "cg_94whil_14.json",
+    "cg_94whil_15.json",
+    "cg_94whil_16.json",
+    "cg_94whil_17.json",
+    "cg_94whil_18.json",
+    "cg_94whil_19.json",
+    "cg_94whil_20.json",
+    "cg_94whil_21.json",
+    "cg_94whil_22.json",
+    "cg_94whil_23.json",
+    "cg_94whil_24.json",
+    "cg_94whil_25.json",
+    "cg_94whil_26.json",
+    "cg_94whil_27.json",
+    "cg_94whil_28.json",
+    "cg_94whil_29.json",
+    "cg_94whil_30.json",
+    "cg_94whil_31.json",
+    "cg_94whil_32.json",
+    "cg_94whil_33.json",
+    "cg_94whil_34.json",
+    "cg_94whil_35.json",
+    "cg_94whil_36.json",
+    "cg_94whil_37.json",
+    "cg_94whil_38.json",
+    "cg_94whil_39.json",
+    "cg_94whil_40.json",
+    "cg_94whil_41.json",
+    "cg_94whil_42.json",
+    "cg_94whil_43.json",
+    "cg_94whil_44.json",
+    "cg_94whil_45.json",
+    "cg_94whil_46.json",
+    "cg_94whil_47.json",
+    "cg_94whil_48.json",
+    "cg_94whil_49.json",
+    "cg_94whil_50.json",
+    "cg_94whil_51.json",
+    "cg_94whil_52.json",
+    "cg_94whil_53.json",
+    "cg_94whil_54.json",
+    "cg_94whil_55.json",
+    "cg_94whil_56.json",
+    "cg_94whil_57.json",
+    "cg_94whil_58.json",
+    "cg_94whil_59.json",
+    "cg_94whil_60.json",
+    "cg_94whil_61.json",
+    "cg_94whil_62.json",
+    "cg_94whil_63.json",
+    "cg_94whil_64.json",
+    "cg_94whil_65.json",
+    "cg_94whil_66.json",
+    "cg_94whil_67.json",
+    "cg_94whil_68.json",
+    "cg_94whil_69.json",
+    "cg_94whil_70.json",
+    "cg_94whil_71.json",
+    "cg_94whil_72.json",
+    "cg_94whil_73.json",
+    "cg_94whil_74.json"
+  ],
+  "categories": {
+    "drama": {
+      "name": "Drama",
+      "color": "#e74c3c",
+      "genre_id": 10,
+      "filming_locations": 47730,
+      "represented_locations": 85412
+    },
+    "action": {
+      "name": "Action",
+      "color": "#3498db",
+      "genre_id": 1,
+      "filming_locations": 15903,
+      "represented_locations": 40840
+    },
+    "comedy": {
+      "name": "Comedy",
+      "color": "#2ecc71",
+      "genre_id": 6,
+      "filming_locations": 20090,
+      "represented_locations": 28136
+    },
+    "romance": {
+      "name": "Romance",
+      "color": "#e91e63",
+      "genre_id": 20,
+      "filming_locations": 13361,
+      "represented_locations": 14859
+    },
+    "animation": {
+      "name": "Animation",
+      "color": "#ff9800",
+      "genre_id": 4,
+      "filming_locations": 9413,
+      "represented_locations": 19528
+    },
+    "horror": {
+      "name": "Horror",
+      "color": "#673ab7",
+      "genre_id": 14,
+      "filming_locations": 3771,
+      "represented_locations": 12727
+    },
+    "documentary": {
+      "name": "Documentary",
+      "color": "#00bcd4",
+      "genre_id": 9,
+      "filming_locations": 1726,
+      "represented_locations": 16449
+    },
+    "biography": {
+      "name": "Biography",
+      "color": "#888888",
+      "genre_id": 5,
+      "filming_locations": 13015,
+      "represented_locations": 37164
+    },
+    "crime": {
+      "name": "Crime",
+      "color": "#ff5722",
+      "genre_id": 7,
+      "filming_locations": 6168,
+      "represented_locations": 23183
+    },
+    "adventure": {
+      "name": "Adventure",
+      "color": "#009688",
+      "genre_id": 3,
+      "filming_locations": 5797,
+      "represented_locations": 15073
+    },
+    "suspense": {
+      "name": "Suspense",
+      "color": "#888888",
+      "genre_id": 31,
+      "filming_locations": 5204,
+      "represented_locations": 9243
+    },
+    "fantasy": {
+      "name": "Fantasy",
+      "color": "#8bc34a",
+      "genre_id": 12,
+      "filming_locations": 3615,
+      "represented_locations": 9968
+    },
+    "science_fiction": {
+      "name": "Science Fiction",
+      "color": "#607d8b",
+      "genre_id": 21,
+      "filming_locations": 4062,
+      "represented_locations": 13637
+    },
+    "period_drama": {
+      "name": "Period Drama",
+      "color": "#888888",
+      "genre_id": 18,
+      "filming_locations": 6462,
+      "represented_locations": 11947
+    },
+    "musical": {
+      "name": "Musical",
+      "color": "#888888",
+      "genre_id": 16,
+      "filming_locations": 2123,
+      "represented_locations": 10013
+    }
+  }
+}
