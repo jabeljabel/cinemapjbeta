@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP: Prefecture Genre Rankings</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
+            overflow: hidden;
+        }
+        
+        #header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 56px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 200;
+            gap: 15px;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .header-title span { font-weight: 400; color: #888; }
+        
+        /* Mode Toggle - %, #, ± */
+        .mode-toggle {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 6px;
+            padding: 3px;
+        }
+        
+        .mode-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .mode-btn.active {
+            background: white;
+            color: #1a1a1a;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .mode-btn[data-mode="variance"].active {
+            background: linear-gradient(90deg, #3498db, #e74c3c, #2ecc71, #f1c40f);
+            color: white;
+        }
+        
+        .mode-btn:hover:not(.active) { background: #e0e0e0; }
+        
+        /* Decade Control */
+        .decade-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .decade-control label {
+            font-size: 14px;
+        }
+        
+        .decade-select {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 12px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .genre-select {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 12px;
+            background: white;
+        }
+        
+        #map {
+            position: fixed;
+            top: 56px; left: 0; right: 380px; bottom: 0;
+            z-index: 1;
+        }
+        
+        #sidebar {
+            position: fixed;
+            top: 56px; right: 0;
+            width: 380px;
+            height: calc(100vh - 56px);
+            background: white;
+            border-left: 1px solid #e0e0e0;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .sidebar-section {
+            padding: 14px 18px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-action {
+            font-size: 10px;
+            color: #3498db;
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        
+        .section-action:hover { text-decoration: underline; }
+        
+        /* Genre Filter Grid */
+        .genre-filter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+        
+        .genre-filter-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.15s;
+            border: 1px solid transparent;
+        }
+        
+        .genre-filter-item:hover { background: #f0f0f0; }
+        .genre-filter-item.active { border-color: var(--genre-color); background: white; }
+        .genre-filter-item.inactive { opacity: 0.35; text-decoration: line-through; }
+        
+        .genre-filter-swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        
+        .genre-filter-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Prefecture Detail Panel */
+        #pref-detail {
+            display: none;
+        }
+        
+        #pref-detail.visible {
+            display: block;
+        }
+        
+        .pref-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .pref-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .pref-stats {
+            text-align: right;
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .pref-stats strong {
+            font-size: 16px;
+            color: #1a1a1a;
+            display: block;
+        }
+        
+        /* Genre Bars */
+        .genre-bar-container {
+            margin-bottom: 8px;
+        }
+        
+        .genre-bar-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+        
+        .genre-bar-name {
+            font-weight: 500;
+        }
+        
+        .genre-bar-count {
+            color: #888;
+        }
+        
+        .genre-bar-pct {
+            color: #333;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+        
+        .genre-bar-variance {
+            font-size: 10px;
+            margin-left: 4px;
+        }
+        
+        .genre-bar-variance.positive { color: #2ecc71; }
+        .genre-bar-variance.negative { color: #e74c3c; }
+        
+        .genre-bar-track {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .genre-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Prefecture Ranking List */
+        .pref-rank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .pref-rank-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .pref-rank-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .pref-rank-item.selected {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+        }
+        
+        .pref-rank-num {
+            width: 22px;
+            height: 22px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: #666;
+            flex-shrink: 0;
+        }
+        
+        .pref-rank-item:nth-child(1) .pref-rank-num { background: #ffd700; color: #333; }
+        .pref-rank-item:nth-child(2) .pref-rank-num { background: #c0c0c0; color: #333; }
+        .pref-rank-item:nth-child(3) .pref-rank-num { background: #cd7f32; color: white; }
+        
+        .pref-rank-info { flex: 1; min-width: 0; }
+        .pref-rank-name { font-size: 12px; font-weight: 500; }
+        .pref-rank-genre { font-size: 10px; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pref-rank-value { font-size: 12px; font-weight: 600; color: #3498db; flex-shrink: 0; }
+        .pref-rank-value.variance-positive { color: #2ecc71; }
+        .pref-rank-value.variance-negative { color: #e74c3c; }
+        
+        /* Loading */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .loader {
+            width: 36px; height: 36px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-msg { margin-top: 12px; font-size: 12px; color: #888; }
+        
+        /* Info */
+        .info-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: #666;
+        }
+        
+        /* Map tooltip */
+        .pref-tooltip {
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+        }
+        
+        .pref-tooltip strong {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        /* Active filters notice */
+        .filter-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 11px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        
+        .filter-notice.visible { display: block; }
+        
+        /* Variance legend */
+        .variance-legend {
+            position: absolute;
+            bottom: 30px;
+            left: 10px;
+            background: rgba(255,255,255,0.95);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            max-width: 220px;
+            display: none;
+        }
+        
+        .variance-legend.visible { display: block; }
+        .variance-legend h4 { margin-bottom: 8px; font-size: 12px; }
+        .variance-explanation { color: #666; line-height: 1.5; }
+        .variance-explanation strong { color: #333; }
+        
+        @media (max-width: 900px) {
+            #map { right: 0; bottom: 300px; }
+            #sidebar { width: 100%; height: 300px; top: auto; bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="loader"></div>
+        <div class="loading-msg">Loading prefecture data...</div>
+    </div>
+    
+    <div id="header">
+        <a href="../index.html" style="background: #f0f0f0; padding: 6px 12px; border-radius: 6px; color: #333; text-decoration: none; font-size: 12px; font-weight: 500; margin-right: 10px;">← Back to CineMAP</a>
+        <div class="header-title">CineMAP <span>· Prefecture Genre Map</span></div>
+        
+        <!-- Mode Toggle: %, #, ± -->
+        <div class="mode-toggle">
+            <button class="mode-btn" data-mode="percentage" title="Highest percentage genre">%</button>
+            <button class="mode-btn" data-mode="absolute" title="Highest count genre">#</button>
+            <button class="mode-btn active" data-mode="variance" title="Most distinctive genre (vs national mean)">±</button>
+        </div>
+        
+        <!-- Decade Dropdown -->
+        <div class="decade-control">
+            <label>📅</label>
+            <select class="decade-select" id="decade-select">
+                <option value="all">All Time</option>
+            </select>
+        </div>
+        
+        <!-- Single Genre Select (hidden by default) -->
+        <select class="genre-select" id="genre-select" style="display: none;">
+            <option value="">Select genre...</option>
+        </select>
+    </div>
+    
+    <div id="map"></div>
+    
+    <!-- Variance Legend -->
+    <div class="variance-legend" id="variance-legend">
+        <h4>± Variance Mode</h4>
+        <div class="variance-explanation">
+            Shows each prefecture's <strong>most distinctive genre</strong> compared to the national average.
+            <br><br>
+            <strong>+5.2 pts</strong> means this genre is 5.2 percentage points higher than the national average.
+        </div>
+    </div>
+    
+    <div id="sidebar">
+        <!-- Genre Filters -->
+        <div class="sidebar-section">
+            <div class="section-title">
+                Filter Genres
+                <span class="section-action" onclick="toggleAllGenres()">Toggle All</span>
+            </div>
+            <div class="filter-notice" id="filter-notice">
+                <strong>Filtering active:</strong> <span id="filter-count">0</span> genre(s) hidden. Percentages recalculated.
+            </div>
+            <div class="genre-filter-grid" id="genre-filters"></div>
+        </div>
+        
+        <!-- Prefecture Detail (shown when prefecture selected) -->
+        <div id="pref-detail" class="sidebar-section">
+            <div class="pref-header">
+                <div class="pref-name" id="detail-name">—</div>
+                <div class="pref-stats">
+                    <strong id="detail-total">—</strong>
+                    locations (filtered)
+                </div>
+            </div>
+            <div class="section-title">Genre Breakdown</div>
+            <div id="detail-bars"></div>
+        </div>
+        
+        <!-- Prefecture Rankings -->
+        <div class="sidebar-section">
+            <div class="section-title" id="ranking-title">Top Prefectures</div>
+            <div class="pref-rank-list" id="pref-ranking"></div>
+        </div>
+        
+        <!-- Info -->
+        <div class="sidebar-section">
+            <div class="info-box">
+                <strong>Tip:</strong> Toggle off "Drama" to see which genres are most prominent underneath. 
+                Use <strong>±</strong> mode to find prefectures with unique genre specializations.
+            </div>
+        </div>
+        
+        <!-- Back Link -->
+        <div class="sidebar-section" style="border-top: 1px solid #e0e0e0; margin-top: auto;">
+            <a href="../index.html" style="color: #3498db; text-decoration: none; font-size: 13px;">← Back to CineMAP</a>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        const DATA_FILE = 'comparison_prefecture_genres.json';
+        const JAPAN_GEOJSON = 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson';
+        
+        // Genre colors
+        const GENRE_COLORS = {
+            'Drama': '#3498db',
+            'Action': '#e74c3c',
+            'Comedy': '#f1c40f',
+            'Romance': '#e91e63',
+            'Animation': '#ff9800',
+            'Horror': '#9b59b6',
+            'Documentary': '#795548',
+            'Biography': '#4caf50',
+            'Crime': '#00bcd4',
+            'Adventure': '#16a085',
+            'Mystery': '#673ab7',
+            'Thriller': '#607d8b',
+            'War': '#455a64',
+            'Fantasy': '#8e44ad',
+            'Music': '#c0392b',
+            'Suspense': '#2c3e50',
+            'Science Fiction': '#1abc9c',
+            'Period Drama': '#d35400',
+            'Musical': '#c0392b'
+        };
+        
+        let map = null;
+        let prefectureDataRaw = null;   // Original data from JSON
+        let prefectureData = null;       // Current decade's data
+        let prefectureDataFiltered = null; // After genre filtering
+        let japanGeoJson = null;
+        let geoJsonLayer = null;
+        let currentMode = 'variance';    // 'percentage', 'absolute', 'variance'
+        let currentDecade = 'all';
+        let selectedPrefecture = null;
+        let allGenres = [];
+        let allDecades = [];
+        let genreVisibility = {};
+        let nationalMeans = {};          // For variance calculation
+        
+        function initMap() {
+            map = L.map('map', { center: [36.5, 138.0], zoom: 5 });
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+                attribution: '© OSM © CARTO',
+                maxZoom: 19
+            }).addTo(map);
+        }
+        
+        async function loadData() {
+            try {
+                const [prefResponse, geoResponse] = await Promise.all([
+                    fetch(DATA_FILE),
+                    fetch(JAPAN_GEOJSON)
+                ]);
+                
+                if (!prefResponse.ok) throw new Error(`Prefecture data: ${prefResponse.status}`);
+                if (!geoResponse.ok) throw new Error(`GeoJSON: ${geoResponse.status}`);
+                
+                const prefData = await prefResponse.json();
+                prefectureDataRaw = prefData.prefectures;
+                japanGeoJson = await geoResponse.json();
+                allGenres = prefData.metadata.genres || [];
+                allDecades = prefData.metadata.decades || [];
+                
+                // Initialize all genres as visible
+                for (const genre of allGenres) {
+                    genreVisibility[genre] = true;
+                }
+                
+                // Populate decade dropdown
+                populateDecadeDropdown();
+                
+                // Load data for current decade
+                loadDecadeData();
+                
+                // Build UI
+                buildGenreFilters();
+                buildGenreSelect(allGenres);
+                
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error:', error);
+                document.querySelector('.loading-msg').textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        function populateDecadeDropdown() {
+            const select = document.getElementById('decade-select');
+            select.innerHTML = '<option value="all">All Time</option>';
+            
+            allDecades.forEach(decade => {
+                const opt = document.createElement('option');
+                opt.value = decade;
+                opt.textContent = `${decade}s`;
+                select.appendChild(opt);
+            });
+            
+            select.addEventListener('change', (e) => {
+                currentDecade = e.target.value;
+                loadDecadeData();
+            });
+        }
+        
+        function loadDecadeData() {
+            // Extract data for current decade
+            prefectureData = {};
+            
+            for (const [prefName, data] of Object.entries(prefectureDataRaw)) {
+                const decadeData = data.by_decade?.[currentDecade];
+                
+                if (decadeData && decadeData.total > 0) {
+                    prefectureData[prefName] = {
+                        filtered_total: decadeData.total,
+                        dominant_genre_pct: decadeData.dominant_genre,
+                        dominant_percentage: decadeData.dominant_percentage,
+                        genres: decadeData.genres
+                    };
+                } else if (currentDecade === 'all') {
+                    // Fallback to top-level data for 'all'
+                    prefectureData[prefName] = {
+                        filtered_total: data.filtered_total,
+                        dominant_genre_pct: data.dominant_genre_pct,
+                        dominant_percentage: data.dominant_percentage,
+                        genres: data.genres
+                    };
+                }
+            }
+            
+            recalculatePercentages();
+            updateMap();
+            
+            if (selectedPrefecture) {
+                selectPrefecture(selectedPrefecture);
+            }
+        }
+        
+        function recalculatePercentages() {
+            // Create filtered copy with recalculated percentages
+            prefectureDataFiltered = {};
+            
+            const visibleGenres = allGenres.filter(g => genreVisibility[g]);
+            
+            // First pass: calculate filtered data and national totals
+            let nationalGenreTotals = {};
+            let nationalTotal = 0;
+            
+            for (const [prefName, data] of Object.entries(prefectureData)) {
+                if (!data || !data.genres) continue;
+                
+                let filteredTotal = 0;
+                const filteredGenres = {};
+                
+                for (const [genre, counts] of Object.entries(data.genres)) {
+                    if (genreVisibility[genre]) {
+                        const total = counts.total || 0;
+                        filteredTotal += total;
+                        filteredGenres[genre] = { ...counts, total };
+                        
+                        // Add to national totals
+                        nationalGenreTotals[genre] = (nationalGenreTotals[genre] || 0) + total;
+                        nationalTotal += total;
+                    }
+                }
+                
+                // Calculate percentages and find dominant
+                let maxPct = 0;
+                let dominantGenre = null;
+                
+                for (const [genre, counts] of Object.entries(filteredGenres)) {
+                    const pct = filteredTotal > 0 ? (counts.total / filteredTotal) * 100 : 0;
+                    counts.percentage = pct;
+                    
+                    if (pct > maxPct) {
+                        maxPct = pct;
+                        dominantGenre = genre;
+                    }
+                }
+                
+                prefectureDataFiltered[prefName] = {
+                    ...data,
+                    genres: filteredGenres,
+                    filtered_total: filteredTotal,
+                    dominant_genre_pct: dominantGenre,
+                    dominant_percentage: maxPct
+                };
+            }
+            
+            // Calculate national means for variance
+            nationalMeans = {};
+            for (const [genre, total] of Object.entries(nationalGenreTotals)) {
+                nationalMeans[genre] = nationalTotal > 0 ? (total / nationalTotal) * 100 : 0;
+            }
+            
+            // Second pass: calculate variance for each prefecture
+            for (const [prefName, data] of Object.entries(prefectureDataFiltered)) {
+                let bestVariance = -Infinity;
+                let bestVarianceGenre = null;
+                let bestVariancePoints = 0;
+                
+                for (const [genre, counts] of Object.entries(data.genres)) {
+                    const variance = counts.percentage - (nationalMeans[genre] || 0);
+                    counts.variance = variance;
+                    
+                    if (variance > bestVariance) {
+                        bestVariance = variance;
+                        bestVarianceGenre = genre;
+                        bestVariancePoints = variance;
+                    }
+                }
+                
+                data.most_distinctive_genre = bestVarianceGenre;
+                data.most_distinctive_variance = bestVariancePoints;
+            }
+            
+            // Update filter notice
+            const hiddenCount = allGenres.length - visibleGenres.length;
+            const notice = document.getElementById('filter-notice');
+            const countSpan = document.getElementById('filter-count');
+            if (hiddenCount > 0) {
+                notice.classList.add('visible');
+                countSpan.textContent = hiddenCount;
+            } else {
+                notice.classList.remove('visible');
+            }
+        }
+        
+        function buildGenreFilters() {
+            const container = document.getElementById('genre-filters');
+            container.innerHTML = '';
+            
+            for (const genre of allGenres) {
+                const color = GENRE_COLORS[genre] || '#888';
+                const isActive = genreVisibility[genre];
+                
+                const item = document.createElement('div');
+                item.className = `genre-filter-item ${isActive ? 'active' : 'inactive'}`;
+                item.dataset.genre = genre;
+                item.style.setProperty('--genre-color', color);
+                item.innerHTML = `
+                    <div class="genre-filter-swatch" style="background: ${color}"></div>
+                    <span class="genre-filter-name" title="${genre}">${genre}</span>
+                `;
+                
+                item.addEventListener('click', () => toggleGenre(genre));
+                container.appendChild(item);
+            }
+        }
+        
+        function toggleGenre(genre) {
+            genreVisibility[genre] = !genreVisibility[genre];
+            
+            const item = document.querySelector(`.genre-filter-item[data-genre="${genre}"]`);
+            if (item) {
+                item.classList.toggle('active', genreVisibility[genre]);
+                item.classList.toggle('inactive', !genreVisibility[genre]);
+            }
+            
+            recalculatePercentages();
+            updateMap();
+            
+            if (selectedPrefecture) {
+                selectPrefecture(selectedPrefecture);
+            }
+        }
+        
+        function toggleAllGenres() {
+            const anyHidden = allGenres.some(g => !genreVisibility[g]);
+            
+            if (anyHidden) {
+                for (const genre of allGenres) {
+                    genreVisibility[genre] = true;
+                }
+            } else {
+                for (const genre of allGenres) {
+                    genreVisibility[genre] = (genre !== 'Drama');
+                }
+            }
+            
+            buildGenreFilters();
+            recalculatePercentages();
+            updateMap();
+            
+            if (selectedPrefecture) {
+                selectPrefecture(selectedPrefecture);
+            }
+        }
+        
+        function createGeoJsonLayer() {
+            if (geoJsonLayer) {
+                map.removeLayer(geoJsonLayer);
+            }
+            
+            geoJsonLayer = L.geoJSON(japanGeoJson, {
+                style: featureStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        }
+        
+        function getDominantForMode(prefData) {
+            if (!prefData || prefData.filtered_total === 0) return null;
+            
+            let bestGenre = null;
+            let bestValue = -Infinity;
+            let bestInfo = null;
+            
+            for (const [genre, counts] of Object.entries(prefData.genres || {})) {
+                if (!genreVisibility[genre]) continue;
+                
+                let value;
+                if (currentMode === 'percentage') {
+                    value = counts.percentage || 0;
+                } else if (currentMode === 'absolute') {
+                    value = counts.total || 0;
+                } else { // variance
+                    value = counts.variance || 0;
+                }
+                
+                if (value > bestValue) {
+                    bestValue = value;
+                    bestGenre = genre;
+                    bestInfo = counts;
+                }
+            }
+            
+            return bestGenre ? {
+                genre: bestGenre,
+                value: bestValue,
+                percentage: bestInfo?.percentage || 0,
+                total: bestInfo?.total || 0,
+                variance: bestInfo?.variance || 0
+            } : null;
+        }
+        
+        function featureStyle(feature) {
+            const prefName = feature.properties.nam_ja || feature.properties.name;
+            const prefData = findPrefectureData(prefName);
+            const dominant = getDominantForMode(prefData);
+            
+            let fillColor = '#e0e0e0';
+            let fillOpacity = 0.7;
+            
+            if (dominant) {
+                fillColor = GENRE_COLORS[dominant.genre] || '#888';
+                
+                if (currentMode === 'variance') {
+                    // Intensity based on variance strength
+                    const intensity = Math.min(1, Math.max(0.3, 0.5 + dominant.variance / 20));
+                    fillOpacity = intensity;
+                } else if (currentMode === 'absolute') {
+                    // Intensity based on count (log scale)
+                    const maxCount = 80000;
+                    fillOpacity = 0.3 + 0.6 * Math.min(1, Math.log(dominant.total + 1) / Math.log(maxCount));
+                } else {
+                    // Percentage mode
+                    fillOpacity = 0.4 + (dominant.percentage / 100) * 0.5;
+                }
+            }
+            
+            return {
+                fillColor: fillColor,
+                weight: 1,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: fillOpacity
+            };
+        }
+        
+        function onEachFeature(feature, layer) {
+            const prefName = feature.properties.nam_ja || feature.properties.name;
+            const prefData = findPrefectureData(prefName);
+            const dominant = getDominantForMode(prefData);
+            
+            let tooltipContent = `<div class="pref-tooltip"><strong>${prefName}</strong>`;
+            if (prefData && prefData.filtered_total > 0 && dominant) {
+                tooltipContent += `<br>${prefData.filtered_total.toLocaleString()} locations`;
+                
+                if (currentMode === 'variance') {
+                    const sign = dominant.variance >= 0 ? '+' : '';
+                    tooltipContent += `<br>Most distinctive: ${dominant.genre}`;
+                    tooltipContent += `<br>${sign}${dominant.variance.toFixed(1)} pts vs national`;
+                } else if (currentMode === 'absolute') {
+                    tooltipContent += `<br>Top: ${dominant.genre} (${dominant.total.toLocaleString()})`;
+                } else {
+                    tooltipContent += `<br>Top: ${dominant.genre} (${dominant.percentage.toFixed(1)}%)`;
+                }
+            } else {
+                tooltipContent += `<br>No data`;
+            }
+            tooltipContent += '</div>';
+            
+            layer.bindTooltip(tooltipContent);
+            layer.on('click', () => selectPrefecture(prefName));
+            layer.on('mouseover', function() { this.setStyle({ weight: 3, color: '#333' }); });
+            layer.on('mouseout', function() { this.setStyle({ weight: 1, color: 'white' }); });
+        }
+        
+        function findPrefectureData(prefName) {
+            if (prefectureDataFiltered[prefName]) return prefectureDataFiltered[prefName];
+            
+            const variations = [
+                prefName, prefName + '県', prefName + '府', prefName + '都',
+                prefName.replace('県', ''), prefName.replace('府', ''), prefName.replace('都', '')
+            ];
+            
+            for (const v of variations) {
+                if (prefectureDataFiltered[v]) return prefectureDataFiltered[v];
+            }
+            
+            for (const [key, data] of Object.entries(prefectureDataFiltered)) {
+                if (key.includes(prefName) || prefName.includes(key.replace(/[県府都]$/, ''))) {
+                    return data;
+                }
+            }
+            
+            return null;
+        }
+        
+        function selectPrefecture(prefName) {
+            selectedPrefecture = prefName;
+            const data = findPrefectureData(prefName);
+            
+            const detailPanel = document.getElementById('pref-detail');
+            
+            if (!data || data.filtered_total === 0) {
+                detailPanel.classList.remove('visible');
+                return;
+            }
+            
+            detailPanel.classList.add('visible');
+            document.getElementById('detail-name').textContent = prefName;
+            document.getElementById('detail-total').textContent = data.filtered_total.toLocaleString();
+            
+            const barsContainer = document.getElementById('detail-bars');
+            barsContainer.innerHTML = '';
+            
+            // Sort by current mode
+            let sortedGenres = Object.entries(data.genres).filter(([_, c]) => (c.percentage || 0) > 0);
+            
+            if (currentMode === 'variance') {
+                sortedGenres.sort((a, b) => (b[1].variance || 0) - (a[1].variance || 0));
+            } else if (currentMode === 'absolute') {
+                sortedGenres.sort((a, b) => (b[1].total || 0) - (a[1].total || 0));
+            } else {
+                sortedGenres.sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0));
+            }
+            
+            sortedGenres.slice(0, 10).forEach(([genre, counts]) => {
+                const pct = counts.percentage || 0;
+                const variance = counts.variance || 0;
+                const color = GENRE_COLORS[genre] || '#888';
+                const sign = variance >= 0 ? '+' : '';
+                const varianceClass = variance >= 0 ? 'positive' : 'negative';
+                
+                const bar = document.createElement('div');
+                bar.className = 'genre-bar-container';
+                bar.innerHTML = `
+                    <div class="genre-bar-header">
+                        <span class="genre-bar-name">${genre}</span>
+                        <span>
+                            <span class="genre-bar-count">${counts.total.toLocaleString()}</span>
+                            <span class="genre-bar-pct">${pct.toFixed(1)}%</span>
+                            <span class="genre-bar-variance ${varianceClass}">(${sign}${variance.toFixed(1)})</span>
+                        </span>
+                    </div>
+                    <div class="genre-bar-track">
+                        <div class="genre-bar-fill" style="width: ${pct}%; background: ${color}"></div>
+                    </div>
+                `;
+                barsContainer.appendChild(bar);
+            });
+            
+            document.querySelectorAll('.pref-rank-item').forEach(item => {
+                item.classList.toggle('selected', item.dataset.pref === prefName);
+            });
+        }
+        
+        function buildRanking() {
+            const container = document.getElementById('pref-ranking');
+            container.innerHTML = '';
+            
+            let sorted = Object.entries(prefectureDataFiltered)
+                .filter(([_, d]) => d.filtered_total >= 100)
+                .map(([name, data]) => {
+                    const dominant = getDominantForMode(data);
+                    return { name, data, dominant };
+                })
+                .filter(item => item.dominant);
+            
+            // Sort by mode
+            if (currentMode === 'variance') {
+                sorted.sort((a, b) => (b.dominant?.variance || 0) - (a.dominant?.variance || 0));
+                document.getElementById('ranking-title').textContent = 'Most Distinctive Prefectures (± variance)';
+            } else if (currentMode === 'absolute') {
+                sorted.sort((a, b) => (b.dominant?.total || 0) - (a.dominant?.total || 0));
+                document.getElementById('ranking-title').textContent = 'Top Prefectures by Count (#)';
+            } else {
+                sorted.sort((a, b) => (b.dominant?.percentage || 0) - (a.dominant?.percentage || 0));
+                document.getElementById('ranking-title').textContent = 'Most Specialized Prefectures (%)';
+            }
+            
+            sorted.slice(0, 15).forEach(({ name, data, dominant }, idx) => {
+                let displayValue, valueClass = '';
+                
+                if (currentMode === 'variance') {
+                    const sign = dominant.variance >= 0 ? '+' : '';
+                    displayValue = `${sign}${dominant.variance.toFixed(1)} pts`;
+                    valueClass = dominant.variance >= 0 ? 'variance-positive' : 'variance-negative';
+                } else if (currentMode === 'absolute') {
+                    displayValue = dominant.total.toLocaleString();
+                } else {
+                    displayValue = `${dominant.percentage.toFixed(1)}%`;
+                }
+                
+                const item = document.createElement('div');
+                item.className = 'pref-rank-item';
+                item.dataset.pref = name;
+                item.innerHTML = `
+                    <div class="pref-rank-num">${idx + 1}</div>
+                    <div class="pref-rank-info">
+                        <div class="pref-rank-name">${name}</div>
+                        <div class="pref-rank-genre">${dominant.genre}</div>
+                    </div>
+                    <div class="pref-rank-value ${valueClass}">${displayValue}</div>
+                `;
+                
+                item.addEventListener('click', () => {
+                    selectPrefecture(name);
+                    geoJsonLayer.eachLayer(layer => {
+                        const layerName = layer.feature.properties.nam_ja || layer.feature.properties.name;
+                        if (layerName === name || layerName.includes(name.replace(/[県府都]$/, ''))) {
+                            map.fitBounds(layer.getBounds());
+                        }
+                    });
+                });
+                
+                container.appendChild(item);
+            });
+        }
+        
+        function buildGenreSelect(genres) {
+            const select = document.getElementById('genre-select');
+            select.innerHTML = '<option value="">Select genre...</option>';
+            genres.forEach(genre => {
+                if (genreVisibility[genre]) {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    select.appendChild(option);
+                }
+            });
+        }
+        
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            
+            // Show/hide variance legend
+            document.getElementById('variance-legend').classList.toggle('visible', mode === 'variance');
+            
+            updateMap();
+        }
+        
+        function updateMap() {
+            buildGenreSelect(allGenres);
+            createGeoJsonLayer();
+            buildRanking();
+        }
+        
+        // Mode button handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadData();
+            
+            // Add click handlers for mode buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => setMode(btn.dataset.mode));
+            });
+        });
+    </script>
+<!-- Default Statcounter code for CineMAP
+https://jabeljabel.github.io/cinemapjbeta/ -->
+<script type="text/javascript">
+var sc_project=13194486; 
+var sc_invisible=1; 
+var sc_security="d3c74cbd"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - Statcounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13194486/0/d3c74cbd/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+    <script data-goatcounter="https://cinemapjapan.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

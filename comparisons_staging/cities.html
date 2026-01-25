@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP - Major Cities Genre Analysis</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            overflow: hidden;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 300px;
+            bottom: 0;
+            background: #1a1a2e;
+        }
+        
+        /* Back link */
+        .back-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #e94560;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid #e94560;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            background: #e94560;
+            color: #fff;
+        }
+        
+        /* Sidebar */
+        #sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(180deg, #16213e 0%, #1a1a2e 100%);
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 1px solid #333;
+        }
+        
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #e94560;
+        }
+        
+        .subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        /* Mode Toggle */
+        .mode-toggle {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .metric-btn {
+            padding: 4px 12px;
+            border: 1px solid #444;
+            background: #2d2d2d;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        
+        .metric-btn:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .metric-btn:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .metric-btn.active {
+            background: #4a9eff;
+            color: white;
+            border-color: #4a9eff;
+        }
+        
+        .metric-btn:hover:not(.active) {
+            background: #3d3d3d;
+            color: #fff;
+        }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #444;
+            background: #1a1a2e;
+            color: #888;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .mode-btn:hover {
+            border-color: #e94560;
+            color: #e94560;
+        }
+        
+        .mode-btn.active {
+            background: #e94560;
+            border-color: #e94560;
+            color: #fff;
+        }
+        
+        /* City List */
+        .city-list {
+            margin-top: 15px;
+        }
+        
+        .city-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .city-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .city-item.active {
+            background: rgba(233, 69, 96, 0.2);
+            border-left-color: #e94560;
+        }
+        
+        .city-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .city-name-ja {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .city-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        .city-genre {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        .genre-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .genre-value {
+            font-size: 0.9rem;
+        }
+        
+        .variance-positive {
+            color: #4caf50;
+        }
+        
+        .variance-negative {
+            color: #f44336;
+        }
+        
+        /* Genre Legend */
+        .genre-legend {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+        
+        .legend-title {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            font-size: 0.85rem;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+        
+        /* City Detail Panel */
+        #cityDetail {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+        
+        #cityDetail.active {
+            display: block;
+        }
+        
+        .detail-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #e94560;
+        }
+        
+        .genre-bar {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+        }
+        
+        .genre-bar-label {
+            width: 80px;
+            font-size: 0.8rem;
+        }
+        
+        .genre-bar-track {
+            flex: 1;
+            height: 18px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 8px;
+        }
+        
+        .genre-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        .genre-bar-value {
+            width: 50px;
+            font-size: 0.8rem;
+            text-align: right;
+        }
+        
+        /* Info tooltip */
+        .info-tooltip {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            max-width: 350px;
+            padding: 12px 16px;
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            z-index: 1000;
+        }
+        
+        .info-tooltip strong {
+            color: #e94560;
+        }
+        
+        /* Leaflet popup customization */
+        .leaflet-popup-content-wrapper {
+            background: rgba(26, 26, 46, 0.95);
+            color: #eee;
+            border-radius: 8px;
+        }
+        
+        .leaflet-popup-tip {
+            background: rgba(26, 26, 46, 0.95);
+        }
+        
+        .popup-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .popup-stats {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        
+        .popup-genre {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="../" class="back-link">← Back to CineMAP</a>
+    
+    <div id="map"></div>
+    
+    <div id="sidebar">
+        <h1>Major Cities</h1>
+        <p class="subtitle">Genre analysis for Japan's major cities</p>
+        
+        <!-- Mode Toggle -->
+        <div class="metric-toggle" style="margin-bottom: 8px;">
+                    <button class="metric-btn" data-metric="locations">Locations</button>
+                    <button class="metric-btn active" data-metric="films">Films</button>
+                </div>
+                <div class="mode-toggle">
+            <button class="mode-btn" data-mode="percentage">%</button>
+            <button class="mode-btn" data-mode="count">#</button>
+            <button class="mode-btn active" data-mode="variance">±</button>
+        </div>
+        
+        <div class="city-list" id="cityList">
+            <!-- Cities populated by JS -->
+        </div>
+        
+        <div id="cityDetail">
+            <div class="detail-title" id="detailTitle">City Name</div>
+            <div id="genreBars">
+                <!-- Genre bars populated by JS -->
+            </div>
+        </div>
+        
+        <div class="genre-legend" id="genreLegend">
+            <div class="legend-title">Top Genres</div>
+            <!-- Legend items populated by JS -->
+        </div>
+    </div>
+    
+    <div class="info-tooltip">
+        <strong>Mode Info:</strong><br>
+        <strong>%</strong> = Genre percentage within city<br>
+        <strong>#</strong> = Absolute genre count<br>
+        <strong>±</strong> = Variance from national average (distinctiveness)
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- StatCounter -->
+    <script type="text/javascript">
+    var sc_project=13088889;
+    var sc_invisible=1;
+    var sc_security="abc123";
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    
+    <!-- GoatCounter -->
+    <script data-goatcounter="https://cinemapjapan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
+    <script>
+        // =================================================================
+        // CONFIGURATION
+        // =================================================================
+        
+        // Bright genre colors for dark map background
+                const GENRE_COLORS = {
+            'Drama': '#ff6b6b',           // Bright coral red
+            'Action': '#4ecdc4',          // Bright teal
+            'Comedy': '#ffe66d',          // Bright yellow
+            'Romance': '#ff85a2',         // Bright pink
+            'Animation': '#a55eea',       // Bright purple
+            'Horror': '#9c88ff',          // Light purple (not dark!)
+            'Documentary': '#26de81',     // Bright green
+            'Biography': '#fd9644',       // Bright orange
+            'Crime': '#45aaf2',           // Sky blue
+            'Adventure': '#20bf6b',       // Emerald
+            'Suspense': '#eb3b5a',        // Hot pink
+            'Fantasy': '#00d2d3',         // Cyan
+            'Science Fiction': '#0abde3', // Bright cyan
+            'Period Drama': '#f7b731',    // Gold
+            'Musical': '#fc5c65',         // Salmon
+            'Mystery': '#2bcbba',         // Turquoise
+            'Youth': '#74b9ff',           // Light blue
+            'Erotic': '#f368e0',          // Magenta
+            'Disaster': '#ff9f43',        // Bright orange
+            'Family': '#7bed9f',          // Mint green
+            'War': '#778ca3',             // Steel blue (visible on dark)
+            'History': '#a55eea',         // Violet
+            'Adult': '#fc5c65',           // Rose
+            'Thriller': '#8c7ae6',        // Vivid purple
+            'Literary': '#10ac84',        // Jade
+            'Western': '#ee5a24',         // Rust orange
+            'Sports': '#0984e3',          // Bright blue
+            'Historical': '#e17055',      // Terra cotta
+            'Art': '#be2edd',             // Bright magenta
+            'Martial Arts': '#ff6348',    // Tomato
+            'Silent Film': '#c8d6e5',     // Light silver (visible!)
+            'Social Drama': '#74b9ff',    // Light blue
+            'Other': '#a29bfe'            // Lavender (not grey!)
+        };
+        
+        // Default genre color for unknown genres
+        const DEFAULT_COLOR = '#a29bfe';  // Lavender (visible on dark map)
+        
+        // State
+        let data = null;
+        let map = null;
+        let citiesLayer = null;
+        let cityLayers = {};  // Store references for style updates
+        let selectedMode = 'variance';  // variance, count, percentage
+        let selectedMetric = 'films';   // 'films' or 'locations' - DEFAULT TO FILMS
+        let selectedCity = null;
+        
+        // =================================================================
+        // INITIALIZATION
+        // =================================================================
+        
+        async function init() {
+            // Initialize map
+            map = L.map('map', {
+                center: [36.5, 138],
+                zoom: 6,
+                zoomControl: true,
+                attributionControl: false
+            });
+            
+            // Dark basemap
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Load data
+            try {
+                const response = await fetch('../data/city_genres.json');
+                data = await response.json();
+                console.log('Loaded data:', data);
+                
+                // Use genre colors from data if available
+                if (data.metadata && data.metadata.genre_colors) {
+                    Object.assign(GENRE_COLORS, data.metadata.genre_colors);
+                }
+                
+                renderCities();
+                renderSidebar();
+                renderLegend();
+                setupModeToggle();
+            } catch (error) {
+                console.error('Failed to load data:', error);
+                document.getElementById('cityList').innerHTML = 
+                    '<p style="color: #e94560;">Failed to load data. Check console for details.</p>';
+            }
+        }
+        
+        // =================================================================
+        // RENDERING
+        // =================================================================
+        
+        function getGenreColor(genre) {
+            return GENRE_COLORS[genre] || DEFAULT_COLOR;
+        }
+        
+        function getDisplayValue(cityProps, genre) {
+            const genreData = cityProps.genres[genre];
+            if (!genreData) return { text: 'N/A', value: 0 };
+            
+            // Choose base values based on metric type (films or locations)
+            const isFilms = selectedMetric === 'films';
+            const count = isFilms ? (genreData.film_count || 0) : genreData.total;
+            const pct = isFilms ? (genreData.film_percentage || 0) : genreData.percentage;
+            const variance = isFilms ? (genreData.film_variance || 0) : (genreData.variance || 0);
+            
+            switch (selectedMode) {
+                case 'percentage':
+                    return { text: pct.toFixed(1) + '%', value: pct };
+                case 'count':
+                    return { text: count.toLocaleString(), value: count };
+                case 'variance':
+                    const sign = variance >= 0 ? '+' : '';
+                    return { text: sign + variance.toFixed(1) + '%', value: variance, isVariance: true };
+                default:
+                    return { text: 'N/A', value: 0 };
+            }
+        }
+        
+        function getCityColor(cityProps) {
+            // Get the genre to use for coloring based on mode
+            let targetGenre;
+            
+            if (selectedMode === 'variance') {
+                // Use most distinctive genre for variance mode
+                targetGenre = cityProps.most_distinctive || cityProps.dominant_genre;
+            } else {
+                // Use dominant genre for % and # modes
+                targetGenre = cityProps.dominant_genre;
+            }
+            
+            return getGenreColor(targetGenre);
+        }
+        
+        function getCityOpacity(cityProps) {
+            // Calculate opacity based on mode
+            if (selectedMode === 'variance') {
+                // Higher absolute variance = higher opacity
+                const maxVariance = 20;  // Expected max variance
+                const genre = selectedMetric === 'films' 
+                    ? (cityProps.most_distinctive_film || cityProps.dominant_genre)
+                    : (cityProps.most_distinctive || cityProps.dominant_genre);
+                const genreData = cityProps.genres[genre];
+                if (!genreData) return 0.7;
+                const variance = selectedMetric === 'films' ? genreData.film_variance : genreData.variance;
+                const absVariance = Math.abs(variance || 0);
+                return Math.min(1.0, 0.7 + (absVariance / maxVariance) * 0.6);
+            } else if (selectedMode === 'count') {
+                // Higher count = higher opacity
+                const maxCount = 20000;  // Approximate max
+                return Math.min(1.0, 0.7 + (cityProps.total / maxCount) * 0.6);
+            } else {
+                // Percentage mode - use dominant genre percentage
+                const genre = cityProps.dominant_genre;
+                const genreData = cityProps.genres[genre];
+                if (!genreData) return 0.7;
+                return Math.min(1.0, 0.7 + (genreData.percentage / 50) * 0.6);
+            }
+        }
+        
+        function renderCities() {
+            if (citiesLayer) {
+                map.removeLayer(citiesLayer);
+            }
+            
+            cityLayers = {};  // Reset layer references
+            
+            citiesLayer = L.geoJSON(data, {
+                style: feature => ({
+                    fillColor: getCityColor(feature.properties),
+                    fillOpacity: getCityOpacity(feature.properties),
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 0.8
+                }),
+                onEachFeature: (feature, layer) => {
+                    const props = feature.properties;
+                    
+                    // Store layer reference for updates
+                    cityLayers[props.id] = layer;
+                    
+                    // Popup
+                    const genre = selectedMode === 'variance' 
+                        ? props.most_distinctive 
+                        : props.dominant_genre;
+                    const displayVal = getDisplayValue(props, genre);
+                    
+                    layer.bindPopup(`
+                        <div class="popup-title">${props.name_en}</div>
+                        <div class="popup-title" style="font-size: 0.9rem; color: #888;">${props.name_ja}</div>
+                        <div class="popup-stats">
+                            ${props.film_count.toLocaleString()} films • ${props.total.toLocaleString()} genre records
+                        </div>
+                        <div class="popup-genre">
+                            <span class="genre-dot" style="background: ${getGenreColor(genre)}"></span>
+                            <span>${genre}: ${displayVal.text}</span>
+                        </div>
+                    `);
+                    
+                    // Hover effects
+                    layer.on('mouseover', () => {
+                        layer.setStyle({ weight: 4, fillOpacity: 0.9 });
+                    });
+                    
+                    layer.on('mouseout', () => {
+                        if (selectedCity !== props.id) {
+                            layer.setStyle({ 
+                                weight: 2, 
+                                fillOpacity: getCityOpacity(props)
+                            });
+                        }
+                    });
+                    
+                    // Click handler
+                    layer.on('click', () => {
+                        selectCity(props.id);
+                    });
+                }
+            }).addTo(map);
+        }
+        
+        function updateMapColors() {
+            // CRITICAL: Update all city polygon colors when mode changes
+            Object.entries(cityLayers).forEach(([cityId, layer]) => {
+                const props = layer.feature.properties;
+                const newColor = getCityColor(props);
+                const newOpacity = getCityOpacity(props);
+                
+                layer.setStyle({
+                    fillColor: newColor,
+                    fillOpacity: newOpacity
+                });
+                
+                // Update popup content too
+                const genre = selectedMode === 'variance' 
+                    ? (selectedMetric === 'films' ? props.most_distinctive_film : props.most_distinctive)
+                    : props.dominant_genre;
+                const displayVal = getDisplayValue(props, genre);
+                
+                layer.setPopupContent(`
+                    <div class="popup-title">${props.name_en}</div>
+                    <div class="popup-title" style="font-size: 0.9rem; color: #888;">${props.name_ja}</div>
+                    <div class="popup-stats">
+                        ${props.film_count.toLocaleString()} films • ${props.total.toLocaleString()} genre records
+                    </div>
+                    <div class="popup-genre">
+                        <span class="genre-dot" style="background: ${getGenreColor(genre)}"></span>
+                        <span>${genre}: ${displayVal.text}</span>
+                    </div>
+                `);
+            });
+        }
+        
+        function renderSidebar() {
+            const cityList = document.getElementById('cityList');
+            
+            // Sort cities by relevant metric
+            const sortedFeatures = [...data.features].sort((a, b) => {
+                if (selectedMode === 'variance') {
+                    const aGenre = a.properties.most_distinctive;
+                    const bGenre = b.properties.most_distinctive;
+                    const aVar = Math.abs(a.properties.genres[aGenre]?.variance || 0);
+                    const bVar = Math.abs(b.properties.genres[bGenre]?.variance || 0);
+                    return bVar - aVar;
+                }
+                return b.properties.film_count - a.properties.film_count;
+            });
+            
+            cityList.innerHTML = sortedFeatures.map(feature => {
+                const props = feature.properties;
+                const genre = selectedMode === 'variance' 
+                    ? (selectedMetric === 'films' ? props.most_distinctive_film : props.most_distinctive)
+                    : props.dominant_genre;
+                const displayVal = getDisplayValue(props, genre);
+                
+                const varianceClass = displayVal.isVariance 
+                    ? (displayVal.value >= 0 ? 'variance-positive' : 'variance-negative')
+                    : '';
+                
+                return `
+                    <div class="city-item ${selectedCity === props.id ? 'active' : ''}" 
+                         data-city="${props.id}">
+                        <div class="city-name">${props.name_en}</div>
+                        <div class="city-name-ja">${props.name_ja}</div>
+                        <div class="city-stats">
+                            <span>${props.film_count.toLocaleString()} films</span>
+                            <span>${props.total.toLocaleString()} records</span>
+                        </div>
+                        <div class="city-genre">
+                            <span class="genre-dot" style="background: ${getGenreColor(genre)}"></span>
+                            <span>${genre}</span>
+                            <span class="genre-value ${varianceClass}">${displayVal.text}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Add click handlers
+            document.querySelectorAll('.city-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    selectCity(item.dataset.city);
+                });
+            });
+        }
+        
+        function renderLegend() {
+            const legend = document.getElementById('genreLegend');
+            
+            // Get top genres across all cities
+            const genreCounts = {};
+            data.features.forEach(f => {
+                Object.keys(f.properties.genres).forEach(genre => {
+                    genreCounts[genre] = (genreCounts[genre] || 0) + f.properties.genres[genre].total;
+                });
+            });
+            
+            const topGenres = Object.entries(genreCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            legend.innerHTML = `
+                <div class="legend-title">Genre Colors</div>
+                ${topGenres.map(([genre]) => `
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: ${getGenreColor(genre)}"></span>
+                        <span>${genre}</span>
+                    </div>
+                `).join('')}
+            `;
+        }
+        
+        function selectCity(cityId) {
+            selectedCity = cityId;
+            
+            // Update sidebar active state
+            document.querySelectorAll('.city-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.city === cityId);
+            });
+            
+            // Update map highlight
+            Object.entries(cityLayers).forEach(([id, layer]) => {
+                const props = layer.feature.properties;
+                if (id === cityId) {
+                    layer.setStyle({ weight: 4, fillOpacity: 0.9 });
+                    map.fitBounds(layer.getBounds(), { padding: [50, 50] });
+                } else {
+                    layer.setStyle({ 
+                        weight: 2, 
+                        fillOpacity: getCityOpacity(props)
+                    });
+                }
+            });
+            
+            // Show city detail
+            showCityDetail(cityId);
+        }
+        
+        function showCityDetail(cityId) {
+            const feature = data.features.find(f => f.properties.id === cityId);
+            if (!feature) return;
+            
+            const props = feature.properties;
+            const detail = document.getElementById('cityDetail');
+            const title = document.getElementById('detailTitle');
+            const bars = document.getElementById('genreBars');
+            
+            title.textContent = `${props.name_en} (${props.name_ja})`;
+            
+            // Sort genres by current mode value
+            const sortedGenres = Object.entries(props.genres)
+                .sort((a, b) => {
+                    if (selectedMode === 'variance') {
+                        return Math.abs(b[1].variance) - Math.abs(a[1].variance);
+                    }
+                    return b[1].total - a[1].total;
+                })
+                .slice(0, 8);
+            
+            bars.innerHTML = sortedGenres.map(([genre, genreData]) => {
+                const displayVal = getDisplayValue(props, genre);
+                const barWidth = selectedMode === 'count'
+                    ? Math.min(100, (genreData.total / 5000) * 100)
+                    : selectedMode === 'variance'
+                        ? Math.min(100, Math.abs(genreData.variance) * 5)
+                        : genreData.percentage * 2;
+                
+                return `
+                    <div class="genre-bar">
+                        <span class="genre-bar-label">${genre}</span>
+                        <div class="genre-bar-track">
+                            <div class="genre-bar-fill" 
+                                 style="width: ${barWidth}%; background: ${getGenreColor(genre)}"></div>
+                        </div>
+                        <span class="genre-bar-value">${displayVal.text}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            detail.classList.add('active');
+        }
+        
+        function setupModeToggle() {
+            // Metric toggle (Films / Locations)
+            document.querySelectorAll('.metric-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.metric-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedMetric = btn.dataset.metric;
+                    updateMapColors();
+                    renderSidebar();
+                    if (selectedCity) showCityDetail(selectedCity);
+                });
+            });
+            
+            // Mode toggle (%, #, ±)
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedMode = btn.dataset.mode;
+                    updateMapColors();
+                    renderSidebar();
+                    if (selectedCity) showCityDetail(selectedCity);
+                });
+            });
+        }
+        
+        // =================================================================
+        // START
+        // =================================================================
+        
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
