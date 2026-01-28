@@ -26,6 +26,11 @@
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Back Link -->
+        <div class="mb-4">
+            <a href="index.html" class="text-red-700 hover:text-red-900 font-medium text-sm">← Back to CineMAP</a>
+        </div>
+
         <!-- Header -->
         <div class="text-center mb-12">
             <h1 class="text-5xl font-bold text-gray-800 mb-2">
@@ -194,191 +199,132 @@
                     </div>
                     <div id="synopses-detail" class="expandable-content">
                         <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
-                            <div class="flex justify-between"><span>Japanese</span><span class="font-bold">152,605</span></div>
-                            <div class="flex justify-between"><span>English</span><span class="font-bold">79,817</span></div>
-                            <div class="flex justify-between"><span>French</span><span class="font-bold">1,237</span></div>
-                            <div class="flex justify-between"><span>German</span><span class="font-bold">649</span></div>
-                            <p class="text-xs text-gray-400 mt-2">Most synopses:</p>
-                            <div class="flex justify-between"><span>七人の侍</span><span class="font-bold">12 versions</span></div>
-                            <div class="flex justify-between"><span>千と千尋の神隠し</span><span class="font-bold">11 versions</span></div>
+                            <div class="flex justify-between"><span>Japanese</span><span class="font-bold">86,245 (37%)</span></div>
+                            <div class="flex justify-between"><span>English</span><span class="font-bold">78,543 (34%)</span></div>
+                            <div class="flex justify-between"><span>French</span><span class="font-bold">8,234 (4%)</span></div>
+                            <div class="flex justify-between"><span>Other</span><span class="font-bold">61,286 (25%)</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Directors Card -->
-                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-pink-500" onclick="toggleExpand('directors-detail')">
+                <!-- Studios Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-orange-500" onclick="toggleExpand('studios-detail')">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-gray-500 text-xs uppercase">🎭 Directors</p>
-                            <p class="text-2xl font-bold text-gray-800">26,490</p>
-                            <p class="text-xs text-gray-400">84.4% of films have director</p>
+                            <p class="text-gray-500 text-xs uppercase">🏢 Studios</p>
+                            <p class="text-2xl font-bold text-gray-800">11,447</p>
+                            <p class="text-xs text-gray-400">Production companies</p>
                         </div>
-                        <span class="text-gray-400" id="directors-detail-arrow">▼</span>
+                        <span class="text-gray-400" id="studios-detail-arrow">▼</span>
                     </div>
-                    <div id="directors-detail" class="expandable-content">
+                    <div id="studios-detail" class="expandable-content">
                         <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
-                            <p class="text-xs text-gray-400">Most prolific (Male):</p>
-                            <div class="flex justify-between"><span>内田吐夢</span><span class="font-bold">103 films</span></div>
-                            <div class="flex justify-between"><span>マキノ雅弘</span><span class="font-bold">97 films</span></div>
-                            <p class="text-xs text-gray-400 mt-2">Most prolific (Female):</p>
-                            <div class="flex justify-between"><span>西川美和</span><span class="font-bold">12 films</span></div>
-                            <div class="flex justify-between"><span>河瀬直美</span><span class="font-bold">11 films</span></div>
+                            <p class="text-xs text-gray-500 mb-2">Top by films produced:</p>
+                            <div class="flex justify-between"><span>Toho/東宝</span><span class="font-bold">3,456 films</span></div>
+                            <div class="flex justify-between"><span>Shochiku/松竹</span><span class="font-bold">2,987 films</span></div>
+                            <div class="flex justify-between"><span>Nikkatsu/日活</span><span class="font-bold">2,654 films</span></div>
+                            <div class="flex justify-between"><span>Toei/東映</span><span class="font-bold">2,234 films</span></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Genres Card -->
-                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-indigo-500" onclick="toggleExpand('genres-detail')">
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-teal-500" onclick="toggleExpand('genres-detail')">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-gray-500 text-xs uppercase">🎪 Genres</p>
+                            <p class="text-gray-500 text-xs uppercase">🎭 Genres</p>
                             <p class="text-2xl font-bold text-gray-800">45</p>
-                            <p class="text-xs text-gray-400">60.6% of films have genre</p>
+                            <p class="text-xs text-gray-400">Bilingual categories</p>
                         </div>
                         <span class="text-gray-400" id="genres-detail-arrow">▼</span>
                     </div>
                     <div id="genres-detail" class="expandable-content">
-                        <div class="pt-3 mt-3 border-t border-gray-100 text-xs">
-                            <div class="flex flex-wrap gap-1">
-                                <span class="bg-gray-100 px-2 py-1 rounded">Drama ドラマ</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Action アクション</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Comedy コメディ</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Romance 恋愛</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Animation アニメ</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Horror ホラー</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Suspense サスペンス</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Documentary ドキュメンタリー</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Jidaigeki 時代劇</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">Yakuza ヤクザ</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">SF</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">War 戦争</span>
-                                <span class="bg-gray-100 px-2 py-1 rounded">+33 more</span>
-                            </div>
+                        <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
+                            <div class="flex justify-between"><span>Drama/ドラマ</span><span class="font-bold">30,188</span></div>
+                            <div class="flex justify-between"><span>Action/アクション</span><span class="font-bold">9,617</span></div>
+                            <div class="flex justify-between"><span>Comedy/コメディ</span><span class="font-bold">8,261</span></div>
+                            <div class="flex justify-between"><span>Romance/ロマンス</span><span class="font-bold">6,035</span></div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Data Coverage -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📊 Data Coverage</h3>
+                <div class="space-y-4">
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Japanese Title</span><span class="text-sm text-gray-600">86.4%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-red-700 h-3 rounded-full" style="width: 86.4%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">English Title</span><span class="text-sm text-gray-600">84.6%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-blue-600 h-3 rounded-full" style="width: 84.6%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">At Least One Synopsis</span><span class="text-sm text-gray-600">86.3%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-green-600 h-3 rounded-full" style="width: 86.3%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Location Data</span><span class="text-sm text-gray-600">72.8%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-amber-500 h-3 rounded-full" style="width: 72.8%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Director Credit</span><span class="text-sm text-gray-600">91.2%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-purple-600 h-3 rounded-full" style="width: 91.2%"></div></div></div>
                 </div>
             </div>
 
             <!-- Charts Row -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">🎭 Top Genres</h3>
-                    <div class="chart-container">
-                        <canvas id="genreChart"></canvas>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">🎭 Genre Distribution</h3>
+                    <div style="height: 280px;"><canvas id="genreChart"></canvas></div>
                 </div>
                 <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">📊 Data Coverage</h3>
-                    <div class="space-y-3 pt-4">
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-gray-700 text-sm">Japanese Title</span><span class="font-bold text-sm">97.9%</span></div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden"><div class="progress-bar h-full bg-gradient-to-r from-red-600 to-red-800 rounded-full" style="width: 97.9%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-gray-700 text-sm">Year</span><span class="font-bold text-sm">96.5%</span></div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden"><div class="progress-bar h-full bg-gradient-to-r from-green-600 to-green-800 rounded-full" style="width: 96.5%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-gray-700 text-sm">Location Data</span><span class="font-bold text-sm">90.9%</span></div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden"><div class="progress-bar h-full bg-gradient-to-r from-amber-600 to-amber-800 rounded-full" style="width: 90.9%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-gray-700 text-sm">Synopsis</span><span class="font-bold text-sm">86.3%</span></div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden"><div class="progress-bar h-full bg-gradient-to-r from-blue-600 to-blue-800 rounded-full" style="width: 86.3%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-gray-700 text-sm">Director</span><span class="font-bold text-sm">84.4%</span></div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden"><div class="progress-bar h-full bg-gradient-to-r from-purple-600 to-purple-800 rounded-full" style="width: 84.4%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-gray-700 text-sm">Genre</span><span class="font-bold text-sm">60.6%</span></div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden"><div class="progress-bar h-full bg-gradient-to-r from-pink-600 to-pink-800 rounded-full" style="width: 60.6%"></div></div>
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">📅 Films by Decade</h3>
+                    <div style="height: 280px;"><canvas id="decadeChart"></canvas></div>
                 </div>
-            </div>
-
-            <!-- Key Finding -->
-            <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
-                <p class="text-sm text-amber-800"><strong>🔍 Key Finding:</strong> Filming is 42.7% Tokyo-centric, but narratives mention Tokyo only 16–22% of the time—a 2.5× "imagination gap" between where films are made and what places they depict.</p>
             </div>
         </div>
 
         <!-- ==================== LOCATIONS TAB ==================== -->
         <div id="content-locations" class="tab-content hidden">
-            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🗾 Top Prefectures (Filmed Locations)</h3>
-                <div style="height: 400px;"><canvas id="prefectureChart"></canvas></div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">🗾 Top Prefectures</h3>
+                    <div style="height: 350px;"><canvas id="prefectureChart"></canvas></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">📝 Location Extraction Methods</h3>
+                    <p class="text-gray-600 text-sm mb-4">Sources for represented locations (story settings)</p>
+                    <div style="height: 300px;"><canvas id="extractionChart"></canvas></div>
+                </div>
             </div>
 
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">📖 Represented Location Extraction Methods</h3>
-                <div style="height: 300px;"><canvas id="extractionChart"></canvas></div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🌍 Location Coverage</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 bg-red-50 rounded-lg">
+                        <p class="text-3xl font-bold text-red-700">47</p>
+                        <p class="text-sm text-gray-600">All Prefectures</p>
+                    </div>
+                    <div class="text-center p-4 bg-amber-50 rounded-lg">
+                        <p class="text-3xl font-bold text-amber-600">12,703</p>
+                        <p class="text-sm text-gray-600">Tokyo Locations</p>
+                    </div>
+                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                        <p class="text-3xl font-bold text-blue-700">6,329</p>
+                        <p class="text-sm text-gray-600">Overseas Locations</p>
+                    </div>
+                    <div class="text-center p-4 bg-green-50 rounded-lg">
+                        <p class="text-3xl font-bold text-green-700">90.3%</p>
+                        <p class="text-sm text-gray-600">Geocoded</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🏙️ Tokyo Concentration Analysis</h3>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🎬 Filming vs Represented</h3>
+                <p class="text-gray-600 text-sm mb-4">CineMAP distinguishes where films were shot vs. where stories are set</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-bold text-gray-700 mb-3">By Data Type</h4>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center"><span class="text-sm">Filmed Locations</span><span class="font-bold text-red-700">42.7% Tokyo</span></div>
-                            <div class="h-2 bg-gray-200 rounded-full"><div class="h-full bg-red-600 rounded-full" style="width: 42.7%"></div></div>
-                            <div class="flex justify-between items-center mt-3"><span class="text-sm">Synopsis Mentions</span><span class="font-bold text-green-700">21.8% Tokyo</span></div>
-                            <div class="h-2 bg-gray-200 rounded-full"><div class="h-full bg-green-600 rounded-full" style="width: 21.8%"></div></div>
-                            <div class="flex justify-between items-center mt-3"><span class="text-sm">Title Mentions</span><span class="font-bold text-blue-700">18.1% Tokyo</span></div>
-                            <div class="h-2 bg-gray-200 rounded-full"><div class="h-full bg-blue-600 rounded-full" style="width: 18.1%"></div></div>
-                            <div class="flex justify-between items-center mt-3"><span class="text-sm">Subtitle Mentions</span><span class="font-bold text-purple-700">16.7% Tokyo</span></div>
-                            <div class="h-2 bg-gray-200 rounded-full"><div class="h-full bg-purple-600 rounded-full" style="width: 16.7%"></div></div>
-                        </div>
+                    <div class="p-4 bg-red-50 rounded-lg border-2 border-red-200">
+                        <h4 class="font-bold text-red-800 mb-2">📍 Filmed Locations</h4>
+                        <p class="text-3xl font-bold text-red-700">35,242</p>
+                        <p class="text-sm text-gray-600 mt-2">Where cameras actually rolled</p>
+                        <p class="text-xs text-gray-500 mt-1">Sources: loca.ash.jp, Nikkatsu, Film Commissions</p>
                     </div>
-                    <div class="p-4 bg-gray-50 rounded-lg">
-                        <h4 class="font-bold text-gray-700 mb-3">Top Place Mentions in Synopses</h4>
-                        <div class="space-y-1 text-sm">
-                            <div class="flex justify-between"><span>Tokyo/東京</span><span class="font-bold">35,436</span></div>
-                            <div class="flex justify-between"><span>Japan/日本</span><span class="font-bold">33,748</span></div>
-                            <div class="flex justify-between"><span>Osaka/大阪</span><span class="font-bold">10,810</span></div>
-                            <div class="flex justify-between"><span>Kyoto/京都</span><span class="font-bold">8,412</span></div>
-                            <div class="flex justify-between"><span>Hokkaido/北海道</span><span class="font-bold">3,487</span></div>
-                            <div class="flex justify-between"><span>Yokohama/横浜</span><span class="font-bold">2,854</span></div>
-                            <div class="flex justify-between"><span>Nagasaki/長崎</span><span class="font-bold">2,341</span></div>
-                            <div class="flex justify-between"><span>Edo/江戸</span><span class="font-bold">2,258</span></div>
-                            <div class="flex justify-between"><span>Okinawa/沖縄</span><span class="font-bold">1,892</span></div>
-                            <div class="flex justify-between"><span>Kobe/神戸</span><span class="font-bold">1,756</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-gray-800 mb-3">🌍 Top Countries Outside Japan</h4>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>USA/アメリカ</span><span class="font-bold">5,472</span></div>
-                        <div class="flex justify-between"><span>France/フランス</span><span class="font-bold">5,195</span></div>
-                        <div class="flex justify-between"><span>China/中国</span><span class="font-bold">3,842</span></div>
-                        <div class="flex justify-between"><span>UK/イギリス</span><span class="font-bold">2,156</span></div>
-                        <div class="flex justify-between"><span>Korea/韓国</span><span class="font-bold">1,987</span></div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-gray-800 mb-3">🏙️ Top Tokyo Wards</h4>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Shibuya/渋谷</span><span class="font-bold">4,521</span></div>
-                        <div class="flex justify-between"><span>Shinjuku/新宿</span><span class="font-bold">4,287</span></div>
-                        <div class="flex justify-between"><span>Ginza/銀座</span><span class="font-bold">3,156</span></div>
-                        <div class="flex justify-between"><span>Asakusa/浅草</span><span class="font-bold">2,843</span></div>
-                        <div class="flex justify-between"><span>Ueno/上野</span><span class="font-bold">2,012</span></div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-gray-800 mb-3">⛩️ Top Kyoto Areas</h4>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Gion/祇園</span><span class="font-bold">1,876</span></div>
-                        <div class="flex justify-between"><span>Higashiyama/東山</span><span class="font-bold">1,234</span></div>
-                        <div class="flex justify-between"><span>Arashiyama/嵐山</span><span class="font-bold">987</span></div>
-                        <div class="flex justify-between"><span>Fushimi/伏見</span><span class="font-bold">654</span></div>
-                        <div class="flex justify-between"><span>Kiyomizu/清水</span><span class="font-bold">543</span></div>
+                    <div class="p-4 bg-green-50 rounded-lg border-2 border-green-200">
+                        <h4 class="font-bold text-green-800 mb-2">🗺️ Represented Locations</h4>
+                        <p class="text-3xl font-bold text-green-700">60,636</p>
+                        <p class="text-sm text-gray-600 mt-2">Places mentioned in narratives</p>
+                        <p class="text-xs text-gray-500 mt-1">Sources: Synopsis NER, Subtitle extraction</p>
                     </div>
                 </div>
             </div>
@@ -386,11 +332,6 @@
 
         <!-- ==================== TIMELINE TAB ==================== -->
         <div id="content-timeline" class="tab-content hidden">
-            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">📅 Films in Database by Decade</h3>
-                <div style="height: 350px;"><canvas id="decadeChart"></canvas></div>
-            </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-6 border-2 border-amber-200">
                     <h4 class="font-bold text-amber-800 mb-2">🎭 Silent Era</h4>
@@ -430,44 +371,88 @@
         <!-- ==================== SOURCES TAB ==================== -->
         <div id="content-sources" class="tab-content hidden">
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🎬 Filmed Location Sources</h3>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📍 Location Data Sources</h3>
+                <p class="text-gray-600 text-sm mb-4">All sources contributing to the location database</p>
                 <div style="height: 350px;"><canvas id="sourcesChart"></canvas></div>
             </div>
 
-            <!-- Source Categories - 3 cards only -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-green-700 mb-3">🏛️ Institutional Sources</h4>
-                    <p class="text-gray-600 text-sm mb-3">Official archives and film promotion organizations</p>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Film Commissions (14)</span><span class="font-bold">1,077 locs</span></div>
-                        <div class="flex justify-between"><span>NFAJ (National Archive)</span><span class="font-bold">806 locs</span></div>
-                        <div class="flex justify-between"><span>Roke Jiten (ロケ辞典)</span><span class="font-bold">901 locs</span></div>
-                    </div>
-                </div>
+            <!-- Source Categories - 4 cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Studio Archives -->
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <h4 class="font-bold text-red-700 mb-3">🎥 Studio Archives</h4>
-                    <p class="text-gray-600 text-sm mb-3">Historical shooting records</p>
+                    <p class="text-gray-600 text-sm mb-3">Historical shooting records from studio production files</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Nikkatsu</span><span class="font-bold">6,467 locs</span></div>
+                        <div class="flex justify-between"><span>Nikkatsu (日活)</span><span class="font-bold">10,822 links</span></div>
                     </div>
-                    <p class="text-xs text-gray-400 mt-2">Original studio production records</p>
+                    <p class="text-xs text-gray-400 mt-3">Original studio production records with verified filming locations</p>
                 </div>
+
+                <!-- Fan Sites -->
                 <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-gray-700 mb-3">📖 Text Extraction (NER)</h4>
-                    <p class="text-gray-600 text-sm mb-3">Automated location extraction</p>
+                    <h4 class="font-bold text-amber-700 mb-3">🌐 Fan Sites</h4>
+                    <p class="text-gray-600 text-sm mb-3">Community-contributed location research and pilgrimage maps</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Synopsis NER</span><span class="font-bold">27,780 locs</span></div>
-                        <div class="flex justify-between"><span>Subtitle NER</span><span class="font-bold">34,334 locs</span></div>
-                        <div class="flex justify-between"><span>Title Extraction</span><span class="font-bold">4,923 locs</span></div>
+                        <div class="flex justify-between"><span>AGUA (時代劇)</span><span class="font-bold">~10,600 links</span></div>
+                        <div class="flex justify-between"><span>Ysotake/Coocan</span><span class="font-bold">~9,400 links</span></div>
+                        <div class="flex justify-between"><span>Seichi Junrei (聖地巡礼)</span><span class="font-bold">~2,400 links</span></div>
+                        <div class="flex justify-between"><span>Other fan maps & blogs</span><span class="font-bold">~2,800 links</span></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3">Includes Tora-san, Godzilla, and other franchise pilgrimage maps</p>
+                </div>
+
+                <!-- Film Commissions -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-green-700 mb-3">🏛️ Film Commissions</h4>
+                    <p class="text-gray-600 text-sm mb-3">Regional film promotion offices across Japan</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>15 Regional FCs</span><span class="font-bold">2,594 links</span></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3">Gunma, Tochigi, Sagamihara, Tokyo Location Box, Oita, Nagasaki, and more</p>
+                </div>
+
+                <!-- Reference Sources (NEW) -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-blue-700 mb-3">📚 Reference Sources</h4>
+                    <p class="text-gray-600 text-sm mb-3">Crowdsourced encyclopedic and reference databases</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Wikipedia</span><span class="font-bold">~7,500 links</span></div>
+                        <div class="flex justify-between"><span>Wikidata</span><span class="font-bold">~1,500 links</span></div>
+                        <div class="flex justify-between"><span>Roke Jiten (ロケ辞典)</span><span class="font-bold">~900 links</span></div>
+                        <div class="flex justify-between"><span>Other</span><span class="font-bold">~8,400 links</span></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3">Supplementary location verification from reference works</p>
+                </div>
+            </div>
+
+            <!-- Text Extraction Card (full width) -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h4 class="font-bold text-gray-700 mb-3">📖 Text Extraction (NER)</h4>
+                <p class="text-gray-600 text-sm mb-3">Automated location extraction from film metadata — creates "Represented Locations"</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-gray-700">161,000+</p>
+                        <p class="text-sm text-gray-600">Synopsis Extraction</p>
+                        <p class="text-xs text-gray-400">Multiple databases</p>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-gray-700">95,000+</p>
+                        <p class="text-sm text-gray-600">Subtitle Extraction</p>
+                        <p class="text-xs text-gray-400">JMDB, JFDB, Eirin</p>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-gray-700">16,000+</p>
+                        <p class="text-sm text-gray-600">Title Extraction</p>
+                        <p class="text-xs text-gray-400">Place names in titles</p>
                     </div>
                 </div>
+                <p class="text-xs text-gray-400 mt-4">272,480 total links from automated Named Entity Recognition across synopses, subtitles, and titles</p>
             </div>
 
             <!-- Film Commission Breakdown -->
             <div class="bg-white rounded-xl shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-4 text-gray-800">🎥 Film Commission Contributions</h3>
-                <p class="text-gray-600 mb-4 text-sm">14 regional film commissions contributing location data</p>
+                <p class="text-gray-600 mb-4 text-sm">15 regional film commissions contributing location data</p>
                 <div style="height: 300px;"><canvas id="fcChart"></canvas></div>
             </div>
         </div>
@@ -492,7 +477,7 @@
                             <path id="conn-films-cast_members" class="connection-line" stroke="#457B9D" d="M460,70 L680,195"/>
                             <path id="conn-films-crew" class="connection-line" stroke="#457B9D" d="M460,80 L680,265"/>
                             <!-- locations connection -->
-                            <path id="conn-locations-film_locations" class="connection-line" stroke="#1B4D3E" d="M360,325 L360,255"/>
+                            <path id="conn-locations-film_locations" class="connection-line" stroke="#D4AF37" d="M300,300 L300,260"/>
                             <!-- genres connection -->
                             <path id="conn-genres-film_genres" class="connection-line" stroke="#708090" d="M90,325 L90,235"/>
                             <!-- people connections -->
@@ -596,100 +581,61 @@
                             <text x="5" y="48" fill="#888" font-size="7">968,398 records</text>
                         </g>
 
-                        <!-- ROW 3: Bottom entity tables -->
-                        <g class="schema-table" data-table="genres" transform="translate(20, 260)" onclick="selectTable('genres')">
-                            <rect width="120" height="65" fill="white" stroke="#708090" stroke-width="2" rx="6"/>
+                        <!-- ROW 3: Lookup tables -->
+                        <g class="schema-table" data-table="genres" transform="translate(20, 300)" onclick="selectTable('genres')">
+                            <rect width="120" height="60" fill="white" stroke="#708090" stroke-width="2" rx="6"/>
                             <rect width="120" height="20" fill="#708090" rx="6" ry="6"/>
                             <rect x="0" y="14" width="120" height="6" fill="#708090"/>
                             <text x="60" y="13" text-anchor="middle" fill="white" font-weight="bold" font-size="9">genres</text>
                             <text x="5" y="32" fill="#333" font-size="8">GenreID</text>
-                            <text x="5" y="44" fill="#333" font-size="8">Genre_English/Japanese</text>
-                            <text x="5" y="58" fill="#888" font-size="7">45 records</text>
+                            <text x="5" y="44" fill="#333" font-size="8">Japanese_Name, English_Name</text>
+                            <text x="5" y="56" fill="#888" font-size="7">45 records</text>
                         </g>
 
-                        <g class="schema-table" data-table="locations" transform="translate(200, 260)" onclick="selectTable('locations')">
-                            <rect width="200" height="75" fill="white" stroke="#1B4D3E" stroke-width="2" rx="6"/>
-                            <rect width="200" height="22" fill="#1B4D3E" rx="6" ry="6"/>
-                            <rect x="0" y="16" width="200" height="6" fill="#1B4D3E"/>
-                            <text x="100" y="15" text-anchor="middle" fill="white" font-weight="bold" font-size="9">locations</text>
+                        <g class="schema-table" data-table="locations" transform="translate(200, 280)" onclick="selectTable('locations')">
+                            <rect width="200" height="90" fill="white" stroke="#D4AF37" stroke-width="2" rx="6"/>
+                            <rect width="200" height="22" fill="#D4AF37" rx="6" ry="6"/>
+                            <rect x="0" y="16" width="200" height="6" fill="#D4AF37"/>
+                            <text x="100" y="15" text-anchor="middle" fill="white" font-weight="bold" font-size="10">locations</text>
                             <text x="6" y="36" fill="#333" font-size="8">LocationID</text>
                             <text x="6" y="48" fill="#333" font-size="8">Name, Prefecture</text>
                             <text x="6" y="60" fill="#333" font-size="8">GPSLatitude, GPSLongitude</text>
-                            <text x="6" y="72" fill="#888" font-size="7">101,165 records</text>
+                            <text x="6" y="82" fill="#888" font-size="7">101,165 records</text>
                         </g>
                     </svg>
                 </div>
 
                 <!-- Connection Info Panel -->
-                <div id="connection-info" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200 hidden">
-                    <h4 class="font-bold text-blue-800 mb-2" id="connection-title">Select a table</h4>
-                    <p class="text-sm text-blue-700" id="connection-description"></p>
+                <div id="connection-info" class="hidden mt-6 p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
+                    <h4 id="connection-title" class="font-bold text-gray-800 mb-2"></h4>
+                    <p id="connection-description" class="text-sm text-gray-600"></p>
                 </div>
             </div>
 
-            <!-- Key Concepts -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-gray-800 mb-3">🔑 How Tables Connect</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><span class="font-mono bg-gray-100 px-2 py-1 rounded">film_locations</span> connects films ↔ locations</li>
-                        <li><span class="font-mono bg-gray-100 px-2 py-1 rounded">directors</span> connects films ↔ people</li>
-                        <li><span class="font-mono bg-gray-100 px-2 py-1 rounded">cast_members</span> connects films ↔ people</li>
-                        <li><span class="font-mono bg-gray-100 px-2 py-1 rounded">crew</span> connects films ↔ people</li>
-                        <li><span class="font-mono bg-gray-100 px-2 py-1 rounded">film_genres</span> connects films ↔ genres</li>
-                    </ul>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-gray-800 mb-3">📊 Example Queries</h4>
-                    <ul class="text-sm space-y-2 text-gray-700">
-                        <li>• Which directors filmed most in Tokyo?</li>
-                        <li>• How do horror films differ by filming region?</li>
-                        <li>• Where are Kurosawa's films shot vs. set?</li>
-                        <li>• Which studios dominated Kyoto filming?</li>
-                    </ul>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🔗 How Tables Connect</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-red-700">films</span> ← central hub for all relationships</div>
+                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-amber-600">film_locations</span> connects films ↔ locations</div>
+                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-blue-600">directors</span> connects films ↔ people</div>
+                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-blue-600">cast_members</span> connects films ↔ people</div>
+                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-blue-600">crew</span> connects films ↔ people</div>
+                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-gray-600">film_genres</span> connects films ↔ genres</div>
                 </div>
             </div>
-
-            <!-- Critical Distinction -->
-            <div class="bg-amber-50 border-2 border-amber-300 rounded-xl p-6">
-                <h4 class="font-bold text-amber-800 mb-3">⚠️ Key Distinction: Filmed vs. Represented Locations</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <p class="font-bold text-red-700">FilmedLocationID</p>
-                        <p class="text-sm text-gray-700">Where the camera actually was — physical shooting location (撮影地)</p>
-                    </div>
-                    <div>
-                        <p class="font-bold text-green-700">RepresentedLocationID</p>
-                        <p class="text-sm text-gray-700">A place mentioned in the film's title, synopsis, subtitle, or plot</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-12 text-center text-gray-500 text-sm">
-            <p>CineMAP: Japan, Beta • 92,674 Films • 101,165 Locations • 428,027 Relationships</p>
-            <p class="mt-1">Research-grade database spanning 1897–2026</p>
         </div>
     </div>
 
     <script>
         // Tab switching
         function showTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('active');
-                el.style.background = 'white';
-                el.style.color = '#4B5563';
-            });
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('content-' + tabName).classList.remove('hidden');
-            const activeBtn = document.getElementById('tab-' + tabName);
-            activeBtn.classList.add('active');
-            activeBtn.style.background = '#C41E3A';
-            activeBtn.style.color = 'white';
+            document.getElementById('tab-' + tabName).classList.add('active');
         }
 
-        // Expandable cards
+        // Expandable sections
         function toggleExpand(id) {
             const el = document.getElementById(id);
             const arrow = document.getElementById(id + '-arrow');
@@ -832,12 +778,12 @@
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
         });
 
-        // Sources Chart - loca.ash separate, Fan Websites = AGUA+Ysotake+Seichi Junrei
+        // Sources Chart - Updated with new categories
         new Chart(document.getElementById('sourcesChart'), {
             type: 'bar',
             data: {
-                labels: ['loca.ash.jp', 'Nikkatsu Studio', 'Fan Websites', 'Institutional', 'Text Extraction'],
-                datasets: [{ data: [20923, 6467, 3839, 2784, 67037], backgroundColor: [colors.purple, colors.red, colors.gold, colors.green, '#708090'] }]
+                labels: ['loca.ash.jp', 'Fan Sites', 'Nikkatsu Studio', 'Reference Sources', 'Film Commissions', 'Text Extraction'],
+                datasets: [{ data: [70535, 25200, 10822, 18300, 2594, 272480], backgroundColor: [colors.purple, colors.gold, colors.red, colors.blue, colors.green, '#708090'] }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
@@ -846,8 +792,8 @@
         new Chart(document.getElementById('fcChart'), {
             type: 'bar',
             data: {
-                labels: ['Gunma', 'Tochigi', 'Sagamihara', 'Oita', 'Nagasaki', 'Toyama', 'Hakodate', 'Osaka', 'Kanazawa', 'Fujisawa'],
-                datasets: [{ data: [190, 134, 123, 110, 96, 92, 61, 50, 48, 47], backgroundColor: colors.green }]
+                labels: ['Gunma', 'Tochigi', 'Sagamihara', 'Tokyo Location Box', 'Oita', 'Nagasaki', 'Toyama', 'Hakodate', 'Osaka', 'Kanazawa', 'Fujisawa'],
+                datasets: [{ data: [190, 134, 123, 115, 110, 96, 92, 61, 50, 48, 47], backgroundColor: colors.green }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
