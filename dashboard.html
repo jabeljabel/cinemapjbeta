@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMAP: Japan, Beta</title>
+    <title>CineMAP: Japan, Beta - Data Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -37,7 +37,7 @@
                 <span class="text-red-700">Cine</span>MAP<span class="text-gray-500">:</span> <span class="text-gray-600">Japan</span><span class="text-amber-500">, Beta</span>
             </h1>
             <p class="text-xl text-gray-600">Japanese Cinema Location Database</p>
-            <p class="text-sm text-gray-400 mt-2">January 2026 • 135+ Years of Film History</p>
+            <p class="text-sm text-gray-400 mt-2">January 2026 • 129.0+ Years of Film History</p>
         </div>
 
         <!-- Tab Navigation -->
@@ -51,7 +51,7 @@
 
         <!-- ==================== OVERVIEW TAB ==================== -->
         <div id="content-overview" class="tab-content">
-            <!-- Core Stats Grid - Clickable -->
+            <!-- Core Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <!-- Films Card -->
                 <div class="stat-card bg-white rounded-xl shadow-lg border-l-4 border-red-700" onclick="toggleExpand('films-detail')">
@@ -62,7 +62,7 @@
                                 <div>
                                     <p class="text-gray-500 text-sm uppercase tracking-wide">Films</p>
                                     <p class="text-3xl font-bold text-gray-800">92,674</p>
-                                    <p class="text-xs text-gray-400">1897–2026</p>
+                                    <p class="text-xs text-gray-400">1897.0–2026.0</p>
                                 </div>
                             </div>
                             <span class="text-gray-400 text-xl" id="films-detail-arrow">▼</span>
@@ -70,19 +70,11 @@
                     </div>
                     <div id="films-detail" class="expandable-content bg-red-50 px-6">
                         <div class="py-4 border-t border-red-100">
-                            <h4 class="font-bold text-red-800 mb-3">By Country of Origin</h4>
-                            <div class="space-y-2 text-sm">
-                                <div class="flex justify-between"><span>Japan/日本</span><span class="font-bold">78,886 (85.1%)</span></div>
-                                <div class="flex justify-between"><span>USA/アメリカ</span><span class="font-bold">4,521 (4.9%)</span></div>
-                                <div class="flex justify-between"><span>France/フランス</span><span class="font-bold">1,234 (1.3%)</span></div>
-                                <div class="flex justify-between"><span>UK/イギリス</span><span class="font-bold">987 (1.1%)</span></div>
-                                <div class="flex justify-between"><span>Other</span><span class="font-bold">7,046 (7.6%)</span></div>
-                            </div>
-                            <h4 class="font-bold text-red-800 mt-4 mb-2">By Type</h4>
+                            <h4 class="font-bold text-red-800 mb-2">By Type</h4>
                             <div class="space-y-1 text-sm">
-                                <div class="flex justify-between"><span>Feature Films</span><span class="font-bold">57,850 (62%)</span></div>
+                                <div class="flex justify-between"><span>Feature Films</span><span class="font-bold">58,149 (63%)</span></div>
                                 <div class="flex justify-between"><span>TV Dramas</span><span class="font-bold">28,478 (31%)</span></div>
-                                <div class="flex justify-between"><span>Other (TV Series, Specials)</span><span class="font-bold">6,346 (7%)</span></div>
+                                <div class="flex justify-between"><span>Other</span><span class="font-bold">6,047 (7%)</span></div>
                             </div>
                         </div>
                     </div>
@@ -109,18 +101,14 @@
                                 <div class="text-center p-3 bg-red-100 rounded-lg">
                                     <p class="text-2xl font-bold text-red-700">35,242</p>
                                     <p class="text-xs text-red-600">Filmed Locations</p>
-                                    <p class="text-xs text-gray-500">Where cameras rolled</p>
                                 </div>
                                 <div class="text-center p-3 bg-green-100 rounded-lg">
                                     <p class="text-2xl font-bold text-green-700">60,636</p>
                                     <p class="text-xs text-green-600">Represented Locations</p>
-                                    <p class="text-xs text-gray-500">Places mentioned</p>
                                 </div>
                             </div>
                             <div class="text-sm space-y-1">
-                                <div class="flex justify-between"><span>With coordinates</span><span class="font-bold">91,360 (90.3%)</span></div>
-                                <div class="flex justify-between"><span>Japan locations</span><span class="font-bold">73,015 (72%)</span></div>
-                                <div class="flex justify-between"><span>Overseas locations</span><span class="font-bold">18,326 (18%)</span></div>
+                                <div class="flex justify-between"><span>With coordinates</span><span class="font-bold">91,343 (90.3%)</span></div>
                             </div>
                         </div>
                     </div>
@@ -147,43 +135,22 @@
                                 <div class="flex justify-between"><span>Filmed location links</span><span class="font-bold">126,924 (30%)</span></div>
                                 <div class="flex justify-between"><span>Represented location links</span><span class="font-bold">301,006 (70%)</span></div>
                             </div>
-                            <h4 class="font-bold text-green-800 mt-4 mb-2">Location Density</h4>
-                            <div class="space-y-1 text-sm">
-                                <div class="flex justify-between"><span>Average locations per film</span><span class="font-bold">4.6</span></div>
-                                <div class="flex justify-between"><span>Films with 10+ locations</span><span class="font-bold">12,847</span></div>
-                                <div class="flex justify-between"><span>Films with 50+ locations</span><span class="font-bold">1,234</span></div>
-                            </div>
-                            <h4 class="font-bold text-green-800 mt-4 mb-2">Most Locations</h4>
-                            <div class="space-y-1 text-sm">
-                                <div class="flex justify-between"><span>男はつらいよ Series</span><span class="font-bold">753 locs</span></div>
-                                <div class="flex justify-between"><span>ゴジラ Series</span><span class="font-bold">412 locs</span></div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Secondary Stats - Clickable -->
+            <!-- Secondary Stats -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <!-- People Card -->
                 <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-purple-500" onclick="toggleExpand('people-detail')">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 text-xs uppercase">👥 People</p>
-                            <p class="text-2xl font-bold text-gray-800">517,989</p>
-                            <p class="text-xs text-gray-400">87.8% with Japanese name</p>
+                            <p class="text-2xl font-bold text-gray-800">536,750</p>
+                            <p class="text-xs text-gray-400">86.4% with Japanese name</p>
                         </div>
                         <span class="text-gray-400" id="people-detail-arrow">▼</span>
-                    </div>
-                    <div id="people-detail" class="expandable-content">
-                        <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
-                            <div class="flex justify-between"><span>Male/男性</span><span class="font-bold">312,456 (60%)</span></div>
-                            <div class="flex justify-between"><span>Female/女性</span><span class="font-bold">168,543 (33%)</span></div>
-                            <div class="flex justify-between"><span>Unknown</span><span class="font-bold">36,990 (7%)</span></div>
-                            <p class="text-xs text-gray-400 mt-2">Top by credits:</p>
-                            <div class="flex justify-between"><span>三船敏郎</span><span class="font-bold">168 films</span></div>
-                            <div class="flex justify-between"><span>倍賞千恵子</span><span class="font-bold">152 films</span></div>
-                        </div>
                     </div>
                 </div>
 
@@ -192,18 +159,10 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 text-xs uppercase">📝 Synopses</p>
-                            <p class="text-2xl font-bold text-gray-800">234,308</p>
+                            <p class="text-2xl font-bold text-gray-800">234,230</p>
                             <p class="text-xs text-gray-400">86.3% of films covered</p>
                         </div>
                         <span class="text-gray-400" id="synopses-detail-arrow">▼</span>
-                    </div>
-                    <div id="synopses-detail" class="expandable-content">
-                        <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
-                            <div class="flex justify-between"><span>Japanese</span><span class="font-bold">86,245 (37%)</span></div>
-                            <div class="flex justify-between"><span>English</span><span class="font-bold">78,543 (34%)</span></div>
-                            <div class="flex justify-between"><span>French</span><span class="font-bold">8,234 (4%)</span></div>
-                            <div class="flex justify-between"><span>Other</span><span class="font-bold">61,286 (25%)</span></div>
-                        </div>
                     </div>
                 </div>
 
@@ -220,31 +179,20 @@
                     <div id="studios-detail" class="expandable-content">
                         <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
                             <p class="text-xs text-gray-500 mb-2">Top by films produced:</p>
-                            <div class="flex justify-between"><span>Toho/東宝</span><span class="font-bold">3,456 films</span></div>
-                            <div class="flex justify-between"><span>Shochiku/松竹</span><span class="font-bold">2,987 films</span></div>
-                            <div class="flex justify-between"><span>Nikkatsu/日活</span><span class="font-bold">2,654 films</span></div>
-                            <div class="flex justify-between"><span>Toei/東映</span><span class="font-bold">2,234 films</span></div>
+                                <div class="flex justify-between"><span>松竹</span><span class="font-bold">2,685 films</span></div>
+                                <div class="flex justify-between"><span>東映</span><span class="font-bold">2,490 films</span></div>
+                                <div class="flex justify-between"><span>日活（京都撮影所）</span><span class="font-bold">1,503 films</span></div>
+                                <div class="flex justify-between"><span>東宝</span><span class="font-bold">926 films</span></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Genres Card -->
-                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-teal-500" onclick="toggleExpand('genres-detail')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-gray-500 text-xs uppercase">🎭 Genres</p>
-                            <p class="text-2xl font-bold text-gray-800">45</p>
-                            <p class="text-xs text-gray-400">Bilingual categories</p>
-                        </div>
-                        <span class="text-gray-400" id="genres-detail-arrow">▼</span>
-                    </div>
-                    <div id="genres-detail" class="expandable-content">
-                        <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
-                            <div class="flex justify-between"><span>Drama/ドラマ</span><span class="font-bold">30,188</span></div>
-                            <div class="flex justify-between"><span>Action/アクション</span><span class="font-bold">9,617</span></div>
-                            <div class="flex justify-between"><span>Comedy/コメディ</span><span class="font-bold">8,261</span></div>
-                            <div class="flex justify-between"><span>Romance/ロマンス</span><span class="font-bold">6,035</span></div>
-                        </div>
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-teal-500">
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase">🎭 Genres</p>
+                        <p class="text-2xl font-bold text-gray-800">45</p>
+                        <p class="text-xs text-gray-400">Bilingual categories</p>
                     </div>
                 </div>
             </div>
@@ -253,11 +201,11 @@
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                 <h3 class="text-xl font-bold mb-4 text-gray-800">📊 Data Coverage</h3>
                 <div class="space-y-4">
-                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Japanese Title</span><span class="text-sm text-gray-600">86.4%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-red-700 h-3 rounded-full" style="width: 86.4%"></div></div></div>
-                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">English Title</span><span class="text-sm text-gray-600">84.6%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-blue-600 h-3 rounded-full" style="width: 84.6%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Japanese Title</span><span class="text-sm text-gray-600">97.9%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-red-700 h-3 rounded-full" style="width: 97.9%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">English Title</span><span class="text-sm text-gray-600">60.2%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-blue-600 h-3 rounded-full" style="width: 60.2%"></div></div></div>
                     <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">At Least One Synopsis</span><span class="text-sm text-gray-600">86.3%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-green-600 h-3 rounded-full" style="width: 86.3%"></div></div></div>
-                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Location Data</span><span class="text-sm text-gray-600">72.8%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-amber-500 h-3 rounded-full" style="width: 72.8%"></div></div></div>
-                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Director Credit</span><span class="text-sm text-gray-600">91.2%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-purple-600 h-3 rounded-full" style="width: 91.2%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Location Data</span><span class="text-sm text-gray-600">90.9%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-amber-500 h-3 rounded-full" style="width: 90.9%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Director Credit</span><span class="text-sm text-gray-600">85.7%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-purple-600 h-3 rounded-full" style="width: 85.7%"></div></div></div>
                 </div>
             </div>
 
@@ -296,12 +244,12 @@
                         <p class="text-sm text-gray-600">All Prefectures</p>
                     </div>
                     <div class="text-center p-4 bg-amber-50 rounded-lg">
-                        <p class="text-3xl font-bold text-amber-600">12,703</p>
+                        <p class="text-3xl font-bold text-amber-600">12,712</p>
                         <p class="text-sm text-gray-600">Tokyo Locations</p>
                     </div>
                     <div class="text-center p-4 bg-blue-50 rounded-lg">
-                        <p class="text-3xl font-bold text-blue-700">6,329</p>
-                        <p class="text-sm text-gray-600">Overseas Locations</p>
+                        <p class="text-3xl font-bold text-blue-700">9,822</p>
+                        <p class="text-sm text-gray-600">Ungeocoded</p>
                     </div>
                     <div class="text-center p-4 bg-green-50 rounded-lg">
                         <p class="text-3xl font-bold text-green-700">90.3%</p>
@@ -333,70 +281,63 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-6 border-2 border-amber-200">
                     <h4 class="font-bold text-amber-800 mb-2">🎭 Silent Era</h4>
-                    <p class="text-3xl font-bold text-amber-900">1,129</p>
+                    <p class="text-3xl font-bold text-amber-900">1,247</p>
                     <p class="text-sm text-amber-700">Films (1897–1929)</p>
                 </div>
                 <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200">
                     <h4 class="font-bold text-red-800 mb-2">🏆 Golden Age</h4>
-                    <p class="text-3xl font-bold text-red-900">23,876</p>
+                    <p class="text-3xl font-bold text-red-900">24,332</p>
                     <p class="text-sm text-red-700">Films (1930–1979)</p>
                 </div>
                 <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-6 border-2 border-emerald-200">
                     <h4 class="font-bold text-emerald-800 mb-2">🎥 Contemporary</h4>
-                    <p class="text-3xl font-bold text-emerald-900">67,669</p>
-                    <p class="text-sm text-emerald-700">Films (1980–2026)</p>
+                    <p class="text-3xl font-bold text-emerald-900">63,807</p>
+                    <p class="text-sm text-emerald-700">Films (1980–present)</p>
                 </div>
             </div>
 
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🎬 Top Directors' Location Data Over Time</h3>
-                <p class="text-sm text-gray-600 mb-4">Location records available for films by major directors</p>
-                <div style="height: 350px;"><canvas id="directorsTrendChart"></canvas></div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🌟 Top Stars' Location Appearances Over Time</h3>
-                <p class="text-sm text-gray-600 mb-4">Films with location data featuring major actors</p>
-                <div style="height: 350px;"><canvas id="actorsTrendChart"></canvas></div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">📍 Filmed vs. Represented Location Data Over Time</h3>
-                <div style="height: 300px;"><canvas id="filmedRepresentedTrendChart"></canvas></div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📊 Filmed vs Represented Locations Over Time</h3>
+                <p class="text-sm text-gray-600 mb-4">Film-location links by decade</p>
+                <div style="height: 350px;"><canvas id="filmedRepresentedTrendChart"></canvas></div>
             </div>
         </div>
 
         <!-- ==================== SOURCES TAB ==================== -->
         <div id="content-sources" class="tab-content hidden">
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">📍 Location Data Sources</h3>
-                <p class="text-gray-600 text-sm mb-4">All sources contributing to the location database</p>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📚 Location Data Sources</h3>
+                <p class="text-gray-600 mb-4 text-sm">Film-location links by source type</p>
                 <div style="height: 350px;"><canvas id="sourcesChart"></canvas></div>
             </div>
 
-            <!-- Source Categories - 4 cards -->
+            <!-- Source Categories -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <!-- Studio Archives -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-red-700 mb-3">🎥 Studio Archives</h4>
-                    <p class="text-gray-600 text-sm mb-3">Historical shooting records from studio production files</p>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Nikkatsu (日活)</span><span class="font-bold">10,822 links</span></div>
-                    </div>
-                    <p class="text-xs text-gray-400 mt-3">Original studio production records with verified filming locations</p>
-                </div>
-
                 <!-- Fan Sites -->
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <h4 class="font-bold text-amber-700 mb-3">🌐 Fan Sites</h4>
                     <p class="text-gray-600 text-sm mb-3">Community-contributed location research and pilgrimage maps</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>AGUA (時代劇)</span><span class="font-bold">~10,600 links</span></div>
-                        <div class="flex justify-between"><span>Ysotake/Coocan</span><span class="font-bold">~9,400 links</span></div>
-                        <div class="flex justify-between"><span>Seichi Junrei (聖地巡礼)</span><span class="font-bold">~2,400 links</span></div>
-                        <div class="flex justify-between"><span>Other fan maps & blogs</span><span class="font-bold">~2,800 links</span></div>
+                        <div class="flex justify-between"><span>AGUA, Ysotake, etc.</span><span class="font-bold">21,484 links</span></div>
                     </div>
-                    <p class="text-xs text-gray-400 mt-3">Includes Tora-san, Godzilla, and other franchise pilgrimage maps</p>
+                </div>
+
+                <!-- Studio Archives -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-red-700 mb-3">🎥 Studio Archives</h4>
+                    <p class="text-gray-600 text-sm mb-3">Historical shooting records from studio production files</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Nikkatsu (日活)</span><span class="font-bold">10,804 links</span></div>
+                    </div>
+                </div>
+
+                <!-- Reference Sources -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-blue-700 mb-3">📚 Reference Sources</h4>
+                    <p class="text-gray-600 text-sm mb-3">Crowdsourced encyclopedic databases (Wikipedia, Wikidata, IMDB, NFAJ)</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Combined sources</span><span class="font-bold">21,129 links</span></div>
+                    </div>
                 </div>
 
                 <!-- Film Commissions -->
@@ -404,50 +345,44 @@
                     <h4 class="font-bold text-green-700 mb-3">🏛️ Film Commissions</h4>
                     <p class="text-gray-600 text-sm mb-3">Regional film promotion offices across Japan</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>15 Regional FCs</span><span class="font-bold">2,594 links</span></div>
+                        <div class="flex justify-between"><span>Regional FCs</span><span class="font-bold">2,382 links</span></div>
                     </div>
-                    <p class="text-xs text-gray-400 mt-3">Gunma, Tochigi, Sagamihara, Tokyo Location Box, Oita, Nagasaki, and more</p>
                 </div>
 
-                <!-- Reference Sources (NEW) -->
+                <!-- loca.ash.jp -->
                 <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h4 class="font-bold text-blue-700 mb-3">📚 Reference Sources</h4>
-                    <p class="text-gray-600 text-sm mb-3">Crowdsourced encyclopedic and reference databases</p>
+                    <h4 class="font-bold text-purple-700 mb-3">🗺️ loca.ash.jp</h4>
+                    <p class="text-gray-600 text-sm mb-3">Comprehensive Japanese filming location database</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex justify-between"><span>Wikipedia</span><span class="font-bold">~7,500 links</span></div>
-                        <div class="flex justify-between"><span>Wikidata</span><span class="font-bold">~1,500 links</span></div>
-                        <div class="flex justify-between"><span>Roke Jiten (ロケ辞典)</span><span class="font-bold">~900 links</span></div>
-                        <div class="flex justify-between"><span>Other</span><span class="font-bold">~8,400 links</span></div>
+                        <div class="flex justify-between"><span>loca.ash links</span><span class="font-bold">70,665 links</span></div>
                     </div>
-                    <p class="text-xs text-gray-400 mt-3">Supplementary location verification from reference works</p>
                 </div>
             </div>
 
-            <!-- Text Extraction Card (full width) -->
+            <!-- Text Extraction Card -->
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                 <h4 class="font-bold text-gray-700 mb-3">📖 Text Extraction (NER)</h4>
                 <p class="text-gray-600 text-sm mb-3">Automated location extraction from film metadata — creates "Represented Locations"</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="text-center p-4 bg-gray-50 rounded-lg">
-                        <p class="text-2xl font-bold text-gray-700">161,000+</p>
+                        <p class="text-2xl font-bold text-gray-700">185,728</p>
                         <p class="text-sm text-gray-600">Synopsis Extraction</p>
                     </div>
                     <div class="text-center p-4 bg-gray-50 rounded-lg">
-                        <p class="text-2xl font-bold text-gray-700">95,000+</p>
+                        <p class="text-2xl font-bold text-gray-700">95,382</p>
                         <p class="text-sm text-gray-600">Subtitle Extraction</p>
                     </div>
                     <div class="text-center p-4 bg-gray-50 rounded-lg">
-                        <p class="text-2xl font-bold text-gray-700">16,000+</p>
+                        <p class="text-2xl font-bold text-gray-700">15,118</p>
                         <p class="text-sm text-gray-600">Title Extraction</p>
                     </div>
                 </div>
-                <p class="text-xs text-gray-400 mt-4">272,480 total links from automated Named Entity Recognition</p>
             </div>
 
             <!-- Film Commission Breakdown -->
             <div class="bg-white rounded-xl shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-4 text-gray-800">🎥 Film Commission Contributions</h3>
-                <p class="text-gray-600 mb-4 text-sm">15 regional film commissions contributing location data</p>
+                <p class="text-gray-600 mb-4 text-sm">Regional film commissions contributing location data</p>
                 <div style="height: 300px;"><canvas id="fcChart"></canvas></div>
             </div>
         </div>
@@ -455,170 +390,40 @@
         <!-- ==================== DATA STRUCTURE TAB ==================== -->
         <div id="content-structure" class="tab-content hidden">
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h3 class="text-xl font-bold mb-2 text-gray-800">🗄️ Database Schema</h3>
-                <p class="text-gray-600 mb-4">SQLite relational database with 11 core tables. <span class="text-blue-600 font-medium">Click any table to see its connections.</span></p>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🗄️ Database Schema</h3>
+                <p class="text-gray-600 mb-6">CineMAP uses a relational database with 10+ interconnected tables</p>
                 
-                <!-- Clean Grid Schema Diagram -->
-                <div class="overflow-x-auto" id="schema-container">
-                    <svg id="schema-svg" viewBox="0 0 880 420" class="w-full max-w-4xl mx-auto">
-                        <!-- Connection lines (behind tables) -->
-                        <g id="connections">
-                            <!-- films connections -->
-                            <path id="conn-films-film_locations" class="connection-line" stroke="#D4AF37" d="M360,125 L360,160"/>
-                            <path id="conn-films-film_genres" class="connection-line" stroke="#708090" d="M260,80 L150,160"/>
-                            <path id="conn-films-production_studios" class="connection-line" stroke="#CD853F" d="M260,50 L180,50"/>
-                            <path id="conn-films-synopses" class="connection-line" stroke="#20B2AA" d="M460,100 L510,160"/>
-                            <path id="conn-films-directors" class="connection-line" stroke="#457B9D" d="M460,60 L680,125"/>
-                            <path id="conn-films-cast_members" class="connection-line" stroke="#457B9D" d="M460,70 L680,195"/>
-                            <path id="conn-films-crew" class="connection-line" stroke="#457B9D" d="M460,80 L680,265"/>
-                            <!-- locations connection -->
-                            <path id="conn-locations-film_locations" class="connection-line" stroke="#D4AF37" d="M300,300 L300,260"/>
-                            <!-- genres connection -->
-                            <path id="conn-genres-film_genres" class="connection-line" stroke="#708090" d="M90,325 L90,235"/>
-                            <!-- people connections -->
-                            <path id="conn-people-directors" class="connection-line" stroke="#9932CC" d="M620,60 L680,125"/>
-                            <path id="conn-people-cast_members" class="connection-line" stroke="#9932CC" d="M620,70 L680,195"/>
-                            <path id="conn-people-crew" class="connection-line" stroke="#9932CC" d="M620,80 L680,265"/>
-                        </g>
-
-                        <!-- ROW 1: Main entity tables -->
-                        <g class="schema-table" data-table="production_studios" transform="translate(20, 25)" onclick="selectTable('production_studios')">
-                            <rect width="155" height="70" fill="white" stroke="#CD853F" stroke-width="2" rx="6"/>
-                            <rect width="155" height="22" fill="#CD853F" rx="6" ry="6"/>
-                            <rect x="0" y="16" width="155" height="6" fill="#CD853F"/>
-                            <text x="77" y="15" text-anchor="middle" fill="white" font-weight="bold" font-size="9">production_studios</text>
-                            <text x="6" y="36" fill="#333" font-size="8">ProductionStudioID</text>
-                            <text x="6" y="48" fill="#333" font-size="8">Name, Japanese_Name</text>
-                            <text x="6" y="62" fill="#888" font-size="7">11,447 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="films" transform="translate(260, 15)" onclick="selectTable('films')">
-                            <rect width="200" height="105" fill="white" stroke="#C41E3A" stroke-width="3" rx="6"/>
-                            <rect width="200" height="26" fill="#C41E3A" rx="6" ry="6"/>
-                            <rect x="0" y="20" width="200" height="6" fill="#C41E3A"/>
-                            <text x="100" y="18" text-anchor="middle" fill="white" font-weight="bold" font-size="12">films</text>
-                            <text x="8" y="40" fill="#333" font-size="9">FilmID</text>
-                            <text x="8" y="54" fill="#333" font-size="9">Japanese_Title, English_Title</text>
-                            <text x="8" y="68" fill="#333" font-size="9">Year, Type</text>
-                            <text x="8" y="82" fill="#666" font-size="9">ProductionStudioID →</text>
-                            <text x="8" y="98" fill="#888" font-size="8">92,674 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="people" transform="translate(550, 15)" onclick="selectTable('people')">
-                            <rect width="140" height="90" fill="white" stroke="#9932CC" stroke-width="2" rx="6"/>
-                            <rect width="140" height="22" fill="#9932CC" rx="6" ry="6"/>
-                            <rect x="0" y="16" width="140" height="6" fill="#9932CC"/>
-                            <text x="70" y="15" text-anchor="middle" fill="white" font-weight="bold" font-size="10">people</text>
-                            <text x="6" y="36" fill="#333" font-size="8">PeopleID</text>
-                            <text x="6" y="48" fill="#333" font-size="8">Name, English_Name</text>
-                            <text x="6" y="60" fill="#333" font-size="8">Gender</text>
-                            <text x="6" y="82" fill="#888" font-size="7">517,989 records</text>
-                        </g>
-
-                        <!-- ROW 2: Junction tables (left/center) -->
-                        <g class="schema-table" data-table="film_genres" transform="translate(20, 160)" onclick="selectTable('film_genres')">
-                            <rect width="120" height="65" fill="white" stroke="#708090" stroke-width="2" rx="6"/>
-                            <rect width="120" height="20" fill="#708090" rx="6" ry="6"/>
-                            <rect x="0" y="14" width="120" height="6" fill="#708090"/>
-                            <text x="60" y="13" text-anchor="middle" fill="white" font-weight="bold" font-size="9">film_genres</text>
-                            <text x="5" y="32" fill="#666" font-size="8">FilmID →</text>
-                            <text x="5" y="44" fill="#666" font-size="8">GenreID →</text>
-                            <text x="5" y="58" fill="#888" font-size="7">118,529 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="film_locations" transform="translate(200, 160)" onclick="selectTable('film_locations')">
-                            <rect width="200" height="90" fill="white" stroke="#D4AF37" stroke-width="2" rx="6"/>
-                            <rect width="200" height="22" fill="#D4AF37" rx="6" ry="6"/>
-                            <rect x="0" y="16" width="200" height="6" fill="#D4AF37"/>
-                            <text x="100" y="15" text-anchor="middle" fill="white" font-weight="bold" font-size="9">film_locations</text>
-                            <text x="6" y="36" fill="#666" font-size="8">FilmID →</text>
-                            <text x="6" y="48" fill="#666" font-size="8">FilmedLocationID →</text>
-                            <text x="6" y="60" fill="#666" font-size="8">RepresentedLocationID →</text>
-                            <text x="6" y="72" fill="#333" font-size="8">InfoSource</text>
-                            <text x="6" y="84" fill="#888" font-size="7">428,027 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="synopses" transform="translate(440, 160)" onclick="selectTable('synopses')">
-                            <rect width="130" height="65" fill="white" stroke="#20B2AA" stroke-width="2" rx="6"/>
-                            <rect width="130" height="20" fill="#20B2AA" rx="6" ry="6"/>
-                            <rect x="0" y="14" width="130" height="6" fill="#20B2AA"/>
-                            <text x="65" y="13" text-anchor="middle" fill="white" font-weight="bold" font-size="9">synopses</text>
-                            <text x="5" y="32" fill="#666" font-size="8">FilmID →</text>
-                            <text x="5" y="44" fill="#333" font-size="8">Language, Synopsis_Text</text>
-                            <text x="5" y="58" fill="#888" font-size="7">234,308 records</text>
-                        </g>
-
-                        <!-- People junction tables (stacked vertically on right) -->
-                        <g class="schema-table" data-table="directors" transform="translate(700, 115)" onclick="selectTable('directors')">
-                            <rect width="155" height="55" fill="white" stroke="#457B9D" stroke-width="2" rx="6"/>
-                            <rect width="155" height="18" fill="#457B9D" rx="6" ry="6"/>
-                            <rect x="0" y="12" width="155" height="6" fill="#457B9D"/>
-                            <text x="77" y="12" text-anchor="middle" fill="white" font-weight="bold" font-size="9">directors</text>
-                            <text x="5" y="30" fill="#666" font-size="8">FilmID → PeopleID →</text>
-                            <text x="5" y="48" fill="#888" font-size="7">87,770 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="cast_members" transform="translate(700, 185)" onclick="selectTable('cast_members')">
-                            <rect width="155" height="55" fill="white" stroke="#457B9D" stroke-width="2" rx="6"/>
-                            <rect width="155" height="18" fill="#457B9D" rx="6" ry="6"/>
-                            <rect x="0" y="12" width="155" height="6" fill="#457B9D"/>
-                            <text x="77" y="12" text-anchor="middle" fill="white" font-weight="bold" font-size="9">cast_members</text>
-                            <text x="5" y="30" fill="#666" font-size="8">FilmID → PeopleID →</text>
-                            <text x="5" y="48" fill="#888" font-size="7">1,429,488 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="crew" transform="translate(700, 255)" onclick="selectTable('crew')">
-                            <rect width="155" height="55" fill="white" stroke="#457B9D" stroke-width="2" rx="6"/>
-                            <rect width="155" height="18" fill="#457B9D" rx="6" ry="6"/>
-                            <rect x="0" y="12" width="155" height="6" fill="#457B9D"/>
-                            <text x="77" y="12" text-anchor="middle" fill="white" font-weight="bold" font-size="9">crew</text>
-                            <text x="5" y="30" fill="#666" font-size="8">FilmID → PeopleID → Role</text>
-                            <text x="5" y="48" fill="#888" font-size="7">968,398 records</text>
-                        </g>
-
-                        <!-- ROW 3: Lookup tables -->
-                        <g class="schema-table" data-table="genres" transform="translate(20, 300)" onclick="selectTable('genres')">
-                            <rect width="120" height="60" fill="white" stroke="#708090" stroke-width="2" rx="6"/>
-                            <rect width="120" height="20" fill="#708090" rx="6" ry="6"/>
-                            <rect x="0" y="14" width="120" height="6" fill="#708090"/>
-                            <text x="60" y="13" text-anchor="middle" fill="white" font-weight="bold" font-size="9">genres</text>
-                            <text x="5" y="32" fill="#333" font-size="8">GenreID</text>
-                            <text x="5" y="44" fill="#333" font-size="8">Japanese_Name, English_Name</text>
-                            <text x="5" y="56" fill="#888" font-size="7">45 records</text>
-                        </g>
-
-                        <g class="schema-table" data-table="locations" transform="translate(200, 280)" onclick="selectTable('locations')">
-                            <rect width="200" height="90" fill="white" stroke="#D4AF37" stroke-width="2" rx="6"/>
-                            <rect width="200" height="22" fill="#D4AF37" rx="6" ry="6"/>
-                            <rect x="0" y="16" width="200" height="6" fill="#D4AF37"/>
-                            <text x="100" y="15" text-anchor="middle" fill="white" font-weight="bold" font-size="10">locations</text>
-                            <text x="6" y="36" fill="#333" font-size="8">LocationID</text>
-                            <text x="6" y="48" fill="#333" font-size="8">Name, Prefecture</text>
-                            <text x="6" y="60" fill="#333" font-size="8">GPSLatitude, GPSLongitude</text>
-                            <text x="6" y="82" fill="#888" font-size="7">101,165 records</text>
-                        </g>
-                    </svg>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="p-4 bg-red-50 rounded-lg text-center">
+                        <p class="font-bold text-red-700">films</p>
+                        <p class="text-2xl font-bold">92,674</p>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded-lg text-center">
+                        <p class="font-bold text-amber-700">locations</p>
+                        <p class="text-2xl font-bold">101,165</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg text-center">
+                        <p class="font-bold text-green-700">film_locations</p>
+                        <p class="text-2xl font-bold">428,027</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 rounded-lg text-center">
+                        <p class="font-bold text-purple-700">people</p>
+                        <p class="text-2xl font-bold">536,750</p>
+                    </div>
                 </div>
-
-                <!-- Connection Info Panel -->
-                <div id="connection-info" class="hidden mt-6 p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
-                    <h4 id="connection-title" class="font-bold text-gray-800 mb-2"></h4>
-                    <p id="connection-description" class="text-sm text-gray-600"></p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🔗 How Tables Connect</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-red-700">films</span> ← central hub for all relationships</div>
-                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-amber-600">film_locations</span> connects films ↔ locations</div>
-                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-blue-600">directors</span> connects films ↔ people</div>
-                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-blue-600">cast_members</span> connects films ↔ people</div>
-                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-blue-600">crew</span> connects films ↔ people</div>
-                    <div class="p-3 bg-gray-50 rounded-lg"><span class="font-bold text-gray-600">film_genres</span> connects films ↔ genres</div>
+                
+                <div class="text-sm text-gray-600">
+                    <p><strong>Key relationships:</strong></p>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><code>film_locations</code> links films to locations (supports both FilmedLocationID and RepresentedLocationID)</li>
+                        <li><code>directors</code> and <code>cast_members</code> link people to films with role information</li>
+                        <li><code>film_genres</code> supports multiple genres per film with bilingual labels</li>
+                        <li><code>synopses</code> stores multiple synopsis versions per film in different languages</li>
+                    </ul>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -630,56 +435,14 @@
             document.getElementById('tab-' + tabName).classList.add('active');
         }
 
-        // Expandable sections
+        // Expandable cards
         function toggleExpand(id) {
             const el = document.getElementById(id);
             const arrow = document.getElementById(id + '-arrow');
-            el.classList.toggle('expanded');
-            arrow.textContent = el.classList.contains('expanded') ? '▲' : '▼';
-        }
-
-        // Schema interaction
-        const tableConnections = {
-            films: { title: "films — Central Table", description: "The core table with 92,674 records. Every film has a unique FilmID linking to directors, cast_members, crew, film_locations, film_genres, synopses, and production_studios.", connections: ['conn-films-directors', 'conn-films-cast_members', 'conn-films-crew', 'conn-films-film_locations', 'conn-films-synopses', 'conn-films-film_genres', 'conn-films-production_studios'] },
-            locations: { title: "locations — Geographic Data", description: "101,165 unique places with names, prefectures, and GPS coordinates. Links to films through the film_locations junction table.", connections: ['conn-locations-film_locations'] },
-            film_locations: { title: "film_locations — Core Relationship", description: "428,027 links between films and locations. Each record can have FilmedLocationID (where shot) and/or RepresentedLocationID (place mentioned).", connections: ['conn-films-film_locations', 'conn-locations-film_locations'] },
-            people: { title: "people — Cast & Crew", description: "517,989 individuals with Japanese and English names. Links to films through directors, cast_members, and crew tables.", connections: ['conn-people-directors', 'conn-people-cast_members', 'conn-people-crew'] },
-            directors: { title: "directors — Direction Credits", description: "87,770 links connecting people to films they directed. A film can have multiple directors.", connections: ['conn-films-directors', 'conn-people-directors'] },
-            cast_members: { title: "cast_members — Acting Credits", description: "1,429,488 links connecting people to films they appeared in. The largest relationship table.", connections: ['conn-films-cast_members', 'conn-people-cast_members'] },
-            crew: { title: "crew — Technical Credits", description: "968,398 links connecting people to films they worked on (cinematographers, editors, composers, etc.).", connections: ['conn-films-crew', 'conn-people-crew'] },
-            genres: { title: "genres — 45 Categories", description: "Bilingual genre definitions (Drama/ドラマ, Action/アクション, etc.). Links to films through film_genres.", connections: ['conn-genres-film_genres'] },
-            film_genres: { title: "film_genres — Genre Assignments", description: "118,529 links. A film can have multiple genres (e.g., Action + Comedy).", connections: ['conn-films-film_genres', 'conn-genres-film_genres'] },
-            synopses: { title: "synopses — Plot Summaries", description: "234,308 synopses in multiple languages. A film can have multiple synopses from different sources.", connections: ['conn-films-synopses'] },
-            production_studios: { title: "production_studios — 11,447 Companies", description: "Production companies with Japanese and English names. Films link here via ProductionStudioID.", connections: ['conn-films-production_studios'] }
-        };
-
-        let selectedTable = null;
-
-        function selectTable(tableName) {
-            document.querySelectorAll('.schema-table').forEach(t => t.classList.remove('selected'));
-            document.querySelectorAll('.connection-line').forEach(l => l.classList.remove('active', 'dimmed'));
-
-            if (selectedTable === tableName) {
-                selectedTable = null;
-                document.getElementById('connection-info').classList.add('hidden');
-                return;
+            if (el) {
+                el.classList.toggle('expanded');
+                if (arrow) arrow.textContent = el.classList.contains('expanded') ? '▲' : '▼';
             }
-
-            selectedTable = tableName;
-            document.querySelector(`[data-table="${tableName}"]`).classList.add('selected');
-            
-            const info = tableConnections[tableName];
-            document.querySelectorAll('.connection-line').forEach(l => {
-                if (info.connections.includes(l.id)) {
-                    l.classList.add('active');
-                } else {
-                    l.classList.add('dimmed');
-                }
-            });
-
-            document.getElementById('connection-title').textContent = info.title;
-            document.getElementById('connection-description').textContent = info.description;
-            document.getElementById('connection-info').classList.remove('hidden');
         }
 
         // Chart colors
@@ -690,7 +453,7 @@
             type: 'bar',
             data: {
                 labels: ['Drama', 'Action', 'Comedy', 'Romance', 'Animation', 'Documentary', 'Suspense', 'Horror'],
-                datasets: [{ data: [30188, 9617, 8261, 6035, 5118, 5036, 4754, 4618], backgroundColor: colors.red }]
+                datasets: [{ data: [29668, 9304, 8254, 6041, 5174, 4791, 4748, 4592], backgroundColor: colors.red }]
             },
             options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } }
         });
@@ -699,8 +462,8 @@
         new Chart(document.getElementById('prefectureChart'), {
             type: 'bar',
             data: {
-                labels: ['東京都', 'Overseas', '京都府', '神奈川県', '千葉県', '静岡県', '北海道', '埼玉県', '兵庫県', '大阪府'],
-                datasets: [{ data: [12703, 6329, 5522, 4917, 2401, 1950, 1854, 1714, 1566, 1565], backgroundColor: [colors.red, colors.blue, colors.gold, colors.green, '#CD853F', '#708090', '#20B2AA', '#9932CC', '#FF6347', '#4169E1'] }]
+                labels: ['東京都', '海外', '京都府', '神奈川県', '千葉県', '静岡県', '北海道', '埼玉県', '大阪府', '兵庫県'],
+                datasets: [{ data: [12712, 6392, 5522, 4919, 2407, 1961, 1863, 1728, 1569, 1567], backgroundColor: [colors.red, colors.blue, colors.gold, colors.green, '#CD853F', '#708090', '#20B2AA', '#9932CC', '#FF6347', '#4169E1'] }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
@@ -711,8 +474,7 @@
             data: {
                 labels: ['Synopsis', 'Subtitle', 'Title', 'Other'],
                 datasets: [
-                    { label: 'Unique Locations', data: [27780, 34334, 4923, 4645], backgroundColor: colors.gold },
-                    { label: 'Films Covered', data: [66460, 9699, 13234, 15987], backgroundColor: colors.green }
+                    { label: 'Links', data: [185728, 95382, 15118, 5307], backgroundColor: colors.gold }
                 ]
             },
             options: { responsive: true, maintainAspectRatio: false }
@@ -722,42 +484,10 @@
         new Chart(document.getElementById('decadeChart'), {
             type: 'line',
             data: {
-                labels: ['1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'],
-                datasets: [{ label: 'Films', data: [67, 195, 974, 1538, 1151, 5961, 8160, 7522, 8270, 8644, 14537, 21937, 10419], borderColor: colors.red, backgroundColor: 'rgba(196, 30, 58, 0.1)', fill: true, tension: 0.4 }]
+                labels: ['1900.0s', '1901.0s', '1902.0s', '1904.0s', '1907.0s', '1908.0s', '1909.0s', '1910.0s', '1911.0s', '1912.0s', '1913.0s', '1914.0s', '1915.0s', '1916.0s', '1917.0s', '1918.0s', '1919.0s', '1920.0s', '1921.0s', '1922.0s', '1923.0s', '1924.0s', '1925.0s', '1926.0s', '1927.0s', '1928.0s', '1929.0s', '1930.0s', '1931.0s', '1932.0s', '1933.0s', '1934.0s', '1935.0s', '1936.0s', '1937.0s', '1938.0s', '1939.0s', '1940.0s', '1941.0s', '1942.0s', '1943.0s', '1944.0s', '1945.0s', '1946.0s', '1947.0s', '1948.0s', '1949.0s', '1950.0s', '1951.0s', '1952.0s', '1953.0s', '1954.0s', '1955.0s', '1956.0s', '1957.0s', '1958.0s', '1959.0s', '1960.0s', '1961.0s', '1962.0s', '1963.0s', '1964.0s', '1965.0s', '1966.0s', '1967.0s', '1968.0s', '1969.0s', '1970.0s', '1971.0s', '1972.0s', '1973.0s', '1974.0s', '1975.0s', '1976.0s', '1977.0s', '1978.0s', '1979.0s', '1980.0s', '1981.0s', '1982.0s', '1983.0s', '1984.0s', '1985.0s', '1986.0s', '1987.0s', '1988.0s', '1989.0s', '1990.0s', '1991.0s', '1992.0s', '1993.0s', '1994.0s', '1995.0s', '1996.0s', '1997.0s', '1998.0s', '1999.0s', '2000.0s', '2001.0s', '2002.0s', '2003.0s', '2004.0s', '2005.0s', '2006.0s', '2007.0s', '2008.0s', '2009.0s', '2010.0s', '2011.0s', '2012.0s', '2013.0s', '2014.0s', '2015.0s', '2016.0s', '2017.0s', '2018.0s', '2019.0s', '2020.0s', '2021.0s', '2022.0s', '2023.0s', '2024.0s', '2025.0s', '2026.0s'],
+                datasets: [{ label: 'Films', data: [2, 14, 3, 41, 1, 1, 5, 5, 6, 3, 21, 39, 19, 17, 18, 30, 37, 65, 68, 52, 100, 126, 116, 93, 107, 132, 115, 151, 161, 174, 162, 139, 158, 159, 160, 140, 134, 125, 90, 72, 68, 71, 74, 101, 138, 185, 227, 232, 262, 342, 484, 736, 579, 754, 723, 838, 1011, 1085, 942, 840, 923, 741, 730, 725, 763, 694, 717, 786, 846, 773, 788, 713, 694, 777, 711, 692, 742, 785, 843, 841, 917, 830, 826, 781, 719, 872, 856, 856, 832, 822, 791, 825, 883, 896, 887, 900, 952, 1029, 1148, 1253, 1317, 1456, 1548, 1628, 1746, 1688, 1724, 1726, 1833, 1976, 2134, 2134, 2274, 2297, 2604, 2490, 2469, 1848, 1784, 1888, 1817, 1596, 1427, 59], borderColor: colors.red, backgroundColor: 'rgba(196, 30, 58, 0.1)', fill: true, tension: 0.4 }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-        });
-
-        // Directors Trend Chart
-        new Chart(document.getElementById('directorsTrendChart'), {
-            type: 'line',
-            data: {
-                labels: ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s'],
-                datasets: [
-                    { label: 'Kurosawa 黒澤明', data: [12, 8, 4, 2, 1, 0, 0], borderColor: '#C41E3A', tension: 0.3, fill: false },
-                    { label: 'Ozu 小津安二郎', data: [6, 2, 0, 0, 0, 0, 0], borderColor: '#1B4D3E', tension: 0.3, fill: false },
-                    { label: 'Kitano 北野武', data: [0, 0, 0, 2, 6, 4, 3], borderColor: '#D4AF37', tension: 0.3, fill: false },
-                    { label: 'Miyazaki 宮崎駿', data: [0, 0, 2, 3, 3, 2, 2], borderColor: '#457B9D', tension: 0.3, fill: false },
-                    { label: 'Koreeda 是枝裕和', data: [0, 0, 0, 0, 3, 6, 5], borderColor: '#9932CC', tension: 0.3, fill: false }
-                ]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
-        });
-
-        // Actors Trend Chart
-        new Chart(document.getElementById('actorsTrendChart'), {
-            type: 'line',
-            data: {
-                labels: ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s'],
-                datasets: [
-                    { label: 'Mifune 三船敏郎', data: [45, 38, 12, 5, 2, 0, 0], borderColor: '#C41E3A', tension: 0.3, fill: false },
-                    { label: 'Takamine 高峰秀子', data: [28, 15, 4, 1, 0, 0, 0], borderColor: '#1B4D3E', tension: 0.3, fill: false },
-                    { label: 'Baisho 倍賞千恵子', data: [8, 25, 32, 18, 12, 8, 4], borderColor: '#D4AF37', tension: 0.3, fill: false },
-                    { label: 'Yakusho 役所広司', data: [0, 0, 2, 12, 24, 18, 15], borderColor: '#457B9D', tension: 0.3, fill: false },
-                    { label: 'Aoi 蒼井優', data: [0, 0, 0, 0, 2, 18, 22], borderColor: '#9932CC', tension: 0.3, fill: false }
-                ]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
         });
 
         // Filmed vs Represented Trend Chart
@@ -766,19 +496,19 @@
             data: {
                 labels: ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'],
                 datasets: [
-                    { label: 'Filmed', data: [8200, 14500, 12800, 11200, 9800, 18500, 32000, 18000], borderColor: colors.red, backgroundColor: 'rgba(196, 30, 58, 0.1)', fill: true, tension: 0.3 },
-                    { label: 'Represented', data: [12000, 22000, 19500, 24000, 28000, 52000, 89000, 54000], borderColor: colors.green, backgroundColor: 'rgba(27, 77, 62, 0.1)', fill: true, tension: 0.3 }
+                    { label: 'Filmed', data: [0, 0, 0, 0, 0, 0, 0, 0], borderColor: colors.red, backgroundColor: 'rgba(196, 30, 58, 0.1)', fill: true, tension: 0.3 },
+                    { label: 'Represented', data: [0, 0, 0, 0, 0, 0, 0, 0], borderColor: colors.green, backgroundColor: 'rgba(27, 77, 62, 0.1)', fill: true, tension: 0.3 }
                 ]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
         });
 
-        // Sources Chart - Updated with Text Extraction split into 3
+        // Sources Chart
         new Chart(document.getElementById('sourcesChart'), {
             type: 'bar',
             data: {
-                labels: ['loca.ash.jp', 'Synopsis NER', 'Subtitle NER', 'Fan Sites', 'Reference Sources', 'Title NER', 'Nikkatsu Studio', 'Film Commissions'],
-                datasets: [{ data: [70535, 161000, 95000, 25200, 18300, 16000, 10822, 2594], backgroundColor: [colors.purple, '#5a5a5a', '#787878', colors.gold, colors.blue, '#969696', colors.red, colors.green] }]
+                labels: ['Synopsis NER', 'Subtitle NER', 'loca.ash.jp', 'Fan Sites', 'Title NER', 'Reference', 'Nikkatsu', 'Film Commissions'],
+                datasets: [{ data: [185728, 95382, 70665, 21484, 15118, 21129, 10804, 2382], backgroundColor: ['#5a5a5a', '#787878', colors.purple, '#FF6B6B', colors.gold, '#969696', colors.blue, colors.red, colors.green] }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
@@ -787,8 +517,8 @@
         new Chart(document.getElementById('fcChart'), {
             type: 'bar',
             data: {
-                labels: ['Gunma', 'Tochigi', 'Sagamihara', 'Tokyo Location Box', 'Oita', 'Nagasaki', 'Toyama', 'Hakodate', 'Osaka', 'Kanazawa', 'Fujisawa'],
-                datasets: [{ data: [190, 134, 123, 115, 110, 96, 92, 61, 50, 48, 47], backgroundColor: colors.green }]
+                labels: ['Gunma', 'Tochigi', 'Sagamihara', 'Oita City', 'Nagasaki', 'Toyama', 'Hakodate', 'Osaka', 'Kanazawa', 'Tokyo Location Box', 'Fujisawa'],
+                datasets: [{ data: [494, 388, 222, 168, 165, 159, 132, 129, 96, 89, 80], backgroundColor: colors.green }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
