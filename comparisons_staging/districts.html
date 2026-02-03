@@ -1164,7 +1164,7 @@
                 }
                 
                 districtDominance.push({
-                    key, name_ja: district.name_ja, name_en: district.name_en,
+                    key, name_ja: district.name_ja || key, name_en: district.name_en || '',
                     center: district.center,
                     total: decadeData.total || (district.total_filming + district.total_represented) || 0,
                     genres: decadeData.genres, dominant
