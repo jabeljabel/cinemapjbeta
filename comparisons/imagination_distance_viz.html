@@ -1128,5 +1128,22 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <script data-goatcounter="https://cinemapjapan.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="c59d86ac-5efa-4ff2-b9ff-14d9f484ea62"></script>
+<script>
+(function(){
+  var u = window.umami;
+  if (!u) return;
+  fetch('https://ipinfo.io/json?token=992f2d449061e3')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      u.track('geo', {
+        country: d.country || '',
+        region: d.region || '',
+        city: d.city || '',
+        loc: d.loc || ''
+      });
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>
