@@ -1238,9 +1238,11 @@
         });
         
         // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             initMap();
-            switchCity('tokyo');
+            await switchCity('tokyo');
+            setMode('flash');
+            setView('points');
         });
     </script>
 
