@@ -579,8 +579,8 @@
                     cityLayers[props.id] = layer;
                     
                     // Popup
-                    const genre = selectedMode === 'variance' 
-                        ? props.most_distinctive 
+                    const genre = selectedMode === 'variance'
+                        ? (selectedMetric === 'films' ? props.most_distinctive_film : props.most_distinctive)
                         : props.dominant_genre;
                     const displayVal = getDisplayValue(props, genre);
                     

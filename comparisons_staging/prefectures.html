@@ -607,10 +607,10 @@
             for (const [prefName, data] of Object.entries(prefectureDataRaw)) {
                 const decadeData = data.by_decade?.[currentDecade];
                 
-                if (decadeData && decadeData.total > 0) {
+                if (decadeData && decadeData.filtered_total > 0) {
                     prefectureData[prefName] = {
-                        filtered_total: decadeData.total,
-                        dominant_genre_pct: decadeData.dominant_genre,
+                        filtered_total: decadeData.filtered_total,
+                        dominant_genre_pct: decadeData.dominant_genre_pct,
                         dominant_percentage: decadeData.dominant_percentage,
                         genres: decadeData.genres
                     };
