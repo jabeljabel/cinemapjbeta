@@ -362,8 +362,8 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
         
-        #heatmap-settings { display: block; }
-        #points-settings { display: none; }
+        #heatmap-settings { display: none; }
+        #points-settings { display: block; }
         
         /* Loading */
         #loading {
@@ -620,14 +620,14 @@
         
         <div class="playback-controls">
             <div class="mode-toggle">
-                <button class="mode-btn active" data-mode="cumulative" onclick="setMode('cumulative')">Cumulative</button>
+                <button class="mode-btn" data-mode="cumulative" onclick="setMode('cumulative')">Cumulative</button>
                 <button class="mode-btn" data-mode="decade" onclick="setMode('decade')">By Decade</button>
-                <button class="mode-btn flash-btn" data-mode="flash" onclick="setMode('flash')">Flash ⚡</button>
+                <button class="mode-btn flash-btn active" data-mode="flash" onclick="setMode('flash')">Flash ⚡</button>
             </div>
             
             <div class="view-toggle">
-                <button class="view-btn active" data-view="heatmap" onclick="setView('heatmap')">🔥 Heatmap</button>
-                <button class="view-btn" data-view="points" onclick="setView('points')">📍 Points</button>
+                <button class="view-btn" data-view="heatmap" onclick="setView('heatmap')">🔥 Heatmap</button>
+                <button class="view-btn active" data-view="points" onclick="setView('points')">📍 Points</button>
             </div>
             
             <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
@@ -656,8 +656,8 @@
         let isPlaying = false;
         let playInterval = null;
         let speed = 200;
-        let mode = 'cumulative';  // 'cumulative' | 'decade' | 'flash'
-        let viewMode = 'heatmap';
+        let mode = 'flash';  // 'cumulative' | 'decade' | 'flash'
+        let viewMode = 'points';
         
         // Layer visibility
         let showFilming = true;
