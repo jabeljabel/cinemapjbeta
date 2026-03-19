@@ -460,7 +460,8 @@
                     ${props.english_title ? `<div class="popup-subtitle">${props.english_title}</div>` : ''}
                     <dl class="popup-details">
                         <dt>Year</dt><dd>${props.year || 'Unknown'}</dd>
-                        <dt>Location</dt><dd>${props.location_name}</dd>
+                        <dt>名称</dt><dd>${props.location_name_jp || ''}</dd>
+                        ${props.location_name ? `<dt>Name</dt><dd>${props.location_name}</dd>` : ''}
                         <dt>Prefecture</dt><dd>${props.prefecture || 'Unknown'}</dd>
                         <dt>Type</dt><dd>${props.location_type === 'filming' ? '🎬 Filming' : '📍 Represented'}</dd>
                     </dl>

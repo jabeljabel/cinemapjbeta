@@ -658,6 +658,7 @@
                 english_title: loc.en,
                 year: loc.y,
                 location_name: loc.loc,
+                location_name_jp: loc.loc_jp,
                 prefecture: loc.pref,
                 lat: loc.lat,
                 lon: loc.lon,
@@ -1289,7 +1290,8 @@
                 </div>
                 
                 <div class="popup-location">
-                    <div class="popup-location-name">📍 ${props.location_name || 'Unknown location'}</div>
+                    <div class="popup-location-name">📍 ${props.location_name_jp || ''}</div>
+                    ${props.location_name ? `<div style="color:#ccc;font-size:11px;margin-top:1px;">${props.location_name}</div>` : ''}
                     <div style="color:#888;font-size:11px;margin-top:2px;">${props.prefecture || ''}</div>
                 </div>
             `;

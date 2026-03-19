@@ -1048,7 +1048,7 @@
                     });
                     if (loc.t) {
                         const jpTitle = loc.tj ? `<div style="font-family: 'Noto Sans JP', sans-serif; color: #aaa; font-size: 12px;">${loc.tj}</div>` : '';
-                        marker.bindPopup(`<b>${loc.t}</b>${jpTitle}<div style="color: #888; font-size: 11px; margin-top: 4px;">${loc.loc || ''}</div>`);
+                        marker.bindPopup(`<b>${loc.t}</b>${jpTitle}<div style="font-size: 12px; margin-top: 4px;">📍 ${loc.location_jp || ''}</div>${loc.location ? `<div style="color: #ccc; font-size: 11px;">${loc.location}</div>` : ''}`);
                     }
                     filmingPointsLayer.addLayer(marker);
                 });
@@ -1066,7 +1066,7 @@
                     });
                     if (loc.t) {
                         const jpTitle = loc.tj ? `<div style="font-family: 'Noto Sans JP', sans-serif; color: #aaa; font-size: 12px;">${loc.tj}</div>` : '';
-                        marker.bindPopup(`<b>${loc.t}</b>${jpTitle}<div style="color: #888; font-size: 11px; margin-top: 4px;">${loc.loc || ''}</div>`);
+                        marker.bindPopup(`<b>${loc.t}</b>${jpTitle}<div style="font-size: 12px; margin-top: 4px;">📍 ${loc.location_jp || ''}</div>${loc.location ? `<div style="color: #ccc; font-size: 11px;">${loc.location}</div>` : ''}`);
                     }
                     representedPointsLayer.addLayer(marker);
                 });
