@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2026-03-18T20:59:50.665671",
+    "generated": "2026-03-20T11:17:06.931383",
     "total_prefectures": 48,
     "total_studios": 11,
     "decades": [
@@ -80,8 +80,8 @@
   "prefectures": {
     "三重県": {
       "coordinates": [
-        34.6724,
-        136.5692
+        34.6726,
+        136.5703
       ],
       "by_decade": {
         "1970": {
@@ -108,29 +108,29 @@
           }
         },
         "1960": {
-          "total_films": 80,
+          "total_films": 83,
           "dominant_studio": "Other",
-          "dominant_percentage": 43.8,
+          "dominant_percentage": 45.8,
           "studios": {
             "Shochiku": {
               "count": 10,
-              "percentage": 12.5
+              "percentage": 12.0
             },
             "Other": {
-              "count": 35,
-              "percentage": 43.8
+              "count": 38,
+              "percentage": 45.8
             },
             "Toho": {
               "count": 11,
-              "percentage": 13.8
+              "percentage": 13.3
             },
             "Toei": {
               "count": 8,
-              "percentage": 10.0
+              "percentage": 9.6
             },
             "Nikkatsu": {
               "count": 16,
-              "percentage": 20.0
+              "percentage": 19.3
             }
           }
         },
@@ -179,15 +179,15 @@
         "2010": {
           "total_films": 44,
           "dominant_studio": "Other",
-          "dominant_percentage": 61.4,
+          "dominant_percentage": 63.6,
           "studios": {
             "Nikkatsu": {
-              "count": 14,
-              "percentage": 31.8
+              "count": 13,
+              "percentage": 29.5
             },
             "Other": {
-              "count": 27,
-              "percentage": 61.4
+              "count": 28,
+              "percentage": 63.6
             },
             "Shochiku": {
               "count": 3,
@@ -260,25 +260,25 @@
           }
         },
         "all": {
-          "total_films": 279,
+          "total_films": 282,
           "dominant_studio": "Other",
-          "dominant_percentage": 44.1,
+          "dominant_percentage": 45.0,
           "studios": {
             "Other": {
-              "count": 123,
-              "percentage": 44.1
+              "count": 127,
+              "percentage": 45.0
             },
             "Toei": {
               "count": 10,
-              "percentage": 3.6
+              "percentage": 3.5
             },
             "Shochiku": {
               "count": 32,
-              "percentage": 11.5
+              "percentage": 11.3
             },
             "Nikkatsu": {
-              "count": 98,
-              "percentage": 35.1
+              "count": 97,
+              "percentage": 34.4
             },
             "Toho": {
               "count": 16,
@@ -290,61 +290,61 @@
     },
     "京都府": {
       "coordinates": [
-        35.028,
+        35.0289,
         135.7278
       ],
       "by_decade": {
         "1960": {
-          "total_films": 819,
+          "total_films": 787,
           "dominant_studio": "Toei",
-          "dominant_percentage": 34.2,
+          "dominant_percentage": 31.9,
           "studios": {
             "Toho": {
               "count": 66,
-              "percentage": 8.1
+              "percentage": 8.4
             },
             "Other": {
-              "count": 141,
-              "percentage": 17.2
+              "count": 137,
+              "percentage": 17.4
             },
             "Shochiku": {
-              "count": 193,
-              "percentage": 23.6
+              "count": 195,
+              "percentage": 24.8
             },
             "Daiei": {
-              "count": 62,
-              "percentage": 7.6
+              "count": 61,
+              "percentage": 7.8
             },
             "Toei": {
-              "count": 280,
-              "percentage": 34.2
+              "count": 251,
+              "percentage": 31.9
             },
             "Nikkatsu": {
               "count": 75,
-              "percentage": 9.2
+              "percentage": 9.5
             },
             "Shintoho": {
               "count": 2,
-              "percentage": 0.2
+              "percentage": 0.3
             }
           }
         },
         "1950": {
-          "total_films": 770,
+          "total_films": 763,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 59.5,
+          "dominant_percentage": 59.8,
           "studios": {
             "Other": {
-              "count": 51,
-              "percentage": 6.6
+              "count": 44,
+              "percentage": 5.8
             },
             "Nikkatsu": {
-              "count": 458,
-              "percentage": 59.5
+              "count": 456,
+              "percentage": 59.8
             },
             "Shochiku": {
-              "count": 39,
-              "percentage": 5.1
+              "count": 41,
+              "percentage": 5.4
             },
             "Toho": {
               "count": 29,
@@ -352,11 +352,11 @@
             },
             "Daiei": {
               "count": 88,
-              "percentage": 11.4
+              "percentage": 11.5
             },
             "Toei": {
               "count": 101,
-              "percentage": 13.1
+              "percentage": 13.2
             },
             "Shintoho": {
               "count": 4,
@@ -365,7 +365,7 @@
           }
         },
         "1970": {
-          "total_films": 2990,
+          "total_films": 2994,
           "dominant_studio": "Nikkatsu",
           "dominant_percentage": 63.0,
           "studios": {
@@ -390,23 +390,23 @@
               "percentage": 2.7
             },
             "Nikkatsu": {
-              "count": 1883,
+              "count": 1887,
               "percentage": 63.0
             }
           }
         },
         "1980": {
-          "total_films": 3019,
+          "total_films": 2987,
           "dominant_studio": "Toei",
-          "dominant_percentage": 49.2,
+          "dominant_percentage": 48.7,
           "studios": {
             "Shochiku": {
-              "count": 50,
-              "percentage": 1.7
+              "count": 49,
+              "percentage": 1.6
             },
             "Other": {
               "count": 1376,
-              "percentage": 45.6
+              "percentage": 46.1
             },
             "Nikkatsu": {
               "count": 11,
@@ -417,8 +417,8 @@
               "percentage": 2.2
             },
             "Toei": {
-              "count": 1486,
-              "percentage": 49.2
+              "count": 1455,
+              "percentage": 48.7
             },
             "Toho": {
               "count": 29,
@@ -431,27 +431,27 @@
           }
         },
         "1990": {
-          "total_films": 1637,
+          "total_films": 1636,
           "dominant_studio": "Nikkatsu",
           "dominant_percentage": 34.2,
           "studios": {
             "Shochiku": {
-              "count": 330,
-              "percentage": 20.2
+              "count": 333,
+              "percentage": 20.4
             },
             "Other": {
               "count": 487,
-              "percentage": 29.7
+              "percentage": 29.8
             },
             "Nikkatsu": {
               "count": 560,
               "percentage": 34.2
             },
-            "Daiei": {
-              "count": 5,
-              "percentage": 0.3
-            },
             "Toho": {
+              "count": 1,
+              "percentage": 0.1
+            },
+            "Daiei": {
               "count": 2,
               "percentage": 0.1
             },
@@ -462,33 +462,33 @@
           }
         },
         "2000": {
-          "total_films": 1242,
+          "total_films": 1232,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 54.2,
+          "dominant_percentage": 54.6,
           "studios": {
             "Shochiku": {
               "count": 284,
-              "percentage": 22.9
+              "percentage": 23.1
             },
             "Other": {
-              "count": 241,
-              "percentage": 19.4
+              "count": 232,
+              "percentage": 18.8
             },
             "Nikkatsu": {
               "count": 673,
-              "percentage": 54.2
+              "percentage": 54.6
             },
             "Daiei": {
               "count": 9,
               "percentage": 0.7
             },
-            "Toei": {
-              "count": 21,
-              "percentage": 1.7
-            },
             "Toho": {
               "count": 14,
               "percentage": 1.1
+            },
+            "Toei": {
+              "count": 20,
+              "percentage": 1.6
             }
           }
         },
@@ -520,33 +520,33 @@
           }
         },
         "2010": {
-          "total_films": 916,
+          "total_films": 947,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 56.6,
+          "dominant_percentage": 54.7,
           "studios": {
             "Other": {
-              "count": 263,
-              "percentage": 28.7
+              "count": 293,
+              "percentage": 30.9
             },
             "Nikkatsu": {
               "count": 518,
-              "percentage": 56.6
+              "percentage": 54.7
             },
             "Daiei": {
-              "count": 2,
-              "percentage": 0.2
+              "count": 3,
+              "percentage": 0.3
             },
             "Shochiku": {
               "count": 41,
-              "percentage": 4.5
+              "percentage": 4.3
             },
             "Toho": {
               "count": 45,
-              "percentage": 4.9
+              "percentage": 4.8
             },
             "Toei": {
               "count": 47,
-              "percentage": 5.1
+              "percentage": 5.0
             }
           }
         },
@@ -646,33 +646,33 @@
           }
         },
         "all": {
-          "total_films": 11612,
+          "total_films": 11565,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 36.6,
+          "dominant_percentage": 36.7,
           "studios": {
             "Toho": {
-              "count": 525,
+              "count": 524,
               "percentage": 4.5
             },
             "Other": {
-              "count": 3227,
-              "percentage": 27.8
+              "count": 3237,
+              "percentage": 28.0
             },
             "Shochiku": {
-              "count": 1039,
-              "percentage": 8.9
+              "count": 1045,
+              "percentage": 9.0
             },
             "Daiei": {
-              "count": 292,
+              "count": 289,
               "percentage": 2.5
             },
             "Toei": {
-              "count": 2275,
-              "percentage": 19.6
+              "count": 2214,
+              "percentage": 19.1
             },
             "Nikkatsu": {
-              "count": 4247,
-              "percentage": 36.6
+              "count": 4249,
+              "percentage": 36.7
             },
             "Shintoho": {
               "count": 6,
@@ -688,8 +688,8 @@
     },
     "佐賀県": {
       "coordinates": [
-        33.3136,
-        130.1625
+        33.3115,
+        130.1664
       ],
       "by_decade": {
         "1960": {
@@ -822,13 +822,17 @@
           }
         },
         "1990": {
-          "total_films": 5,
+          "total_films": 6,
           "dominant_studio": "Other",
-          "dominant_percentage": 100.0,
+          "dominant_percentage": 83.3,
           "studios": {
             "Other": {
               "count": 5,
-              "percentage": 100.0
+              "percentage": 83.3
+            },
+            "Nikkatsu": {
+              "count": 1,
+              "percentage": 16.7
             }
           }
         },
@@ -844,29 +848,29 @@
           }
         },
         "all": {
-          "total_films": 128,
+          "total_films": 129,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 32.8,
+          "dominant_percentage": 33.3,
           "studios": {
             "Shochiku": {
               "count": 31,
-              "percentage": 24.2
+              "percentage": 24.0
             },
             "Toho": {
               "count": 12,
-              "percentage": 9.4
+              "percentage": 9.3
             },
             "Other": {
               "count": 39,
-              "percentage": 30.5
+              "percentage": 30.2
             },
             "Toei": {
               "count": 4,
               "percentage": 3.1
             },
             "Nikkatsu": {
-              "count": 42,
-              "percentage": 32.8
+              "count": 43,
+              "percentage": 33.3
             }
           }
         }
@@ -874,57 +878,26 @@
     },
     "兵庫県": {
       "coordinates": [
-        34.7743,
-        134.9534
+        34.7752,
+        134.9547
       ],
       "by_decade": {
-        "2010": {
-          "total_films": 291,
-          "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 50.5,
-          "studios": {
-            "Other": {
-              "count": 114,
-              "percentage": 39.2
-            },
-            "Shochiku": {
-              "count": 6,
-              "percentage": 2.1
-            },
-            "Nikkatsu": {
-              "count": 147,
-              "percentage": 50.5
-            },
-            "Daiei": {
-              "count": 2,
-              "percentage": 0.7
-            },
-            "Toho": {
-              "count": 19,
-              "percentage": 6.5
-            },
-            "Toei": {
-              "count": 3,
-              "percentage": 1.0
-            }
-          }
-        },
         "1970": {
-          "total_films": 203,
+          "total_films": 204,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 42.4,
+          "dominant_percentage": 42.6,
           "studios": {
             "Other": {
               "count": 40,
-              "percentage": 19.7
+              "percentage": 19.6
             },
             "Shochiku": {
               "count": 45,
-              "percentage": 22.2
+              "percentage": 22.1
             },
             "Nikkatsu": {
-              "count": 86,
-              "percentage": 42.4
+              "count": 87,
+              "percentage": 42.6
             },
             "Shintoho": {
               "count": 3,
@@ -932,7 +905,7 @@
             },
             "Toho": {
               "count": 17,
-              "percentage": 8.4
+              "percentage": 8.3
             },
             "Daiei": {
               "count": 2,
@@ -947,23 +920,19 @@
         "2000": {
           "total_films": 209,
           "dominant_studio": "Other",
-          "dominant_percentage": 57.4,
+          "dominant_percentage": 57.9,
           "studios": {
             "Shochiku": {
               "count": 16,
               "percentage": 7.7
             },
             "Other": {
-              "count": 120,
-              "percentage": 57.4
+              "count": 121,
+              "percentage": 57.9
             },
             "Nikkatsu": {
               "count": 53,
               "percentage": 25.4
-            },
-            "Toei": {
-              "count": 3,
-              "percentage": 1.4
             },
             "Tsuburaya": {
               "count": 10,
@@ -972,6 +941,41 @@
             "Toho": {
               "count": 7,
               "percentage": 3.3
+            },
+            "Toei": {
+              "count": 2,
+              "percentage": 1.0
+            }
+          }
+        },
+        "2010": {
+          "total_films": 291,
+          "dominant_studio": "Nikkatsu",
+          "dominant_percentage": 47.4,
+          "studios": {
+            "Shochiku": {
+              "count": 6,
+              "percentage": 2.1
+            },
+            "Other": {
+              "count": 114,
+              "percentage": 39.2
+            },
+            "Nikkatsu": {
+              "count": 138,
+              "percentage": 47.4
+            },
+            "Daiei": {
+              "count": 2,
+              "percentage": 0.7
+            },
+            "Toho": {
+              "count": 19,
+              "percentage": 6.5
+            },
+            "Toei": {
+              "count": 12,
+              "percentage": 4.1
             }
           }
         },
@@ -1037,13 +1041,13 @@
           }
         },
         "1950": {
-          "total_films": 180,
+          "total_films": 181,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 81.1,
+          "dominant_percentage": 80.7,
           "studios": {
             "Nikkatsu": {
               "count": 146,
-              "percentage": 81.1
+              "percentage": 80.7
             },
             "Other": {
               "count": 15,
@@ -1058,23 +1062,23 @@
               "percentage": 3.3
             },
             "Daiei": {
-              "count": 4,
-              "percentage": 2.2
+              "count": 5,
+              "percentage": 2.8
             }
           }
         },
         "1960": {
-          "total_films": 358,
+          "total_films": 354,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 62.8,
+          "dominant_percentage": 61.0,
           "studios": {
             "Nikkatsu": {
-              "count": 225,
-              "percentage": 62.8
+              "count": 216,
+              "percentage": 61.0
             },
             "Other": {
-              "count": 89,
-              "percentage": 24.9
+              "count": 95,
+              "percentage": 26.8
             },
             "Daiei": {
               "count": 5,
@@ -1086,15 +1090,15 @@
             },
             "Shochiku": {
               "count": 19,
-              "percentage": 5.3
+              "percentage": 5.4
             },
             "Toho": {
               "count": 9,
               "percentage": 2.5
             },
             "Toei": {
-              "count": 6,
-              "percentage": 1.7
+              "count": 5,
+              "percentage": 1.4
             },
             "Shintoho": {
               "count": 3,
@@ -1126,9 +1130,9 @@
           }
         },
         "1980": {
-          "total_films": 229,
+          "total_films": 226,
           "dominant_studio": "Other",
-          "dominant_percentage": 45.9,
+          "dominant_percentage": 46.5,
           "studios": {
             "Daiei": {
               "count": 10,
@@ -1136,7 +1140,7 @@
             },
             "Other": {
               "count": 105,
-              "percentage": 45.9
+              "percentage": 46.5
             },
             "Shochiku": {
               "count": 5,
@@ -1147,8 +1151,8 @@
               "percentage": 3.5
             },
             "Toei": {
-              "count": 95,
-              "percentage": 41.5
+              "count": 92,
+              "percentage": 40.7
             },
             "Ghibli": {
               "count": 5,
@@ -1172,37 +1176,37 @@
           }
         },
         "all": {
-          "total_films": 1670,
+          "total_films": 1665,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 45.1,
+          "dominant_percentage": 44.2,
           "studios": {
             "Other": {
-              "count": 535,
-              "percentage": 32.0
+              "count": 542,
+              "percentage": 32.6
             },
             "Shochiku": {
               "count": 132,
               "percentage": 7.9
             },
             "Nikkatsu": {
-              "count": 753,
-              "percentage": 45.1
+              "count": 736,
+              "percentage": 44.2
             },
-            "Daiei": {
-              "count": 23,
-              "percentage": 1.4
+            "Shintoho": {
+              "count": 6,
+              "percentage": 0.4
             },
             "Toho": {
               "count": 73,
               "percentage": 4.4
             },
-            "Toei": {
-              "count": 131,
-              "percentage": 7.8
+            "Daiei": {
+              "count": 24,
+              "percentage": 1.4
             },
-            "Shintoho": {
-              "count": 6,
-              "percentage": 0.4
+            "Toei": {
+              "count": 135,
+              "percentage": 8.1
             },
             "Tsuburaya": {
               "count": 12,
@@ -1218,8 +1222,8 @@
     },
     "北海道": {
       "coordinates": [
-        43.068,
-        141.7438
+        43.0648,
+        141.7382
       ],
       "by_decade": {
         "1960": {
@@ -1254,17 +1258,17 @@
           }
         },
         "2010": {
-          "total_films": 197,
+          "total_films": 196,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.6,
+          "dominant_percentage": 75.5,
           "studios": {
             "Other": {
-              "count": 149,
-              "percentage": 75.6
+              "count": 148,
+              "percentage": 75.5
             },
             "Nikkatsu": {
               "count": 17,
-              "percentage": 8.6
+              "percentage": 8.7
             },
             "Shochiku": {
               "count": 9,
@@ -1312,75 +1316,71 @@
           }
         },
         "1990": {
-          "total_films": 154,
+          "total_films": 153,
           "dominant_studio": "Other",
-          "dominant_percentage": 81.8,
+          "dominant_percentage": 82.4,
           "studios": {
             "Shochiku": {
               "count": 3,
-              "percentage": 1.9
+              "percentage": 2.0
             },
             "Other": {
               "count": 126,
-              "percentage": 81.8
+              "percentage": 82.4
             },
             "Toho": {
               "count": 23,
-              "percentage": 14.9
-            },
-            "Toei": {
-              "count": 1,
-              "percentage": 0.6
+              "percentage": 15.0
             },
             "Nikkatsu": {
               "count": 1,
-              "percentage": 0.6
+              "percentage": 0.7
             }
           }
         },
         "2000": {
-          "total_films": 205,
+          "total_films": 200,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.6,
+          "dominant_percentage": 75.0,
           "studios": {
             "Shochiku": {
               "count": 23,
-              "percentage": 11.2
+              "percentage": 11.5
             },
             "Other": {
-              "count": 155,
-              "percentage": 75.6
+              "count": 150,
+              "percentage": 75.0
             },
             "Nikkatsu": {
               "count": 17,
-              "percentage": 8.3
+              "percentage": 8.5
             },
             "Toei": {
               "count": 10,
-              "percentage": 4.9
+              "percentage": 5.0
             }
           }
         },
         "2020": {
-          "total_films": 62,
+          "total_films": 66,
           "dominant_studio": "Other",
-          "dominant_percentage": 74.2,
+          "dominant_percentage": 69.7,
           "studios": {
             "Other": {
               "count": 46,
-              "percentage": 74.2
+              "percentage": 69.7
             },
             "Nikkatsu": {
               "count": 10,
-              "percentage": 16.1
+              "percentage": 15.2
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 6.5
+              "percentage": 6.1
             },
             "Toho": {
-              "count": 2,
-              "percentage": 3.2
+              "count": 6,
+              "percentage": 9.1
             }
           }
         },
@@ -1416,21 +1416,21 @@
           }
         },
         "1970": {
-          "total_films": 160,
+          "total_films": 161,
           "dominant_studio": "Other",
-          "dominant_percentage": 44.4,
+          "dominant_percentage": 44.7,
           "studios": {
             "Nikkatsu": {
               "count": 12,
               "percentage": 7.5
             },
             "Other": {
-              "count": 71,
-              "percentage": 44.4
+              "count": 72,
+              "percentage": 44.7
             },
             "Shochiku": {
               "count": 66,
-              "percentage": 41.2
+              "percentage": 41.0
             },
             "Toho": {
               "count": 2,
@@ -1469,13 +1469,13 @@
           }
         },
         "all": {
-          "total_films": 1289,
+          "total_films": 1287,
           "dominant_studio": "Other",
-          "dominant_percentage": 53.8,
+          "dominant_percentage": 53.5,
           "studios": {
             "Toho": {
-              "count": 70,
-              "percentage": 5.4
+              "count": 74,
+              "percentage": 5.7
             },
             "Nikkatsu": {
               "count": 294,
@@ -1486,16 +1486,16 @@
               "percentage": 0.8
             },
             "Other": {
-              "count": 694,
-              "percentage": 53.8
+              "count": 689,
+              "percentage": 53.5
             },
             "Shochiku": {
               "count": 174,
               "percentage": 13.5
             },
             "Toei": {
-              "count": 45,
-              "percentage": 3.5
+              "count": 44,
+              "percentage": 3.4
             },
             "Shintoho": {
               "count": 2,
@@ -1507,8 +1507,8 @@
     },
     "千葉県": {
       "coordinates": [
-        35.5883,
-        140.1078
+        35.5896,
+        140.1076
       ],
       "by_decade": {
         "1950": {
@@ -1566,9 +1566,9 @@
           }
         },
         "2000": {
-          "total_films": 338,
+          "total_films": 337,
           "dominant_studio": "Other",
-          "dominant_percentage": 83.4,
+          "dominant_percentage": 83.7,
           "studios": {
             "Shochiku": {
               "count": 26,
@@ -1576,7 +1576,7 @@
             },
             "Other": {
               "count": 282,
-              "percentage": 83.4
+              "percentage": 83.7
             },
             "Daiei": {
               "count": 1,
@@ -1587,8 +1587,8 @@
               "percentage": 5.9
             },
             "Toei": {
-              "count": 8,
-              "percentage": 2.4
+              "count": 7,
+              "percentage": 2.1
             },
             "Nikkatsu": {
               "count": 1,
@@ -1597,12 +1597,12 @@
           }
         },
         "2010": {
-          "total_films": 311,
+          "total_films": 310,
           "dominant_studio": "Other",
           "dominant_percentage": 87.1,
           "studios": {
             "Other": {
-              "count": 271,
+              "count": 270,
               "percentage": 87.1
             },
             "Nikkatsu": {
@@ -1632,17 +1632,17 @@
           }
         },
         "1960": {
-          "total_films": 76,
+          "total_films": 77,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 71.1,
+          "dominant_percentage": 71.4,
           "studios": {
             "Nikkatsu": {
-              "count": 54,
-              "percentage": 71.1
+              "count": 55,
+              "percentage": 71.4
             },
             "Other": {
               "count": 12,
-              "percentage": 15.8
+              "percentage": 15.6
             },
             "Shochiku": {
               "count": 2,
@@ -1650,7 +1650,7 @@
             },
             "Toho": {
               "count": 5,
-              "percentage": 6.6
+              "percentage": 6.5
             },
             "Daiei": {
               "count": 3,
@@ -1739,25 +1739,25 @@
           }
         },
         "all": {
-          "total_films": 965,
+          "total_films": 964,
           "dominant_studio": "Other",
           "dominant_percentage": 74.0,
           "studios": {
             "Other": {
-              "count": 714,
+              "count": 713,
               "percentage": 74.0
             },
             "Nikkatsu": {
-              "count": 103,
-              "percentage": 10.7
+              "count": 104,
+              "percentage": 10.8
             },
             "Shochiku": {
               "count": 60,
               "percentage": 6.2
             },
             "Toei": {
-              "count": 22,
-              "percentage": 2.3
+              "count": 21,
+              "percentage": 2.2
             },
             "Toho": {
               "count": 50,
@@ -1777,8 +1777,8 @@
     },
     "和歌山県": {
       "coordinates": [
-        34.1007,
-        135.3081
+        34.1029,
+        135.3056
       ],
       "by_decade": {
         "1970": {
@@ -1873,17 +1873,21 @@
           }
         },
         "2010": {
-          "total_films": 10,
+          "total_films": 11,
           "dominant_studio": "Other",
-          "dominant_percentage": 90.0,
+          "dominant_percentage": 81.8,
           "studios": {
             "Other": {
               "count": 9,
-              "percentage": 90.0
+              "percentage": 81.8
+            },
+            "Shochiku": {
+              "count": 1,
+              "percentage": 9.1
             },
             "Nikkatsu": {
               "count": 1,
-              "percentage": 10.0
+              "percentage": 9.1
             }
           }
         },
@@ -1918,21 +1922,21 @@
           }
         },
         "all": {
-          "total_films": 99,
+          "total_films": 100,
           "dominant_studio": "Other",
-          "dominant_percentage": 57.6,
+          "dominant_percentage": 57.0,
           "studios": {
             "Other": {
               "count": 57,
-              "percentage": 57.6
+              "percentage": 57.0
             },
             "Nikkatsu": {
               "count": 19,
-              "percentage": 19.2
+              "percentage": 19.0
             },
             "Shochiku": {
-              "count": 16,
-              "percentage": 16.2
+              "count": 17,
+              "percentage": 17.0
             },
             "Shintoho": {
               "count": 1,
@@ -1956,10 +1960,60 @@
     },
     "埼玉県": {
       "coordinates": [
-        35.9164,
-        139.581
+        35.9165,
+        139.5803
       ],
       "by_decade": {
+        "1970": {
+          "total_films": 32,
+          "dominant_studio": "Other",
+          "dominant_percentage": 62.5,
+          "studios": {
+            "Other": {
+              "count": 20,
+              "percentage": 62.5
+            },
+            "Nikkatsu": {
+              "count": 9,
+              "percentage": 28.1
+            },
+            "Shochiku": {
+              "count": 2,
+              "percentage": 6.2
+            },
+            "Toho": {
+              "count": 1,
+              "percentage": 3.1
+            }
+          }
+        },
+        "2000": {
+          "total_films": 289,
+          "dominant_studio": "Other",
+          "dominant_percentage": 75.1,
+          "studios": {
+            "Shochiku": {
+              "count": 12,
+              "percentage": 4.2
+            },
+            "Other": {
+              "count": 217,
+              "percentage": 75.1
+            },
+            "Toho": {
+              "count": 10,
+              "percentage": 3.5
+            },
+            "Toei": {
+              "count": 47,
+              "percentage": 16.3
+            },
+            "Nikkatsu": {
+              "count": 3,
+              "percentage": 1.0
+            }
+          }
+        },
         "2010": {
           "total_films": 380,
           "dominant_studio": "Other",
@@ -1996,56 +2050,6 @@
             "Shintoho": {
               "count": 3,
               "percentage": 0.8
-            }
-          }
-        },
-        "1970": {
-          "total_films": 32,
-          "dominant_studio": "Other",
-          "dominant_percentage": 62.5,
-          "studios": {
-            "Other": {
-              "count": 20,
-              "percentage": 62.5
-            },
-            "Nikkatsu": {
-              "count": 9,
-              "percentage": 28.1
-            },
-            "Shochiku": {
-              "count": 2,
-              "percentage": 6.2
-            },
-            "Toho": {
-              "count": 1,
-              "percentage": 3.1
-            }
-          }
-        },
-        "2000": {
-          "total_films": 288,
-          "dominant_studio": "Other",
-          "dominant_percentage": 75.0,
-          "studios": {
-            "Shochiku": {
-              "count": 12,
-              "percentage": 4.2
-            },
-            "Other": {
-              "count": 216,
-              "percentage": 75.0
-            },
-            "Toho": {
-              "count": 10,
-              "percentage": 3.5
-            },
-            "Toei": {
-              "count": 47,
-              "percentage": 16.3
-            },
-            "Nikkatsu": {
-              "count": 3,
-              "percentage": 1.0
             }
           }
         },
@@ -2106,29 +2110,6 @@
             }
           }
         },
-        "1980": {
-          "total_films": 13,
-          "dominant_studio": "Other",
-          "dominant_percentage": 61.5,
-          "studios": {
-            "Other": {
-              "count": 8,
-              "percentage": 61.5
-            },
-            "Shochiku": {
-              "count": 2,
-              "percentage": 15.4
-            },
-            "Toei": {
-              "count": 1,
-              "percentage": 7.7
-            },
-            "Nikkatsu": {
-              "count": 2,
-              "percentage": 15.4
-            }
-          }
-        },
         "1960": {
           "total_films": 59,
           "dominant_studio": "Other",
@@ -2156,6 +2137,29 @@
             }
           }
         },
+        "1980": {
+          "total_films": 12,
+          "dominant_studio": "Other",
+          "dominant_percentage": 58.3,
+          "studios": {
+            "Other": {
+              "count": 7,
+              "percentage": 58.3
+            },
+            "Shochiku": {
+              "count": 2,
+              "percentage": 16.7
+            },
+            "Toei": {
+              "count": 1,
+              "percentage": 8.3
+            },
+            "Nikkatsu": {
+              "count": 2,
+              "percentage": 16.7
+            }
+          }
+        },
         "1940": {
           "total_films": 2,
           "dominant_studio": "Shochiku",
@@ -2180,13 +2184,13 @@
               "count": 675,
               "percentage": 75.2
             },
-            "Tsuburaya": {
-              "count": 1,
-              "percentage": 0.1
-            },
             "Nikkatsu": {
               "count": 104,
               "percentage": 11.6
+            },
+            "Shochiku": {
+              "count": 32,
+              "percentage": 3.6
             },
             "Toho": {
               "count": 17,
@@ -2196,9 +2200,9 @@
               "count": 59,
               "percentage": 6.6
             },
-            "Shochiku": {
-              "count": 32,
-              "percentage": 3.6
+            "Tsuburaya": {
+              "count": 1,
+              "percentage": 0.1
             },
             "Daiei": {
               "count": 7,
@@ -2214,8 +2218,8 @@
     },
     "大分県": {
       "coordinates": [
-        33.2778,
-        131.5622
+        33.2765,
+        131.5624
       ],
       "by_decade": {
         "1950": {
@@ -2288,21 +2292,21 @@
           }
         },
         "2000": {
-          "total_films": 32,
+          "total_films": 33,
           "dominant_studio": "Other",
-          "dominant_percentage": 71.9,
+          "dominant_percentage": 72.7,
           "studios": {
             "Other": {
-              "count": 23,
-              "percentage": 71.9
+              "count": 24,
+              "percentage": 72.7
             },
             "Toho": {
               "count": 5,
-              "percentage": 15.6
+              "percentage": 15.2
             },
             "Nikkatsu": {
               "count": 4,
-              "percentage": 12.5
+              "percentage": 12.1
             }
           }
         },
@@ -2322,32 +2326,36 @@
           }
         },
         "1980": {
-          "total_films": 32,
+          "total_films": 35,
           "dominant_studio": "Other",
           "dominant_percentage": 100.0,
           "studios": {
             "Other": {
-              "count": 32,
+              "count": 35,
               "percentage": 100.0
             }
           }
         },
         "1970": {
-          "total_films": 25,
+          "total_films": 27,
           "dominant_studio": "Other",
-          "dominant_percentage": 72.0,
+          "dominant_percentage": 66.7,
           "studios": {
             "Other": {
               "count": 18,
-              "percentage": 72.0
+              "percentage": 66.7
             },
             "Shochiku": {
               "count": 6,
-              "percentage": 24.0
+              "percentage": 22.2
             },
             "Nikkatsu": {
               "count": 1,
-              "percentage": 4.0
+              "percentage": 3.7
+            },
+            "Toei": {
+              "count": 2,
+              "percentage": 7.4
             }
           }
         },
@@ -2393,29 +2401,29 @@
           }
         },
         "all": {
-          "total_films": 229,
+          "total_films": 235,
           "dominant_studio": "Other",
-          "dominant_percentage": 45.4,
+          "dominant_percentage": 46.0,
           "studios": {
             "Toho": {
               "count": 21,
-              "percentage": 9.2
+              "percentage": 8.9
             },
             "Shochiku": {
               "count": 47,
-              "percentage": 20.5
+              "percentage": 20.0
             },
             "Nikkatsu": {
               "count": 35,
-              "percentage": 15.3
+              "percentage": 14.9
             },
             "Toei": {
-              "count": 18,
-              "percentage": 7.9
+              "count": 20,
+              "percentage": 8.5
             },
             "Other": {
-              "count": 104,
-              "percentage": 45.4
+              "count": 108,
+              "percentage": 46.0
             },
             "Shintoho": {
               "count": 2,
@@ -2432,40 +2440,9 @@
     "大阪府": {
       "coordinates": [
         34.7165,
-        135.534
+        135.5338
       ],
       "by_decade": {
-        "2010": {
-          "total_films": 185,
-          "dominant_studio": "Other",
-          "dominant_percentage": 73.5,
-          "studios": {
-            "Other": {
-              "count": 136,
-              "percentage": 73.5
-            },
-            "Nikkatsu": {
-              "count": 20,
-              "percentage": 10.8
-            },
-            "Daiei": {
-              "count": 1,
-              "percentage": 0.5
-            },
-            "Shochiku": {
-              "count": 15,
-              "percentage": 8.1
-            },
-            "Toho": {
-              "count": 10,
-              "percentage": 5.4
-            },
-            "Toei": {
-              "count": 3,
-              "percentage": 1.6
-            }
-          }
-        },
         "1970": {
           "total_films": 199,
           "dominant_studio": "Other",
@@ -2525,21 +2502,21 @@
           }
         },
         "2000": {
-          "total_films": 188,
+          "total_films": 192,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.0,
+          "dominant_percentage": 75.5,
           "studios": {
             "Shochiku": {
               "count": 6,
-              "percentage": 3.2
+              "percentage": 3.1
             },
             "Other": {
-              "count": 141,
-              "percentage": 75.0
+              "count": 145,
+              "percentage": 75.5
             },
             "Nikkatsu": {
               "count": 20,
-              "percentage": 10.6
+              "percentage": 10.4
             },
             "Daiei": {
               "count": 4,
@@ -2547,7 +2524,7 @@
             },
             "Toho": {
               "count": 8,
-              "percentage": 4.3
+              "percentage": 4.2
             },
             "Tsuburaya": {
               "count": 3,
@@ -2555,22 +2532,22 @@
             },
             "Toei": {
               "count": 6,
-              "percentage": 3.2
+              "percentage": 3.1
             }
           }
         },
         "1990": {
           "total_films": 100,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.0,
+          "dominant_percentage": 73.0,
           "studios": {
             "Other": {
-              "count": 75,
-              "percentage": 75.0
+              "count": 73,
+              "percentage": 73.0
             },
             "Nikkatsu": {
-              "count": 6,
-              "percentage": 6.0
+              "count": 8,
+              "percentage": 8.0
             },
             "Shochiku": {
               "count": 9,
@@ -2579,6 +2556,37 @@
             "Toei": {
               "count": 10,
               "percentage": 10.0
+            }
+          }
+        },
+        "2010": {
+          "total_films": 183,
+          "dominant_studio": "Other",
+          "dominant_percentage": 60.1,
+          "studios": {
+            "Other": {
+              "count": 110,
+              "percentage": 60.1
+            },
+            "Nikkatsu": {
+              "count": 20,
+              "percentage": 10.9
+            },
+            "Daiei": {
+              "count": 25,
+              "percentage": 13.7
+            },
+            "Shochiku": {
+              "count": 15,
+              "percentage": 8.2
+            },
+            "Toho": {
+              "count": 10,
+              "percentage": 5.5
+            },
+            "Toei": {
+              "count": 3,
+              "percentage": 1.6
             }
           }
         },
@@ -2618,33 +2626,33 @@
           }
         },
         "1960": {
-          "total_films": 276,
+          "total_films": 267,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 49.3,
+          "dominant_percentage": 44.2,
           "studios": {
             "Nikkatsu": {
-              "count": 136,
-              "percentage": 49.3
+              "count": 118,
+              "percentage": 44.2
             },
             "Other": {
-              "count": 100,
-              "percentage": 36.2
+              "count": 109,
+              "percentage": 40.8
             },
             "Shochiku": {
               "count": 12,
-              "percentage": 4.3
+              "percentage": 4.5
             },
             "Toho": {
               "count": 14,
-              "percentage": 5.1
+              "percentage": 5.2
             },
             "Daiei": {
               "count": 4,
-              "percentage": 1.4
+              "percentage": 1.5
             },
             "Toei": {
               "count": 10,
-              "percentage": 3.6
+              "percentage": 3.7
             }
           }
         },
@@ -2717,21 +2725,13 @@
           }
         },
         "all": {
-          "total_films": 1298,
+          "total_films": 1291,
           "dominant_studio": "Other",
-          "dominant_percentage": 50.2,
+          "dominant_percentage": 49.3,
           "studios": {
             "Other": {
-              "count": 651,
-              "percentage": 50.2
-            },
-            "Nikkatsu": {
-              "count": 336,
-              "percentage": 25.9
-            },
-            "Daiei": {
-              "count": 19,
-              "percentage": 1.5
+              "count": 636,
+              "percentage": 49.3
             },
             "Shochiku": {
               "count": 93,
@@ -2739,11 +2739,19 @@
             },
             "Toho": {
               "count": 116,
-              "percentage": 8.9
+              "percentage": 9.0
+            },
+            "Daiei": {
+              "count": 43,
+              "percentage": 3.3
             },
             "Toei": {
               "count": 78,
               "percentage": 6.0
+            },
+            "Nikkatsu": {
+              "count": 320,
+              "percentage": 24.8
             },
             "Tsuburaya": {
               "count": 3,
@@ -2760,21 +2768,21 @@
     "奈良県": {
       "coordinates": [
         34.6514,
-        135.8247
+        135.8246
       ],
       "by_decade": {
         "1950": {
-          "total_films": 137,
+          "total_films": 138,
           "dominant_studio": "Other",
-          "dominant_percentage": 51.1,
+          "dominant_percentage": 50.7,
           "studios": {
             "Other": {
               "count": 70,
-              "percentage": 51.1
+              "percentage": 50.7
             },
             "Nikkatsu": {
               "count": 52,
-              "percentage": 38.0
+              "percentage": 37.7
             },
             "Shochiku": {
               "count": 7,
@@ -2786,15 +2794,15 @@
             },
             "Daiei": {
               "count": 2,
-              "percentage": 1.5
+              "percentage": 1.4
             },
             "Toei": {
-              "count": 3,
-              "percentage": 2.2
+              "count": 4,
+              "percentage": 2.9
             },
             "Shintoho": {
               "count": 2,
-              "percentage": 1.5
+              "percentage": 1.4
             }
           }
         },
@@ -2830,56 +2838,56 @@
           }
         },
         "2000": {
-          "total_films": 111,
+          "total_films": 110,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 46.8,
+          "dominant_percentage": 47.3,
           "studios": {
             "Shochiku": {
               "count": 22,
-              "percentage": 19.8
+              "percentage": 20.0
             },
             "Other": {
               "count": 30,
-              "percentage": 27.0
+              "percentage": 27.3
             },
             "Daiei": {
               "count": 1,
               "percentage": 0.9
             },
-            "Toei": {
-              "count": 2,
-              "percentage": 1.8
-            },
             "Toho": {
               "count": 4,
               "percentage": 3.6
             },
+            "Toei": {
+              "count": 1,
+              "percentage": 0.9
+            },
             "Nikkatsu": {
               "count": 52,
-              "percentage": 46.8
+              "percentage": 47.3
             }
           }
         },
         "1980": {
-          "total_films": 74,
+          "total_films": 73,
           "dominant_studio": "Toei",
-          "dominant_percentage": 44.6,
+          "dominant_percentage": 43.8,
           "studios": {
             "Other": {
               "count": 19,
-              "percentage": 25.7
+              "percentage": 26.0
             },
             "Daiei": {
               "count": 2,
               "percentage": 2.7
             },
             "Toei": {
-              "count": 33,
-              "percentage": 44.6
+              "count": 32,
+              "percentage": 43.8
             },
             "Shochiku": {
               "count": 17,
-              "percentage": 23.0
+              "percentage": 23.3
             },
             "Toho": {
               "count": 2,
@@ -2892,17 +2900,17 @@
           }
         },
         "2010": {
-          "total_films": 56,
+          "total_films": 57,
           "dominant_studio": "Other",
-          "dominant_percentage": 50.0,
+          "dominant_percentage": 50.9,
           "studios": {
             "Other": {
-              "count": 28,
-              "percentage": 50.0
+              "count": 29,
+              "percentage": 50.9
             },
             "Nikkatsu": {
               "count": 21,
-              "percentage": 37.5
+              "percentage": 36.8
             },
             "Daiei": {
               "count": 1,
@@ -2910,11 +2918,11 @@
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 7.1
+              "percentage": 7.0
             },
             "Toei": {
               "count": 2,
-              "percentage": 3.6
+              "percentage": 3.5
             }
           }
         },
@@ -2934,12 +2942,12 @@
           }
         },
         "1930": {
-          "total_films": 2,
+          "total_films": 1,
           "dominant_studio": "Other",
           "dominant_percentage": 100.0,
           "studios": {
             "Other": {
-              "count": 2,
+              "count": 1,
               "percentage": 100.0
             }
           }
@@ -2949,17 +2957,13 @@
           "dominant_studio": "Other",
           "dominant_percentage": 34.0,
           "studios": {
-            "Daiei": {
-              "count": 1,
-              "percentage": 1.1
-            },
             "Other": {
               "count": 32,
               "percentage": 34.0
             },
             "Shochiku": {
-              "count": 18,
-              "percentage": 19.1
+              "count": 19,
+              "percentage": 20.2
             },
             "Toei": {
               "count": 12,
@@ -3010,33 +3014,33 @@
           }
         },
         "all": {
-          "total_films": 562,
+          "total_films": 561,
           "dominant_studio": "Other",
-          "dominant_percentage": 37.0,
+          "dominant_percentage": 37.1,
           "studios": {
             "Other": {
               "count": 208,
-              "percentage": 37.0
+              "percentage": 37.1
             },
             "Nikkatsu": {
               "count": 182,
               "percentage": 32.4
             },
             "Shochiku": {
-              "count": 88,
-              "percentage": 15.7
+              "count": 89,
+              "percentage": 15.9
             },
             "Toho": {
               "count": 13,
               "percentage": 2.3
             },
             "Daiei": {
-              "count": 9,
-              "percentage": 1.6
+              "count": 8,
+              "percentage": 1.4
             },
             "Toei": {
-              "count": 60,
-              "percentage": 10.7
+              "count": 59,
+              "percentage": 10.5
             },
             "Shintoho": {
               "count": 2,
@@ -3286,8 +3290,8 @@
     },
     "宮崎県": {
       "coordinates": [
-        31.9557,
-        131.3698
+        31.9336,
+        131.3816
       ],
       "by_decade": {
         "1990": {
@@ -3321,21 +3325,21 @@
           }
         },
         "1960": {
-          "total_films": 23,
+          "total_films": 22,
           "dominant_studio": "Other",
-          "dominant_percentage": 73.9,
+          "dominant_percentage": 72.7,
           "studios": {
             "Other": {
-              "count": 17,
-              "percentage": 73.9
+              "count": 16,
+              "percentage": 72.7
             },
             "Toho": {
               "count": 1,
-              "percentage": 4.3
+              "percentage": 4.5
             },
             "Nikkatsu": {
               "count": 5,
-              "percentage": 21.7
+              "percentage": 22.7
             }
           }
         },
@@ -3396,21 +3400,21 @@
           }
         },
         "all": {
-          "total_films": 80,
+          "total_films": 79,
           "dominant_studio": "Other",
-          "dominant_percentage": 48.8,
+          "dominant_percentage": 48.1,
           "studios": {
             "Shochiku": {
               "count": 29,
-              "percentage": 36.2
+              "percentage": 36.7
             },
             "Nikkatsu": {
               "count": 9,
-              "percentage": 11.2
+              "percentage": 11.4
             },
             "Other": {
-              "count": 39,
-              "percentage": 48.8
+              "count": 38,
+              "percentage": 48.1
             },
             "Toho": {
               "count": 3,
@@ -3422,8 +3426,8 @@
     },
     "富山県": {
       "coordinates": [
-        36.7149,
-        137.2197
+        36.7167,
+        137.2223
       ],
       "by_decade": {
         "1970": {
@@ -3496,17 +3500,17 @@
           }
         },
         "2000": {
-          "total_films": 26,
+          "total_films": 27,
           "dominant_studio": "Other",
-          "dominant_percentage": 92.3,
+          "dominant_percentage": 92.6,
           "studios": {
             "Other": {
-              "count": 24,
-              "percentage": 92.3
+              "count": 25,
+              "percentage": 92.6
             },
             "Toei": {
               "count": 2,
-              "percentage": 7.7
+              "percentage": 7.4
             }
           }
         },
@@ -3575,17 +3579,17 @@
           }
         },
         "all": {
-          "total_films": 254,
+          "total_films": 255,
           "dominant_studio": "Other",
-          "dominant_percentage": 66.9,
+          "dominant_percentage": 67.1,
           "studios": {
             "Toho": {
               "count": 19,
               "percentage": 7.5
             },
             "Other": {
-              "count": 170,
-              "percentage": 66.9
+              "count": 171,
+              "percentage": 67.1
             },
             "Toei": {
               "count": 12,
@@ -3597,7 +3601,7 @@
             },
             "Nikkatsu": {
               "count": 48,
-              "percentage": 18.9
+              "percentage": 18.8
             }
           }
         }
@@ -3605,8 +3609,8 @@
     },
     "山口県": {
       "coordinates": [
-        34.126,
-        131.3581
+        34.1256,
+        131.362
       ],
       "by_decade": {
         "1970": {
@@ -3629,21 +3633,21 @@
           }
         },
         "2000": {
-          "total_films": 34,
+          "total_films": 48,
           "dominant_studio": "Other",
-          "dominant_percentage": 76.5,
+          "dominant_percentage": 83.3,
           "studios": {
             "Shochiku": {
               "count": 6,
-              "percentage": 17.6
+              "percentage": 12.5
             },
             "Nikkatsu": {
               "count": 2,
-              "percentage": 5.9
+              "percentage": 4.2
             },
             "Other": {
-              "count": 26,
-              "percentage": 76.5
+              "count": 40,
+              "percentage": 83.3
             }
           }
         },
@@ -3780,25 +3784,25 @@
           }
         },
         "all": {
-          "total_films": 191,
+          "total_films": 205,
           "dominant_studio": "Other",
-          "dominant_percentage": 46.6,
+          "dominant_percentage": 50.2,
           "studios": {
             "Other": {
-              "count": 89,
-              "percentage": 46.6
+              "count": 103,
+              "percentage": 50.2
             },
             "Shochiku": {
               "count": 33,
-              "percentage": 17.3
+              "percentage": 16.1
             },
             "Toei": {
               "count": 9,
-              "percentage": 4.7
+              "percentage": 4.4
             },
             "Nikkatsu": {
               "count": 56,
-              "percentage": 29.3
+              "percentage": 27.3
             },
             "Toho": {
               "count": 2,
@@ -3814,8 +3818,8 @@
     },
     "山形県": {
       "coordinates": [
-        38.5089,
-        140.0837
+        38.5027,
+        140.0875
       ],
       "by_decade": {
         "2010": {
@@ -3834,17 +3838,17 @@
           }
         },
         "2000": {
-          "total_films": 84,
+          "total_films": 83,
           "dominant_studio": "Other",
-          "dominant_percentage": 85.7,
+          "dominant_percentage": 85.5,
           "studios": {
             "Other": {
-              "count": 72,
-              "percentage": 85.7
+              "count": 71,
+              "percentage": 85.5
             },
             "Toho": {
               "count": 12,
-              "percentage": 14.3
+              "percentage": 14.5
             }
           }
         },
@@ -3985,17 +3989,17 @@
           }
         },
         "all": {
-          "total_films": 224,
+          "total_films": 223,
           "dominant_studio": "Other",
-          "dominant_percentage": 65.2,
+          "dominant_percentage": 65.0,
           "studios": {
             "Other": {
-              "count": 146,
-              "percentage": 65.2
+              "count": 145,
+              "percentage": 65.0
             },
             "Shochiku": {
               "count": 28,
-              "percentage": 12.5
+              "percentage": 12.6
             },
             "Toho": {
               "count": 19,
@@ -4023,8 +4027,8 @@
     },
     "山梨県": {
       "coordinates": [
-        35.6294,
-        138.6276
+        35.6286,
+        138.6289
       ],
       "by_decade": {
         "1970": {
@@ -4070,13 +4074,13 @@
           }
         },
         "2000": {
-          "total_films": 140,
+          "total_films": 141,
           "dominant_studio": "Other",
-          "dominant_percentage": 89.3,
+          "dominant_percentage": 89.4,
           "studios": {
             "Other": {
-              "count": 125,
-              "percentage": 89.3
+              "count": 126,
+              "percentage": 89.4
             },
             "Nikkatsu": {
               "count": 2,
@@ -4088,11 +4092,11 @@
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 2.9
+              "percentage": 2.8
             },
             "Toho": {
               "count": 4,
-              "percentage": 2.9
+              "percentage": 2.8
             },
             "Toei": {
               "count": 3,
@@ -4128,21 +4132,21 @@
           }
         },
         "2010": {
-          "total_films": 111,
+          "total_films": 110,
           "dominant_studio": "Other",
-          "dominant_percentage": 82.9,
+          "dominant_percentage": 82.7,
           "studios": {
             "Nikkatsu": {
               "count": 7,
-              "percentage": 6.3
+              "percentage": 6.4
             },
             "Other": {
-              "count": 92,
-              "percentage": 82.9
+              "count": 91,
+              "percentage": 82.7
             },
             "Shochiku": {
               "count": 6,
-              "percentage": 5.4
+              "percentage": 5.5
             },
             "Toho": {
               "count": 4,
@@ -4170,21 +4174,17 @@
           }
         },
         "1990": {
-          "total_films": 13,
+          "total_films": 12,
           "dominant_studio": "Other",
-          "dominant_percentage": 69.2,
+          "dominant_percentage": 75.0,
           "studios": {
             "Other": {
               "count": 9,
-              "percentage": 69.2
+              "percentage": 75.0
             },
             "Shochiku": {
               "count": 3,
-              "percentage": 23.1
-            },
-            "Toho": {
-              "count": 1,
-              "percentage": 7.7
+              "percentage": 25.0
             }
           }
         },
@@ -4239,25 +4239,25 @@
           }
         },
         "all": {
-          "total_films": 401,
+          "total_films": 400,
           "dominant_studio": "Other",
-          "dominant_percentage": 62.6,
+          "dominant_percentage": 62.7,
           "studios": {
             "Other": {
               "count": 251,
-              "percentage": 62.6
+              "percentage": 62.7
             },
             "Nikkatsu": {
               "count": 75,
-              "percentage": 18.7
+              "percentage": 18.8
             },
             "Shochiku": {
               "count": 39,
-              "percentage": 9.7
+              "percentage": 9.8
             },
             "Toho": {
-              "count": 26,
-              "percentage": 6.5
+              "count": 25,
+              "percentage": 6.2
             },
             "Toei": {
               "count": 4,
@@ -4269,7 +4269,7 @@
             },
             "Daiei": {
               "count": 3,
-              "percentage": 0.7
+              "percentage": 0.8
             },
             "Shintoho": {
               "count": 1,
@@ -4281,30 +4281,30 @@
     },
     "岐阜県": {
       "coordinates": [
-        35.5021,
-        137.1342
+        35.4998,
+        137.135
       ],
       "by_decade": {
         "1980": {
-          "total_films": 20,
+          "total_films": 19,
           "dominant_studio": "Shochiku",
-          "dominant_percentage": 45.0,
+          "dominant_percentage": 42.1,
           "studios": {
             "Shochiku": {
-              "count": 9,
-              "percentage": 45.0
+              "count": 8,
+              "percentage": 42.1
             },
             "Other": {
               "count": 7,
-              "percentage": 35.0
+              "percentage": 36.8
             },
             "Nikkatsu": {
               "count": 1,
-              "percentage": 5.0
+              "percentage": 5.3
             },
             "Toei": {
               "count": 3,
-              "percentage": 15.0
+              "percentage": 15.8
             }
           }
         },
@@ -4432,17 +4432,17 @@
           }
         },
         "1930": {
-          "total_films": 4,
+          "total_films": 5,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.0,
+          "dominant_percentage": 80.0,
           "studios": {
             "Other": {
-              "count": 3,
-              "percentage": 75.0
+              "count": 4,
+              "percentage": 80.0
             },
             "Shochiku": {
               "count": 1,
-              "percentage": 25.0
+              "percentage": 20.0
             }
           }
         },
@@ -4525,12 +4525,12 @@
           "dominant_percentage": 42.2,
           "studios": {
             "Shochiku": {
-              "count": 45,
-              "percentage": 14.9
+              "count": 44,
+              "percentage": 14.5
             },
             "Other": {
-              "count": 95,
-              "percentage": 31.4
+              "count": 96,
+              "percentage": 31.7
             },
             "Nikkatsu": {
               "count": 128,
@@ -4562,8 +4562,8 @@
     },
     "岡山県": {
       "coordinates": [
-        34.6774,
-        133.8886
+        34.6772,
+        133.8885
       ],
       "by_decade": {
         "1950": {
@@ -4675,40 +4675,40 @@
           }
         },
         "2020": {
-          "total_films": 43,
+          "total_films": 36,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 69.8,
+          "dominant_percentage": 63.9,
           "studios": {
             "Nikkatsu": {
-              "count": 30,
-              "percentage": 69.8
+              "count": 23,
+              "percentage": 63.9
             },
             "Other": {
               "count": 5,
-              "percentage": 11.6
+              "percentage": 13.9
             },
             "Shochiku": {
               "count": 6,
-              "percentage": 14.0
+              "percentage": 16.7
             },
             "Toho": {
               "count": 2,
-              "percentage": 4.7
+              "percentage": 5.6
             }
           }
         },
         "2010": {
           "total_films": 33,
           "dominant_studio": "Other",
-          "dominant_percentage": 81.8,
+          "dominant_percentage": 78.8,
           "studios": {
             "Other": {
-              "count": 27,
-              "percentage": 81.8
+              "count": 26,
+              "percentage": 78.8
             },
             "Shochiku": {
-              "count": 2,
-              "percentage": 6.1
+              "count": 3,
+              "percentage": 9.1
             },
             "Toei": {
               "count": 1,
@@ -4778,37 +4778,37 @@
           }
         },
         "all": {
-          "total_films": 268,
+          "total_films": 261,
           "dominant_studio": "Other",
-          "dominant_percentage": 41.0,
+          "dominant_percentage": 41.8,
           "studios": {
             "Toho": {
               "count": 15,
-              "percentage": 5.6
+              "percentage": 5.7
             },
             "Other": {
-              "count": 110,
-              "percentage": 41.0
+              "count": 109,
+              "percentage": 41.8
             },
             "Nikkatsu": {
-              "count": 64,
-              "percentage": 23.9
+              "count": 57,
+              "percentage": 21.8
             },
             "Daiei": {
               "count": 4,
               "percentage": 1.5
             },
             "Shochiku": {
-              "count": 62,
-              "percentage": 23.1
+              "count": 63,
+              "percentage": 24.1
             },
             "Toei": {
               "count": 11,
-              "percentage": 4.1
+              "percentage": 4.2
             },
             "Tsuburaya": {
               "count": 2,
-              "percentage": 0.7
+              "percentage": 0.8
             }
           }
         }
@@ -5057,8 +5057,8 @@
     },
     "島根県": {
       "coordinates": [
-        35.3275,
-        132.8923
+        35.3474,
+        132.8944
       ],
       "by_decade": {
         "1970": {
@@ -5149,21 +5149,21 @@
           }
         },
         "1960": {
-          "total_films": 4,
-          "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 50.0,
+          "total_films": 11,
+          "dominant_studio": "Shochiku",
+          "dominant_percentage": 72.7,
           "studios": {
             "Other": {
               "count": 1,
-              "percentage": 25.0
+              "percentage": 9.1
             },
             "Shochiku": {
-              "count": 1,
-              "percentage": 25.0
+              "count": 8,
+              "percentage": 72.7
             },
             "Nikkatsu": {
               "count": 2,
-              "percentage": 50.0
+              "percentage": 18.2
             }
           }
         },
@@ -5179,12 +5179,12 @@
           }
         },
         "1950": {
-          "total_films": 9,
+          "total_films": 2,
           "dominant_studio": "Nikkatsu",
           "dominant_percentage": 100.0,
           "studios": {
             "Nikkatsu": {
-              "count": 9,
+              "count": 2,
               "percentage": 100.0
             }
           }
@@ -5199,12 +5199,12 @@
               "percentage": 44.8
             },
             "Shochiku": {
-              "count": 52,
-              "percentage": 36.4
+              "count": 59,
+              "percentage": 41.3
             },
             "Nikkatsu": {
-              "count": 26,
-              "percentage": 18.2
+              "count": 19,
+              "percentage": 13.3
             },
             "Toei": {
               "count": 1,
@@ -5216,8 +5216,8 @@
     },
     "広島県": {
       "coordinates": [
-        34.4128,
-        132.6787
+        34.426,
+        132.8215
       ],
       "by_decade": {
         "1960": {
@@ -5283,25 +5283,25 @@
           }
         },
         "2000": {
-          "total_films": 116,
+          "total_films": 114,
           "dominant_studio": "Other",
-          "dominant_percentage": 56.9,
+          "dominant_percentage": 57.0,
           "studios": {
             "Other": {
-              "count": 66,
-              "percentage": 56.9
+              "count": 65,
+              "percentage": 57.0
             },
             "Nikkatsu": {
               "count": 41,
-              "percentage": 35.3
+              "percentage": 36.0
             },
             "Toei": {
               "count": 4,
-              "percentage": 3.4
+              "percentage": 3.5
             },
             "Shochiku": {
-              "count": 5,
-              "percentage": 4.3
+              "count": 4,
+              "percentage": 3.5
             }
           }
         },
@@ -5337,21 +5337,21 @@
           }
         },
         "1950": {
-          "total_films": 63,
+          "total_films": 62,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 57.1,
+          "dominant_percentage": 58.1,
           "studios": {
             "Nikkatsu": {
               "count": 36,
-              "percentage": 57.1
+              "percentage": 58.1
             },
             "Other": {
               "count": 22,
-              "percentage": 34.9
+              "percentage": 35.5
             },
             "Shochiku": {
-              "count": 3,
-              "percentage": 4.8
+              "count": 2,
+              "percentage": 3.2
             },
             "Toei": {
               "count": 1,
@@ -5410,13 +5410,13 @@
           }
         },
         "1990": {
-          "total_films": 65,
+          "total_films": 66,
           "dominant_studio": "Other",
-          "dominant_percentage": 92.3,
+          "dominant_percentage": 92.4,
           "studios": {
             "Other": {
-              "count": 60,
-              "percentage": 92.3
+              "count": 61,
+              "percentage": 92.4
             },
             "Shochiku": {
               "count": 1,
@@ -5424,7 +5424,7 @@
             },
             "Nikkatsu": {
               "count": 4,
-              "percentage": 6.2
+              "percentage": 6.1
             }
           }
         },
@@ -5451,21 +5451,21 @@
           }
         },
         "all": {
-          "total_films": 731,
+          "total_films": 729,
           "dominant_studio": "Other",
-          "dominant_percentage": 52.3,
+          "dominant_percentage": 52.4,
           "studios": {
             "Shochiku": {
-              "count": 39,
-              "percentage": 5.3
+              "count": 37,
+              "percentage": 5.1
             },
             "Nikkatsu": {
               "count": 253,
-              "percentage": 34.6
+              "percentage": 34.7
             },
             "Other": {
               "count": 382,
-              "percentage": 52.3
+              "percentage": 52.4
             },
             "Tsuburaya": {
               "count": 2,
@@ -5687,8 +5687,8 @@
     },
     "愛媛県": {
       "coordinates": [
-        33.6496,
-        132.7569
+        33.6443,
+        132.7544
       ],
       "by_decade": {
         "1950": {
@@ -5711,25 +5711,25 @@
           }
         },
         "1960": {
-          "total_films": 58,
+          "total_films": 59,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 60.3,
+          "dominant_percentage": 59.3,
           "studios": {
             "Toho": {
               "count": 5,
-              "percentage": 8.6
+              "percentage": 8.5
             },
             "Other": {
-              "count": 3,
-              "percentage": 5.2
+              "count": 4,
+              "percentage": 6.8
             },
             "Shochiku": {
               "count": 5,
-              "percentage": 8.6
+              "percentage": 8.5
             },
             "Daiei": {
               "count": 8,
-              "percentage": 13.8
+              "percentage": 13.6
             },
             "Toei": {
               "count": 2,
@@ -5737,7 +5737,7 @@
             },
             "Nikkatsu": {
               "count": 35,
-              "percentage": 60.3
+              "percentage": 59.3
             }
           }
         },
@@ -5864,9 +5864,9 @@
           }
         },
         "all": {
-          "total_films": 283,
+          "total_films": 284,
           "dominant_studio": "Other",
-          "dominant_percentage": 58.7,
+          "dominant_percentage": 58.8,
           "studios": {
             "Toho": {
               "count": 14,
@@ -5874,11 +5874,11 @@
             },
             "Nikkatsu": {
               "count": 64,
-              "percentage": 22.6
+              "percentage": 22.5
             },
             "Other": {
-              "count": 166,
-              "percentage": 58.7
+              "count": 167,
+              "percentage": 58.8
             },
             "Shochiku": {
               "count": 17,
@@ -5903,7 +5903,7 @@
     "愛知県": {
       "coordinates": [
         35.1441,
-        136.9588
+        136.9593
       ],
       "by_decade": {
         "1960": {
@@ -5938,21 +5938,21 @@
           }
         },
         "2010": {
-          "total_films": 168,
+          "total_films": 169,
           "dominant_studio": "Other",
-          "dominant_percentage": 53.0,
+          "dominant_percentage": 54.4,
           "studios": {
             "Other": {
-              "count": 89,
-              "percentage": 53.0
+              "count": 92,
+              "percentage": 54.4
             },
             "Shochiku": {
               "count": 11,
               "percentage": 6.5
             },
             "Nikkatsu": {
-              "count": 53,
-              "percentage": 31.5
+              "count": 51,
+              "percentage": 30.2
             },
             "Daiei": {
               "count": 1,
@@ -5964,7 +5964,7 @@
             },
             "Toei": {
               "count": 8,
-              "percentage": 4.8
+              "percentage": 4.7
             },
             "Shintoho": {
               "count": 1,
@@ -6009,16 +6009,12 @@
           "dominant_percentage": 46.1,
           "studios": {
             "Shochiku": {
-              "count": 20,
-              "percentage": 19.6
+              "count": 21,
+              "percentage": 20.6
             },
             "Other": {
               "count": 47,
               "percentage": 46.1
-            },
-            "Daiei": {
-              "count": 1,
-              "percentage": 1.0
             },
             "Toei": {
               "count": 12,
@@ -6189,29 +6185,29 @@
           }
         },
         "all": {
-          "total_films": 893,
+          "total_films": 894,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 38.5,
+          "dominant_percentage": 38.3,
           "studios": {
             "Toho": {
               "count": 80,
-              "percentage": 9.0
+              "percentage": 8.9
             },
             "Nikkatsu": {
-              "count": 344,
-              "percentage": 38.5
+              "count": 342,
+              "percentage": 38.3
             },
             "Other": {
-              "count": 286,
-              "percentage": 32.0
+              "count": 289,
+              "percentage": 32.3
             },
             "Shochiku": {
-              "count": 100,
-              "percentage": 11.2
+              "count": 101,
+              "percentage": 11.3
             },
             "Daiei": {
-              "count": 15,
-              "percentage": 1.7
+              "count": 14,
+              "percentage": 1.6
             },
             "Toei": {
               "count": 64,
@@ -6227,8 +6223,8 @@
     },
     "新潟県": {
       "coordinates": [
-        37.6496,
-        138.8848
+        37.6514,
+        138.8874
       ],
       "by_decade": {
         "1960": {
@@ -6258,53 +6254,30 @@
             }
           }
         },
-        "2010": {
-          "total_films": 55,
-          "dominant_studio": "Other",
-          "dominant_percentage": 90.9,
-          "studios": {
-            "Other": {
-              "count": 50,
-              "percentage": 90.9
-            },
-            "Shochiku": {
-              "count": 2,
-              "percentage": 3.6
-            },
-            "Daiei": {
-              "count": 1,
-              "percentage": 1.8
-            },
-            "Nikkatsu": {
-              "count": 2,
-              "percentage": 3.6
-            }
-          }
-        },
         "1950": {
-          "total_films": 30,
+          "total_films": 31,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 76.7,
+          "dominant_percentage": 74.2,
           "studios": {
             "Shochiku": {
               "count": 4,
-              "percentage": 13.3
+              "percentage": 12.9
             },
             "Nikkatsu": {
               "count": 23,
-              "percentage": 76.7
+              "percentage": 74.2
             },
             "Other": {
               "count": 1,
-              "percentage": 3.3
+              "percentage": 3.2
             },
             "Toho": {
               "count": 1,
-              "percentage": 3.3
+              "percentage": 3.2
             },
             "Toei": {
-              "count": 1,
-              "percentage": 3.3
+              "count": 2,
+              "percentage": 6.5
             }
           }
         },
@@ -6328,25 +6301,25 @@
           }
         },
         "2000": {
-          "total_films": 37,
+          "total_films": 51,
           "dominant_studio": "Other",
-          "dominant_percentage": 86.5,
+          "dominant_percentage": 90.2,
           "studios": {
             "Shochiku": {
               "count": 3,
-              "percentage": 8.1
+              "percentage": 5.9
             },
             "Other": {
-              "count": 32,
-              "percentage": 86.5
+              "count": 46,
+              "percentage": 90.2
             },
             "Toei": {
               "count": 1,
-              "percentage": 2.7
+              "percentage": 2.0
             },
             "Nikkatsu": {
               "count": 1,
-              "percentage": 2.7
+              "percentage": 2.0
             }
           }
         },
@@ -6370,29 +6343,29 @@
           }
         },
         "1970": {
-          "total_films": 24,
+          "total_films": 23,
           "dominant_studio": "Other",
-          "dominant_percentage": 58.3,
+          "dominant_percentage": 56.5,
           "studios": {
             "Toei": {
               "count": 3,
-              "percentage": 12.5
+              "percentage": 13.0
             },
             "Other": {
-              "count": 14,
-              "percentage": 58.3
+              "count": 13,
+              "percentage": 56.5
             },
             "Shochiku": {
               "count": 2,
-              "percentage": 8.3
+              "percentage": 8.7
             },
             "Shintoho": {
               "count": 1,
-              "percentage": 4.2
+              "percentage": 4.3
             },
             "Nikkatsu": {
               "count": 4,
-              "percentage": 16.7
+              "percentage": 17.4
             }
           }
         },
@@ -6411,36 +6384,59 @@
             }
           }
         },
-        "all": {
-          "total_films": 263,
+        "2010": {
+          "total_films": 40,
           "dominant_studio": "Other",
-          "dominant_percentage": 52.9,
+          "dominant_percentage": 87.5,
+          "studios": {
+            "Other": {
+              "count": 35,
+              "percentage": 87.5
+            },
+            "Shochiku": {
+              "count": 2,
+              "percentage": 5.0
+            },
+            "Daiei": {
+              "count": 1,
+              "percentage": 2.5
+            },
+            "Nikkatsu": {
+              "count": 2,
+              "percentage": 5.0
+            }
+          }
+        },
+        "all": {
+          "total_films": 262,
+          "dominant_studio": "Other",
+          "dominant_percentage": 52.3,
           "studios": {
             "Toho": {
               "count": 5,
               "percentage": 1.9
             },
             "Other": {
-              "count": 139,
-              "percentage": 52.9
+              "count": 137,
+              "percentage": 52.3
             },
             "Shochiku": {
               "count": 37,
               "percentage": 14.1
             },
             "Toei": {
-              "count": 10,
-              "percentage": 3.8
+              "count": 11,
+              "percentage": 4.2
             },
             "Nikkatsu": {
               "count": 70,
-              "percentage": 26.6
+              "percentage": 26.7
             },
-            "Daiei": {
+            "Shintoho": {
               "count": 1,
               "percentage": 0.4
             },
-            "Shintoho": {
+            "Daiei": {
               "count": 1,
               "percentage": 0.4
             }
@@ -6450,12 +6446,12 @@
     },
     "東京都": {
       "coordinates": [
-        35.6786,
-        139.6869
+        35.6492,
+        139.6944
       ],
       "by_decade": {
         "1950": {
-          "total_films": 2576,
+          "total_films": 2580,
           "dominant_studio": "Nikkatsu",
           "dominant_percentage": 79.6,
           "studios": {
@@ -6465,10 +6461,10 @@
             },
             "Other": {
               "count": 272,
-              "percentage": 10.6
+              "percentage": 10.5
             },
             "Nikkatsu": {
-              "count": 2050,
+              "count": 2054,
               "percentage": 79.6
             },
             "Shochiku": {
@@ -6490,25 +6486,25 @@
           }
         },
         "1960": {
-          "total_films": 3731,
+          "total_films": 3698,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 61.6,
+          "dominant_percentage": 61.5,
           "studios": {
             "Toho": {
               "count": 466,
-              "percentage": 12.5
+              "percentage": 12.6
             },
             "Shochiku": {
-              "count": 182,
-              "percentage": 4.9
+              "count": 185,
+              "percentage": 5.0
             },
             "Other": {
-              "count": 662,
-              "percentage": 17.7
+              "count": 652,
+              "percentage": 17.6
             },
             "Nikkatsu": {
-              "count": 2299,
-              "percentage": 61.6
+              "count": 2274,
+              "percentage": 61.5
             },
             "Daiei": {
               "count": 44,
@@ -6519,7 +6515,7 @@
               "percentage": 0.1
             },
             "Toei": {
-              "count": 69,
+              "count": 68,
               "percentage": 1.8
             },
             "Shintoho": {
@@ -6529,16 +6525,16 @@
           }
         },
         "2010": {
-          "total_films": 2480,
+          "total_films": 2511,
           "dominant_studio": "Other",
-          "dominant_percentage": 78.3,
+          "dominant_percentage": 78.7,
           "studios": {
             "Other": {
-              "count": 1941,
-              "percentage": 78.3
+              "count": 1975,
+              "percentage": 78.7
             },
             "Shochiku": {
-              "count": 76,
+              "count": 77,
               "percentage": 3.1
             },
             "Tsuburaya": {
@@ -6546,20 +6542,20 @@
               "percentage": 0.1
             },
             "Nikkatsu": {
-              "count": 197,
-              "percentage": 7.9
+              "count": 194,
+              "percentage": 7.7
             },
             "Daiei": {
               "count": 71,
-              "percentage": 2.9
+              "percentage": 2.8
             },
             "Toho": {
               "count": 111,
-              "percentage": 4.5
+              "percentage": 4.4
             },
             "Toei": {
-              "count": 54,
-              "percentage": 2.2
+              "count": 53,
+              "percentage": 2.1
             },
             "Shintoho": {
               "count": 28,
@@ -6568,20 +6564,20 @@
           }
         },
         "2000": {
-          "total_films": 3709,
+          "total_films": 3704,
           "dominant_studio": "Other",
           "dominant_percentage": 79.3,
           "studios": {
             "Other": {
-              "count": 2942,
+              "count": 2937,
               "percentage": 79.3
             },
             "Shochiku": {
-              "count": 237,
+              "count": 236,
               "percentage": 6.4
             },
             "Nikkatsu": {
-              "count": 189,
+              "count": 190,
               "percentage": 5.1
             },
             "Daiei": {
@@ -6598,7 +6594,7 @@
             },
             "Toho": {
               "count": 191,
-              "percentage": 5.1
+              "percentage": 5.2
             },
             "Shintoho": {
               "count": 2,
@@ -6607,25 +6603,25 @@
           }
         },
         "1970": {
-          "total_films": 1239,
+          "total_films": 1242,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 47.1,
+          "dominant_percentage": 47.0,
           "studios": {
             "Other": {
-              "count": 376,
-              "percentage": 30.3
+              "count": 378,
+              "percentage": 30.4
             },
             "Shochiku": {
               "count": 80,
-              "percentage": 6.5
+              "percentage": 6.4
             },
             "Nikkatsu": {
-              "count": 583,
-              "percentage": 47.1
+              "count": 584,
+              "percentage": 47.0
             },
             "Toei": {
               "count": 44,
-              "percentage": 3.6
+              "percentage": 3.5
             },
             "Tsuburaya": {
               "count": 3,
@@ -6646,29 +6642,29 @@
           }
         },
         "1990": {
-          "total_films": 636,
+          "total_films": 641,
           "dominant_studio": "Other",
-          "dominant_percentage": 62.3,
+          "dominant_percentage": 61.8,
           "studios": {
             "Other": {
               "count": 396,
-              "percentage": 62.3
+              "percentage": 61.8
             },
             "Shochiku": {
-              "count": 102,
-              "percentage": 16.0
+              "count": 103,
+              "percentage": 16.1
             },
             "Nikkatsu": {
-              "count": 77,
-              "percentage": 12.1
+              "count": 80,
+              "percentage": 12.5
             },
             "Daiei": {
-              "count": 8,
-              "percentage": 1.3
+              "count": 7,
+              "percentage": 1.1
             },
             "Toei": {
-              "count": 48,
-              "percentage": 7.5
+              "count": 50,
+              "percentage": 7.8
             },
             "Toho": {
               "count": 5,
@@ -6677,17 +6673,17 @@
           }
         },
         "1980": {
-          "total_films": 836,
+          "total_films": 834,
           "dominant_studio": "Other",
-          "dominant_percentage": 56.3,
+          "dominant_percentage": 56.6,
           "studios": {
             "Shochiku": {
-              "count": 93,
-              "percentage": 11.1
+              "count": 92,
+              "percentage": 11.0
             },
             "Other": {
-              "count": 471,
-              "percentage": 56.3
+              "count": 472,
+              "percentage": 56.6
             },
             "Nikkatsu": {
               "count": 15,
@@ -6706,8 +6702,8 @@
               "percentage": 0.4
             },
             "Toei": {
-              "count": 235,
-              "percentage": 28.1
+              "count": 233,
+              "percentage": 27.9
             },
             "Ghibli": {
               "count": 1,
@@ -6716,33 +6712,33 @@
           }
         },
         "2020": {
-          "total_films": 559,
+          "total_films": 565,
           "dominant_studio": "Other",
-          "dominant_percentage": 76.4,
+          "dominant_percentage": 75.9,
           "studios": {
             "Shochiku": {
               "count": 23,
               "percentage": 4.1
             },
             "Other": {
-              "count": 427,
-              "percentage": 76.4
+              "count": 429,
+              "percentage": 75.9
             },
             "Nikkatsu": {
               "count": 76,
-              "percentage": 13.6
+              "percentage": 13.5
             },
             "Toei": {
               "count": 14,
               "percentage": 2.5
             },
             "Toho": {
-              "count": 12,
-              "percentage": 2.1
+              "count": 16,
+              "percentage": 2.8
             },
             "Daiei": {
               "count": 7,
-              "percentage": 1.3
+              "percentage": 1.2
             }
           }
         },
@@ -6805,21 +6801,21 @@
           }
         },
         "1930": {
-          "total_films": 108,
+          "total_films": 107,
           "dominant_studio": "Other",
-          "dominant_percentage": 53.7,
+          "dominant_percentage": 54.2,
           "studios": {
             "Other": {
               "count": 58,
-              "percentage": 53.7
+              "percentage": 54.2
             },
             "Toho": {
               "count": 4,
               "percentage": 3.7
             },
             "Shochiku": {
-              "count": 36,
-              "percentage": 33.3
+              "count": 35,
+              "percentage": 32.7
             },
             "Nikkatsu": {
               "count": 7,
@@ -6869,32 +6865,32 @@
           }
         },
         "all": {
-          "total_films": 16016,
+          "total_films": 16024,
           "dominant_studio": "Other",
-          "dominant_percentage": 47.5,
+          "dominant_percentage": 47.6,
           "studios": {
             "Toho": {
-              "count": 1094,
-              "percentage": 6.8
+              "count": 1098,
+              "percentage": 6.9
             },
             "Other": {
-              "count": 7600,
-              "percentage": 47.5
+              "count": 7624,
+              "percentage": 47.6
             },
             "Nikkatsu": {
-              "count": 5511,
-              "percentage": 34.4
+              "count": 5492,
+              "percentage": 34.3
             },
             "Shochiku": {
-              "count": 917,
+              "count": 919,
               "percentage": 5.7
             },
             "Daiei": {
-              "count": 207,
+              "count": 206,
               "percentage": 1.3
             },
             "Toei": {
-              "count": 607,
+              "count": 605,
               "percentage": 3.8
             },
             "Shintoho": {
@@ -6915,30 +6911,30 @@
     },
     "栃木県": {
       "coordinates": [
-        36.5606,
-        139.7908
+        36.5625,
+        139.7927
       ],
       "by_decade": {
         "1970": {
-          "total_films": 37,
+          "total_films": 36,
           "dominant_studio": "Other",
-          "dominant_percentage": 51.4,
+          "dominant_percentage": 50.0,
           "studios": {
             "Other": {
-              "count": 19,
-              "percentage": 51.4
+              "count": 18,
+              "percentage": 50.0
             },
             "Daiei": {
               "count": 2,
-              "percentage": 5.4
+              "percentage": 5.6
             },
             "Toei": {
               "count": 1,
-              "percentage": 2.7
+              "percentage": 2.8
             },
             "Nikkatsu": {
               "count": 15,
-              "percentage": 40.5
+              "percentage": 41.7
             }
           }
         },
@@ -7001,25 +6997,25 @@
           }
         },
         "2000": {
-          "total_films": 106,
+          "total_films": 103,
           "dominant_studio": "Other",
-          "dominant_percentage": 70.8,
+          "dominant_percentage": 69.9,
           "studios": {
             "Other": {
-              "count": 75,
-              "percentage": 70.8
+              "count": 72,
+              "percentage": 69.9
             },
             "Shochiku": {
               "count": 13,
-              "percentage": 12.3
+              "percentage": 12.6
             },
             "Toho": {
               "count": 11,
-              "percentage": 10.4
+              "percentage": 10.7
             },
             "Toei": {
               "count": 5,
-              "percentage": 4.7
+              "percentage": 4.9
             },
             "Daiei": {
               "count": 2,
@@ -7043,21 +7039,25 @@
           }
         },
         "1960": {
-          "total_films": 49,
+          "total_films": 52,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 53.1,
+          "dominant_percentage": 51.9,
           "studios": {
             "Other": {
               "count": 14,
-              "percentage": 28.6
+              "percentage": 26.9
+            },
+            "Shochiku": {
+              "count": 2,
+              "percentage": 3.8
             },
             "Toho": {
               "count": 9,
-              "percentage": 18.4
+              "percentage": 17.3
             },
             "Nikkatsu": {
-              "count": 26,
-              "percentage": 53.1
+              "count": 27,
+              "percentage": 51.9
             }
           }
         },
@@ -7098,7 +7098,7 @@
         "1950": {
           "total_films": 34,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 82.4,
+          "dominant_percentage": 79.4,
           "studios": {
             "Shochiku": {
               "count": 1,
@@ -7112,44 +7112,48 @@
               "count": 2,
               "percentage": 5.9
             },
+            "Toei": {
+              "count": 1,
+              "percentage": 2.9
+            },
             "Other": {
               "count": 2,
               "percentage": 5.9
             },
             "Nikkatsu": {
-              "count": 28,
-              "percentage": 82.4
+              "count": 27,
+              "percentage": 79.4
             }
           }
         },
         "all": {
-          "total_films": 584,
+          "total_films": 583,
           "dominant_studio": "Other",
-          "dominant_percentage": 59.8,
+          "dominant_percentage": 59.2,
           "studios": {
             "Other": {
-              "count": 349,
-              "percentage": 59.8
+              "count": 345,
+              "percentage": 59.2
             },
             "Daiei": {
               "count": 17,
               "percentage": 2.9
             },
             "Toei": {
-              "count": 46,
-              "percentage": 7.9
+              "count": 47,
+              "percentage": 8.1
             },
             "Nikkatsu": {
               "count": 86,
-              "percentage": 14.7
+              "percentage": 14.8
             },
             "Toho": {
               "count": 46,
               "percentage": 7.9
             },
             "Shochiku": {
-              "count": 40,
-              "percentage": 6.8
+              "count": 42,
+              "percentage": 7.2
             }
           }
         }
@@ -7157,26 +7161,26 @@
     },
     "沖縄県": {
       "coordinates": [
-        26.1353,
-        127.4931
+        26.132,
+        127.4897
       ],
       "by_decade": {
         "2000": {
-          "total_films": 156,
+          "total_films": 106,
           "dominant_studio": "Other",
-          "dominant_percentage": 90.4,
+          "dominant_percentage": 85.8,
           "studios": {
             "Other": {
-              "count": 141,
-              "percentage": 90.4
+              "count": 91,
+              "percentage": 85.8
             },
             "Shochiku": {
               "count": 12,
-              "percentage": 7.7
+              "percentage": 11.3
             },
             "Nikkatsu": {
               "count": 3,
-              "percentage": 1.9
+              "percentage": 2.8
             }
           }
         },
@@ -7208,21 +7212,25 @@
           }
         },
         "2020": {
-          "total_films": 58,
+          "total_films": 108,
           "dominant_studio": "Other",
-          "dominant_percentage": 87.9,
+          "dominant_percentage": 48.1,
           "studios": {
             "Nikkatsu": {
               "count": 5,
-              "percentage": 8.6
+              "percentage": 4.6
             },
             "Other": {
-              "count": 51,
-              "percentage": 87.9
+              "count": 52,
+              "percentage": 48.1
             },
             "Shochiku": {
               "count": 2,
-              "percentage": 3.4
+              "percentage": 1.9
+            },
+            "Toho": {
+              "count": 49,
+              "percentage": 45.4
             }
           }
         },
@@ -7343,11 +7351,11 @@
         "all": {
           "total_films": 505,
           "dominant_studio": "Other",
-          "dominant_percentage": 81.6,
+          "dominant_percentage": 71.9,
           "studios": {
             "Other": {
-              "count": 412,
-              "percentage": 81.6
+              "count": 363,
+              "percentage": 71.9
             },
             "Shochiku": {
               "count": 52,
@@ -7366,8 +7374,8 @@
               "percentage": 1.6
             },
             "Toho": {
-              "count": 6,
-              "percentage": 1.2
+              "count": 55,
+              "percentage": 10.9
             }
           }
         }
@@ -7375,34 +7383,34 @@
     },
     "海外": {
       "coordinates": [
-        36.5803,
-        75.5026
+        36.6516,
+        76.5806
       ],
       "by_decade": {
         "2000": {
-          "total_films": 618,
+          "total_films": 606,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.1,
+          "dominant_percentage": 74.8,
           "studios": {
             "Toho": {
               "count": 12,
-              "percentage": 1.9
+              "percentage": 2.0
             },
             "Other": {
-              "count": 464,
-              "percentage": 75.1
+              "count": 453,
+              "percentage": 74.8
             },
             "Shochiku": {
               "count": 44,
-              "percentage": 7.1
+              "percentage": 7.3
             },
             "Nikkatsu": {
               "count": 82,
-              "percentage": 13.3
+              "percentage": 13.5
             },
             "Daiei": {
               "count": 4,
-              "percentage": 0.6
+              "percentage": 0.7
             },
             "Tsuburaya": {
               "count": 1,
@@ -7410,65 +7418,30 @@
             },
             "Toei": {
               "count": 10,
-              "percentage": 1.6
-            },
-            "Ghibli": {
-              "count": 1,
-              "percentage": 0.2
-            }
-          }
-        },
-        "2010": {
-          "total_films": 354,
-          "dominant_studio": "Other",
-          "dominant_percentage": 81.4,
-          "studios": {
-            "Other": {
-              "count": 288,
-              "percentage": 81.4
-            },
-            "Nikkatsu": {
-              "count": 46,
-              "percentage": 13.0
-            },
-            "Shochiku": {
-              "count": 10,
-              "percentage": 2.8
-            },
-            "Toho": {
-              "count": 4,
-              "percentage": 1.1
-            },
-            "Daiei": {
-              "count": 1,
-              "percentage": 0.3
-            },
-            "Toei": {
-              "count": 5,
-              "percentage": 1.4
+              "percentage": 1.7
             }
           }
         },
         "1950": {
-          "total_films": 112,
+          "total_films": 111,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 46.4,
+          "dominant_percentage": 46.8,
           "studios": {
             "Other": {
               "count": 33,
-              "percentage": 29.5
+              "percentage": 29.7
             },
             "Nikkatsu": {
               "count": 52,
-              "percentage": 46.4
+              "percentage": 46.8
             },
             "Toho": {
               "count": 7,
-              "percentage": 6.2
+              "percentage": 6.3
             },
             "Shochiku": {
-              "count": 7,
-              "percentage": 6.2
+              "count": 6,
+              "percentage": 5.4
             },
             "Daiei": {
               "count": 6,
@@ -7476,7 +7449,7 @@
             },
             "Toei": {
               "count": 7,
-              "percentage": 6.2
+              "percentage": 6.3
             }
           }
         },
@@ -7520,17 +7493,17 @@
           }
         },
         "1980": {
-          "total_films": 573,
+          "total_films": 567,
           "dominant_studio": "Toei",
-          "dominant_percentage": 47.8,
+          "dominant_percentage": 48.0,
           "studios": {
             "Shochiku": {
               "count": 18,
-              "percentage": 3.1
+              "percentage": 3.2
             },
             "Other": {
-              "count": 258,
-              "percentage": 45.0
+              "count": 253,
+              "percentage": 44.6
             },
             "Daiei": {
               "count": 15,
@@ -7538,11 +7511,15 @@
             },
             "Toho": {
               "count": 6,
-              "percentage": 1.0
+              "percentage": 1.1
             },
             "Toei": {
-              "count": 274,
-              "percentage": 47.8
+              "count": 272,
+              "percentage": 48.0
+            },
+            "Ghibli": {
+              "count": 1,
+              "percentage": 0.2
             },
             "Nikkatsu": {
               "count": 1,
@@ -7555,21 +7532,17 @@
           }
         },
         "1990": {
-          "total_films": 410,
+          "total_films": 414,
           "dominant_studio": "Other",
-          "dominant_percentage": 49.0,
+          "dominant_percentage": 49.5,
           "studios": {
             "Shochiku": {
-              "count": 87,
-              "percentage": 21.2
+              "count": 88,
+              "percentage": 21.3
             },
             "Other": {
-              "count": 201,
-              "percentage": 49.0
-            },
-            "Daiei": {
-              "count": 2,
-              "percentage": 0.5
+              "count": 205,
+              "percentage": 49.5
             },
             "Toei": {
               "count": 28,
@@ -7579,28 +7552,44 @@
               "count": 1,
               "percentage": 0.2
             },
+            "Daiei": {
+              "count": 1,
+              "percentage": 0.2
+            },
             "Nikkatsu": {
               "count": 91,
-              "percentage": 22.2
+              "percentage": 22.0
             }
           }
         },
-        "1930": {
-          "total_films": 30,
+        "2010": {
+          "total_films": 349,
           "dominant_studio": "Other",
-          "dominant_percentage": 56.7,
+          "dominant_percentage": 80.8,
           "studios": {
             "Other": {
-              "count": 17,
-              "percentage": 56.7
+              "count": 282,
+              "percentage": 80.8
             },
-            "Toho": {
-              "count": 8,
-              "percentage": 26.7
+            "Nikkatsu": {
+              "count": 46,
+              "percentage": 13.2
             },
             "Shochiku": {
+              "count": 11,
+              "percentage": 3.2
+            },
+            "Toho": {
+              "count": 4,
+              "percentage": 1.1
+            },
+            "Daiei": {
+              "count": 1,
+              "percentage": 0.3
+            },
+            "Toei": {
               "count": 5,
-              "percentage": 16.7
+              "percentage": 1.4
             }
           }
         },
@@ -7628,33 +7617,33 @@
           }
         },
         "1960": {
-          "total_films": 284,
-          "dominant_studio": "Other",
-          "dominant_percentage": 35.6,
+          "total_films": 279,
+          "dominant_studio": "Nikkatsu",
+          "dominant_percentage": 35.8,
           "studios": {
             "Nikkatsu": {
               "count": 100,
-              "percentage": 35.2
+              "percentage": 35.8
             },
             "Other": {
-              "count": 101,
-              "percentage": 35.6
+              "count": 98,
+              "percentage": 35.1
             },
             "Daiei": {
               "count": 17,
-              "percentage": 6.0
+              "percentage": 6.1
             },
             "Toho": {
               "count": 20,
-              "percentage": 7.0
+              "percentage": 7.2
             },
             "Shochiku": {
               "count": 27,
-              "percentage": 9.5
+              "percentage": 9.7
             },
             "Toei": {
-              "count": 19,
-              "percentage": 6.7
+              "count": 17,
+              "percentage": 6.1
             }
           }
         },
@@ -7693,13 +7682,32 @@
           }
         },
         "1910": {
-          "total_films": 7,
+          "total_films": 6,
           "dominant_studio": "Other",
           "dominant_percentage": 100.0,
           "studios": {
             "Other": {
-              "count": 7,
+              "count": 6,
               "percentage": 100.0
+            }
+          }
+        },
+        "1930": {
+          "total_films": 29,
+          "dominant_studio": "Other",
+          "dominant_percentage": 55.2,
+          "studios": {
+            "Other": {
+              "count": 16,
+              "percentage": 55.2
+            },
+            "Toho": {
+              "count": 8,
+              "percentage": 27.6
+            },
+            "Shochiku": {
+              "count": 5,
+              "percentage": 17.2
             }
           }
         },
@@ -7715,28 +7723,28 @@
           }
         },
         "all": {
-          "total_films": 2987,
+          "total_films": 2960,
           "dominant_studio": "Other",
-          "dominant_percentage": 50.7,
+          "dominant_percentage": 50.3,
           "studios": {
             "Toho": {
               "count": 127,
               "percentage": 4.3
             },
             "Other": {
-              "count": 1513,
-              "percentage": 50.7
+              "count": 1490,
+              "percentage": 50.3
             },
             "Shochiku": {
-              "count": 212,
-              "percentage": 7.1
+              "count": 213,
+              "percentage": 7.2
             },
             "Nikkatsu": {
               "count": 732,
-              "percentage": 24.5
+              "percentage": 24.7
             },
             "Daiei": {
-              "count": 49,
+              "count": 48,
               "percentage": 1.6
             },
             "Tsuburaya": {
@@ -7744,16 +7752,16 @@
               "percentage": 0.1
             },
             "Toei": {
-              "count": 349,
+              "count": 345,
               "percentage": 11.7
-            },
-            "Ghibli": {
-              "count": 1,
-              "percentage": 0.0
             },
             "Shintoho": {
               "count": 2,
               "percentage": 0.1
+            },
+            "Ghibli": {
+              "count": 1,
+              "percentage": 0.0
             }
           }
         }
@@ -7761,26 +7769,26 @@
     },
     "滋賀県": {
       "coordinates": [
-        35.1977,
-        136.0819
+        35.1972,
+        136.0796
       ],
       "by_decade": {
         "1970": {
-          "total_films": 290,
+          "total_films": 289,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 61.7,
+          "dominant_percentage": 61.9,
           "studios": {
             "Toho": {
               "count": 57,
               "percentage": 19.7
             },
             "Other": {
-              "count": 27,
-              "percentage": 9.3
+              "count": 26,
+              "percentage": 9.0
             },
             "Shochiku": {
               "count": 12,
-              "percentage": 4.1
+              "percentage": 4.2
             },
             "Daiei": {
               "count": 4,
@@ -7792,127 +7800,127 @@
             },
             "Nikkatsu": {
               "count": 179,
-              "percentage": 61.7
-            }
-          }
-        },
-        "2010": {
-          "total_films": 131,
-          "dominant_studio": "Other",
-          "dominant_percentage": 44.3,
-          "studios": {
-            "Other": {
-              "count": 58,
-              "percentage": 44.3
-            },
-            "Shochiku": {
-              "count": 7,
-              "percentage": 5.3
-            },
-            "Daiei": {
-              "count": 5,
-              "percentage": 3.8
-            },
-            "Toho": {
-              "count": 1,
-              "percentage": 0.8
-            },
-            "Toei": {
-              "count": 5,
-              "percentage": 3.8
-            },
-            "Nikkatsu": {
-              "count": 55,
-              "percentage": 42.0
+              "percentage": 61.9
             }
           }
         },
         "1950": {
-          "total_films": 115,
+          "total_films": 118,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 55.7,
+          "dominant_percentage": 54.2,
           "studios": {
             "Other": {
               "count": 17,
-              "percentage": 14.8
+              "percentage": 14.4
             },
             "Nikkatsu": {
               "count": 64,
-              "percentage": 55.7
+              "percentage": 54.2
             },
             "Shochiku": {
-              "count": 7,
-              "percentage": 6.1
+              "count": 9,
+              "percentage": 7.6
             },
             "Daiei": {
               "count": 15,
-              "percentage": 13.0
+              "percentage": 12.7
             },
             "Toei": {
-              "count": 11,
-              "percentage": 9.6
+              "count": 12,
+              "percentage": 10.2
             },
             "Shintoho": {
               "count": 1,
-              "percentage": 0.9
+              "percentage": 0.8
             }
           }
         },
         "2000": {
-          "total_films": 144,
+          "total_films": 142,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 55.6,
+          "dominant_percentage": 56.3,
           "studios": {
             "Shochiku": {
               "count": 26,
-              "percentage": 18.1
+              "percentage": 18.3
             },
             "Other": {
               "count": 28,
-              "percentage": 19.4
-            },
-            "Toei": {
-              "count": 8,
-              "percentage": 5.6
+              "percentage": 19.7
             },
             "Toho": {
               "count": 2,
               "percentage": 1.4
             },
+            "Toei": {
+              "count": 6,
+              "percentage": 4.2
+            },
             "Nikkatsu": {
               "count": 80,
-              "percentage": 55.6
+              "percentage": 56.3
+            }
+          }
+        },
+        "2010": {
+          "total_films": 135,
+          "dominant_studio": "Other",
+          "dominant_percentage": 45.9,
+          "studios": {
+            "Shochiku": {
+              "count": 7,
+              "percentage": 5.2
+            },
+            "Other": {
+              "count": 62,
+              "percentage": 45.9
+            },
+            "Daiei": {
+              "count": 5,
+              "percentage": 3.7
+            },
+            "Toho": {
+              "count": 1,
+              "percentage": 0.7
+            },
+            "Toei": {
+              "count": 5,
+              "percentage": 3.7
+            },
+            "Nikkatsu": {
+              "count": 55,
+              "percentage": 40.7
             }
           }
         },
         "1960": {
-          "total_films": 153,
+          "total_films": 143,
           "dominant_studio": "Toei",
-          "dominant_percentage": 31.4,
+          "dominant_percentage": 30.8,
           "studios": {
             "Other": {
-              "count": 33,
-              "percentage": 21.6
-            },
-            "Nikkatsu": {
-              "count": 10,
-              "percentage": 6.5
+              "count": 30,
+              "percentage": 21.0
             },
             "Shochiku": {
               "count": 34,
-              "percentage": 22.2
+              "percentage": 23.8
             },
             "Toho": {
               "count": 16,
-              "percentage": 10.5
+              "percentage": 11.2
             },
             "Daiei": {
               "count": 12,
-              "percentage": 7.8
+              "percentage": 8.4
             },
             "Toei": {
-              "count": 48,
-              "percentage": 31.4
+              "count": 44,
+              "percentage": 30.8
+            },
+            "Nikkatsu": {
+              "count": 7,
+              "percentage": 4.9
             }
           }
         },
@@ -7944,9 +7952,9 @@
           }
         },
         "1980": {
-          "total_films": 231,
+          "total_films": 228,
           "dominant_studio": "Other",
-          "dominant_percentage": 46.8,
+          "dominant_percentage": 47.4,
           "studios": {
             "Nikkatsu": {
               "count": 2,
@@ -7958,7 +7966,7 @@
             },
             "Other": {
               "count": 108,
-              "percentage": 46.8
+              "percentage": 47.4
             },
             "Shochiku": {
               "count": 5,
@@ -7969,8 +7977,8 @@
               "percentage": 0.9
             },
             "Toei": {
-              "count": 108,
-              "percentage": 46.8
+              "count": 105,
+              "percentage": 46.1
             }
           }
         },
@@ -8031,32 +8039,32 @@
           }
         },
         "all": {
-          "total_films": 1279,
+          "total_films": 1270,
           "dominant_studio": "Nikkatsu",
           "dominant_percentage": 35.9,
           "studios": {
             "Toho": {
               "count": 91,
-              "percentage": 7.1
+              "percentage": 7.2
             },
             "Other": {
               "count": 336,
-              "percentage": 26.3
+              "percentage": 26.5
             },
             "Shochiku": {
-              "count": 127,
-              "percentage": 9.9
+              "count": 129,
+              "percentage": 10.2
             },
             "Daiei": {
               "count": 44,
-              "percentage": 3.4
+              "percentage": 3.5
             },
             "Toei": {
-              "count": 221,
-              "percentage": 17.3
+              "count": 213,
+              "percentage": 16.8
             },
             "Nikkatsu": {
-              "count": 459,
+              "count": 456,
               "percentage": 35.9
             },
             "Shintoho": {
@@ -8069,8 +8077,8 @@
     },
     "熊本県": {
       "coordinates": [
-        32.8411,
-        130.7265
+        32.8362,
+        130.7244
       ],
       "by_decade": {
         "1950": {
@@ -8170,21 +8178,21 @@
           }
         },
         "2010": {
-          "total_films": 20,
+          "total_films": 21,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.0,
+          "dominant_percentage": 76.2,
           "studios": {
             "Nikkatsu": {
               "count": 4,
-              "percentage": 20.0
+              "percentage": 19.0
             },
             "Other": {
-              "count": 15,
-              "percentage": 75.0
+              "count": 16,
+              "percentage": 76.2
             },
             "Shochiku": {
               "count": 1,
-              "percentage": 5.0
+              "percentage": 4.8
             }
           }
         },
@@ -8204,17 +8212,17 @@
           }
         },
         "1960": {
-          "total_films": 70,
+          "total_films": 71,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 78.6,
+          "dominant_percentage": 77.5,
           "studios": {
             "Toho": {
               "count": 4,
-              "percentage": 5.7
+              "percentage": 5.6
             },
             "Other": {
-              "count": 3,
-              "percentage": 4.3
+              "count": 4,
+              "percentage": 5.6
             },
             "Shochiku": {
               "count": 1,
@@ -8222,11 +8230,11 @@
             },
             "Toei": {
               "count": 7,
-              "percentage": 10.0
+              "percentage": 9.9
             },
             "Nikkatsu": {
               "count": 55,
-              "percentage": 78.6
+              "percentage": 77.5
             }
           }
         },
@@ -8250,21 +8258,21 @@
           }
         },
         "all": {
-          "total_films": 228,
+          "total_films": 230,
           "dominant_studio": "Other",
-          "dominant_percentage": 44.3,
+          "dominant_percentage": 44.8,
           "studios": {
             "Toho": {
               "count": 11,
               "percentage": 4.8
             },
             "Other": {
-              "count": 101,
-              "percentage": 44.3
+              "count": 103,
+              "percentage": 44.8
             },
             "Nikkatsu": {
               "count": 83,
-              "percentage": 36.4
+              "percentage": 36.1
             },
             "Shintoho": {
               "count": 1,
@@ -8272,7 +8280,7 @@
             },
             "Toei": {
               "count": 20,
-              "percentage": 8.8
+              "percentage": 8.7
             },
             "Shochiku": {
               "count": 11,
@@ -8288,14 +8296,14 @@
     },
     "石川県": {
       "coordinates": [
-        36.6767,
-        136.6859
+        36.6741,
+        136.6841
       ],
       "by_decade": {
         "1960": {
-          "total_films": 129,
+          "total_films": 130,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 41.9,
+          "dominant_percentage": 41.5,
           "studios": {
             "Toho": {
               "count": 11,
@@ -8303,11 +8311,11 @@
             },
             "Other": {
               "count": 38,
-              "percentage": 29.5
+              "percentage": 29.2
             },
             "Shochiku": {
-              "count": 22,
-              "percentage": 17.1
+              "count": 23,
+              "percentage": 17.7
             },
             "Daiei": {
               "count": 3,
@@ -8319,84 +8327,34 @@
             },
             "Nikkatsu": {
               "count": 54,
-              "percentage": 41.9
+              "percentage": 41.5
             }
           }
         },
         "1970": {
-          "total_films": 37,
+          "total_films": 36,
           "dominant_studio": "Other",
-          "dominant_percentage": 75.7,
+          "dominant_percentage": 75.0,
           "studios": {
             "Other": {
-              "count": 28,
-              "percentage": 75.7
+              "count": 27,
+              "percentage": 75.0
             },
             "Shochiku": {
               "count": 1,
-              "percentage": 2.7
+              "percentage": 2.8
             },
             "Toei": {
               "count": 5,
-              "percentage": 13.5
+              "percentage": 13.9
             },
             "Toho": {
               "count": 1,
-              "percentage": 2.7
+              "percentage": 2.8
             },
             "Shintoho": {
               "count": 2,
-              "percentage": 5.4
-            }
-          }
-        },
-        "1950": {
-          "total_films": 22,
-          "dominant_studio": "Shintoho",
-          "dominant_percentage": 36.4,
-          "studios": {
-            "Nikkatsu": {
-              "count": 4,
-              "percentage": 18.2
-            },
-            "Shochiku": {
-              "count": 2,
-              "percentage": 9.1
-            },
-            "Other": {
-              "count": 5,
-              "percentage": 22.7
-            },
-            "Shintoho": {
-              "count": 8,
-              "percentage": 36.4
-            },
-            "Daiei": {
-              "count": 3,
-              "percentage": 13.6
-            }
-          }
-        },
-        "2000": {
-          "total_films": 46,
-          "dominant_studio": "Other",
-          "dominant_percentage": 45.7,
-          "studios": {
-            "Nikkatsu": {
-              "count": 4,
-              "percentage": 8.7
-            },
-            "Other": {
-              "count": 21,
-              "percentage": 45.7
-            },
-            "Shochiku": {
-              "count": 17,
-              "percentage": 37.0
-            },
-            "Toei": {
-              "count": 4,
-              "percentage": 8.7
+              "percentage": 5.6
             }
           }
         },
@@ -8405,13 +8363,13 @@
           "dominant_studio": "Other",
           "dominant_percentage": 72.4,
           "studios": {
-            "Nikkatsu": {
-              "count": 13,
-              "percentage": 17.1
-            },
             "Other": {
               "count": 55,
               "percentage": 72.4
+            },
+            "Nikkatsu": {
+              "count": 13,
+              "percentage": 17.1
             },
             "Shochiku": {
               "count": 6,
@@ -8424,6 +8382,60 @@
             "Toei": {
               "count": 1,
               "percentage": 1.3
+            }
+          }
+        },
+        "1950": {
+          "total_films": 23,
+          "dominant_studio": "Shintoho",
+          "dominant_percentage": 34.8,
+          "studios": {
+            "Nikkatsu": {
+              "count": 4,
+              "percentage": 17.4
+            },
+            "Shochiku": {
+              "count": 2,
+              "percentage": 8.7
+            },
+            "Toei": {
+              "count": 1,
+              "percentage": 4.3
+            },
+            "Other": {
+              "count": 5,
+              "percentage": 21.7
+            },
+            "Shintoho": {
+              "count": 8,
+              "percentage": 34.8
+            },
+            "Daiei": {
+              "count": 3,
+              "percentage": 13.0
+            }
+          }
+        },
+        "2000": {
+          "total_films": 47,
+          "dominant_studio": "Other",
+          "dominant_percentage": 46.8,
+          "studios": {
+            "Nikkatsu": {
+              "count": 4,
+              "percentage": 8.5
+            },
+            "Other": {
+              "count": 22,
+              "percentage": 46.8
+            },
+            "Shochiku": {
+              "count": 17,
+              "percentage": 36.2
+            },
+            "Toei": {
+              "count": 4,
+              "percentage": 8.5
             }
           }
         },
@@ -8455,21 +8467,21 @@
           }
         },
         "1980": {
-          "total_films": 52,
+          "total_films": 51,
           "dominant_studio": "Other",
-          "dominant_percentage": 57.7,
+          "dominant_percentage": 58.8,
           "studios": {
             "Other": {
               "count": 30,
-              "percentage": 57.7
+              "percentage": 58.8
             },
             "Shochiku": {
               "count": 3,
-              "percentage": 5.8
+              "percentage": 5.9
             },
             "Toei": {
-              "count": 19,
-              "percentage": 36.5
+              "count": 18,
+              "percentage": 35.3
             }
           }
         },
@@ -8523,9 +8535,9 @@
           }
         },
         "all": {
-          "total_films": 425,
+          "total_films": 426,
           "dominant_studio": "Other",
-          "dominant_percentage": 46.8,
+          "dominant_percentage": 46.7,
           "studios": {
             "Toho": {
               "count": 16,
@@ -8533,11 +8545,11 @@
             },
             "Other": {
               "count": 199,
-              "percentage": 46.8
+              "percentage": 46.7
             },
             "Shochiku": {
-              "count": 56,
-              "percentage": 13.2
+              "count": 57,
+              "percentage": 13.4
             },
             "Daiei": {
               "count": 7,
@@ -8561,17 +8573,17 @@
     },
     "神奈川県": {
       "coordinates": [
-        35.4311,
-        139.5384
+        35.4335,
+        139.5337
       ],
       "by_decade": {
         "2000": {
-          "total_films": 886,
+          "total_films": 884,
           "dominant_studio": "Other",
           "dominant_percentage": 77.4,
           "studios": {
             "Other": {
-              "count": 686,
+              "count": 684,
               "percentage": 77.4
             },
             "Shochiku": {
@@ -8597,17 +8609,17 @@
           }
         },
         "1950": {
-          "total_films": 627,
+          "total_films": 630,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 76.4,
+          "dominant_percentage": 76.7,
           "studios": {
             "Other": {
-              "count": 98,
-              "percentage": 15.6
+              "count": 97,
+              "percentage": 15.4
             },
             "Nikkatsu": {
-              "count": 479,
-              "percentage": 76.4
+              "count": 483,
+              "percentage": 76.7
             },
             "Shochiku": {
               "count": 36,
@@ -8615,7 +8627,7 @@
             },
             "Toho": {
               "count": 11,
-              "percentage": 1.8
+              "percentage": 1.7
             },
             "Shintoho": {
               "count": 3,
@@ -8624,21 +8636,21 @@
           }
         },
         "1960": {
-          "total_films": 976,
+          "total_films": 978,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 64.1,
+          "dominant_percentage": 64.2,
           "studios": {
             "Shochiku": {
-              "count": 33,
-              "percentage": 3.4
+              "count": 34,
+              "percentage": 3.5
             },
             "Other": {
-              "count": 197,
-              "percentage": 20.2
+              "count": 196,
+              "percentage": 20.0
             },
             "Nikkatsu": {
-              "count": 626,
-              "percentage": 64.1
+              "count": 628,
+              "percentage": 64.2
             },
             "Toho": {
               "count": 90,
@@ -8659,21 +8671,21 @@
           }
         },
         "1980": {
-          "total_films": 151,
+          "total_films": 149,
           "dominant_studio": "Other",
-          "dominant_percentage": 44.4,
+          "dominant_percentage": 44.3,
           "studios": {
             "Shochiku": {
               "count": 36,
-              "percentage": 23.8
+              "percentage": 24.2
             },
             "Nikkatsu": {
               "count": 4,
-              "percentage": 2.6
+              "percentage": 2.7
             },
             "Other": {
-              "count": 67,
-              "percentage": 44.4
+              "count": 66,
+              "percentage": 44.3
             },
             "Shintoho": {
               "count": 2,
@@ -8685,30 +8697,30 @@
             },
             "Daiei": {
               "count": 5,
-              "percentage": 3.3
+              "percentage": 3.4
             },
             "Toei": {
-              "count": 36,
-              "percentage": 23.8
+              "count": 35,
+              "percentage": 23.5
             }
           }
         },
         "1990": {
-          "total_films": 211,
+          "total_films": 212,
           "dominant_studio": "Other",
-          "dominant_percentage": 59.2,
+          "dominant_percentage": 59.4,
           "studios": {
             "Shochiku": {
               "count": 36,
-              "percentage": 17.1
+              "percentage": 17.0
             },
             "Other": {
-              "count": 125,
-              "percentage": 59.2
+              "count": 126,
+              "percentage": 59.4
             },
             "Nikkatsu": {
               "count": 24,
-              "percentage": 11.4
+              "percentage": 11.3
             },
             "Daiei": {
               "count": 2,
@@ -8716,22 +8728,22 @@
             },
             "Toei": {
               "count": 24,
-              "percentage": 11.4
+              "percentage": 11.3
             }
           }
         },
         "2010": {
-          "total_films": 747,
+          "total_films": 752,
           "dominant_studio": "Other",
-          "dominant_percentage": 73.5,
+          "dominant_percentage": 73.4,
           "studios": {
             "Shochiku": {
-              "count": 50,
-              "percentage": 6.7
+              "count": 51,
+              "percentage": 6.8
             },
             "Other": {
-              "count": 549,
-              "percentage": 73.5
+              "count": 552,
+              "percentage": 73.4
             },
             "Tsuburaya": {
               "count": 1,
@@ -8739,11 +8751,11 @@
             },
             "Nikkatsu": {
               "count": 70,
-              "percentage": 9.4
+              "percentage": 9.3
             },
             "Daiei": {
-              "count": 7,
-              "percentage": 0.9
+              "count": 8,
+              "percentage": 1.1
             },
             "Toho": {
               "count": 24,
@@ -8760,25 +8772,25 @@
           }
         },
         "2020": {
-          "total_films": 179,
+          "total_films": 185,
           "dominant_studio": "Other",
-          "dominant_percentage": 87.2,
+          "dominant_percentage": 86.5,
           "studios": {
             "Other": {
-              "count": 156,
-              "percentage": 87.2
+              "count": 160,
+              "percentage": 86.5
             },
             "Nikkatsu": {
               "count": 17,
-              "percentage": 9.5
+              "percentage": 9.2
             },
             "Shochiku": {
               "count": 2,
               "percentage": 1.1
             },
             "Toho": {
-              "count": 2,
-              "percentage": 1.1
+              "count": 4,
+              "percentage": 2.2
             },
             "Daiei": {
               "count": 2,
@@ -8822,17 +8834,17 @@
           }
         },
         "1940": {
-          "total_films": 53,
+          "total_films": 52,
           "dominant_studio": "Other",
-          "dominant_percentage": 58.5,
+          "dominant_percentage": 57.7,
           "studios": {
             "Other": {
-              "count": 31,
-              "percentage": 58.5
+              "count": 30,
+              "percentage": 57.7
             },
             "Shochiku": {
               "count": 19,
-              "percentage": 35.8
+              "percentage": 36.5
             },
             "Shintoho": {
               "count": 1,
@@ -8845,29 +8857,29 @@
           }
         },
         "1930": {
-          "total_films": 19,
+          "total_films": 17,
           "dominant_studio": "Other",
-          "dominant_percentage": 63.2,
+          "dominant_percentage": 58.8,
           "studios": {
             "Other": {
-              "count": 12,
-              "percentage": 63.2
+              "count": 10,
+              "percentage": 58.8
             },
             "Toho": {
               "count": 1,
-              "percentage": 5.3
+              "percentage": 5.9
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 21.1
+              "percentage": 23.5
             },
             "Toei": {
               "count": 1,
-              "percentage": 5.3
+              "percentage": 5.9
             },
             "Nikkatsu": {
               "count": 1,
-              "percentage": 5.3
+              "percentage": 5.9
             }
           }
         },
@@ -8902,33 +8914,33 @@
           }
         },
         "all": {
-          "total_films": 4035,
+          "total_films": 4045,
           "dominant_studio": "Other",
-          "dominant_percentage": 49.3,
+          "dominant_percentage": 49.2,
           "studios": {
             "Other": {
               "count": 1990,
-              "percentage": 49.3
+              "percentage": 49.2
             },
             "Shochiku": {
-              "count": 336,
-              "percentage": 8.3
+              "count": 338,
+              "percentage": 8.4
             },
             "Nikkatsu": {
-              "count": 1323,
-              "percentage": 32.8
+              "count": 1329,
+              "percentage": 32.9
             },
             "Daiei": {
-              "count": 48,
+              "count": 49,
               "percentage": 1.2
             },
             "Toei": {
-              "count": 153,
+              "count": 152,
               "percentage": 3.8
             },
             "Toho": {
-              "count": 170,
-              "percentage": 4.2
+              "count": 172,
+              "percentage": 4.3
             },
             "Shintoho": {
               "count": 14,
@@ -8944,8 +8956,8 @@
     },
     "福井県": {
       "coordinates": [
-        36.0082,
-        136.2487
+        36.0073,
+        136.2478
       ],
       "by_decade": {
         "1960": {
@@ -9150,8 +9162,8 @@
     },
     "福岡県": {
       "coordinates": [
-        33.6132,
-        130.5163
+        33.6128,
+        130.5165
       ],
       "by_decade": {
         "1950": {
@@ -9249,15 +9261,15 @@
         "2010": {
           "total_films": 86,
           "dominant_studio": "Other",
-          "dominant_percentage": 79.1,
+          "dominant_percentage": 81.4,
           "studios": {
             "Other": {
-              "count": 68,
-              "percentage": 79.1
+              "count": 70,
+              "percentage": 81.4
             },
             "Nikkatsu": {
-              "count": 12,
-              "percentage": 14.0
+              "count": 10,
+              "percentage": 11.6
             },
             "Shochiku": {
               "count": 2,
@@ -9274,29 +9286,29 @@
           }
         },
         "1960": {
-          "total_films": 96,
+          "total_films": 95,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 60.4,
+          "dominant_percentage": 61.1,
           "studios": {
             "Nikkatsu": {
               "count": 58,
-              "percentage": 60.4
+              "percentage": 61.1
             },
             "Other": {
-              "count": 22,
-              "percentage": 22.9
+              "count": 21,
+              "percentage": 22.1
             },
             "Shochiku": {
               "count": 3,
-              "percentage": 3.1
+              "percentage": 3.2
             },
             "Toho": {
               "count": 6,
-              "percentage": 6.2
+              "percentage": 6.3
             },
             "Daiei": {
               "count": 3,
-              "percentage": 3.1
+              "percentage": 3.2
             },
             "Toei": {
               "count": 4,
@@ -9305,33 +9317,33 @@
           }
         },
         "2000": {
-          "total_films": 62,
+          "total_films": 59,
           "dominant_studio": "Other",
-          "dominant_percentage": 61.3,
+          "dominant_percentage": 59.3,
           "studios": {
             "Nikkatsu": {
               "count": 8,
-              "percentage": 12.9
+              "percentage": 13.6
             },
             "Other": {
-              "count": 38,
-              "percentage": 61.3
+              "count": 35,
+              "percentage": 59.3
             },
             "Tsuburaya": {
               "count": 2,
-              "percentage": 3.2
+              "percentage": 3.4
             },
             "Toho": {
               "count": 5,
-              "percentage": 8.1
+              "percentage": 8.5
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 6.5
+              "percentage": 6.8
             },
             "Toei": {
               "count": 5,
-              "percentage": 8.1
+              "percentage": 8.5
             }
           }
         },
@@ -9366,25 +9378,25 @@
           }
         },
         "all": {
-          "total_films": 445,
+          "total_films": 441,
           "dominant_studio": "Other",
           "dominant_percentage": 48.5,
           "studios": {
             "Toho": {
               "count": 32,
-              "percentage": 7.2
+              "percentage": 7.3
             },
             "Nikkatsu": {
-              "count": 114,
-              "percentage": 25.6
+              "count": 112,
+              "percentage": 25.4
             },
             "Other": {
-              "count": 216,
+              "count": 214,
               "percentage": 48.5
             },
             "Shochiku": {
               "count": 49,
-              "percentage": 11.0
+              "percentage": 11.1
             },
             "Daiei": {
               "count": 7,
@@ -9392,7 +9404,7 @@
             },
             "Shintoho": {
               "count": 2,
-              "percentage": 0.4
+              "percentage": 0.5
             },
             "Toei": {
               "count": 23,
@@ -9400,7 +9412,7 @@
             },
             "Tsuburaya": {
               "count": 2,
-              "percentage": 0.4
+              "percentage": 0.5
             }
           }
         }
@@ -9408,30 +9420,30 @@
     },
     "福島県": {
       "coordinates": [
-        37.5265,
-        140.1882
+        37.5243,
+        140.1877
       ],
       "by_decade": {
         "1950": {
-          "total_films": 88,
+          "total_films": 90,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 63.6,
+          "dominant_percentage": 62.2,
           "studios": {
             "Toho": {
               "count": 2,
-              "percentage": 2.3
+              "percentage": 2.2
             },
             "Nikkatsu": {
               "count": 56,
-              "percentage": 63.6
+              "percentage": 62.2
             },
             "Other": {
-              "count": 23,
-              "percentage": 26.1
+              "count": 24,
+              "percentage": 26.7
             },
             "Toei": {
-              "count": 7,
-              "percentage": 8.0
+              "count": 8,
+              "percentage": 8.9
             }
           }
         },
@@ -9471,56 +9483,56 @@
           }
         },
         "1970": {
-          "total_films": 64,
+          "total_films": 63,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 45.3,
+          "dominant_percentage": 46.0,
           "studios": {
             "Other": {
-              "count": 17,
-              "percentage": 26.6
+              "count": 16,
+              "percentage": 25.4
             },
             "Shochiku": {
               "count": 3,
-              "percentage": 4.7
+              "percentage": 4.8
             },
             "Toho": {
               "count": 8,
-              "percentage": 12.5
+              "percentage": 12.7
             },
             "Toei": {
               "count": 7,
-              "percentage": 10.9
+              "percentage": 11.1
             },
             "Nikkatsu": {
               "count": 29,
-              "percentage": 45.3
+              "percentage": 46.0
             }
           }
         },
         "2000": {
-          "total_films": 106,
+          "total_films": 105,
           "dominant_studio": "Other",
-          "dominant_percentage": 42.5,
+          "dominant_percentage": 42.9,
           "studios": {
             "Shochiku": {
               "count": 12,
-              "percentage": 11.3
+              "percentage": 11.4
             },
             "Other": {
               "count": 45,
-              "percentage": 42.5
-            },
-            "Toei": {
-              "count": 4,
-              "percentage": 3.8
+              "percentage": 42.9
             },
             "Toho": {
               "count": 3,
-              "percentage": 2.8
+              "percentage": 2.9
+            },
+            "Toei": {
+              "count": 3,
+              "percentage": 2.9
             },
             "Nikkatsu": {
               "count": 42,
-              "percentage": 39.6
+              "percentage": 40.0
             }
           }
         },
@@ -9548,17 +9560,17 @@
           }
         },
         "2010": {
-          "total_films": 91,
+          "total_films": 93,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 48.4,
+          "dominant_percentage": 47.3,
           "studios": {
+            "Other": {
+              "count": 38,
+              "percentage": 40.9
+            },
             "Nikkatsu": {
               "count": 44,
-              "percentage": 48.4
-            },
-            "Other": {
-              "count": 36,
-              "percentage": 39.6
+              "percentage": 47.3
             },
             "Daiei": {
               "count": 1,
@@ -9566,7 +9578,7 @@
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 4.4
+              "percentage": 4.3
             },
             "Toho": {
               "count": 1,
@@ -9574,34 +9586,34 @@
             },
             "Toei": {
               "count": 5,
-              "percentage": 5.5
+              "percentage": 5.4
             }
           }
         },
         "1980": {
-          "total_films": 96,
+          "total_films": 95,
           "dominant_studio": "Toei",
-          "dominant_percentage": 42.7,
+          "dominant_percentage": 42.1,
           "studios": {
             "Other": {
               "count": 38,
-              "percentage": 39.6
+              "percentage": 40.0
             },
             "Shochiku": {
               "count": 15,
-              "percentage": 15.6
+              "percentage": 15.8
             },
             "Toho": {
               "count": 1,
-              "percentage": 1.0
+              "percentage": 1.1
             },
             "Daiei": {
               "count": 1,
-              "percentage": 1.0
+              "percentage": 1.1
             },
             "Toei": {
-              "count": 41,
-              "percentage": 42.7
+              "count": 40,
+              "percentage": 42.1
             }
           }
         },
@@ -9644,9 +9656,9 @@
           }
         },
         "all": {
-          "total_films": 651,
+          "total_films": 652,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 38.4,
+          "dominant_percentage": 38.3,
           "studios": {
             "Toho": {
               "count": 23,
@@ -9654,15 +9666,15 @@
             },
             "Nikkatsu": {
               "count": 250,
-              "percentage": 38.4
+              "percentage": 38.3
             },
             "Other": {
-              "count": 225,
-              "percentage": 34.6
+              "count": 227,
+              "percentage": 34.8
             },
             "Toei": {
-              "count": 80,
-              "percentage": 12.3
+              "count": 79,
+              "percentage": 12.1
             },
             "Tsuburaya": {
               "count": 7,
@@ -9682,8 +9694,8 @@
     },
     "秋田県": {
       "coordinates": [
-        39.7342,
-        140.3364
+        39.7333,
+        140.339
       ],
       "by_decade": {
         "1970": {
@@ -9736,14 +9748,33 @@
             }
           }
         },
+        "2010": {
+          "total_films": 9,
+          "dominant_studio": "Other",
+          "dominant_percentage": 77.8,
+          "studios": {
+            "Other": {
+              "count": 7,
+              "percentage": 77.8
+            },
+            "Shochiku": {
+              "count": 1,
+              "percentage": 11.1
+            },
+            "Nikkatsu": {
+              "count": 1,
+              "percentage": 11.1
+            }
+          }
+        },
         "1980": {
-          "total_films": 77,
-          "dominant_studio": "Toei",
-          "dominant_percentage": 44.2,
+          "total_films": 76,
+          "dominant_studio": "Other",
+          "dominant_percentage": 43.4,
           "studios": {
             "Other": {
               "count": 33,
-              "percentage": 42.9
+              "percentage": 43.4
             },
             "Nikkatsu": {
               "count": 3,
@@ -9751,15 +9782,15 @@
             },
             "Shochiku": {
               "count": 5,
-              "percentage": 6.5
+              "percentage": 6.6
             },
             "Toho": {
               "count": 2,
               "percentage": 2.6
             },
             "Toei": {
-              "count": 34,
-              "percentage": 44.2
+              "count": 33,
+              "percentage": 43.4
             }
           }
         },
@@ -9805,25 +9836,6 @@
             }
           }
         },
-        "2010": {
-          "total_films": 8,
-          "dominant_studio": "Other",
-          "dominant_percentage": 75.0,
-          "studios": {
-            "Other": {
-              "count": 6,
-              "percentage": 75.0
-            },
-            "Shochiku": {
-              "count": 1,
-              "percentage": 12.5
-            },
-            "Nikkatsu": {
-              "count": 1,
-              "percentage": 12.5
-            }
-          }
-        },
         "1960": {
           "total_films": 11,
           "dominant_studio": "Toho",
@@ -9861,11 +9873,11 @@
         "all": {
           "total_films": 250,
           "dominant_studio": "Other",
-          "dominant_percentage": 36.4,
+          "dominant_percentage": 36.8,
           "studios": {
             "Other": {
-              "count": 91,
-              "percentage": 36.4
+              "count": 92,
+              "percentage": 36.8
             },
             "Shochiku": {
               "count": 18,
@@ -9876,8 +9888,8 @@
               "percentage": 3.6
             },
             "Toei": {
-              "count": 49,
-              "percentage": 19.6
+              "count": 48,
+              "percentage": 19.2
             },
             "Nikkatsu": {
               "count": 83,
@@ -9889,8 +9901,8 @@
     },
     "群馬県": {
       "coordinates": [
-        36.4321,
-        139.0679
+        36.4318,
+        139.0676
       ],
       "by_decade": {
         "1980": {
@@ -9913,21 +9925,21 @@
           }
         },
         "2000": {
-          "total_films": 149,
+          "total_films": 150,
           "dominant_studio": "Other",
-          "dominant_percentage": 55.0,
+          "dominant_percentage": 55.3,
           "studios": {
             "Shochiku": {
               "count": 9,
               "percentage": 6.0
             },
             "Other": {
-              "count": 82,
-              "percentage": 55.0
+              "count": 83,
+              "percentage": 55.3
             },
             "Toho": {
               "count": 18,
-              "percentage": 12.1
+              "percentage": 12.0
             },
             "Toei": {
               "count": 9,
@@ -9935,7 +9947,7 @@
             },
             "Nikkatsu": {
               "count": 31,
-              "percentage": 20.8
+              "percentage": 20.7
             }
           }
         },
@@ -9975,17 +9987,17 @@
           }
         },
         "1950": {
-          "total_films": 55,
+          "total_films": 56,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 72.7,
+          "dominant_percentage": 71.4,
           "studios": {
             "Nikkatsu": {
               "count": 40,
-              "percentage": 72.7
+              "percentage": 71.4
             },
             "Other": {
-              "count": 9,
-              "percentage": 16.4
+              "count": 10,
+              "percentage": 17.9
             },
             "Shochiku": {
               "count": 2,
@@ -10136,21 +10148,21 @@
           }
         },
         "all": {
-          "total_films": 731,
+          "total_films": 733,
           "dominant_studio": "Other",
-          "dominant_percentage": 51.7,
+          "dominant_percentage": 51.8,
           "studios": {
             "Shochiku": {
               "count": 41,
               "percentage": 5.6
             },
             "Other": {
-              "count": 378,
-              "percentage": 51.7
+              "count": 380,
+              "percentage": 51.8
             },
             "Toei": {
               "count": 53,
-              "percentage": 7.3
+              "percentage": 7.2
             },
             "Toho": {
               "count": 36,
@@ -10158,7 +10170,7 @@
             },
             "Nikkatsu": {
               "count": 215,
-              "percentage": 29.4
+              "percentage": 29.3
             },
             "Daiei": {
               "count": 5,
@@ -10174,18 +10186,18 @@
     },
     "茨城県": {
       "coordinates": [
-        36.2316,
+        36.2336,
         140.2844
       ],
       "by_decade": {
         "2010": {
-          "total_films": 169,
+          "total_films": 168,
           "dominant_studio": "Other",
-          "dominant_percentage": 82.8,
+          "dominant_percentage": 82.7,
           "studios": {
             "Other": {
-              "count": 140,
-              "percentage": 82.8
+              "count": 139,
+              "percentage": 82.7
             },
             "Toho": {
               "count": 14,
@@ -10229,17 +10241,17 @@
           }
         },
         "2000": {
-          "total_films": 172,
+          "total_films": 169,
           "dominant_studio": "Other",
-          "dominant_percentage": 86.6,
+          "dominant_percentage": 86.4,
           "studios": {
             "Shochiku": {
               "count": 8,
               "percentage": 4.7
             },
             "Other": {
-              "count": 149,
-              "percentage": 86.6
+              "count": 146,
+              "percentage": 86.4
             },
             "Daiei": {
               "count": 1,
@@ -10247,7 +10259,7 @@
             },
             "Toei": {
               "count": 6,
-              "percentage": 3.5
+              "percentage": 3.6
             },
             "Toho": {
               "count": 7,
@@ -10287,44 +10299,44 @@
           }
         },
         "1950": {
-          "total_films": 63,
+          "total_films": 64,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 92.1,
+          "dominant_percentage": 92.2,
           "studios": {
             "Nikkatsu": {
-              "count": 58,
-              "percentage": 92.1
-            },
-            "Other": {
-              "count": 3,
-              "percentage": 4.8
+              "count": 59,
+              "percentage": 92.2
             },
             "Toei": {
+              "count": 3,
+              "percentage": 4.7
+            },
+            "Other": {
               "count": 2,
-              "percentage": 3.2
+              "percentage": 3.1
             }
           }
         },
         "1970": {
-          "total_films": 27,
+          "total_films": 26,
           "dominant_studio": "Other",
-          "dominant_percentage": 63.0,
+          "dominant_percentage": 61.5,
           "studios": {
             "Nikkatsu": {
               "count": 7,
-              "percentage": 25.9
+              "percentage": 26.9
             },
             "Other": {
-              "count": 17,
-              "percentage": 63.0
+              "count": 16,
+              "percentage": 61.5
             },
             "Shochiku": {
               "count": 1,
-              "percentage": 3.7
+              "percentage": 3.8
             },
             "Toho": {
               "count": 2,
-              "percentage": 7.4
+              "percentage": 7.7
             }
           }
         },
@@ -10379,33 +10391,33 @@
           }
         },
         "all": {
-          "total_films": 562,
+          "total_films": 558,
           "dominant_studio": "Other",
-          "dominant_percentage": 63.9,
+          "dominant_percentage": 63.3,
           "studios": {
             "Other": {
-              "count": 359,
-              "percentage": 63.9
+              "count": 353,
+              "percentage": 63.3
             },
             "Toho": {
               "count": 51,
               "percentage": 9.1
             },
             "Toei": {
-              "count": 13,
-              "percentage": 2.3
+              "count": 14,
+              "percentage": 2.5
             },
             "Shochiku": {
               "count": 39,
-              "percentage": 6.9
+              "percentage": 7.0
             },
             "Daiei": {
               "count": 6,
               "percentage": 1.1
             },
             "Nikkatsu": {
-              "count": 94,
-              "percentage": 16.7
+              "count": 95,
+              "percentage": 17.0
             }
           }
         }
@@ -10413,34 +10425,34 @@
     },
     "長崎県": {
       "coordinates": [
-        32.8543,
-        129.7877
+        32.8526,
+        129.7956
       ],
       "by_decade": {
         "1960": {
-          "total_films": 122,
+          "total_films": 113,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 53.3,
+          "dominant_percentage": 57.5,
           "studios": {
             "Toho": {
               "count": 4,
-              "percentage": 3.3
+              "percentage": 3.5
             },
             "Other": {
-              "count": 46,
-              "percentage": 37.7
+              "count": 37,
+              "percentage": 32.7
             },
             "Shochiku": {
               "count": 6,
-              "percentage": 4.9
+              "percentage": 5.3
             },
             "Daiei": {
               "count": 1,
-              "percentage": 0.8
+              "percentage": 0.9
             },
             "Nikkatsu": {
               "count": 65,
-              "percentage": 53.3
+              "percentage": 57.5
             }
           }
         },
@@ -10495,17 +10507,17 @@
           }
         },
         "2020": {
-          "total_films": 71,
+          "total_films": 72,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 90.1,
+          "dominant_percentage": 88.9,
           "studios": {
             "Other": {
-              "count": 7,
-              "percentage": 9.9
+              "count": 8,
+              "percentage": 11.1
             },
             "Nikkatsu": {
               "count": 64,
-              "percentage": 90.1
+              "percentage": 88.9
             }
           }
         },
@@ -10533,52 +10545,52 @@
           }
         },
         "1990": {
-          "total_films": 20,
+          "total_films": 22,
           "dominant_studio": "Other",
-          "dominant_percentage": 40.0,
+          "dominant_percentage": 45.5,
           "studios": {
             "Nikkatsu": {
               "count": 6,
-              "percentage": 30.0
+              "percentage": 27.3
             },
             "Other": {
-              "count": 8,
-              "percentage": 40.0
+              "count": 10,
+              "percentage": 45.5
             },
             "Shochiku": {
               "count": 3,
-              "percentage": 15.0
+              "percentage": 13.6
             },
             "Toho": {
               "count": 3,
-              "percentage": 15.0
+              "percentage": 13.6
             }
           }
         },
         "2010": {
-          "total_films": 211,
+          "total_films": 210,
           "dominant_studio": "Other",
-          "dominant_percentage": 54.5,
+          "dominant_percentage": 54.3,
           "studios": {
             "Nikkatsu": {
               "count": 90,
-              "percentage": 42.7
+              "percentage": 42.9
             },
             "Other": {
-              "count": 115,
-              "percentage": 54.5
+              "count": 114,
+              "percentage": 54.3
             },
             "Shochiku": {
               "count": 2,
-              "percentage": 0.9
+              "percentage": 1.0
             },
             "Toho": {
               "count": 2,
-              "percentage": 0.9
+              "percentage": 1.0
             },
             "Daiei": {
               "count": 2,
-              "percentage": 0.9
+              "percentage": 1.0
             }
           }
         },
@@ -10640,29 +10652,29 @@
           }
         },
         "all": {
-          "total_films": 775,
+          "total_films": 768,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 44.8,
+          "dominant_percentage": 45.2,
           "studios": {
             "Toho": {
               "count": 55,
-              "percentage": 7.1
+              "percentage": 7.2
             },
             "Other": {
-              "count": 290,
-              "percentage": 37.4
+              "count": 283,
+              "percentage": 36.8
             },
             "Shochiku": {
               "count": 65,
-              "percentage": 8.4
+              "percentage": 8.5
             },
             "Daiei": {
               "count": 5,
-              "percentage": 0.6
+              "percentage": 0.7
             },
             "Nikkatsu": {
               "count": 347,
-              "percentage": 44.8
+              "percentage": 45.2
             },
             "Toei": {
               "count": 10,
@@ -10678,18 +10690,18 @@
     },
     "長野県": {
       "coordinates": [
-        36.3968,
-        138.1644
+        36.3971,
+        138.1654
       ],
       "by_decade": {
         "2000": {
-          "total_films": 165,
+          "total_films": 163,
           "dominant_studio": "Other",
-          "dominant_percentage": 88.5,
+          "dominant_percentage": 88.3,
           "studios": {
             "Other": {
-              "count": 146,
-              "percentage": 88.5
+              "count": 144,
+              "percentage": 88.3
             },
             "Nikkatsu": {
               "count": 11,
@@ -10701,7 +10713,7 @@
             },
             "Shochiku": {
               "count": 4,
-              "percentage": 2.4
+              "percentage": 2.5
             },
             "Toei": {
               "count": 3,
@@ -10771,57 +10783,26 @@
             }
           }
         },
-        "2010": {
-          "total_films": 153,
-          "dominant_studio": "Other",
-          "dominant_percentage": 77.8,
-          "studios": {
-            "Other": {
-              "count": 119,
-              "percentage": 77.8
-            },
-            "Nikkatsu": {
-              "count": 11,
-              "percentage": 7.2
-            },
-            "Toho": {
-              "count": 5,
-              "percentage": 3.3
-            },
-            "Shochiku": {
-              "count": 4,
-              "percentage": 2.6
-            },
-            "Toei": {
-              "count": 13,
-              "percentage": 8.5
-            },
-            "Shintoho": {
-              "count": 1,
-              "percentage": 0.7
-            }
-          }
-        },
         "1950": {
-          "total_films": 137,
+          "total_films": 139,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 70.1,
+          "dominant_percentage": 69.1,
           "studios": {
             "Other": {
               "count": 24,
-              "percentage": 17.5
+              "percentage": 17.3
             },
             "Nikkatsu": {
               "count": 96,
-              "percentage": 70.1
+              "percentage": 69.1
             },
             "Shochiku": {
               "count": 11,
-              "percentage": 8.0
+              "percentage": 7.9
             },
             "Toho": {
-              "count": 1,
-              "percentage": 0.7
+              "count": 3,
+              "percentage": 2.2
             },
             "Toei": {
               "count": 1,
@@ -10829,11 +10810,11 @@
             },
             "Shintoho": {
               "count": 2,
-              "percentage": 1.5
+              "percentage": 1.4
             },
             "Daiei": {
               "count": 2,
-              "percentage": 1.5
+              "percentage": 1.4
             }
           }
         },
@@ -10856,22 +10837,57 @@
             }
           }
         },
-        "2020": {
-          "total_films": 52,
+        "2010": {
+          "total_films": 151,
           "dominant_studio": "Other",
-          "dominant_percentage": 55.8,
+          "dominant_percentage": 77.5,
+          "studios": {
+            "Nikkatsu": {
+              "count": 11,
+              "percentage": 7.3
+            },
+            "Other": {
+              "count": 117,
+              "percentage": 77.5
+            },
+            "Toho": {
+              "count": 5,
+              "percentage": 3.3
+            },
+            "Shochiku": {
+              "count": 4,
+              "percentage": 2.6
+            },
+            "Toei": {
+              "count": 13,
+              "percentage": 8.6
+            },
+            "Shintoho": {
+              "count": 1,
+              "percentage": 0.7
+            }
+          }
+        },
+        "2020": {
+          "total_films": 53,
+          "dominant_studio": "Other",
+          "dominant_percentage": 54.7,
           "studios": {
             "Nikkatsu": {
               "count": 13,
-              "percentage": 25.0
+              "percentage": 24.5
             },
             "Other": {
               "count": 29,
-              "percentage": 55.8
+              "percentage": 54.7
             },
             "Shochiku": {
               "count": 6,
-              "percentage": 11.5
+              "percentage": 11.3
+            },
+            "Toho": {
+              "count": 1,
+              "percentage": 1.9
             },
             "Daiei": {
               "count": 2,
@@ -10964,17 +10980,17 @@
           }
         },
         "all": {
-          "total_films": 1042,
+          "total_films": 1041,
           "dominant_studio": "Other",
-          "dominant_percentage": 49.6,
+          "dominant_percentage": 49.3,
           "studios": {
             "Other": {
-              "count": 517,
-              "percentage": 49.6
+              "count": 513,
+              "percentage": 49.3
             },
             "Nikkatsu": {
               "count": 314,
-              "percentage": 30.1
+              "percentage": 30.2
             },
             "Daiei": {
               "count": 12,
@@ -10993,8 +11009,8 @@
               "percentage": 0.9
             },
             "Toho": {
-              "count": 28,
-              "percentage": 2.7
+              "count": 31,
+              "percentage": 3.0
             },
             "Shintoho": {
               "count": 4,
@@ -11239,8 +11255,8 @@
     },
     "静岡県": {
       "coordinates": [
-        34.9718,
-        138.4768
+        34.971,
+        138.4744
       ],
       "by_decade": {
         "1950": {
@@ -11275,21 +11291,21 @@
           }
         },
         "1960": {
-          "total_films": 355,
+          "total_films": 356,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 50.1,
+          "dominant_percentage": 50.6,
           "studios": {
             "Toho": {
               "count": 42,
               "percentage": 11.8
             },
             "Nikkatsu": {
-              "count": 178,
-              "percentage": 50.1
+              "count": 180,
+              "percentage": 50.6
             },
             "Other": {
               "count": 105,
-              "percentage": 29.6
+              "percentage": 29.5
             },
             "Shochiku": {
               "count": 6,
@@ -11300,8 +11316,8 @@
               "percentage": 3.4
             },
             "Toei": {
-              "count": 9,
-              "percentage": 2.5
+              "count": 8,
+              "percentage": 2.2
             },
             "Shintoho": {
               "count": 3,
@@ -11310,17 +11326,17 @@
           }
         },
         "2010": {
-          "total_films": 215,
+          "total_films": 216,
           "dominant_studio": "Other",
-          "dominant_percentage": 70.7,
+          "dominant_percentage": 70.8,
           "studios": {
             "Other": {
-              "count": 152,
-              "percentage": 70.7
+              "count": 153,
+              "percentage": 70.8
             },
             "Shochiku": {
               "count": 26,
-              "percentage": 12.1
+              "percentage": 12.0
             },
             "Toho": {
               "count": 6,
@@ -11336,7 +11352,7 @@
             },
             "Nikkatsu": {
               "count": 24,
-              "percentage": 11.2
+              "percentage": 11.1
             },
             "Shintoho": {
               "count": 1,
@@ -11397,15 +11413,15 @@
         "2000": {
           "total_films": 251,
           "dominant_studio": "Other",
-          "dominant_percentage": 76.1,
+          "dominant_percentage": 76.5,
           "studios": {
             "Shochiku": {
               "count": 28,
               "percentage": 11.2
             },
             "Other": {
-              "count": 191,
-              "percentage": 76.1
+              "count": 192,
+              "percentage": 76.5
             },
             "Nikkatsu": {
               "count": 21,
@@ -11416,8 +11432,8 @@
               "percentage": 0.4
             },
             "Toei": {
-              "count": 6,
-              "percentage": 2.4
+              "count": 5,
+              "percentage": 2.0
             },
             "Toho": {
               "count": 4,
@@ -11548,29 +11564,29 @@
           }
         },
         "all": {
-          "total_films": 1418,
+          "total_films": 1420,
           "dominant_studio": "Other",
-          "dominant_percentage": 45.5,
+          "dominant_percentage": 45.6,
           "studios": {
             "Toho": {
               "count": 104,
               "percentage": 7.3
             },
             "Other": {
-              "count": 645,
-              "percentage": 45.5
+              "count": 647,
+              "percentage": 45.6
             },
             "Nikkatsu": {
-              "count": 445,
-              "percentage": 31.4
+              "count": 447,
+              "percentage": 31.5
             },
             "Shochiku": {
               "count": 144,
-              "percentage": 10.2
+              "percentage": 10.1
             },
             "Toei": {
-              "count": 48,
-              "percentage": 3.4
+              "count": 46,
+              "percentage": 3.2
             },
             "Daiei": {
               "count": 24,
@@ -11586,26 +11602,26 @@
     },
     "香川県": {
       "coordinates": [
-        34.3412,
-        134.0191
+        34.3411,
+        134.0244
       ],
       "by_decade": {
         "1960": {
-          "total_films": 128,
+          "total_films": 127,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 62.5,
+          "dominant_percentage": 63.0,
           "studios": {
             "Toho": {
               "count": 19,
-              "percentage": 14.8
+              "percentage": 15.0
             },
             "Nikkatsu": {
               "count": 80,
-              "percentage": 62.5
+              "percentage": 63.0
             },
             "Other": {
-              "count": 22,
-              "percentage": 17.2
+              "count": 21,
+              "percentage": 16.5
             },
             "Shochiku": {
               "count": 4,
@@ -11613,7 +11629,7 @@
             },
             "Daiei": {
               "count": 3,
-              "percentage": 2.3
+              "percentage": 2.4
             }
           }
         },
@@ -11709,36 +11725,17 @@
           }
         },
         "2020": {
-          "total_films": 26,
+          "total_films": 24,
           "dominant_studio": "Other",
-          "dominant_percentage": 53.8,
+          "dominant_percentage": 58.3,
           "studios": {
             "Other": {
               "count": 14,
-              "percentage": 53.8
+              "percentage": 58.3
             },
             "Toho": {
               "count": 10,
-              "percentage": 38.5
-            },
-            "Nikkatsu": {
-              "count": 2,
-              "percentage": 7.7
-            }
-          }
-        },
-        "1970": {
-          "total_films": 9,
-          "dominant_studio": "Other",
-          "dominant_percentage": 77.8,
-          "studios": {
-            "Other": {
-              "count": 7,
-              "percentage": 77.8
-            },
-            "Shochiku": {
-              "count": 2,
-              "percentage": 22.2
+              "percentage": 41.7
             }
           }
         },
@@ -11750,6 +11747,21 @@
             "Shochiku": {
               "count": 2,
               "percentage": 100.0
+            }
+          }
+        },
+        "1970": {
+          "total_films": 8,
+          "dominant_studio": "Other",
+          "dominant_percentage": 75.0,
+          "studios": {
+            "Shochiku": {
+              "count": 2,
+              "percentage": 25.0
+            },
+            "Other": {
+              "count": 6,
+              "percentage": 75.0
             }
           }
         },
@@ -11765,29 +11777,29 @@
           }
         },
         "all": {
-          "total_films": 316,
+          "total_films": 312,
           "dominant_studio": "Other",
-          "dominant_percentage": 41.5,
+          "dominant_percentage": 41.3,
           "studios": {
             "Toho": {
               "count": 33,
-              "percentage": 10.4
+              "percentage": 10.6
             },
             "Nikkatsu": {
-              "count": 100,
-              "percentage": 31.6
+              "count": 98,
+              "percentage": 31.4
             },
             "Other": {
-              "count": 131,
-              "percentage": 41.5
+              "count": 129,
+              "percentage": 41.3
             },
             "Shochiku": {
               "count": 48,
-              "percentage": 15.2
+              "percentage": 15.4
             },
             "Daiei": {
               "count": 3,
-              "percentage": 0.9
+              "percentage": 1.0
             },
             "Toei": {
               "count": 1,
@@ -11799,8 +11811,8 @@
     },
     "高知県": {
       "coordinates": [
-        33.5029,
-        133.5169
+        33.5047,
+        133.5199
       ],
       "by_decade": {
         "2000": {
@@ -11823,17 +11835,17 @@
           }
         },
         "1960": {
-          "total_films": 50,
+          "total_films": 51,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 60.0,
+          "dominant_percentage": 58.8,
           "studios": {
             "Other": {
-              "count": 13,
-              "percentage": 26.0
+              "count": 14,
+              "percentage": 27.5
             },
             "Shochiku": {
               "count": 6,
-              "percentage": 12.0
+              "percentage": 11.8
             },
             "Toho": {
               "count": 1,
@@ -11841,7 +11853,7 @@
             },
             "Nikkatsu": {
               "count": 30,
-              "percentage": 60.0
+              "percentage": 58.8
             }
           }
         },
@@ -11956,21 +11968,21 @@
           }
         },
         "all": {
-          "total_films": 228,
+          "total_films": 229,
           "dominant_studio": "Other",
-          "dominant_percentage": 66.2,
+          "dominant_percentage": 66.4,
           "studios": {
             "Shochiku": {
               "count": 13,
               "percentage": 5.7
             },
             "Other": {
-              "count": 151,
-              "percentage": 66.2
+              "count": 152,
+              "percentage": 66.4
             },
             "Nikkatsu": {
               "count": 47,
-              "percentage": 20.6
+              "percentage": 20.5
             },
             "Toho": {
               "count": 13,
@@ -11978,7 +11990,7 @@
             },
             "Toei": {
               "count": 4,
-              "percentage": 1.8
+              "percentage": 1.7
             }
           }
         }
@@ -11986,8 +11998,8 @@
     },
     "鳥取県": {
       "coordinates": [
-        35.4748,
-        134.0512
+        35.4734,
+        134.0466
       ],
       "by_decade": {
         "2000": {
@@ -12036,21 +12048,6 @@
             }
           }
         },
-        "1990": {
-          "total_films": 55,
-          "dominant_studio": "Shochiku",
-          "dominant_percentage": 89.1,
-          "studios": {
-            "Other": {
-              "count": 6,
-              "percentage": 10.9
-            },
-            "Shochiku": {
-              "count": 49,
-              "percentage": 89.1
-            }
-          }
-        },
         "1940": {
           "total_films": 1,
           "dominant_studio": "Nikkatsu",
@@ -12063,36 +12060,40 @@
           }
         },
         "1950": {
-          "total_films": 8,
+          "total_films": 9,
           "dominant_studio": "Nikkatsu",
-          "dominant_percentage": 87.5,
+          "dominant_percentage": 77.8,
           "studios": {
             "Nikkatsu": {
               "count": 7,
-              "percentage": 87.5
+              "percentage": 77.8
+            },
+            "Toho": {
+              "count": 1,
+              "percentage": 11.1
             },
             "Daiei": {
               "count": 1,
-              "percentage": 12.5
+              "percentage": 11.1
             }
           }
         },
         "2010": {
           "total_films": 5,
           "dominant_studio": "Other",
-          "dominant_percentage": 60.0,
+          "dominant_percentage": 40.0,
           "studios": {
             "Nikkatsu": {
               "count": 1,
               "percentage": 20.0
             },
             "Other": {
-              "count": 3,
-              "percentage": 60.0
+              "count": 2,
+              "percentage": 40.0
             },
             "Shochiku": {
-              "count": 1,
-              "percentage": 20.0
+              "count": 2,
+              "percentage": 40.0
             }
           }
         },
@@ -12112,6 +12113,21 @@
             "Shochiku": {
               "count": 1,
               "percentage": 7.1
+            }
+          }
+        },
+        "1990": {
+          "total_films": 53,
+          "dominant_studio": "Shochiku",
+          "dominant_percentage": 92.5,
+          "studios": {
+            "Other": {
+              "count": 4,
+              "percentage": 7.5
+            },
+            "Shochiku": {
+              "count": 49,
+              "percentage": 92.5
             }
           }
         },
@@ -12135,52 +12151,52 @@
           }
         },
         "1980": {
-          "total_films": 13,
+          "total_films": 12,
           "dominant_studio": "Shochiku",
-          "dominant_percentage": 30.8,
+          "dominant_percentage": 33.3,
           "studios": {
             "Shochiku": {
               "count": 4,
-              "percentage": 30.8
+              "percentage": 33.3
             },
             "Other": {
-              "count": 4,
-              "percentage": 30.8
+              "count": 3,
+              "percentage": 25.0
             },
             "Daiei": {
               "count": 2,
-              "percentage": 15.4
+              "percentage": 16.7
             },
             "Toei": {
               "count": 3,
-              "percentage": 23.1
+              "percentage": 25.0
             }
           }
         },
         "all": {
-          "total_films": 133,
+          "total_films": 131,
           "dominant_studio": "Shochiku",
-          "dominant_percentage": 45.1,
+          "dominant_percentage": 46.6,
           "studios": {
             "Toho": {
-              "count": 4,
-              "percentage": 3.0
+              "count": 5,
+              "percentage": 3.8
             },
             "Shochiku": {
-              "count": 60,
-              "percentage": 45.1
+              "count": 61,
+              "percentage": 46.6
             },
             "Other": {
-              "count": 30,
-              "percentage": 22.6
+              "count": 26,
+              "percentage": 19.8
             },
             "Toei": {
               "count": 11,
-              "percentage": 8.3
+              "percentage": 8.4
             },
             "Nikkatsu": {
               "count": 23,
-              "percentage": 17.3
+              "percentage": 17.6
             },
             "Daiei": {
               "count": 5,
@@ -12192,8 +12208,8 @@
     },
     "鹿児島県": {
       "coordinates": [
-        31.3836,
-        130.5142
+        31.3347,
+        130.4863
       ],
       "by_decade": {
         "1970": {
@@ -12296,33 +12312,33 @@
           }
         },
         "1960": {
-          "total_films": 101,
+          "total_films": 103,
           "dominant_studio": "Other",
-          "dominant_percentage": 44.6,
+          "dominant_percentage": 44.7,
           "studios": {
             "Other": {
-              "count": 45,
-              "percentage": 44.6
+              "count": 46,
+              "percentage": 44.7
             },
             "Shochiku": {
               "count": 8,
-              "percentage": 7.9
+              "percentage": 7.8
             },
             "Toho": {
               "count": 11,
-              "percentage": 10.9
+              "percentage": 10.7
             },
             "Daiei": {
               "count": 3,
-              "percentage": 3.0
+              "percentage": 2.9
             },
             "Toei": {
               "count": 4,
-              "percentage": 4.0
+              "percentage": 3.9
             },
             "Nikkatsu": {
-              "count": 30,
-              "percentage": 29.7
+              "count": 31,
+              "percentage": 30.1
             }
           }
         },
@@ -12357,36 +12373,36 @@
           }
         },
         "2010": {
-          "total_films": 21,
+          "total_films": 20,
           "dominant_studio": "Other",
-          "dominant_percentage": 71.4,
+          "dominant_percentage": 70.0,
           "studios": {
             "Other": {
-              "count": 15,
-              "percentage": 71.4
+              "count": 14,
+              "percentage": 70.0
             },
             "Toei": {
               "count": 1,
-              "percentage": 4.8
+              "percentage": 5.0
             },
             "Nikkatsu": {
               "count": 4,
-              "percentage": 19.0
+              "percentage": 20.0
             },
             "Shochiku": {
               "count": 1,
-              "percentage": 4.8
+              "percentage": 5.0
             }
           }
         },
         "all": {
-          "total_films": 286,
+          "total_films": 287,
           "dominant_studio": "Other",
-          "dominant_percentage": 46.9,
+          "dominant_percentage": 46.7,
           "studios": {
             "Other": {
               "count": 134,
-              "percentage": 46.9
+              "percentage": 46.7
             },
             "Toei": {
               "count": 12,
@@ -12394,15 +12410,15 @@
             },
             "Shochiku": {
               "count": 54,
-              "percentage": 18.9
+              "percentage": 18.8
             },
             "Toho": {
               "count": 20,
               "percentage": 7.0
             },
             "Nikkatsu": {
-              "count": 63,
-              "percentage": 22.0
+              "count": 64,
+              "percentage": 22.3
             },
             "Daiei": {
               "count": 3,

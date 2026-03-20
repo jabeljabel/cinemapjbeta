@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMAP: Japan, Beta - Data Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .stat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        .tab-btn.active { background: #C41E3A; color: white; }
+        .progress-bar { transition: width 1s ease-out; }
+        .chart-container { position: relative; height: 300px; }
+        .expandable-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .expandable-content.expanded { max-height: 500px; }
+        .schema-table { transition: all 0.3s ease; cursor: pointer; }
+        .schema-table:hover { filter: brightness(1.05); }
+        .schema-table.selected { filter: drop-shadow(0 0 8px rgba(196, 30, 58, 0.5)); }
+        .connection-line { stroke-width: 2; fill: none; opacity: 0.4; transition: opacity 0.3s ease; }
+        .connection-line.active { opacity: 1; stroke-width: 3; }
+        .connection-line.dimmed { opacity: 0.1; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Back Link -->
+        <div class="mb-4">
+            <a href="index.html" class="text-red-700 hover:text-red-900 font-medium text-sm">← Back to CineMAP</a>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-gray-800 mb-2">
+                <span class="text-red-700">Cine</span>MAP<span class="text-gray-500">:</span> <span class="text-gray-600">Japan</span><span class="text-amber-500">, Beta</span>
+            </h1>
+            <p class="text-xl text-gray-600">Japanese Film Location Database</p>
+            <p class="text-sm text-gray-400 mt-2">March 2026 • 129.0+ Years of Film History</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex justify-center gap-2 mb-8 flex-wrap">
+            <button onclick="showTab('overview')" id="tab-overview" class="tab-btn active px-5 py-3 rounded-full font-medium transition-all duration-300 bg-white text-gray-600 hover:bg-gray-100">📊 Overview</button>
+            <button onclick="showTab('locations')" id="tab-locations" class="tab-btn px-5 py-3 rounded-full font-medium transition-all duration-300 bg-white text-gray-600 hover:bg-gray-100">📍 Locations</button>
+            <button onclick="showTab('timeline')" id="tab-timeline" class="tab-btn px-5 py-3 rounded-full font-medium transition-all duration-300 bg-white text-gray-600 hover:bg-gray-100">📅 Timeline</button>
+            <button onclick="showTab('sources')" id="tab-sources" class="tab-btn px-5 py-3 rounded-full font-medium transition-all duration-300 bg-white text-gray-600 hover:bg-gray-100">📚 Sources</button>
+            <button onclick="showTab('structure')" id="tab-structure" class="tab-btn px-5 py-3 rounded-full font-medium transition-all duration-300 bg-white text-gray-600 hover:bg-gray-100">🗄️ Data Structure</button>
+        </div>
+
+        <!-- ==================== OVERVIEW TAB ==================== -->
+        <div id="content-overview" class="tab-content">
+            <!-- Core Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <!-- Films Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg border-l-4 border-red-700" onclick="toggleExpand('films-detail')">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <span class="text-4xl">🎬</span>
+                                <div>
+                                    <p class="text-gray-500 text-sm uppercase tracking-wide">Films</p>
+                                    <p class="text-3xl font-bold text-gray-800">83,032</p>
+                                    <p class="text-xs text-gray-400">1874–2026</p>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-xl" id="films-detail-arrow">▼</span>
+                        </div>
+                    </div>
+                    <div id="films-detail" class="expandable-content bg-red-50 px-6">
+                        <div class="py-4 border-t border-red-100">
+                            <h4 class="font-bold text-red-800 mb-2">By Type</h4>
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between"><span>Feature Films</span><span class="font-bold">50,187 (60%)</span></div>
+                                <div class="flex justify-between"><span>TV Dramas</span><span class="font-bold">27,532 (33%)</span></div>
+                                <div class="flex justify-between"><span>Other</span><span class="font-bold">2,733 (3%)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Locations Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg border-l-4 border-amber-500" onclick="toggleExpand('locations-detail')">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <span class="text-4xl">📍</span>
+                                <div>
+                                    <p class="text-gray-500 text-sm uppercase tracking-wide">Locations</p>
+                                    <p class="text-3xl font-bold text-gray-800">83,960</p>
+                                    <p class="text-xs text-gray-400">90.3% geocoded</p>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-xl" id="locations-detail-arrow">▼</span>
+                        </div>
+                    </div>
+                    <div id="locations-detail" class="expandable-content bg-amber-50 px-6">
+                        <div class="py-4 border-t border-amber-100">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="text-center p-3 bg-red-100 rounded-lg">
+                                    <p class="text-2xl font-bold text-red-700">35,072</p>
+                                    <p class="text-xs text-red-600">Filmed Locations</p>
+                                </div>
+                                <div class="text-center p-3 bg-green-100 rounded-lg">
+                                    <p class="text-2xl font-bold text-green-700">50,720</p>
+                                    <p class="text-xs text-green-600">Represented Locations</p>
+                                </div>
+                            </div>
+                            <div class="text-sm space-y-1">
+                                <div class="flex justify-between"><span>With coordinates</span><span class="font-bold">91,326 (90.3%)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Film-Location Links Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg border-l-4 border-green-700" onclick="toggleExpand('links-detail')">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <span class="text-4xl">🔗</span>
+                                <div>
+                                    <p class="text-gray-500 text-sm uppercase tracking-wide">Film-Location Links</p>
+                                    <p class="text-3xl font-bold text-gray-800">406,896</p>
+                                    <p class="text-xs text-gray-400">Filmed + Represented</p>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-xl" id="links-detail-arrow">▼</span>
+                        </div>
+                    </div>
+                    <div id="links-detail" class="expandable-content bg-green-50 px-6">
+                        <div class="py-4 border-t border-green-100">
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between"><span>Filmed location links</span><span class="font-bold">128,707 (32%)</span></div>
+                                <div class="flex justify-between"><span>Represented location links</span><span class="font-bold">278,032 (68%)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- People Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-purple-500" onclick="toggleExpand('people-detail')">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase">👥 People</p>
+                            <p class="text-2xl font-bold text-gray-800">533,875</p>
+                            <p class="text-xs text-gray-400">86.2% with Japanese name</p>
+                        </div>
+                        <span class="text-gray-400" id="people-detail-arrow">▼</span>
+                    </div>
+                </div>
+
+                <!-- Synopses Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-blue-500" onclick="toggleExpand('synopses-detail')">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase">📝 Synopses</p>
+                            <p class="text-2xl font-bold text-gray-800">223,675</p>
+                            <p class="text-xs text-gray-400">92.0% of films covered</p>
+                        </div>
+                        <span class="text-gray-400" id="synopses-detail-arrow">▼</span>
+                    </div>
+                </div>
+
+                <!-- Studios Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-orange-500" onclick="toggleExpand('studios-detail')">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase">🏢 Studios</p>
+                            <p class="text-2xl font-bold text-gray-800">14,536</p>
+                            <p class="text-xs text-gray-400">Production companies</p>
+                        </div>
+                        <span class="text-gray-400" id="studios-detail-arrow">▼</span>
+                    </div>
+                    <div id="studios-detail" class="expandable-content">
+                        <div class="pt-3 mt-3 border-t border-gray-100 text-sm space-y-1">
+                            <p class="text-xs text-gray-500 mb-2">Top by films produced:</p>
+                                <div class="flex justify-between"><span>松竹</span><span class="font-bold">2,617 films</span></div>
+                                <div class="flex justify-between"><span>東映</span><span class="font-bold">2,354 films</span></div>
+                                <div class="flex justify-between"><span>日活(京都撮影所)</span><span class="font-bold">1,369 films</span></div>
+                                <div class="flex justify-between"><span>日活</span><span class="font-bold">1,158 films</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Genres Card -->
+                <div class="stat-card bg-white rounded-xl shadow-lg p-5 border-l-4 border-teal-500">
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase">🎭 Genres</p>
+                        <p class="text-2xl font-bold text-gray-800">30</p>
+                        <p class="text-xs text-gray-400">30 bilingual categories</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Coverage -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📊 Data Coverage</h3>
+                <div class="space-y-4">
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Japanese Title</span><span class="text-sm text-gray-600">97.7%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-red-700 h-3 rounded-full" style="width: 97.7%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">English Title</span><span class="text-sm text-gray-600">61.9%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-blue-600 h-3 rounded-full" style="width: 61.9%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">At Least One Synopsis</span><span class="text-sm text-gray-600">92.0%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-green-600 h-3 rounded-full" style="width: 92.0%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Location Data</span><span class="text-sm text-gray-600">99.8%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-amber-500 h-3 rounded-full" style="width: 99.8%"></div></div></div>
+                    <div><div class="flex justify-between mb-1"><span class="text-sm font-medium">Director Credit</span><span class="text-sm text-gray-600">87.7%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="progress-bar bg-purple-600 h-3 rounded-full" style="width: 87.7%"></div></div></div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">🎭 Genre Distribution</h3>
+                    <div style="height: 280px;"><canvas id="genreChart"></canvas></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">📅 Films by Decade</h3>
+                    <div style="height: 280px;"><canvas id="decadeChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== LOCATIONS TAB ==================== -->
+        <div id="content-locations" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">🗾 Top Prefectures</h3>
+                    <div style="height: 350px;"><canvas id="prefectureChart"></canvas></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">📝 Location Extraction Methods</h3>
+                    <p class="text-gray-600 text-sm mb-4">Sources for represented locations (story settings)</p>
+                    <div style="height: 300px;"><canvas id="extractionChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🌍 Location Coverage</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 bg-red-50 rounded-lg">
+                        <p class="text-3xl font-bold text-red-700">47</p>
+                        <p class="text-sm text-gray-600">All Prefectures</p>
+                    </div>
+                    <div class="text-center p-4 bg-amber-50 rounded-lg">
+                        <p class="text-3xl font-bold text-amber-600">12,366</p>
+                        <p class="text-sm text-gray-600">Tokyo Locations</p>
+                    </div>
+                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                        <p class="text-3xl font-bold text-blue-700">3,583</p>
+                        <p class="text-sm text-gray-600">Ungeocoded</p>
+                    </div>
+                    <div class="text-center p-4 bg-green-50 rounded-lg">
+                        <p class="text-3xl font-bold text-green-700">95.7%</p>
+                        <p class="text-sm text-gray-600">Geocoded</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🎬 Filming vs Represented</h3>
+                <p class="text-gray-600 text-sm mb-4">CineMAP distinguishes where films were shot vs. where stories are set</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-red-50 rounded-lg border-2 border-red-200">
+                        <h4 class="font-bold text-red-800 mb-2">📍 Filmed Locations</h4>
+                        <p class="text-3xl font-bold text-red-700">35,072</p>
+                        <p class="text-sm text-gray-600 mt-2">Where cameras actually rolled</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg border-2 border-green-200">
+                        <h4 class="font-bold text-green-800 mb-2">🗺️ Represented Locations</h4>
+                        <p class="text-3xl font-bold text-green-700">50,720</p>
+                        <p class="text-sm text-gray-600 mt-2">Places mentioned in narratives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TIMELINE TAB ==================== -->
+        <div id="content-timeline" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-6 border-2 border-amber-200">
+                    <h4 class="font-bold text-amber-800 mb-2">🎭 Silent Era</h4>
+                    <p class="text-3xl font-bold text-amber-900">1,277</p>
+                    <p class="text-sm text-amber-700">Films (1897–1929)</p>
+                </div>
+                <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200">
+                    <h4 class="font-bold text-red-800 mb-2">🏆 Golden Age</h4>
+                    <p class="text-3xl font-bold text-red-900">22,271</p>
+                    <p class="text-sm text-red-700">Films (1930–1979)</p>
+                </div>
+                <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-6 border-2 border-emerald-200">
+                    <h4 class="font-bold text-emerald-800 mb-2">🎥 Contemporary</h4>
+                    <p class="text-3xl font-bold text-emerald-900">58,814</p>
+                    <p class="text-sm text-emerald-700">Films (1980–present)</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📊 Filmed vs Represented Locations Over Time</h3>
+                <p class="text-sm text-gray-600 mb-4">Film-location links by decade</p>
+                <div style="height: 350px;"><canvas id="filmedRepresentedTrendChart"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ==================== SOURCES TAB ==================== -->
+        <div id="content-sources" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">📚 Location Data Sources</h3>
+                <p class="text-gray-600 mb-4 text-sm">Film-location links by source type</p>
+                <div style="height: 350px;"><canvas id="sourcesChart"></canvas></div>
+            </div>
+
+            <!-- Source Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Fan Sites -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-amber-700 mb-3">🌐 Fan Sites</h4>
+                    <p class="text-gray-600 text-sm mb-3">Community-contributed location research and pilgrimage maps</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>AGUA, Ysotake, etc.</span><span class="font-bold">19,821 links</span></div>
+                    </div>
+                </div>
+
+                <!-- Studio Archives -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-red-700 mb-3">🎥 Studio Archives</h4>
+                    <p class="text-gray-600 text-sm mb-3">Historical shooting records from studio production files</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Nikkatsu (日活)</span><span class="font-bold">10,223 links</span></div>
+                    </div>
+                </div>
+
+                <!-- Reference Sources -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-blue-700 mb-3">📚 Reference Sources</h4>
+                    <p class="text-gray-600 text-sm mb-3">Crowdsourced encyclopedic databases (Wikipedia, Wikidata, IMDB, NFAJ)</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Combined sources</span><span class="font-bold">16,229 links</span></div>
+                    </div>
+                </div>
+
+                <!-- Film Commissions -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-green-700 mb-3">🏛️ Film Commissions</h4>
+                    <p class="text-gray-600 text-sm mb-3">Regional film promotion offices across Japan</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Regional FCs</span><span class="font-bold">2,248 links</span></div>
+                    </div>
+                </div>
+
+                <!-- loca.ash.jp -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-purple-700 mb-3">🗺️ loca.ash.jp</h4>
+                    <p class="text-gray-600 text-sm mb-3">Comprehensive Japanese filming location database</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>loca.ash links</span><span class="font-bold">70,103 links</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Extraction Card -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h4 class="font-bold text-gray-700 mb-3">📖 Text Extraction (NER)</h4>
+                <p class="text-gray-600 text-sm mb-3">Automated location extraction from film metadata — creates "Represented Locations"</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-gray-700">179,294</p>
+                        <p class="text-sm text-gray-600">Synopsis Extraction</p>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-gray-700">46,146</p>
+                        <p class="text-sm text-gray-600">Subtitle Extraction</p>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-gray-700">52,654</p>
+                        <p class="text-sm text-gray-600">Title Extraction</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Film Commission Breakdown -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🎥 Film Commission Contributions</h3>
+                <p class="text-gray-600 mb-4 text-sm">Regional film commissions contributing location data</p>
+                <div style="height: 300px;"><canvas id="fcChart"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ==================== DATA STRUCTURE TAB ==================== -->
+        <div id="content-structure" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">🗄️ Database Schema</h3>
+                <p class="text-gray-600 mb-6">CineMAP uses a relational database with 10+ interconnected tables</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="p-4 bg-red-50 rounded-lg text-center">
+                        <p class="font-bold text-red-700">films</p>
+                        <p class="text-2xl font-bold">83,032</p>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded-lg text-center">
+                        <p class="font-bold text-amber-700">locations</p>
+                        <p class="text-2xl font-bold">83,960</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg text-center">
+                        <p class="font-bold text-green-700">film_locations</p>
+                        <p class="text-2xl font-bold">406,896</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 rounded-lg text-center">
+                        <p class="font-bold text-purple-700">people</p>
+                        <p class="text-2xl font-bold">533,875</p>
+                    </div>
+                </div>
+                
+                <div class="text-sm text-gray-600">
+                    <p><strong>Key relationships:</strong></p>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><code>film_locations</code> links films to locations (supports both FilmedLocationID and RepresentedLocationID)</li>
+                        <li><code>directors</code> and <code>cast_members</code> link people to films with role information</li>
+                        <li><code>film_genres</code> supports multiple genres per film with bilingual labels</li>
+                        <li><code>synopses</code> stores multiple synopsis versions per film in different languages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // Expandable cards
+        function toggleExpand(id) {
+            const el = document.getElementById(id);
+            const arrow = document.getElementById(id + '-arrow');
+            if (el) {
+                el.classList.toggle('expanded');
+                if (arrow) arrow.textContent = el.classList.contains('expanded') ? '▲' : '▼';
+            }
+        }
+
+        // Chart colors
+        const colors = { red: '#C41E3A', green: '#1B4D3E', gold: '#D4AF37', blue: '#457B9D', purple: '#9932CC' };
+
+        // Genre Chart
+        new Chart(document.getElementById('genreChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Drama", "Action", "Comedy", "Thriller", "Animation", "Romance", "Documentary", "Mystery"],
+                datasets: [{ data: [57702, 12828, 11222, 8242, 7423, 7391, 6850, 6448], backgroundColor: colors.red }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } }
+        });
+
+        // Prefecture Chart
+        new Chart(document.getElementById('prefectureChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Unknown", "東京都", "海外", "神奈川県", "京都府", "千葉県", "静岡県", "北海道", "埼玉県", "兵庫県"],
+                datasets: [{ data: [24627, 12366, 5586, 4817, 3190, 2362, 1916, 1819, 1697, 1496], backgroundColor: [colors.red, colors.blue, colors.gold, colors.green, '#CD853F', '#708090', '#20B2AA', '#9932CC', '#FF6347', '#4169E1'] }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        // Extraction Methods Chart
+        new Chart(document.getElementById('extractionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Synopsis', 'Subtitle', 'Title', 'Other'],
+                datasets: [
+                    { label: 'Links', data: [179294, 46146, 52654, 128802], backgroundColor: colors.gold }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // Decade Chart
+        new Chart(document.getElementById('decadeChart'), {
+            type: 'line',
+            data: {
+                labels: ["1897s", "1898s", "1900s", "1901s", "1902s", "1904s", "1908s", "1909s", "1910s", "1911s", "1912s", "1913s", "1914s", "1915s", "1916s", "1917s", "1918s", "1919s", "1920s", "1921s", "1922s", "1923s", "1924s", "1925s", "1926s", "1927s", "1928s", "1929s", "1930s", "1931s", "1932s", "1933s", "1934s", "1935s", "1936s", "1937s", "1938s", "1939s", "1940s", "1941s", "1942s", "1943s", "1944s", "1945s", "1946s", "1947s", "1948s", "1949s", "1950s", "1951s", "1952s", "1953s", "1954s", "1955s", "1956s", "1957s", "1958s", "1959s", "1960s", "1961s", "1962s", "1963s", "1964s", "1965s", "1966s", "1967s", "1968s", "1969s", "1970s", "1971s", "1972s", "1973s", "1974s", "1975s", "1976s", "1977s", "1978s", "1979s", "1980s", "1981s", "1982s", "1983s", "1984s", "1985s", "1986s", "1987s", "1988s", "1989s", "1990s", "1991s", "1992s", "1993s", "1994s", "1995s", "1996s", "1997s", "1998s", "1999s", "2000s", "2001s", "2002s", "2003s", "2004s", "2005s", "2006s", "2007s", "2008s", "2009s", "2010s", "2011s", "2012s", "2013s", "2014s", "2015s", "2016s", "2017s", "2018s", "2019s", "2020s", "2021s", "2022s", "2023s", "2024s", "2025s", "2026s"],
+                datasets: [{ label: 'Films', data: [1, 6, 2, 12, 2, 38, 1, 6, 4, 6, 3, 21, 22, 11, 15, 15, 49, 61, 103, 88, 63, 105, 124, 89, 86, 98, 123, 123, 141, 163, 172, 162, 131, 141, 145, 136, 131, 122, 104, 86, 65, 60, 69, 66, 93, 128, 175, 188, 209, 223, 291, 402, 636, 490, 662, 608, 722, 897, 955, 851, 789, 867, 693, 671, 671, 728, 662, 673, 750, 826, 750, 747, 675, 647, 716, 665, 646, 671, 714, 793, 793, 855, 775, 743, 728, 682, 840, 838, 819, 794, 783, 736, 744, 800, 838, 830, 832, 866, 936, 1035, 1141, 1190, 1279, 1392, 1451, 1555, 1495, 1531, 1531, 1601, 1818, 1923, 1959, 2157, 2184, 2455, 2393, 2323, 1728, 1681, 1786, 1651, 1439, 1322, 55], borderColor: colors.red, backgroundColor: 'rgba(196, 30, 58, 0.1)', fill: true, tension: 0.4 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        // Filmed vs Represented Trend Chart
+        new Chart(document.getElementById('filmedRepresentedTrendChart'), {
+            type: 'line',
+            data: {
+                labels: ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'],
+                datasets: [
+                    { label: 'Filmed', data: [0, 0, 0, 0, 0, 0, 0, 0], borderColor: colors.red, backgroundColor: 'rgba(196, 30, 58, 0.1)', fill: true, tension: 0.3 },
+                    { label: 'Represented', data: [0, 0, 0, 0, 0, 0, 0, 0], borderColor: colors.green, backgroundColor: 'rgba(27, 77, 62, 0.1)', fill: true, tension: 0.3 }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+
+        // Sources Chart
+        new Chart(document.getElementById('sourcesChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Synopsis NER", "loca.ash.jp", "Title NER", "Subtitle NER", "Fan Sites", "Reference", "Nikkatsu", "Other"],
+                datasets: [{ data: [179294, 70103, 52654, 46146, 19821, 16229, 10223, 10178], backgroundColor: ['#5a5a5a', '#787878', colors.purple, '#FF6B6B', colors.gold, '#969696', colors.blue, colors.red, colors.green] }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        // Film Commission Chart
+        new Chart(document.getElementById('fcChart'), {
+            type: 'bar',
+            data: {
+                labels: ["gunma_fc (2025-12-01)", "tochigi_fc (2025-12-01)", "sagamihara_fc (2025-12-01)", "oita_city_fc (2025-12-01)", "nagasaki_fc (2025-12-23)", "toyama_lo (2025-12-01)", "hakodate_fc (2025-12-01)", "osaka_fc (2025-12-01)", "kanazawa_fc_map (2025-12-01)", "fujisawa_fc (2025-12-01)", "yamanashi_fc (2025-12-01)"],
+                datasets: [{ data: [486, 388, 222, 168, 165, 159, 132, 128, 94, 80, 64], backgroundColor: colors.green }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+    </script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c59d86ac-5efa-4ff2-b9ff-14d9f484ea62"></script>
+<script>
+(function(){
+  var u = window.umami;
+  if (!u) return;
+  fetch('https://ipinfo.io/json?token=992f2d449061e3')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      u.track('geo', {
+        country: d.country || '',
+        region: d.region || '',
+        city: d.city || '',
+        loc: d.loc || ''
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+</body>
+</html>
