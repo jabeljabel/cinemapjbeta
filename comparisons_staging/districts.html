@@ -615,7 +615,7 @@
         
         function initMap() {
             map = L.map('map').setView(CITY_CONFIG[currentCity].center, CITY_CONFIG[currentCity].zoom);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=cb1_4but_1_5717ac4b6bbf02d64fb12ecb', {
                 attribution: '&copy; OSM &copy; CARTO', maxZoom: 18
             }).addTo(map);
         }
